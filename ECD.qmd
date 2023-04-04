@@ -3,87 +3,81 @@ title: "ECD Intro"
 ---
 
 # Bayesian Networks in Educational Assessment
-## Part I:  An introduction to evidence-centered assessment design
+
+## Part I: An introduction to evidence-centered assessment design
 
 # Test Design
 
 ## The Interplay of Design and Statistical Modeling
 
-Statistical models must be selected/tailored according to the needs of
-the assessment
+Statistical models must be selected/tailored according to the needs of the assessment
 
-Such selection and adaptation is only meaningful in the larger context
-of the assessment design
+Such selection and adaptation is only meaningful in the larger context of the assessment design
 
-Understanding the discipline of assessment design is a necessary
-prerequisite for statistical modeling 
+Understanding the discipline of assessment design is a necessary prerequisite for statistical modeling
 
-Evidence Centered Design is an assessment design framework with
-general applicability and utility 
+Evidence Centered Design is an assessment design framework with general applicability and utility
 
 ## Test Design Considerations
 
-* Stakeholders
-* Requirements
-  * Purpose of the test
-  * Intended population
-* Prospective Score Report
-* Evidence-Centered Design
-  * Claims
-  * Validity
-* Specifications
+-   Stakeholders
+-   Requirements
+    -   Purpose of the test
+    -   Intended population
+-   Prospective Score Report
+-   Evidence-Centered Design
+    -   Claims
+    -   Validity
+-   Specifications
 
 ## Evidence-Centered Design---Advantages
 
-* Evidence Centered Design (ECD) provides a mechanism for
-  * _Capturing and documenting information_  about the structure and
-    strength of evidentiary relationships. 
-  * _Coordinating the work_  of test developers in authoring tasks and
-    psychometricians in calibrating the measurement model. 
-  * _Documenting the scientific information_  that provides the
-    foundation for the assessment and its validity. 
+-   Evidence Centered Design (ECD) provides a mechanism for
+    -   *Capturing and documenting information* about the structure and strength of evidentiary relationships.
+    -   *Coordinating the work* of test developers in authoring tasks and psychometricians in calibrating the measurement model.
+    -   *Documenting the scientific information* that provides the foundation for the assessment and its validity.
 
 ## Evidence-Centered Design--Central Question
 
-* Evidence-centered design centers around the questions: 
+-   Evidence-centered design centers around the questions:
 
-  > “What can we observe about an examinee's performance which will
-  >  provide evidence that the examinee has or does not have the
-  >  knowledge, skills and abilities we wish to make claims about?”
-	
-  > “How can we structure situations to be able to make those
-  > observations?”
-  
-  * This process results in the  _Conceptual Assessment Framework (CAF)_
+    > "What can we observe about an examinee's performance which will provide evidence that the examinee has or does not have the knowledge, skills and abilities we wish to make claims about?"
+
+    > "How can we structure situations to be able to make those observations?"
+
+    -   This process results in the *Conceptual Assessment Framework (CAF)*
 
 ## The Initial Frame
 
-* _Why_  are we measuring?
-  - What are the goals and the desires for use of this assessment?
-  - Prospective Score Report
-* _Who_  are we measuring?
-  - Who would take the assessment?
-  - Who would view results and for what purpose?
-* Goals of the assessment that represent the targets around which the rest of the design process is oriented
+-   *Why* are we measuring?
+    -   What are the goals and the desires for use of this assessment?
+    -   Prospective Score Report
+-   *Who* are we measuring?
+    -   Who would take the assessment?
+    -   Who would view results and for what purpose?
+-   Goals of the assessment that represent the targets around which the rest of the design process is oriented
 
 # Conceptual Assessment Framework (CAF)
 
-* _What_  we measure = Student <span style="color:#FF3300"> __Proficiency__ </span>  Model
-* _How_  we measure =  <span style="color:#FF3300"> __Evidence__ </span>  __ __ Model
-* _Where_  we measure =  <span style="color:#FF3300"> __Task__ </span>  __ __ Model
-* _How Much_  we measure =  <span style="color:#FF3300"> __Assembly__ </span>  Model
+-   *What* we measure = Student [ **Proficiency** ]{style="color:#FF3300"} Model
 
-*  _Customization_  =  <span style="color:#FF3300"> __Presentation & Delivery__ </span>  __ __ Models
+-   *How* we measure = [ **Evidence** ]{style="color:#FF3300"}  Model
+
+-   *Where* we measure = [ **Task** ]{style="color:#FF3300"}  Model
+
+-   *How Much* we measure = [ **Assembly** ]{style="color:#FF3300"} Model
+
+-   *Customization* = [ **Presentation & Delivery** ]{style="color:#FF3300"}  Models
 
 [ECD Conceptual Assessment Framework](img/CAFVisio.png)
 
-# Activity 1: Driver’s License Exam
+# Activity 1: Driver's License Exam
 
-Redesign the driver’s licensure exam
+Redesign the driver's licensure exam
 
-Write down several claims you would like to make about people who receive a driver’s license
+Write down several claims you would like to make about people who receive a driver's license
 
-Group your claims into several proficiency variables related to the driver’s test
+Group your claims into several proficiency variables related to the driver's test
 
 Do the claims hold for high, medium or low values of those variables?
 
@@ -103,11 +97,11 @@ What are some observable outcomes? their possible values?
 
 Which proficiencies do they measure?
 
-Think a bit about putting this driver’s test together
+Think a bit about putting this driver's test together
 
 How many tasks do we need of what types?
 
-How much time will be spent in written tests?  On the road?  In simulators?
+How much time will be spent in written tests? On the road? In simulators?
 
 How do we verify the identity of applicants?
 
@@ -129,17 +123,15 @@ In probability theory, events are sets (sets of balls in the urn).
 
 Let $A$ and $B$ be two events
 
-* _Union_:  Either $A$ _or_ $B$ occurs
-$$ A \cup B \qquad A \vee B $$
+-   *Union*: Either $A$ *or* $B$ occurs $$ A \cup B \qquad A \vee B $$
 
-* _Intersection_:  Both $A$ _and_ $B$ occur
-$$ A \cap B \qquad A \wedge B $$
-  - Sometimes also just $\Pr(A,B)$
-  
-* _Complement_:  _Not_ $A$
-$$ \neg A \qquad \overline{A} $$
-  - $\Pr(\overline{A}) = 1- \Pr(A)$$
-  
+-   *Intersection*: Both $A$ *and* $B$ occur $$ A \cap B \qquad A \wedge B $$
+
+    -   Sometimes also just $\Pr(A,B)$
+
+-   *Complement*: *Not* $A$ $$ \neg A \qquad \overline{A} $$
+
+    -   $\Pr(\overline{A}) = 1- \Pr(A)$\$
 
 # Conditional Probability
 
@@ -159,6 +151,7 @@ abline(v=1)
 text(.85,.5,"E")
 axis(3,at=c(.5,1.5),labels=c("H","not H"),tick=FALSE)
 ```
+
 $$\Pr(E|H) = \frac{\Pr(E \cap H)}{\Pr(H)} $$
 
 ## Law of Total Probability
@@ -168,7 +161,6 @@ $$ \Pr(E) = \Pr(E|H) \Pr(H) + \Pr(E|\overline{H})\Pr(\overline{H}) $$
 $$ \Pr(B) = \sum_i \Pr(B|A_i)\Pr(A_i) $$
 
 Where \$ A_i \cap A_j =\emptyset\$ and $\bigcup_i A_i = \Omega$
-
 
 # Bayes Theorem
 
@@ -182,8 +174,7 @@ $$ = \frac{\Pr(E|H)\Pr(H)}{\Pr(E|H)\Pr(H)+\Pr(E|\overline{H})\Pr(\overline{H})}$
 | Likelihood | $\Pr(E|H)$;$\Pr(E|\overline{H})$ |
 | Posterior  | $\Pr(H|E)$                       |
 
-[Rare Disease
-Problem]<https://pluto.coe.fsu.edu/rdemos/IntroStats/RareDisease.Rmd> 
+\[Rare Disease Problem\]<https://pluto.coe.fsu.edu/rdemos/IntroStats/RareDisease.Rmd>
 
 ## Independence
 
@@ -210,17 +201,17 @@ $$ \Pr(B) = \Pr(B|A) = \Pr(B|\overline{A}) $$ $$ \Pr(A) = \Pr(A|B) = \Pr(A|\over
 
 ## Accident Proneness (Feller, 1968)
 
-* Driving Skill:  5/6 Normal, 1/6 Accident Prone
-* Probability of an accident in a given year
-  * 1/100 for Normal drivers
-  * 1/10 for Accident prone drivers
-* Accidents happen independently in each year
-* What is the probability a randomly chosen driver will have an accident in Year 1?
-* Given a driver had an accident in Year 1, what is probability of accident in Year 2?
+-   Driving Skill: 5/6 Normal, 1/6 Accident Prone
+-   Probability of an accident in a given year
+    -   1/100 for Normal drivers
+    -   1/10 for Accident prone drivers
+-   Accidents happen independently in each year
+-   What is the probability a randomly chosen driver will have an accident in Year 1?
+-   Given a driver had an accident in Year 1, what is probability of accident in Year 2?
 
 ## Accident Proneness (Year 1)
 
-What is the probability a randomly chosen driver will have an accident in Year 1?  Year 2?
+What is the probability a randomly chosen driver will have an accident in Year 1? Year 2?
 
 $\Pr(Y_i)$. -- Prob of accident in a given year.
 
@@ -238,9 +229,7 @@ sum(Year1[,"Yes"])
 
 ## Accident Proneness (Year II)
 
-
-Given a driver had an accident in Year 1, what is probability of
-accident in Year 2?
+Given a driver had an accident in Year 1, what is probability of accident in Year 2?
 
 $$ \begin{array}{rcl}
  \Pr(A_1 \cap A_2) &=& \Pr(A_1 \cap A_2|N)\Pr(N) + \Pr(A_1 \cap
@@ -299,6 +288,7 @@ digraph Autotrain {
   COVID -> pcrTest;
 }")
 ```
+
 ## Competing Explanations
 
 ```{r CompeteExplain}
@@ -308,70 +298,66 @@ digraph CompExpl {
   Skill2 -> X
 }")
 ```
-* `Skill1` and `Skill2` are (a priori) independent in population
-* Task `X` requires both skills (conjunctive model)
-* Answer the following questions:
-  * What is posterior of `Skill2` after learning `X=False`, and `Skill1=High`?
-  * What is posterior of `Skill1` after learning `X=False`, and `Skill2=High`?
-  * What is true of joint posterior of `Skill1` and `Skill2` after
-    learning `X=False`? 
+
+-   `Skill1` and `Skill2` are (a priori) independent in population
+-   Task `X` requires both skills (conjunctive model)
+-   Answer the following questions:
+    -   What is posterior of `Skill2` after learning `X=False`, and `Skill1=High`?
+    -   What is posterior of `Skill1` after learning `X=False`, and `Skill2=High`?
+    -   What is true of joint posterior of `Skill1` and `Skill2` after learning `X=False`?
 
 # D-Separation
 
-For , , and  edges conditioning on middle variables renders
-outer variables independent 
+For , , and  edges conditioning on middle variables renders outer variables independent
 
-* $$ A \leftarrow B \leftarrow C$$
-* $$ A \rightarrow B \leftarrow C$$
-* $$ A \rightarrow B \rightarrow C$$
+-   $$ A \leftarrow B \leftarrow C$$
+-   $$ A \rightarrow B \leftarrow C$$
+-   $$ A \rightarrow B \rightarrow C$$
 
-For  (collider) edges, if middle variable (or descendent is known)
-then variables are dependent
+For  (collider) edges, if middle variable (or descendent is known) then variables are dependent
 
-* $$ A \leftarrow B \rightarrow C$$
+-   $$ A \leftarrow B \rightarrow C$$
 
-A path is  _active_  if collider with middle node observed, or non-collider with middle node unobserved
+A path is *active* if collider with middle node observed, or non-collider with middle node unobserved
 
 ## D-separation Example
 
 ```{r DSep}
-DiagrammeR::grViz("
+DiagrammeR::grViz('
 digraph DSep {
   rankdir = "LR";
   A -> B; A -> C;
   B -> D; C -> D;
   D -> E -> F;
-}")
+}')
 ```
 
-$B$ and $C$ are independent if $A$ is known and all of $D$, $E$ or $F$
-are not known.
+$B$ and $C$ are independent if $A$ is known and all of $D$, $E$ or $F$ are not known.
 
 $D$ is indepedent of $F$ if $E$ is known.
-  
 
 ## D-Separation Exercise
 
 ```{r DSepEx}
-DiagrammeR::grViz("
+DiagrammeR::grViz('
 digraph DSepEx {
   rankdir = "TB";
   A -> D; B -> D; B -> E; C -> E;
   D -> F; D -> G; E -> G; E -> H;
-}")
+}')
 ```
 
-* Are  _A_  and  _C_  independent if
-  * We have observed no other variables?
-    * What could we condition on to make  _A_  and  _C_  independent?
-  * We have observed  _F_  and  _H?_
-    * What else could we condition on to make  _A_  and  _C_  independent?
-  * We have observed  _G_ ?
-    * What else could we condition on to make  _A_  and  _C_  independent?
+-   Are *A* and *C* independent if
+    -   We have observed no other variables?
+        -   What could we condition on to make *A* and *C* independent?
+    -   We have observed *F* and *H?*
+        -   What else could we condition on to make *A* and *C* independent?
+    -   We have observed *G* ?
+        -   What else could we condition on to make *A* and *C* independent?
 
 # Building Up Complex Networks
 
-Pick an ordering of the nodes:  $V_1, V_J)$.  
+Pick an ordering of the nodes: $V_1, V_J)$.
 
 $$p(v_1,\ldots,v_J) = p(v_J|v_{J-1},\ldots,v_1)
 p(v_{J-1}|v_{J-2},\ldots,v_1) \cdots p(v_2|v_1) p(v_1)$$
@@ -381,12 +367,9 @@ p(v_j|Pa(V_j)) $$
 
 $$Pa(v_j)$$ is the set of nodes that come earlier in the sequence.
 
-If ${\cal G}$ is a Bayesian network whose nodes are ${\cal V}$, then
-we can replace $$Pa(v_j)$$ with $$Pa_{{\cal G}}(V_j)$$, the parents of
-$V_j$ in the graph.
+If ${\cal G}$ is a Bayesian network whose nodes are ${\cal V}$, then we can replace $$Pa(v_j)$$ with $$Pa_{{\cal G}}(V_j)$$, the parents of $V_j$ in the graph.
 
-
-## Building Up Complex Networks:  IRT
+## Building Up Complex Networks: IRT
 
 ```{r IRT}
 DiagrammeR::grViz('
@@ -399,11 +382,9 @@ digraph IRT {
 }')
 ```
 
-For example, in IRT, item responses are conditionally independent
-given $\theta$:
+For example, in IRT, item responses are conditionally independent given $\theta$:
 
 $$ p(X_1,\ldots,X_J,\theta) = p(\theta) \prod_{j=1}^{J} p(X_j|\theta)$$
-
 
 ## Bayes net
 
@@ -420,7 +401,7 @@ One factor for each node in graph in recursive representation
 
 This factor is conditioned on parents in graph
 
-“Prior” nodes have no parents
+"Prior" nodes have no parents
 
 $$p(A)p(B)p(C|A,B)p(D|C)p(E|C)p(F|D,E) = p(A,B,C,D,E,F)$$
 
@@ -437,4 +418,3 @@ Observable variables, their possible values
 Conditional probabilities between Proficiency variables and Observable variables
 
 Add your observables to the proficiency model you made in Netica
-

@@ -27,6 +27,13 @@ website:
       - href: References.qmd
         text: References
 
+
+margin-header: |
+  ![Peanut Logo](/img/PeanutLogo.png)
+
+bibliography:  bninea.bib
+csl:  apa.csl
+
 format:
   html:
     theme: cosmo

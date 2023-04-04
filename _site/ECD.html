@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Peanut Tutorial - ECD Intro</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<script src="site_libs/viz-1.8.2/viz.js"></script>
+<link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="site_libs/grViz-binding-1.0.9/grViz.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Peanut Tutorial</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./ECD.html" aria-current="page">
+ <span class="menu-text">ECD Intro</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./BayesNets.html">
+ <span class="menu-text">Bayesian Networks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Scoring.html">
+ <span class="menu-text">Scoring</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Building.html">
+ <span class="menu-text">Building Nets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Updating.html">
+ <span class="menu-text">Calibration</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Visualization.html">
+ <span class="menu-text">Model checking and visualzation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Dynamic.html">
+ <span class="menu-text">Dynamic Models</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Resources.html">
+ <span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./References.html">
+ <span class="menu-text">References</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./img/PeanutLogo.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Peanut Logo</figcaption><p></p>
+</figure>
+</div>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#bayesian-networks-in-educational-assessment" id="toc-bayesian-networks-in-educational-assessment" class="nav-link active" data-scroll-target="#bayesian-networks-in-educational-assessment">Bayesian Networks in Educational Assessment</a>
+  <ul class="collapse">
+  <li><a href="#part-i-an-introduction-to-evidence-centered-assessment-design" id="toc-part-i-an-introduction-to-evidence-centered-assessment-design" class="nav-link" data-scroll-target="#part-i-an-introduction-to-evidence-centered-assessment-design">Part I: An introduction to evidence-centered assessment design</a></li>
+  </ul></li>
+  <li><a href="#test-design" id="toc-test-design" class="nav-link" data-scroll-target="#test-design">Test Design</a>
+  <ul class="collapse">
+  <li><a href="#the-interplay-of-design-and-statistical-modeling" id="toc-the-interplay-of-design-and-statistical-modeling" class="nav-link" data-scroll-target="#the-interplay-of-design-and-statistical-modeling">The Interplay of Design and Statistical Modeling</a></li>
+  <li><a href="#test-design-considerations" id="toc-test-design-considerations" class="nav-link" data-scroll-target="#test-design-considerations">Test Design Considerations</a></li>
+  <li><a href="#evidence-centered-designadvantages" id="toc-evidence-centered-designadvantages" class="nav-link" data-scroll-target="#evidence-centered-designadvantages">Evidence-Centered Design—Advantages</a></li>
+  <li><a href="#evidence-centered-designcentral-question" id="toc-evidence-centered-designcentral-question" class="nav-link" data-scroll-target="#evidence-centered-designcentral-question">Evidence-Centered Design–Central Question</a></li>
+  <li><a href="#the-initial-frame" id="toc-the-initial-frame" class="nav-link" data-scroll-target="#the-initial-frame">The Initial Frame</a></li>
+  </ul></li>
+  <li><a href="#conceptual-assessment-framework-caf" id="toc-conceptual-assessment-framework-caf" class="nav-link" data-scroll-target="#conceptual-assessment-framework-caf">Conceptual Assessment Framework (CAF)</a></li>
+  <li><a href="#activity-1-drivers-license-exam" id="toc-activity-1-drivers-license-exam" class="nav-link" data-scroll-target="#activity-1-drivers-license-exam">Activity 1: Driver’s License Exam</a>
+  <ul class="collapse">
+  <li><a href="#activity-1-cont" id="toc-activity-1-cont" class="nav-link" data-scroll-target="#activity-1-cont">Activity 1 (cont)</a></li>
+  </ul></li>
+  <li><a href="#ecd-and-bayes-nets" id="toc-ecd-and-bayes-nets" class="nav-link" data-scroll-target="#ecd-and-bayes-nets">ECD and Bayes Nets</a>
+  <ul class="collapse">
+  <li><a href="#cup-and-cap-notation" id="toc-cup-and-cap-notation" class="nav-link" data-scroll-target="#cup-and-cap-notation">Cup and Cap notation</a></li>
+  </ul></li>
+  <li><a href="#conditional-probability" id="toc-conditional-probability" class="nav-link" data-scroll-target="#conditional-probability">Conditional Probability</a>
+  <ul class="collapse">
+  <li><a href="#law-of-total-probability" id="toc-law-of-total-probability" class="nav-link" data-scroll-target="#law-of-total-probability">Law of Total Probability</a></li>
+  </ul></li>
+  <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem">Bayes Theorem</a>
+  <ul class="collapse">
+  <li><a href="#independence" id="toc-independence" class="nav-link" data-scroll-target="#independence">Independence</a></li>
+  <li><a href="#accident-proneness-feller-1968" id="toc-accident-proneness-feller-1968" class="nav-link" data-scroll-target="#accident-proneness-feller-1968">Accident Proneness (Feller, 1968)</a></li>
+  <li><a href="#accident-proneness-year-1" id="toc-accident-proneness-year-1" class="nav-link" data-scroll-target="#accident-proneness-year-1">Accident Proneness (Year 1)</a></li>
+  <li><a href="#accident-proneness-year-ii" id="toc-accident-proneness-year-ii" class="nav-link" data-scroll-target="#accident-proneness-year-ii">Accident Proneness (Year II)</a></li>
+  <li><a href="#accident-prone-chain" id="toc-accident-prone-chain" class="nav-link" data-scroll-target="#accident-prone-chain">Accident Prone (Chain)</a></li>
+  <li><a href="#explanation" id="toc-explanation" class="nav-link" data-scroll-target="#explanation">Explanation</a></li>
+  <li><a href="#conditional-independence" id="toc-conditional-independence" class="nav-link" data-scroll-target="#conditional-independence">Conditional Independence</a></li>
+  <li><a href="#another-example" id="toc-another-example" class="nav-link" data-scroll-target="#another-example">Another Example</a></li>
+  <li><a href="#competing-explanations" id="toc-competing-explanations" class="nav-link" data-scroll-target="#competing-explanations">Competing Explanations</a></li>
+  </ul></li>
+  <li><a href="#d-separation" id="toc-d-separation" class="nav-link" data-scroll-target="#d-separation">D-Separation</a>
+  <ul class="collapse">
+  <li><a href="#d-separation-example" id="toc-d-separation-example" class="nav-link" data-scroll-target="#d-separation-example">D-separation Example</a></li>
+  <li><a href="#d-separation-exercise" id="toc-d-separation-exercise" class="nav-link" data-scroll-target="#d-separation-exercise">D-Separation Exercise</a></li>
+  </ul></li>
+  <li><a href="#building-up-complex-networks" id="toc-building-up-complex-networks" class="nav-link" data-scroll-target="#building-up-complex-networks">Building Up Complex Networks</a>
+  <ul class="collapse">
+  <li><a href="#building-up-complex-networks-irt" id="toc-building-up-complex-networks-irt" class="nav-link" data-scroll-target="#building-up-complex-networks-irt">Building Up Complex Networks: IRT</a></li>
+  <li><a href="#bayes-net" id="toc-bayes-net" class="nav-link" data-scroll-target="#bayes-net">Bayes net</a></li>
+  <li><a href="#activity-2-build-a-bayes-net" id="toc-activity-2-build-a-bayes-net" class="nav-link" data-scroll-target="#activity-2-build-a-bayes-net">Activity 2: Build a Bayes Net</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ECD Intro</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="bayesian-networks-in-educational-assessment" class="level1">
+<h1>Bayesian Networks in Educational Assessment</h1>
+<section id="part-i-an-introduction-to-evidence-centered-assessment-design" class="level2">
+<h2 class="anchored" data-anchor-id="part-i-an-introduction-to-evidence-centered-assessment-design">Part I: An introduction to evidence-centered assessment design</h2>
+</section>
+</section>
+<section id="test-design" class="level1">
+<h1>Test Design</h1>
+<section id="the-interplay-of-design-and-statistical-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="the-interplay-of-design-and-statistical-modeling">The Interplay of Design and Statistical Modeling</h2>
+<p>Statistical models must be selected/tailored according to the needs of the assessment</p>
+<p>Such selection and adaptation is only meaningful in the larger context of the assessment design</p>
+<p>Understanding the discipline of assessment design is a necessary prerequisite for statistical modeling</p>
+<p>Evidence Centered Design is an assessment design framework with general applicability and utility</p>
+</section>
+<section id="test-design-considerations" class="level2">
+<h2 class="anchored" data-anchor-id="test-design-considerations">Test Design Considerations</h2>
+<ul>
+<li>Stakeholders</li>
+<li>Requirements
+<ul>
+<li>Purpose of the test</li>
+<li>Intended population</li>
+</ul></li>
+<li>Prospective Score Report</li>
+<li>Evidence-Centered Design
+<ul>
+<li>Claims</li>
+<li>Validity</li>
+</ul></li>
+<li>Specifications</li>
+</ul>
+</section>
+<section id="evidence-centered-designadvantages" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-centered-designadvantages">Evidence-Centered Design—Advantages</h2>
+<ul>
+<li>Evidence Centered Design (ECD) provides a mechanism for
+<ul>
+<li><em>Capturing and documenting information</em> about the structure and strength of evidentiary relationships.</li>
+<li><em>Coordinating the work</em> of test developers in authoring tasks and psychometricians in calibrating the measurement model.</li>
+<li><em>Documenting the scientific information</em> that provides the foundation for the assessment and its validity.</li>
+</ul></li>
+</ul>
+</section>
+<section id="evidence-centered-designcentral-question" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-centered-designcentral-question">Evidence-Centered Design–Central Question</h2>
+<ul>
+<li><p>Evidence-centered design centers around the questions:</p>
+<blockquote class="blockquote">
+<p>“What can we observe about an examinee’s performance which will provide evidence that the examinee has or does not have the knowledge, skills and abilities we wish to make claims about?”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“How can we structure situations to be able to make those observations?”</p>
+</blockquote>
+<ul>
+<li>This process results in the <em>Conceptual Assessment Framework (CAF)</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="the-initial-frame" class="level2">
+<h2 class="anchored" data-anchor-id="the-initial-frame">The Initial Frame</h2>
+<ul>
+<li><em>Why</em> are we measuring?
+<ul>
+<li>What are the goals and the desires for use of this assessment?</li>
+<li>Prospective Score Report</li>
+</ul></li>
+<li><em>Who</em> are we measuring?
+<ul>
+<li>Who would take the assessment?</li>
+<li>Who would view results and for what purpose?</li>
+</ul></li>
+<li>Goals of the assessment that represent the targets around which the rest of the design process is oriented</li>
+</ul>
+</section>
+</section>
+<section id="conceptual-assessment-framework-caf" class="level1">
+<h1>Conceptual Assessment Framework (CAF)</h1>
+<ul>
+<li><p><em>What</em> we measure = Student <span style="color:#FF3300"><strong>Proficiency</strong></span> Model</p></li>
+<li><p><em>How</em> we measure = <span style="color:#FF3300"><strong>Evidence</strong></span> Model</p></li>
+<li><p><em>Where</em> we measure = <span style="color:#FF3300"><strong>Task</strong></span> Model</p></li>
+<li><p><em>How Much</em> we measure = <span style="color:#FF3300"><strong>Assembly</strong></span> Model</p></li>
+<li><p><em>Customization</em> = <span style="color:#FF3300"><strong>Presentation &amp; Delivery</strong></span> Models</p></li>
+</ul>
+<p><a href="img/CAFVisio.png">ECD Conceptual Assessment Framework</a></p>
+</section>
+<section id="activity-1-drivers-license-exam" class="level1">
+<h1>Activity 1: Driver’s License Exam</h1>
+<p>Redesign the driver’s licensure exam</p>
+<p>Write down several claims you would like to make about people who receive a driver’s license</p>
+<p>Group your claims into several proficiency variables related to the driver’s test</p>
+<p>Do the claims hold for high, medium or low values of those variables?</p>
+<p>Use Netica as a drawing tool and add your variables</p>
+<section id="activity-1-cont" class="level2">
+<h2 class="anchored" data-anchor-id="activity-1-cont">Activity 1 (cont)</h2>
+<p>List a bunch of activities that you may want prospective drivers to do in their exam</p>
+<p>What is environment of the task</p>
+<p>What are manipulable features of the task?</p>
+<p>Pick one of the tasks you created and build an evidence model for it.</p>
+<p>What are some observable outcomes? their possible values?</p>
+<p>Which proficiencies do they measure?</p>
+<p>Think a bit about putting this driver’s test together</p>
+<p>How many tasks do we need of what types?</p>
+<p>How much time will be spent in written tests? On the road? In simulators?</p>
+<p>How do we verify the identity of applicants?</p>
+</section>
+</section>
+<section id="ecd-and-bayes-nets" class="level1">
+<h1>ECD and Bayes Nets</h1>
+<p>Represent Qualitative ECD argument with a graph (Domain Modeling) (Session I)</p>
+<p>Turn graphical structure into probability distribution over proficiency variables and observable outcomes (Bayes net; Session I)</p>
+<p>Perform inference (scoring) using that Bayes net (Session II)</p>
+<p>Express probabilities in terms of unknown parameters – learn parameters (Session III)</p>
+<p>Refine model based on how well it fits data (Session IV)</p>
+<section id="cup-and-cap-notation" class="level2">
+<h2 class="anchored" data-anchor-id="cup-and-cap-notation">Cup and Cap notation</h2>
+<p>In probability theory, events are sets (sets of balls in the urn).</p>
+<p>Let <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> be two events</p>
+<ul>
+<li><p><em>Union</em>: Either <span class="math inline">\(A\)</span> <em>or</em> <span class="math inline">\(B\)</span> occurs <span class="math display">\[ A \cup B \qquad A \vee B \]</span></p></li>
+<li><p><em>Intersection</em>: Both <span class="math inline">\(A\)</span> <em>and</em> <span class="math inline">\(B\)</span> occur <span class="math display">\[ A \cap B \qquad A \wedge B \]</span></p>
+<ul>
+<li>Sometimes also just <span class="math inline">\(\Pr(A,B)\)</span></li>
+</ul></li>
+<li><p><em>Complement</em>: <em>Not</em> <span class="math inline">\(A\)</span> <span class="math display">\[ \neg A \qquad \overline{A} \]</span></p>
+<ul>
+<li><span class="math inline">\(\Pr(\overline{A}) = 1- \Pr(A)\)</span>$</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="conditional-probability" class="level1">
+<h1>Conditional Probability</h1>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ECD_files/figure-html/CondProb-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><span class="math display">\[\Pr(E|H) = \frac{\Pr(E \cap H)}{\Pr(H)} \]</span></p>
+<section id="law-of-total-probability" class="level2">
+<h2 class="anchored" data-anchor-id="law-of-total-probability">Law of Total Probability</h2>
+<p><span class="math display">\[ \Pr(E) = \Pr(E|H) \Pr(H) + \Pr(E|\overline{H})\Pr(\overline{H}) \]</span></p>
+<p><span class="math display">\[ \Pr(B) = \sum_i \Pr(B|A_i)\Pr(A_i) \]</span></p>
+<p>Where $ A_i A_j =$ and <span class="math inline">\(\bigcup_i A_i = \Omega\)</span></p>
+</section>
+</section>
+<section id="bayes-theorem" class="level1">
+<h1>Bayes Theorem</h1>
+<p><span class="math display">\[ \Pr(H|E) = \frac{\Pr(E|H)\Pr(H)}{\Pr(E)} \]</span></p>
+<p><span class="math display">\[ = \frac{\Pr(E|H)\Pr(H)}{\Pr(E|H)\Pr(H)+\Pr(E|\overline{H})\Pr(\overline{H})}\]</span></p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td>Prior</td>
+<td><span class="math inline">\(\Pr(H)\)</span></td>
+</tr>
+<tr class="even">
+<td>Likelihood</td>
+<td><span class="math inline">\(\Pr(E|H)\)</span>;<span class="math inline">\(\Pr(E|\overline{H})\)</span></td>
+</tr>
+<tr class="odd">
+<td>Posterior</td>
+<td><span class="math inline">\(\Pr(H|E)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>[Rare Disease Problem]<a href="https://pluto.coe.fsu.edu/rdemos/IntroStats/RareDisease.Rmd" class="uri">https://pluto.coe.fsu.edu/rdemos/IntroStats/RareDisease.Rmd</a></p>
+<section id="independence" class="level2">
+<h2 class="anchored" data-anchor-id="independence">Independence</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="ECD_files/figure-html/IndProb-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><span class="math display">\[ \Pr(B) = \Pr(B|A) = \Pr(B|\overline{A}) \]</span> <span class="math display">\[ \Pr(A) = \Pr(A|B) = \Pr(A|\overline{B}) \]</span> <span class="math display">\[ \Pr(A \cap B) = \Pr(A|B)\Pr(B) = \Pr(A)\Pr(B) \]</span></p>
+<ul>
+<li>Knowing <span class="math inline">\(A\)</span> provides no information about <span class="math inline">\(B\)</span> and vise versa.</li>
+</ul>
+</section>
+<section id="accident-proneness-feller-1968" class="level2">
+<h2 class="anchored" data-anchor-id="accident-proneness-feller-1968">Accident Proneness (Feller, 1968)</h2>
+<ul>
+<li>Driving Skill: 5/6 Normal, 1/6 Accident Prone</li>
+<li>Probability of an accident in a given year
+<ul>
+<li>1/100 for Normal drivers</li>
+<li>1/10 for Accident prone drivers</li>
+</ul></li>
+<li>Accidents happen independently in each year</li>
+<li>What is the probability a randomly chosen driver will have an accident in Year 1?</li>
+<li>Given a driver had an accident in Year 1, what is probability of accident in Year 2?</li>
+</ul>
+</section>
+<section id="accident-proneness-year-1" class="level2">
+<h2 class="anchored" data-anchor-id="accident-proneness-year-1">Accident Proneness (Year 1)</h2>
+<p>What is the probability a randomly chosen driver will have an accident in Year 1? Year 2?</p>
+<p><span class="math inline">\(\Pr(Y_i)\)</span>. – Prob of accident in a given year.</p>
+<p><span class="math display">\[ \Pr(A_i) = \Pr(A_i|N)\Pr(N) +
+\Pr(A_i|\overline{N})\Pr(\overline{N}) \]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>DrivingSkill <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">N=</span><span class="dv">5</span><span class="sc">/</span><span class="dv">6</span>,<span class="at">A=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>AccLike <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">Yes=</span><span class="fu">c</span>(<span class="at">N=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">100</span>,<span class="at">A=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">10</span>),<span class="at">No=</span><span class="fu">c</span>(<span class="at">N=</span><span class="dv">99</span><span class="sc">/</span><span class="dv">100</span>,<span class="at">A=</span><span class="dv">9</span><span class="sc">/</span><span class="dv">10</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Year1 <span class="ot">&lt;-</span> <span class="fu">sweep</span>(AccLike,<span class="dv">1</span>,DrivingSkill,<span class="st">"*"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Year1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          Yes    No
+N 0.008333333 0.825
+A 0.016666667 0.150</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(Year1[,<span class="st">"Yes"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.025</code></pre>
+</div>
+</div>
+</section>
+<section id="accident-proneness-year-ii" class="level2">
+<h2 class="anchored" data-anchor-id="accident-proneness-year-ii">Accident Proneness (Year II)</h2>
+<p>Given a driver had an accident in Year&nbsp;1, what is probability of accident in Year&nbsp;2?</p>
+<p><span class="math display">\[ \begin{array}{rcl}
+\Pr(A_1 \cap A_2) &amp;=&amp; \Pr(A_1 \cap A_2|N)\Pr(N) + \Pr(A_1 \cap
+A_2|\overline{N}) \Pr(\overline{N}) \\
+  &amp;=&amp; \Pr(A_1|N)\Pr(A_2|N)\Pr(N) + \Pr(A_1|\overline{N})
+\Pr(A_2|\overline{N}) \Pr(\overline{N})
+   \end{array} \]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Acc2Like <span class="ot">&lt;-</span> AccLike</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Acc2Like[,<span class="st">"Yes"</span>] <span class="ot">&lt;-</span> AccLike[,<span class="st">"Yes"</span>]<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Acc2Like[,<span class="st">"No"</span>] <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span>Acc2Like[,<span class="st">"Yes"</span>]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>Year12 <span class="ot">&lt;-</span> <span class="fu">sweep</span>(Acc2Like,<span class="dv">1</span>,DrivingSkill,<span class="st">"*"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>Year12</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           Yes      No
+N 8.333333e-05 0.83325
+A 1.666667e-03 0.16500</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(Year12[,<span class="st">"Yes"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.00175</code></pre>
+</div>
+</div>
+</section>
+<section id="accident-prone-chain" class="level2">
+<h2 class="anchored" data-anchor-id="accident-prone-chain">Accident Prone (Chain)</h2>
+<p><span class="math inline">\(\Pr(Y_2 | Y_1)\)</span> – Accident in 2nd year given accident in first year.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(Year12[,<span class="st">"Yes"</span>])<span class="sc">/</span><span class="fu">sum</span>(Year1[,<span class="st">"Yes"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.07</code></pre>
+</div>
+</div>
+</section>
+<section id="explanation" class="level2">
+<h2 class="anchored" data-anchor-id="explanation">Explanation</h2>
+<p><span class="math inline">\(\Pr(S=\text{normal}|A_i)\)</span> – Probability in normal category given accident.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>DiagrammeR<span class="sc">::</span><span class="fu">grViz</span>(<span class="st">"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="st">digraph AP {</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="st">  Driving -&gt; Year1;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="st">  Driving -&gt; Year2;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="st">}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-7b15df5b029d61979e19" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-7b15df5b029d61979e19">{"x":{"diagram":"\ndigraph AP {\n  Driving -> Year1;\n  Driving -> Year2;\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="conditional-independence" class="level2">
+<h2 class="anchored" data-anchor-id="conditional-independence">Conditional Independence</h2>
+<ul>
+<li><em>Conditional Independence</em>: $(Y_1,Y_2|S) = (Y_1|S) (Y_2|S) $</li>
+<li>Years are <em>marginally dependent</em>.</li>
+<li>Separation in graph tells the story.</li>
+<li>Information flows from from <em>Year1</em> to <em>Driving Skill</em> to <em>Year2</em></li>
+</ul>
+</section>
+<section id="another-example" class="level2">
+<h2 class="anchored" data-anchor-id="another-example">Another Example</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>DiagrammeR<span class="sc">::</span><span class="fu">grViz</span>(<span class="st">"</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="st">digraph Autotrain {</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="st">  Train -&gt; COVID;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="st">  Train -&gt; MaskOnTrain;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="st">  MaskOnTrain -&gt; COVID;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="st">  Vaccine -&gt; COVID;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="st">  COVID -&gt; fever;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="st">  COVID -&gt; congestion;</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="st">  COVID -&gt; pcrTest;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="st">}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a1d34f97248c633f82d8" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-a1d34f97248c633f82d8">{"x":{"diagram":"\ndigraph Autotrain {\n  Train -> COVID;\n  Train -> MaskOnTrain;\n  MaskOnTrain -> COVID;\n  Vaccine -> COVID;\n  COVID -> fever;\n  COVID -> congestion;\n  COVID -> pcrTest;\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="competing-explanations" class="level2">
+<h2 class="anchored" data-anchor-id="competing-explanations">Competing Explanations</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>DiagrammeR<span class="sc">::</span><span class="fu">grViz</span>(<span class="st">"</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="st">digraph CompExpl {</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">  Skill1 -&gt; X</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="st">  Skill2 -&gt; X</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="st">}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-8d4f5a0792bf507d988b" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-8d4f5a0792bf507d988b">{"x":{"diagram":"\ndigraph CompExpl {\n  Skill1 -> X\n  Skill2 -> X\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<ul>
+<li><code>Skill1</code> and <code>Skill2</code> are (a priori) independent in population</li>
+<li>Task <code>X</code> requires both skills (conjunctive model)</li>
+<li>Answer the following questions:
+<ul>
+<li>What is posterior of <code>Skill2</code> after learning <code>X=False</code>, and <code>Skill1=High</code>?</li>
+<li>What is posterior of <code>Skill1</code> after learning <code>X=False</code>, and <code>Skill2=High</code>?</li>
+<li>What is true of joint posterior of <code>Skill1</code> and <code>Skill2</code> after learning <code>X=False</code>?</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="d-separation" class="level1">
+<h1>D-Separation</h1>
+<p>For , , and  edges conditioning on middle variables renders outer variables independent</p>
+<ul>
+<li><span class="math display">\[ A \leftarrow B \leftarrow C\]</span></li>
+<li><span class="math display">\[ A \rightarrow B \leftarrow C\]</span></li>
+<li><span class="math display">\[ A \rightarrow B \rightarrow C\]</span></li>
+</ul>
+<p>For  (collider) edges, if middle variable (or descendent is known) then variables are dependent</p>
+<ul>
+<li><span class="math display">\[ A \leftarrow B \rightarrow C\]</span></li>
+</ul>
+<p>A path is <em>active</em> if collider with middle node observed, or non-collider with middle node unobserved</p>
+<section id="d-separation-example" class="level2">
+<h2 class="anchored" data-anchor-id="d-separation-example">D-separation Example</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>DiagrammeR<span class="sc">::</span><span class="fu">grViz</span>(<span class="st">'</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="st">digraph DSep {</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="st">  rankdir = "LR";</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="st">  A -&gt; B; A -&gt; C;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="st">  B -&gt; D; C -&gt; D;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="st">  D -&gt; E -&gt; F;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-9cdd37fe4a9ef549ea10" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-9cdd37fe4a9ef549ea10">{"x":{"diagram":"\ndigraph DSep {\n  rankdir = \"LR\";\n  A -> B; A -> C;\n  B -> D; C -> D;\n  D -> E -> F;\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p><span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> are independent if <span class="math inline">\(A\)</span> is known and all of <span class="math inline">\(D\)</span>, <span class="math inline">\(E\)</span> or <span class="math inline">\(F\)</span> are not known.</p>
+<p><span class="math inline">\(D\)</span> is indepedent of <span class="math inline">\(F\)</span> if <span class="math inline">\(E\)</span> is known.</p>
+</section>
+<section id="d-separation-exercise" class="level2">
+<h2 class="anchored" data-anchor-id="d-separation-exercise">D-Separation Exercise</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>DiagrammeR<span class="sc">::</span><span class="fu">grViz</span>(<span class="st">'</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="st">digraph DSepEx {</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="st">  rankdir = "TB";</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="st">  A -&gt; D; B -&gt; D; B -&gt; E; C -&gt; E;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="st">  D -&gt; F; D -&gt; G; E -&gt; G; E -&gt; H;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-b7f04becd970c62736aa" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-b7f04becd970c62736aa">{"x":{"diagram":"\ndigraph DSepEx {\n  rankdir = \"TB\";\n  A -> D; B -> D; B -> E; C -> E;\n  D -> F; D -> G; E -> G; E -> H;\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<ul>
+<li>Are <em>A</em> and <em>C</em> independent if
+<ul>
+<li>We have observed no other variables?
+<ul>
+<li>What could we condition on to make <em>A</em> and <em>C</em> independent?</li>
+</ul></li>
+<li>We have observed <em>F</em> and <em>H?</em>
+<ul>
+<li>What else could we condition on to make <em>A</em> and <em>C</em> independent?</li>
+</ul></li>
+<li>We have observed <em>G</em> ?
+<ul>
+<li>What else could we condition on to make <em>A</em> and <em>C</em> independent?</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="building-up-complex-networks" class="level1">
+<h1>Building Up Complex Networks</h1>
+<p>Pick an ordering of the nodes: <span class="math inline">\(V_1, V_J)\)</span>.</p>
+<p><span class="math display">\[p(v_1,\ldots,v_J) = p(v_J|v_{J-1},\ldots,v_1)
+p(v_{J-1}|v_{J-2},\ldots,v_1) \cdots p(v_2|v_1) p(v_1)\]</span></p>
+<p><span class="math display">\[ = \prod{j=1}^{J} p(v_j|v_{j-1},\ldots, v_1) = \prod_{j=1}^{J}
+p(v_j|Pa(V_j)) \]</span></p>
+<p><span class="math display">\[Pa(v_j)\]</span> is the set of nodes that come earlier in the sequence.</p>
+<p>If <span class="math inline">\({\cal G}\)</span> is a Bayesian network whose nodes are <span class="math inline">\({\cal V}\)</span>, then we can replace <span class="math display">\[Pa(v_j)\]</span> with <span class="math display">\[Pa_{{\cal G}}(V_j)\]</span>, the parents of <span class="math inline">\(V_j\)</span> in the graph.</p>
+<section id="building-up-complex-networks-irt" class="level2">
+<h2 class="anchored" data-anchor-id="building-up-complex-networks-irt">Building Up Complex Networks: IRT</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>DiagrammeR<span class="sc">::</span><span class="fu">grViz</span>(<span class="st">'</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="st">digraph IRT {</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="st">  subgraph{ Q[label="θ"] }</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="st">  subgraph {</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="st">  X1; X2; andC[shape=none,label="..."]; XJ</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="st">  Q -&gt; X1; Q-&gt; X2; Q-&gt;andC [style="invis"]; Q-&gt;XJ</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-9286694a8a606e9ff510" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-9286694a8a606e9ff510">{"x":{"diagram":"\ndigraph IRT {\n  subgraph{ Q[label=\"θ\"] }\n  subgraph {\n  X1; X2; andC[shape=none,label=\"...\"]; XJ\n  }\n  Q -> X1; Q-> X2; Q->andC [style=\"invis\"]; Q->XJ\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>For example, in IRT, item responses are conditionally independent given <span class="math inline">\(\theta\)</span>:</p>
+<p><span class="math display">\[ p(X_1,\ldots,X_J,\theta) = p(\theta) \prod_{j=1}^{J} p(X_j|\theta)\]</span></p>
+</section>
+<section id="bayes-net" class="level2">
+<h2 class="anchored" data-anchor-id="bayes-net">Bayes net</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>DiagrammeR<span class="sc">::</span><span class="fu">grViz</span>(<span class="st">"</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="st">digraph ABN {</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="st">  A -&gt; C; B -&gt; C;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="st">  C -&gt; D; C -&gt; E;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="st">  D -&gt; F; E -&gt; F</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="st">}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-6a3e1cbd32c87fd7f018" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-6a3e1cbd32c87fd7f018">{"x":{"diagram":"\ndigraph ABN {\n  A -> C; B -> C;\n  C -> D; C -> E;\n  D -> F; E -> F\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>One factor for each node in graph in recursive representation</p>
+<p>This factor is conditioned on parents in graph</p>
+<p>“Prior” nodes have no parents</p>
+<p><span class="math display">\[p(A)p(B)p(C|A,B)p(D|C)p(E|C)p(F|D,E) = p(A,B,C,D,E,F)\]</span></p>
+<p>Digraph must be acyclic</p>
+</section>
+<section id="activity-2-build-a-bayes-net" class="level2">
+<h2 class="anchored" data-anchor-id="activity-2-build-a-bayes-net">Activity 2: Build a Bayes Net</h2>
+<p>Pick one of the tasks you created and build an a Bayes net in Netica:</p>
+<p>Proficiency variables, their possible values</p>
+<p>Observable variables, their possible values</p>
+<p>Conditional probabilities between Proficiency variables and Observable variables</p>
+<p>Add your observables to the proficiency model you made in Netica</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
