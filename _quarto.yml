@@ -1,0 +1,37 @@
+project:
+  type: website
+
+website:
+  title: "Peanut Tutorial"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+      - href: ECD.qmd
+        text: "ECD Intro"
+      - href: BayesNets.qmd
+        text: "Bayesian Networks"
+      - href: Scoring.qmd
+        text: "Scoring"
+      - href: Building.qmd
+        text: "Building Nets"
+      - href: Updating.qmd
+        text: "Calibration"
+      - href: Visualization.qmd
+        text: "Model checking and visualzation"
+      - href: Dynamic.qmd
+        text: "Dynamic Models"
+      - href: Resources.qmd
+        text:  Resources
+      - href: References.qmd
+        text: References
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual
+

@@ -1,0 +1,16 @@
+digraph CAF {
+  subgraph {
+    rank = min;
+    AM[shape=none, label="" src="img/AMVisio.png"];
+  }
+  subgraph {
+    rank = max;
+    PM[shape=none, label="", image="img/PMVisio.png"];
+    EM[shape=none, label="", image="img/EMVisio.png"];
+    TM[shape=none, label="", image="img/TMVisio.png"];
+    Pres[shape=none,label="", image="img/PresVisio.png"];
+  } 
+  PM -> EM [dir=both]; EM -> TM [dir=both]; TM -> Pres;
+  PM -> AM -> TM;
+
+}

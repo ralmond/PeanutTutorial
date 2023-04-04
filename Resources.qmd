@@ -1,0 +1,33 @@
+---
+title: "Resources"
+---
+
+There are a number of packages that will do the basic Bayesian network computations. For the purposes of this tutorial, we are using [Netica](https://norsys.com)Ⓡ. Netica is available in two versions: a graphical user interface (GUI) version and an application programmers interface (API). We will use both in this class.
+
+Netica also comes in both a free (but not open source) version and a paid version. The paid version is used by purchasing an unlock code from Norsys. The free version is specifically for training and evaluation. It is limited in the size of the networks, but it has sufficient capacity for most of the exercises in this tutorial.
+
+-   Go to `https://norsys.com` and download the latest version of `Netica.exe`.
+  - Unix/linux users:  `Netica.exe` runs without major problems under Wine.
+  - Mac OS Intell -- I have built a wineskin version of `Netica.exe`. 
+  - Mac OS ARM -- ???
+  
+The R package `RNetica` provides an R binding of the Netica API (hence, it requires the API and not GUI license).
+`RNetica` is available at <https://ralmond.r-universe.dev/> (source code is at <https://github.com/ralmond/>).
+
+If you have not already done so, we recommend downloading [R Studio](https://posit.co/products/open-source/rstudio/), in the process of installing R Studio, you will need to install R itself (<https://cloud.r-project.org/).  
+
+Once you have R installed, you can install `RNetica` and running related packages by running the following code: 
+
+```{r InstallRNetica}
+install.packages(c('CPTtootls','RNetica','Peanut','PNetica'),
+                 repos = c('https://ralmond.r-universe.dev', 'https://cloud.r-project.org'))
+```
+
+This bundle contains the following packages:
+
+* `CPTtools` --- A collection of functions for making conditional probability tables. (Does not depend on Netica.)
+* `RNetica` --- An R binding of the Netica API.  Note that the installer downloads and installs Netica, so cognizant of the Netica License.
+* `Peanut` --- An object oriented layer for working with parameterized networks (`PNet`s).  
+* `PNetica` --- All of the Netica specific implementation of the `Peanut` protocol.
+
+The intention is that `Peanut` (and `CPTtools`) are open implementation protocols that are independent of the specific Bayes net implementation.  I'm currently looking for volunteers to build the equivalent of `PNetica` for other Bayes net engines.

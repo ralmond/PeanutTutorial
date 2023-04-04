@@ -1,0 +1,6 @@
+---
+title: "Bayesian Networks"
+---
+
+# Bayesian Networks in Educational Assessment
+## Part 2:  Bayesian Networks
