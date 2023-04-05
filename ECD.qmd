@@ -34,11 +34,17 @@ Evidence Centered Design is an assessment design framework with general applicab
 
 -   Evidence Centered Design (ECD) provides a mechanism for
     -   *Capturing and documenting information* about the structure and strength of evidentiary relationships.
+<<<<<<< HEAD
     -   **Coordinating the work** of test developers in authoring tasks and psychometricians in calibrating the measurement model.
     -   **Documenting the scientific information** that provides the foundation for the assessment and its validity.
+=======
+    -   *Coordinating the work* of test developers in authoring tasks and psychometricians in calibrating the measurement model.
+    -   *Documenting the scientific information* that provides the foundation for the assessment and its validity.
+>>>>>>> 6d018eb2da27214ab55b1cfd732a2b8f5dd23332
 
 ![](img/2021%20BN%20Session%20I2.wmf)
 
+<<<<<<< HEAD
 -   The Evidence Centered Design \_ \_ process is a series of procedures which center around the questions:
     -   "What can we observe \_ \_ about an examinee's performance which will provide evidence \_ \_ that the examinee has or does not have the knowledge, skills and abilities we wish to make claims \_ \_ about?"
     -   "How can we structure situations to be able to make those observations?"
@@ -46,6 +52,18 @@ Evidence Centered Design is an assessment design framework with general applicab
 
 # The Initial Frame
 
+=======
+-   Evidence-centered design centers around the questions:
+
+    > "What can we observe about an examinee's performance which will provide evidence that the examinee has or does not have the knowledge, skills and abilities we wish to make claims about?"
+
+    > "How can we structure situations to be able to make those observations?"
+
+    -   This process results in the *Conceptual Assessment Framework (CAF)*
+
+## The Initial Frame
+
+>>>>>>> 6d018eb2da27214ab55b1cfd732a2b8f5dd23332
 -   *Why* are we measuring?
     -   What are the goals and the desires for use of this assessment?
     -   Prospective Score Report
@@ -56,12 +74,25 @@ Evidence Centered Design is an assessment design framework with general applicab
 
 # Conceptual Assessment Framework (CAF)
 
+<<<<<<< HEAD
 *What* we measure = Student \_\_ \_\_ [ **Proficiency** ]{style="color:#FF3300"} \_\_ \_\_ Model
 
 [Proficiency Model(s)]{style="color:#000000"}
+=======
+-   *What* we measure = Student [ **Proficiency** ]{style="color:#FF3300"} Model
+
+-   *How* we measure = [ **Evidence** ]{style="color:#FF3300"}  Model
+
+-   *Where* we measure = [ **Task** ]{style="color:#FF3300"}  Model
+
+-   *How Much* we measure = [ **Assembly** ]{style="color:#FF3300"} Model
+
+-   *Customization* = [ **Presentation & Delivery** ]{style="color:#FF3300"}  Models
+>>>>>>> 6d018eb2da27214ab55b1cfd732a2b8f5dd23332
 
 *How* we measure = [ **Evidence** ]{style="color:#FF3300"} \_\_ \_\_ Model
 
+<<<<<<< HEAD
 *What* \_ \_ we measure = Student \_\_ \_\_ [ **Proficiency** ]{style="color:#FF3300"} \_\_ \_\_ Model
 
 [Proficiency Model(s)]{style="color:#000000"}
@@ -104,6 +135,14 @@ Redesign the driver's licensure exam
 
 Write down several claims you would like to make about people who receive a driver's license
 
+=======
+# Activity 1: Driver's License Exam
+
+Redesign the driver's licensure exam
+
+Write down several claims you would like to make about people who receive a driver's license
+
+>>>>>>> 6d018eb2da27214ab55b1cfd732a2b8f5dd23332
 Group your claims into several proficiency variables related to the driver's test
 
 Do the claims hold for high, medium or low values of those variables?
@@ -144,18 +183,60 @@ Express probabilities in terms of unknown parameters -- learn parameters (Sessio
 
 Refine model based on how well it fits data (Session IV)
 
+<<<<<<< HEAD
 # Cup and Cap notation
 
 # Conditional Probability
 
 Definition
+=======
+## Cup and Cap notation
+
+In probability theory, events are sets (sets of balls in the urn).
+
+Let $A$ and $B$ be two events
+
+-   *Union*: Either $A$ *or* $B$ occurs $$ A \cup B \qquad A \vee B $$
+
+-   *Intersection*: Both $A$ *and* $B$ occur $$ A \cap B \qquad A \wedge B $$
+
+    -   Sometimes also just $\Pr(A,B)$
+
+-   *Complement*: *Not* $A$ $$ \neg A \qquad \overline{A} $$
+
+    -   $\Pr(\overline{A}) = 1- \Pr(A)$\$
+
+# Conditional Probability
+
+```{r CondProb, echo=FALSE}
+plot(c(0,2),c(0,1),type="n",xaxt="n",yaxt="n",xlab="",ylab="")
+polygon(c(0,0,1,1),c(0,1,1,0),col="blue")
+polygon(c(1,1,2,2),c(0,1,1,0),col="yellow")
+Ev.x <- c(.7,.7,1.2,1.2)
+Ev.y <- c(.3,.7,.6,.4)
+Ev.mf <-(1-Ev.x[1])/(Ev.x[4]-Ev.x[1])
+Ev.mid <-(Ev.y[c(4,3)]-Ev.y[c(1,2)])*Ev.mf + Ev.y[c(1,2)]
+polygon(c(Ev.x[1:2],c(1,1)),c(Ev.y[1:2],rev(Ev.mid)),
+        col="aquamarine")
+polygon(c(c(1,1),Ev.x[3:4]),c(Ev.mid,Ev.y[3:4]),
+        col="yellowgreen")
+abline(v=1)
+text(.85,.5,"E")
+axis(3,at=c(.5,1.5),labels=c("H","not H"),tick=FALSE)
+```
+
+$$\Pr(E|H) = \frac{\Pr(E \cap H)}{\Pr(H)} $$
+>>>>>>> 6d018eb2da27214ab55b1cfd732a2b8f5dd23332
 
 Law of Total Probability
 
 ![](img/2021%20BN%20Session%20I3.png)
 
+<<<<<<< HEAD
 ![](img/2021%20BN%20Session%20I4.png)
 
+=======
+>>>>>>> 6d018eb2da27214ab55b1cfd732a2b8f5dd23332
 # Bayes Theorem
 
 ![](img/2021%20BN%20Session%20I5.png)
@@ -164,7 +245,11 @@ Prior
 
 Likelihood
 
+<<<<<<< HEAD
 Posterior
+=======
+\[Rare Disease Problem\]<https://pluto.coe.fsu.edu/rdemos/IntroStats/RareDisease.Rmd>
+>>>>>>> 6d018eb2da27214ab55b1cfd732a2b8f5dd23332
 
 ![](img/2021%20BN%20Session%20I6.png)
 
@@ -176,10 +261,9 @@ Posterior
 
 ![](img/2021%20BN%20Session%20I9.png)
 
+<<<<<<< HEAD
 A provides no information about B
-
-# Accident Proneness (Feller, 1968)
-
+=======
 -   Driving Skill: 5/6 Normal, 1/6 Accident Prone
 -   Probability of an accident in a given year
     -   1/100 for Normal drivers
@@ -187,6 +271,21 @@ A provides no information about B
 -   Accidents happen independently in each year
 -   What is the probability a randomly chosen driver will have an accident in Year 1?
 -   Given a driver had an accident in Year 1, what is probability of accident in Year 2?
+>>>>>>> 6d018eb2da27214ab55b1cfd732a2b8f5dd23332
+
+# Accident Proneness (Feller, 1968)
+
+<<<<<<< HEAD
+-   Driving Skill: 5/6 Normal, 1/6 Accident Prone
+-   Probability of an accident in a given year
+    -   1/100 for Normal drivers
+    -   1/10 for Accident prone drivers
+-   Accidents happen independently in each year
+-   What is the probability a randomly chosen driver will have an accident in Year 1?
+-   Given a driver had an accident in Year 1, what is probability of accident in Year 2?
+=======
+What is the probability a randomly chosen driver will have an accident in Year 1? Year 2?
+>>>>>>> 6d018eb2da27214ab55b1cfd732a2b8f5dd23332
 
 # Accident Proneness (cont)
 
@@ -198,9 +297,13 @@ Given a driver had an accident in Year 1, what is probability of accident in Ye
 
 ![](img/2021%20BN%20Session%20I11.png)
 
+<<<<<<< HEAD
 # Conditional Independence
 
 ![](img/2021%20BN%20Session%20I12.png)
+=======
+Given a driver had an accident in Year 1, what is probability of accident in Year 2?
+>>>>>>> 6d018eb2da27214ab55b1cfd732a2b8f5dd23332
 
 Years are *conditionally independent* given driving skill
 
@@ -212,23 +315,116 @@ Separation in graph tells the story
 
 # Competing Explanations
 
+<<<<<<< HEAD
 -   Skill 1 and Skill 2 are (a priori) independent in population
 -   Task X requires both skills (conjunctive model)
 -   Answer the following questions:
     -   What is posterior after learning X=False, and =High?
     -   What is posterior after learning X=False, and =High?
     -   What is true of joint posterior of  and after learning X=False?
+=======
+## Explanation
+
+$\Pr(S=\text{normal}|A_i)$ -- Probability in normal category given accident.
+
+```{r ciGraph}
+DiagrammeR::grViz("
+digraph AP {
+  Driving -> Year1;
+  Driving -> Year2;
+}")
+```
+
+## Conditional Independence
+
+-   *Conditional Independence*: \$\Pr(Y_1,Y_2\|S) = \Pr(Y_1\|S) \Pr(Y_2\|S) \$
+-   Years are *marginally dependent*.
+-   Separation in graph tells the story.
+-   Information flows from from *Year1* to *Driving Skill* to *Year2*
+
+## Another Example
+
+```{r covidGraph}
+DiagrammeR::grViz("
+digraph Autotrain {
+  Train -> COVID;
+  Train -> MaskOnTrain;
+  MaskOnTrain -> COVID;
+  Vaccine -> COVID;
+  COVID -> fever;
+  COVID -> congestion;
+  COVID -> pcrTest;
+}")
+```
+
+## Competing Explanations
+
+```{r CompeteExplain}
+DiagrammeR::grViz("
+digraph CompExpl {
+  Skill1 -> X
+  Skill2 -> X
+}")
+```
+
+-   `Skill1` and `Skill2` are (a priori) independent in population
+-   Task `X` requires both skills (conjunctive model)
+-   Answer the following questions:
+    -   What is posterior of `Skill2` after learning `X=False`, and `Skill1=High`?
+    -   What is posterior of `Skill1` after learning `X=False`, and `Skill2=High`?
+    -   What is true of joint posterior of `Skill1` and `Skill2` after learning `X=False`?
+>>>>>>> 6d018eb2da27214ab55b1cfd732a2b8f5dd23332
 
 # D-Separation
 
 For , , and  edges conditioning on middle variables renders outer variables independent
 
+<<<<<<< HEAD
 For  (collider) edges, if middle variable (or descendent is known) then variables are dependent
 
 A path is *active* if collider with middle node observed, or non-collider with middle node unobserved
 
 # D-Separation Exercise
 
+=======
+-   $$ A \leftarrow B \leftarrow C$$
+-   $$ A \rightarrow B \leftarrow C$$
+-   $$ A \rightarrow B \rightarrow C$$
+
+For  (collider) edges, if middle variable (or descendent is known) then variables are dependent
+
+-   $$ A \leftarrow B \rightarrow C$$
+
+A path is *active* if collider with middle node observed, or non-collider with middle node unobserved
+
+## D-separation Example
+
+```{r DSep}
+DiagrammeR::grViz('
+digraph DSep {
+  rankdir = "LR";
+  A -> B; A -> C;
+  B -> D; C -> D;
+  D -> E -> F;
+}')
+```
+
+$B$ and $C$ are independent if $A$ is known and all of $D$, $E$ or $F$ are not known.
+
+$D$ is indepedent of $F$ if $E$ is known.
+
+## D-Separation Exercise
+
+```{r DSepEx}
+DiagrammeR::grViz('
+digraph DSepEx {
+  rankdir = "TB";
+  A -> D; B -> D; B -> E; C -> E;
+  D -> F; D -> G; E -> G; E -> H;
+}')
+```
+
+>>>>>>> 6d018eb2da27214ab55b1cfd732a2b8f5dd23332
 -   Are *A* and *C* independent if
     -   We have observed no other variables?
         -   What could we condition on to make *A* and *C* independent?
@@ -239,7 +435,11 @@ A path is *active* if collider with middle node observed, or non-collider with m
 
 # Building Up Complex Networks
 
+<<<<<<< HEAD
 Recursive representation of probability distributions:
+=======
+Pick an ordering of the nodes: $V_1, V_J)$.
+>>>>>>> 6d018eb2da27214ab55b1cfd732a2b8f5dd23332
 
 All orderings are equally correct, but some are more beneficial because they capitalize on causal, dependence, time-order, or theoretical relationships that we posit:Terms simplify when there is conditional independence --
 
@@ -247,11 +447,43 @@ in ed measurement, due to unobservable student variables
 
 # Building Up Complex Networks, cont.
 
+<<<<<<< HEAD
 For example, in IRT, item responses are conditionally independent given q:
 
 # Bayes net
 
 ![](img/2021%20BN%20Session%20I14.png)
+=======
+If ${\cal G}$ is a Bayesian network whose nodes are ${\cal V}$, then we can replace $$Pa(v_j)$$ with $$Pa_{{\cal G}}(V_j)$$, the parents of $V_j$ in the graph.
+
+## Building Up Complex Networks: IRT
+
+```{r IRT}
+DiagrammeR::grViz('
+digraph IRT {
+  subgraph{ Q[label="θ"] }
+  subgraph {
+  X1; X2; andC[shape=none,label="..."]; XJ
+  }
+  Q -> X1; Q-> X2; Q->andC [style="invis"]; Q->XJ
+}')
+```
+
+For example, in IRT, item responses are conditionally independent given $\theta$:
+
+$$ p(X_1,\ldots,X_J,\theta) = p(\theta) \prod_{j=1}^{J} p(X_j|\theta)$$
+
+## Bayes net
+
+```{r ABN}
+DiagrammeR::grViz("
+digraph ABN {
+  A -> C; B -> C;
+  C -> D; C -> E;
+  D -> F; E -> F
+}")
+```
+>>>>>>> 6d018eb2da27214ab55b1cfd732a2b8f5dd23332
 
 One factor for each node in graph in recursive representation
 
