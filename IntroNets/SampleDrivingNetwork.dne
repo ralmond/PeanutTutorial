@@ -1,0 +1,145 @@
+// ~->[DNET-1]->~
+
+// File created by an unlicensed user using Netica 5.05 on Nov 28, 2014 at 13:51:03.
+
+bnet Sample_Driving_Network {
+autoupdate = TRUE;
+whenchanged = 1334249505;
+
+visual V1 {
+	defdispform = LABELBOX;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 9;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	windowposn = (0, 0, 875, 445);
+	resolution = 72;
+	drawingbounds = (1080, 720);
+	showpagebreaks = FALSE;
+	usegrid = TRUE;
+	gridspace = (6, 6);
+	NodeSet Node {BuiltIn = 1; Color = 0x00C0C0C0;};
+	NodeSet Nature {BuiltIn = 1; Color = 0x00F8EED2;};
+	NodeSet Deterministic {BuiltIn = 1; Color = 0x00D3CAA6;};
+	NodeSet Finding {BuiltIn = 1; Color = 0x00C8C8C8;};
+	NodeSet Constant {BuiltIn = 1; Color = 0x00FFFFFF;};
+	NodeSet ConstantValue {BuiltIn = 1; Color = 0x00FFFFB4;};
+	NodeSet Utility {BuiltIn = 1; Color = 0x00FFBDBD;};
+	NodeSet Decision {BuiltIn = 1; Color = 0x00DEE8FF;};
+	NodeSet Documentation {BuiltIn = 1; Color = 0x00F0FAFA;};
+	NodeSet Title {BuiltIn = 1; Color = 0x00FFFFFF;};
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		magnify = 1;
+		};
+	};
+
+node drivingability {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = ();
+	whenchanged = 1334245991;
+	visual V1 {
+		center = (120, 120);
+		height = 1;
+		};
+	};
+
+node Spacialawareness {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = (drivingability);
+	title = "Spatial Awareness";
+	whenchanged = 1334246378;
+	visual V1 {
+		center = (414, 126);
+		height = 4;
+		link 1 {
+			path = ((165, 121), (352, 125));
+			};
+		};
+	};
+
+node Physicalability {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = (drivingability, Spacialawareness);
+	whenchanged = 1334246373;
+	visual V1 {
+		center = (414, 204);
+		height = 3;
+		link 1 {
+			path = ((149, 129), (383, 195));
+			};
+		};
+	};
+
+node vehicleskill {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = (drivingability, Physicalability);
+	title = "Vehicle Skill";
+	whenchanged = 1334246240;
+	visual V1 {
+		center = (414, 276);
+		height = 2;
+		link 1 {
+			path = ((134, 129), (397, 267));
+			};
+		};
+	};
+
+node Ruleknowledge {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = (drivingability);
+	title = "Rule Knowledge\n";
+	whenchanged = 1334246182;
+	visual V1 {
+		center = (414, 48);
+		height = 5;
+		};
+	};
+
+node RoadTest {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = (vehicleskill, Spacialawareness);
+	whenchanged = 1334249505;
+	visual V1 {
+		center = (726, 240);
+		height = 8;
+		};
+	};
+
+node Item {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = (Ruleknowledge);
+	whenchanged = 1334249406;
+	visual V1 {
+		center = (594, 30);
+		height = 6;
+		};
+	};
+
+node Item1 {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	inputs = (Ruleknowledge);
+	parents = (Ruleknowledge);
+	whenchanged = 1334249440;
+	visual V1 {
+		center = (624, 96);
+		height = 7;
+		};
+	};
+};

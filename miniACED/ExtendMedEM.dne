@@ -1,0 +1,42 @@
+// ~->[DNET-1]->~
+
+// File created by Course at FloridaSU using Netica 5.04 on Apr 13, 2017 at 13:28:55.
+
+bnet ExtendMedEM {
+autoupdate = FALSE;
+whenchanged = 1492104535;
+
+param X_ExtendGeometric_1 {
+	kind = DISCONNECTED;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (High, Medium, Low);
+	levels = (0.967421566101701, 0, -0.967421566101701);
+	title = "ExtendGeometric";
+	whenchanged = 1492104535;
+	};
+
+node isCorrect {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Yes, No);
+	levels = (1, 0);
+	inputs = (ExtendGeometric);
+	parents = (X_ExtendGeometric_1);
+	probs = 
+		// Yes          No            // ExtendGeometric 
+		  (0.8381621,   0.1618378,    // High            
+		   0.5,         0.5,          // Medium          
+		   0.1618378,   0.8381621);   // Low             ;
+	numcases = 10;
+	whenchanged = 1492104535;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"ExtendGeometric\")";
+		betas = "0";
+		};
+	};
+};

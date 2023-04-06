@@ -1,0 +1,5 @@
+The Networks here are a paired down version of the full ACED model and data set collected by Shute, Hansen & Almond (2008) and more fully documented on http://ecd.ralmond.net/ecdwiki/ACED/ACED.
+
+These are intended for research and educational purposes.  In particular, there may be registration errors in the supplied data files (miniACED-Geometric.csv and miniACED-Geometric.xlsx).  
+
+Copyright 2017 Russell G. Almond

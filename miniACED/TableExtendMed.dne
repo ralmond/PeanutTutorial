@@ -1,0 +1,85 @@
+// ~->[DNET-1]->~
+
+// File created by Course at FloridaSU using Netica 5.24 on Mar 28, 2017 at 19:29:02 UTC.
+
+bnet TableExtendMed {
+autoupdate = TRUE;
+whenchanged = 1490728506;
+
+visual V1 {
+	defdispform = BELIEFBARS;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 9;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	windowposn = (66, 66, 1003, 683);
+	resolution = 72;
+	drawingbounds = (1207, 887);
+	showpagebreaks = FALSE;
+	usegrid = TRUE;
+	gridspace = (6, 6);
+	NodeSet Node {BuiltIn = 1; Color = 0x00e1e1e1;};
+	NodeSet Nature {BuiltIn = 1; Color = 0x00f8eed2;};
+	NodeSet Deterministic {BuiltIn = 1; Color = 0x00d3caa6;};
+	NodeSet Finding {BuiltIn = 1; Color = 0x00c8c8c8;};
+	NodeSet Constant {BuiltIn = 1; Color = 0x00ffffff;};
+	NodeSet ConstantValue {BuiltIn = 1; Color = 0x00ffffb4;};
+	NodeSet Utility {BuiltIn = 1; Color = 0x00ffbdbd;};
+	NodeSet Decision {BuiltIn = 1; Color = 0x00dee8ff;};
+	NodeSet Documentation {BuiltIn = 1; Color = 0x00f0fafa;};
+	NodeSet Title {BuiltIn = 1; Color = 0x00ffffff;};
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		};
+	};
+
+param X_ExtendGeometric_1 {
+	kind = DISCONNECTED;
+	discrete = TRUE;
+	states = (High, Medium, Low);
+	title = "ExtendGeometric";
+	whenchanged = 1490728252;
+	};
+
+param X_TableGeometric_1 {
+	kind = DISCONNECTED;
+	discrete = TRUE;
+	states = (High, Medium, Low);
+	title = "TableGeometric";
+	whenchanged = 1490728252;
+	};
+
+node tableExtendMed {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Right, Wrong);
+	levels = (1, 0);
+	inputs = (TableGeometric, ExtendGeometric);
+	parents = (X_TableGeometric_1, X_ExtendGeometric_1);
+	probs = 
+		// Right        Wrong         // TableGeometric ExtendGeometric 
+		  (0.924142,    0.075858,     // High           High            
+		   0.817574,    0.182426,     // High           Medium          
+		   0.622459,    0.377541,     // High           Low             
+		   0.731059,    0.268941,     // Medium         High            
+		   0.5,         0.5,          // Medium         Medium          
+		   0.268941,    0.731059,     // Medium         Low             
+		   0.622459,    0.377541,     // Low            High            
+		   0.182426,    0.817574,     // Low            Medium          
+		   0.075858,    0.924142);    // Low            Low             ;
+	whenchanged = 1490728506;
+	visual V1 {
+		center = (156, 114);
+		height = 1;
+		link 1 {
+			labelposn = (194, 53, 282, 68);
+			path = ((192, 53), (177, 78));
+			};
+		link 2 {
+			labelposn = (131, 53, 225, 68);
+			path = ((120, 53), (135, 78));
+			};
+		};
+	};
+};

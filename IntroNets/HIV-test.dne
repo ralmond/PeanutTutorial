@@ -1,0 +1,74 @@
+// ~->[DNET-1]->~
+
+// File created by an unlicensed user using Netica 5.05 on Nov 28, 2014 at 14:00:33.
+
+bnet HIV_test {
+AutoCompile = TRUE;
+autoupdate = TRUE;
+whenchanged = 1417201229;
+
+visual V5 {
+	defdispform = BELIEFBARS;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 9;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	windowposn = (22, 22, 772, 332);
+	resolution = 72;
+	drawingbounds = (1080, 720);
+	showpagebreaks = FALSE;
+	usegrid = TRUE;
+	gridspace = (6, 6);
+	NodeSet Node {BuiltIn = 1; Color = 0x00E1E1E1;};
+	NodeSet Nature {BuiltIn = 1; Color = 0x00F8EED2;};
+	NodeSet Deterministic {BuiltIn = 1; Color = 0x00D3CAA6;};
+	NodeSet Finding {BuiltIn = 1; Color = 0x00C8C8C8;};
+	NodeSet Constant {BuiltIn = 1; Color = 0x00FFFFFF;};
+	NodeSet ConstantValue {BuiltIn = 1; Color = 0x00FFFFB4;};
+	NodeSet Utility {BuiltIn = 1; Color = 0x00FFBDBD;};
+	NodeSet Decision {BuiltIn = 1; Color = 0x00DEE8FF;};
+	NodeSet Documentation {BuiltIn = 1; Color = 0x00F0FAFA;};
+	NodeSet Title {BuiltIn = 1; Color = 0x00FFFFFF;};
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		};
+	};
+
+node BloodSample {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (hasHIV, noHIV);
+	parents = ();
+	probs = 
+		// hasHIV       noHIV        
+		  (5e-4,        0.9995);
+	whenchanged = 1417201035;
+	belief = (5e-4, 0.9995);
+	visual V5 {
+		center = (114, 108);
+		height = 1;
+		};
+	};
+
+node TestResult {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (positive, negative);
+	parents = (BloodSample);
+	probs = 
+		// positive     negative      // BloodSample 
+		  (0.993,       0.007,        // hasHIV      
+		   0.022,       0.978);       // noHIV       ;
+	comment = "Parameters of this test match the Western Blot Test (Morbitity and Mortaliity, Weekly report, \
+		1988)";
+	whenchanged = 1417201229;
+	belief = (0.0224855, 0.9775145);
+	visual V5 {
+		center = (348, 108);
+		height = 2;
+		};
+	};
+ElimOrder = (BloodSample, TestResult);
+};

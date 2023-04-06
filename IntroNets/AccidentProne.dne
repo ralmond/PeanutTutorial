@@ -1,0 +1,95 @@
+// ~->[DNET-1]->~
+
+// File created by an unlicensed user using Netica 5.05 on Nov 28, 2014 at 13:49:23.
+
+bnet AccidentProne {
+AutoCompile = TRUE;
+autoupdate = TRUE;
+whenchanged = 1334270641;
+
+visual V2 {
+	defdispform = BELIEFBARS;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 9;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	windowposn = (108, 75, 846, 416);
+	resolution = 72;
+	drawingbounds = (1259, 720);
+	showpagebreaks = FALSE;
+	usegrid = TRUE;
+	gridspace = (6, 6);
+	NodeSet Node {BuiltIn = 1; Color = 0x00C0C0C0;};
+	NodeSet Nature {BuiltIn = 1; Color = 0x00F8EED2;};
+	NodeSet Deterministic {BuiltIn = 1; Color = 0x00D3CAA6;};
+	NodeSet Finding {BuiltIn = 1; Color = 0x00C8C8C8;};
+	NodeSet Constant {BuiltIn = 1; Color = 0x00FFFFFF;};
+	NodeSet ConstantValue {BuiltIn = 1; Color = 0x00FFFFB4;};
+	NodeSet Utility {BuiltIn = 1; Color = 0x00FFBDBD;};
+	NodeSet Decision {BuiltIn = 1; Color = 0x00DEE8FF;};
+	NodeSet Documentation {BuiltIn = 1; Color = 0x00F0FAFA;};
+	NodeSet Title {BuiltIn = 1; Color = 0x00FFFFFF;};
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		magnify = 1;
+		};
+	};
+
+node Ability {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Normal, AccidentProne);
+	parents = ();
+	probs = 
+		// Normal       AccidentProne 
+		  (0.833,       0.167);
+	numcases = 8;
+	whenchanged = 1334251509;
+	belief = (0.833, 0.167);
+	visual V2 {
+		center = (120, 114);
+		height = 1;
+		};
+	};
+
+node Year {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (NoAccident, Accident);
+	parents = (Ability);
+	probs = 
+		// NoAccident   Accident      // Ability       
+		  (0.99,        0.01,         // Normal        
+		   0.9,         0.1);         // AccidentProne ;
+	numcases = 1;
+	whenchanged = 1334251592;
+	belief = (0.97497, 0.02503);
+	visual V2 {
+		center = (444, 72);
+		height = 2;
+		};
+	};
+
+node Year1 {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (NoAccident, Accident);
+	inputs = (Ability);
+	parents = (Ability);
+	probs = 
+		// NoAccident   Accident      // Ability       
+		  (0.99,        0.01,         // Normal        
+		   0.9,         0.1);         // AccidentProne ;
+	numcases = 1;
+	whenchanged = 1334270641;
+	belief = (0.97497, 0.02503);
+	visual V2 {
+		center = (540, 216);
+		height = 3;
+		};
+	};
+ElimOrder = (Year, Ability, Year1);
+};

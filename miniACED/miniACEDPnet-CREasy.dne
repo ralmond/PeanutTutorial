@@ -1,0 +1,240 @@
+// ~->[DNET-1]->~
+
+// File created by AlmondR at FloridaStateU using Netica 5.05 on Apr 15, 2017 at 20:50:26.
+
+bnet miniACEDPnet_CREasy {
+autoupdate = TRUE;
+whenchanged = 1492303826;
+
+visual V1 {
+	defdispform = BELIEFBARS;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 10;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	windowposn = (2, 38, 1057, 897);
+	resolution = 72;
+	drawingbounds = (1895, 929);
+	showpagebreaks = FALSE;
+	usegrid = TRUE;
+	gridspace = (6, 6);
+	NodeSet Node {BuiltIn = 1; Color = 0x00E1E1E1;};
+	NodeSet Nature {BuiltIn = 1; Color = 0x00F8EED2;};
+	NodeSet Deterministic {BuiltIn = 1; Color = 0x00D3CAA6;};
+	NodeSet Finding {BuiltIn = 1; Color = 0x00C8C8C8;};
+	NodeSet Constant {BuiltIn = 1; Color = 0x00FFFFFF;};
+	NodeSet ConstantValue {BuiltIn = 1; Color = 0x00FFFFB4;};
+	NodeSet Utility {BuiltIn = 1; Color = 0x00FFBDBD;};
+	NodeSet Decision {BuiltIn = 1; Color = 0x00DEE8FF;};
+	NodeSet Documentation {BuiltIn = 1; Color = 0x00F0FAFA;};
+	NodeSet Title {BuiltIn = 1; Color = 0x00FFFFFF;};
+	NodeSet Proficiencies {Disabled = 1; Color = 0x00C8C8C8;};
+	NodeSet pnodes {Disabled = 1; Color = 0x00C8C8C8;};
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		};
+	};
+user U1 {
+	priorWeight = "10";
+	};
+
+node SolveGeometricProblems {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (High, Medium, Low);
+	levels = (0.967421566101701, 0, -0.967421566101701);
+	parents = ();
+	probs = 
+		// High         Medium       Low          
+		  (0.1532,      0.2784,      0.5684);
+	EqnDirty = TRUE;
+	whenchanged = 1492104213;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"normalLink\"";
+		linkScale = "1";
+		lnAlphas = "1";
+		betas = "0";
+		};
+	visual V1 {
+		center = (564, 54);
+		height = 1;
+		};
+	};
+
+node CommonRatio {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (High, Medium, Low);
+	levels = (0.967421566101701, 0, -0.967421566101701);
+	parents = (SolveGeometricProblems);
+	probs = 
+		// High         Medium       Low           // SolveGeometricProblems 
+		  (1,           0,           0,            // High                   
+		   0.963,       0.036,       9.999424e-4,  // Medium                 
+		   0.567,       0.379,       0.05399996);  // Low                    ;
+	numcases = 1;
+	EqnDirty = TRUE;
+	whenchanged = 1492104361;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"normalLink\"";
+		linkScale = "1";
+		lnAlphas = "structure(0, .Names = \"SolveGeometricProblems\")";
+		betas = "0";
+		};
+	visual V1 {
+		center = (108, 174);
+		height = 6;
+		};
+	};
+
+node ExamplesGeometric {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (High, Medium, Low);
+	levels = (0.967421566101701, 0, -0.967421566101701);
+	parents = (SolveGeometricProblems);
+	probs = 
+		// High         Medium       Low           // SolveGeometricProblems 
+		  (0.518,       0.351,       0.131,        // High                   
+		   0.122,       0.344,       0.534,        // Medium                 
+		   0.009,       0.089,       0.902);       // Low                    ;
+	numcases = 1;
+	EqnDirty = TRUE;
+	whenchanged = 1492104370;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"normalLink\"";
+		linkScale = "1";
+		lnAlphas = "structure(0, .Names = \"SolveGeometricProblems\")";
+		betas = "0";
+		};
+	visual V1 {
+		center = (342, 174);
+		height = 5;
+		};
+	};
+
+node ExtendGeometric {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (High, Medium, Low);
+	levels = (0.967421566101701, 0, -0.967421566101701);
+	parents = (SolveGeometricProblems);
+	probs = 
+		// High         Medium       Low           // SolveGeometricProblems 
+		  (1,           0,           0,            // High                   
+		   0.963,       0.036,       0.001,        // Medium                 
+		   0.567,       0.379,       0.054);       // Low                    ;
+	EqnDirty = TRUE;
+	whenchanged = 1492104378;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"normalLink\"";
+		linkScale = "1";
+		lnAlphas = "structure(0, .Names = \"SolveGeometricProblems\")";
+		betas = "0";
+		};
+	visual V1 {
+		center = (588, 174);
+		height = 4;
+		};
+	};
+
+node ModelGeometric {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (High, Medium, Low);
+	levels = (0.967421566101701, 0, -0.967421566101701);
+	parents = (SolveGeometricProblems);
+	probs = 
+		// High         Medium       Low           // SolveGeometricProblems 
+		  (0.281,       0.41,        0.309,        // High                   
+		   0.037,       0.201,       0.762,        // Medium                 
+		   0.001,       0.026,       0.973);       // Low                    ;
+	numcases = 1;
+	EqnDirty = TRUE;
+	whenchanged = 1492104408;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"normalLink\"";
+		linkScale = "1";
+		lnAlphas = "structure(0, .Names = \"SolveGeometricProblems\")";
+		betas = "0";
+		};
+	visual V1 {
+		center = (1134, 162);
+		height = 2;
+		};
+	};
+
+node TableGeometric {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (High, Medium, Low);
+	levels = (0.967421566101701, 0, -0.967421566101701);
+	parents = (SolveGeometricProblems);
+	probs = 
+		// High         Medium       Low           // SolveGeometricProblems 
+		  (0.713,       0.216,       0.071,        // High                   
+		   0.326,       0.348,       0.326,        // Medium                 
+		   0.071,       0.216,       0.713);       // Low                    ;
+	numcases = 1;
+	EqnDirty = TRUE;
+	whenchanged = 1492104417;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"normalLink\"";
+		linkScale = "1";
+		lnAlphas = "structure(0, .Names = \"SolveGeometricProblems\")";
+		betas = "0";
+		};
+	visual V1 {
+		center = (858, 168);
+		height = 3;
+		};
+	};
+
+node isCorrect {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Yes, No);
+	levels = (1, 0);
+	inputs = (CommonRatio);
+	parents = (CommonRatio);
+	probs = 
+		// Yes          No            // CommonRatio 
+		  (0.9659281,   0.03407189,   // High        
+		   0.8455347,   0.1544653,    // Medium      
+		   0.5138423,   0.4861577);   // Low         ;
+	numcases = 10;
+	whenchanged = 1492303813;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"CommonRatio\")";
+		betas = "-1";
+		};
+	visual V1 {
+		center = (102, 330);
+		height = 7;
+		};
+	};
+NodeSet Proficiencies {Nodes = (SolveGeometricProblems, CommonRatio, ExamplesGeometric, ExtendGeometric, ModelGeometric, TableGeometric);};
+NodeSet pnodes {Nodes = (SolveGeometricProblems, CommonRatio, ExamplesGeometric, ExtendGeometric, ModelGeometric, TableGeometric);};
+};

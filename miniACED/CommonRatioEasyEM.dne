@@ -1,0 +1,41 @@
+// ~->[DNET-1]->~
+
+// File created by Course at FloridaSU using Netica 5.04 on 04/26/2017 at 02:54:37 PM.
+
+bnet CommonRatioEasyEM {
+autoupdate = FALSE;
+whenchanged = 1493236475;
+
+param X_CommonRatio_1 {
+	kind = DISCONNECTED;
+	discrete = TRUE;
+	states = (High, Medium, Low);
+	levels = (0.967421566101701, 0, -0.967421566101701);
+	title = "CommonRatio";
+	whenchanged = 1493236475;
+	};
+
+node isCorrect {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Yes, No);
+	levels = (1, 0);
+	inputs = (CommonRatio);
+	parents = (X_CommonRatio_1);
+	probs = 
+		// Yes          No            // CommonRatio 
+		  (0.9659281,   0.03407189,   // High        
+		   0.8455347,   0.1544653,    // Medium      
+		   0.5138423,   0.4861577);   // Low         ;
+	numcases = 10;
+	whenchanged = 1493236471;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"CommonRatio\")";
+		betas = "-1";
+		};
+	};
+};

@@ -1,0 +1,101 @@
+// ~->[DNET-1]->~
+
+// File created by an unlicensed user using Netica 4.09 on Mar 12, 2015 at 15:34:44.
+
+bnet CompetingExplanations {
+AutoCompile = TRUE;
+autoupdate = TRUE;
+whenchanged = 1426188832;
+
+visual V1 {
+	defdispform = BELIEFBARS;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 10;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	windowposn = (88, 88, 544, 437);
+	resolution = 72;
+	drawingbounds = (1184, 720);
+	showpagebreaks = FALSE;
+	usegrid = TRUE;
+	gridspace = (6, 6);
+	NodeSet Node {BuiltIn = 1; Color = 0xc0c0c0;};
+	NodeSet Nature {BuiltIn = 1; Color = 0xf8eed2;};
+	NodeSet Deterministic {BuiltIn = 1; Color = 0xd3caa6;};
+	NodeSet Finding {BuiltIn = 1; Color = 0xc8c8c8;};
+	NodeSet Constant {BuiltIn = 1; Color = 0xffffff;};
+	NodeSet ConstantValue {BuiltIn = 1; Color = 0xffffb4;};
+	NodeSet Utility {BuiltIn = 1; Color = 0xffbdbd;};
+	NodeSet Decision {BuiltIn = 1; Color = 0xdee8ff;};
+	NodeSet Documentation {BuiltIn = 1; Color = 0xf0fafa;};
+	NodeSet Title {BuiltIn = 1; Color = 0xffffff;};
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		landscape = FALSE;
+		magnify = 1;
+		};
+	};
+
+node P2_conj {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (H, M, L);
+	parents = ();
+	probs = 
+		// H            M            L            
+		  (0.3333333,   0.3333333,   0.3333333);
+	title = "Skill 2";
+	whenchanged = 1426188820;
+	belief = (0.3333333, 0.3333333, 0.3333333);
+	visual V1 {
+		center = (228, 72);
+		height = 1;
+		};
+	};
+
+node P1_conj {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (H, M, L);
+	parents = ();
+	probs = 
+		// H            M            L            
+		  (0.3333333,   0.3333333,   0.3333333);
+	title = "Skill 1";
+	whenchanged = 1426188811;
+	belief = (0.3333333, 0.3333333, 0.3333333);
+	visual V1 {
+		center = (84, 72);
+		height = 2;
+		};
+	};
+
+node Conjunctive {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Right, Wrong);
+	parents = (P1_conj, P2_conj);
+	probs = 
+		// Right        Wrong           // P1_conj P2_conj 
+		(((0.9,         0.1),           // H       H       
+		  (0.7,         0.3),           // H       M       
+		  (0.3,         0.7)),          // H       L       
+		 ((0.7,         0.3),           // M       H       
+		  (0.7,         0.3),           // M       M       
+		  (0.3,         0.7)),          // M       L       
+		 ((0.3,         0.7),           // L       H       
+		  (0.3,         0.7),           // L       M       
+		  (0.3,         0.7)));         // L       L       ;
+	title = "Conjunctive Task Outcome";
+	whenchanged = 1426188832;
+	belief = (0.5, 0.5);
+	visual V1 {
+		center = (150, 198);
+		height = 3;
+		};
+	};
+ElimOrder = (P2_conj, P1_conj, Conjunctive);
+};

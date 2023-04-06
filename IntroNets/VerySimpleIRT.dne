@@ -1,0 +1,75 @@
+// ~->[DNET-1]->~
+
+// File created by an unlicensed user using Netica 4.09 on Mar 12, 2015 at 15:41:16.
+
+bnet VerySimpleIRT {
+AutoCompile = TRUE;
+autoupdate = TRUE;
+whenchanged = 1421351787;
+
+visual V1 {
+	defdispform = BELIEFBARS;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 9;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	windowposn = (25, 25, 1138, 537);
+	scrollposn = (36, 18);
+	resolution = 72;
+	magnification = 2;
+	drawingbounds = (1080, 720);
+	showpagebreaks = FALSE;
+	usegrid = TRUE;
+	gridspace = (6, 6);
+	NodeSet Node {BuiltIn = 1; Color = 0xc0c0c0;};
+	NodeSet Nature {BuiltIn = 1; Color = 0xf8eed2;};
+	NodeSet Deterministic {BuiltIn = 1; Color = 0xd3caa6;};
+	NodeSet Finding {BuiltIn = 1; Color = 0xc8c8c8;};
+	NodeSet Constant {BuiltIn = 1; Color = 0xffffff;};
+	NodeSet ConstantValue {BuiltIn = 1; Color = 0xffffb4;};
+	NodeSet Utility {BuiltIn = 1; Color = 0xffbdbd;};
+	NodeSet Decision {BuiltIn = 1; Color = 0xdee8ff;};
+	NodeSet Documentation {BuiltIn = 1; Color = 0xf0fafa;};
+	NodeSet Title {BuiltIn = 1; Color = 0xffffff;};
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		landscape = FALSE;
+		magnify = 1;
+		};
+	};
+
+node S {
+	kind = NATURE;
+	discrete = TRUE;
+	states = (High, Medium, Low);
+	parents = ();
+	title = "Ability";
+	whenchanged = 1421351519;
+	belief = (0.5625, 0.3125, 0.125);
+	visual V1 {
+		center = (150, 126);
+		height = 1;
+		};
+	};
+
+node X {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Right, Wrong);
+	parents = (S);
+	probs = 
+		// Right        Wrong          // S      
+		 ((0.9,         0.1),          // High   
+		  (0.5,         0.5),          // Medium 
+		  (0.2,         0.8));         // Low    ;
+	whenchanged = 1421351787;
+	evidence = Right;
+	belief = (1, 0);
+	visual V1 {
+		center = (384, 126);
+		height = 2;
+		};
+	};
+ElimOrder = (S, X);
+};

@@ -121,7 +121,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script src="site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<script src="site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
 <script src="site_libs/viz-1.8.2/viz.js"></script>
 <link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="site_libs/grViz-binding-1.0.9/grViz.js"></script>
@@ -221,23 +221,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#the-interplay-of-design-and-statistical-modeling" id="toc-the-interplay-of-design-and-statistical-modeling" class="nav-link" data-scroll-target="#the-interplay-of-design-and-statistical-modeling">The Interplay of Design and Statistical Modeling</a></li>
   <li><a href="#test-design-considerations" id="toc-test-design-considerations" class="nav-link" data-scroll-target="#test-design-considerations">Test Design Considerations</a></li>
-  <li><a href="#evidence-centered-designadvantages" id="toc-evidence-centered-designadvantages" class="nav-link" data-scroll-target="#evidence-centered-designadvantages">Evidence-Centered Design—Advantages</a></li>
-  <li><a href="#evidence-centered-designcentral-question" id="toc-evidence-centered-designcentral-question" class="nav-link" data-scroll-target="#evidence-centered-designcentral-question">Evidence-Centered Design–Central Question</a></li>
+  <li><a href="#evidence-centered-design" id="toc-evidence-centered-design" class="nav-link" data-scroll-target="#evidence-centered-design">Evidence Centered Design</a></li>
+  <li><a href="#the-central-question" id="toc-the-central-question" class="nav-link" data-scroll-target="#the-central-question">The Central Question</a></li>
   <li><a href="#the-initial-frame" id="toc-the-initial-frame" class="nav-link" data-scroll-target="#the-initial-frame">The Initial Frame</a></li>
   </ul></li>
-  <li><a href="#conceptual-assessment-framework-caf" id="toc-conceptual-assessment-framework-caf" class="nav-link" data-scroll-target="#conceptual-assessment-framework-caf">Conceptual Assessment Framework (CAF)</a></li>
-  <li><a href="#activity-1-drivers-license-exam" id="toc-activity-1-drivers-license-exam" class="nav-link" data-scroll-target="#activity-1-drivers-license-exam">Activity 1: Driver’s License Exam</a>
+  <li><a href="#conceptual-assessment-framework-caf" id="toc-conceptual-assessment-framework-caf" class="nav-link" data-scroll-target="#conceptual-assessment-framework-caf">Conceptual Assessment Framework (CAF)</a>
   <ul class="collapse">
+  <li><a href="#activity-1-drivers-license-exam" id="toc-activity-1-drivers-license-exam" class="nav-link" data-scroll-target="#activity-1-drivers-license-exam">Activity 1: Driver’s License Exam</a></li>
   <li><a href="#activity-1-cont" id="toc-activity-1-cont" class="nav-link" data-scroll-target="#activity-1-cont">Activity 1 (cont)</a></li>
-  </ul></li>
-  <li><a href="#ecd-and-bayes-nets" id="toc-ecd-and-bayes-nets" class="nav-link" data-scroll-target="#ecd-and-bayes-nets">ECD and Bayes Nets</a>
-  <ul class="collapse">
+  <li><a href="#ecd---bayes-nets" id="toc-ecd---bayes-nets" class="nav-link" data-scroll-target="#ecd---bayes-nets">ECD -&gt; Bayes Nets</a></li>
   <li><a href="#cup-and-cap-notation" id="toc-cup-and-cap-notation" class="nav-link" data-scroll-target="#cup-and-cap-notation">Cup and Cap notation</a></li>
   </ul></li>
-  <li><a href="#conditional-probability" id="toc-conditional-probability" class="nav-link" data-scroll-target="#conditional-probability">Conditional Probability</a>
-  <ul class="collapse">
-  <li><a href="#law-of-total-probability" id="toc-law-of-total-probability" class="nav-link" data-scroll-target="#law-of-total-probability">Law of Total Probability</a></li>
-  </ul></li>
+  <li><a href="#conditional-probability" id="toc-conditional-probability" class="nav-link" data-scroll-target="#conditional-probability">Conditional Probability</a></li>
   <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem">Bayes Theorem</a>
   <ul class="collapse">
   <li><a href="#independence" id="toc-independence" class="nav-link" data-scroll-target="#independence">Independence</a></li>
@@ -317,8 +312,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Specifications</li>
 </ul>
 </section>
-<section id="evidence-centered-designadvantages" class="level2">
-<h2 class="anchored" data-anchor-id="evidence-centered-designadvantages">Evidence-Centered Design—Advantages</h2>
+<section id="evidence-centered-design" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-centered-design">Evidence Centered Design</h2>
 <ul>
 <li>Evidence Centered Design (ECD) provides a mechanism for
 <ul>
@@ -328,8 +323,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 </section>
-<section id="evidence-centered-designcentral-question" class="level2">
-<h2 class="anchored" data-anchor-id="evidence-centered-designcentral-question">Evidence-Centered Design–Central Question</h2>
+<section id="the-central-question" class="level2">
+<h2 class="anchored" data-anchor-id="the-central-question">The Central Question</h2>
 <ul>
 <li><p>Evidence-centered design centers around the questions:</p>
 <blockquote class="blockquote">
@@ -369,15 +364,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><em>How Much</em> we measure = <span style="color:#FF3300"><strong>Assembly</strong></span> Model</p></li>
 <li><p><em>Customization</em> = <span style="color:#FF3300"><strong>Presentation &amp; Delivery</strong></span> Models</p></li>
 </ul>
-<p><a href="img/CAFVisio.png">ECD Conceptual Assessment Framework</a></p>
-</section>
-<section id="activity-1-drivers-license-exam" class="level1">
-<h1>Activity 1: Driver’s License Exam</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/CAF.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Conceptual Assessment Framework</figcaption><p></p>
+</figure>
+</div>
+<section id="activity-1-drivers-license-exam" class="level2">
+<h2 class="anchored" data-anchor-id="activity-1-drivers-license-exam">Activity 1: Driver’s License Exam</h2>
 <p>Redesign the driver’s licensure exam</p>
 <p>Write down several claims you would like to make about people who receive a driver’s license</p>
 <p>Group your claims into several proficiency variables related to the driver’s test</p>
 <p>Do the claims hold for high, medium or low values of those variables?</p>
 <p>Use Netica as a drawing tool and add your variables</p>
+</section>
 <section id="activity-1-cont" class="level2">
 <h2 class="anchored" data-anchor-id="activity-1-cont">Activity 1 (cont)</h2>
 <p>List a bunch of activities that you may want prospective drivers to do in their exam</p>
@@ -391,14 +391,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>How much time will be spent in written tests? On the road? In simulators?</p>
 <p>How do we verify the identity of applicants?</p>
 </section>
-</section>
-<section id="ecd-and-bayes-nets" class="level1">
-<h1>ECD and Bayes Nets</h1>
+<section id="ecd---bayes-nets" class="level2">
+<h2 class="anchored" data-anchor-id="ecd---bayes-nets">ECD -&gt; Bayes Nets</h2>
 <p>Represent Qualitative ECD argument with a graph (Domain Modeling) (Session I)</p>
 <p>Turn graphical structure into probability distribution over proficiency variables and observable outcomes (Bayes net; Session I)</p>
 <p>Perform inference (scoring) using that Bayes net (Session II)</p>
 <p>Express probabilities in terms of unknown parameters – learn parameters (Session III)</p>
 <p>Refine model based on how well it fits data (Session IV)</p>
+</section>
 <section id="cup-and-cap-notation" class="level2">
 <h2 class="anchored" data-anchor-id="cup-and-cap-notation">Cup and Cap notation</h2>
 <p>In probability theory, events are sets (sets of balls in the urn).</p>
@@ -424,12 +424,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p><span class="math display">\[\Pr(E|H) = \frac{\Pr(E \cap H)}{\Pr(H)} \]</span></p>
-<section id="law-of-total-probability" class="level2">
-<h2 class="anchored" data-anchor-id="law-of-total-probability">Law of Total Probability</h2>
 <p><span class="math display">\[ \Pr(E) = \Pr(E|H) \Pr(H) + \Pr(E|\overline{H})\Pr(\overline{H}) \]</span></p>
 <p><span class="math display">\[ \Pr(B) = \sum_i \Pr(B|A_i)\Pr(A_i) \]</span></p>
 <p>Where $ A_i A_j =$ and <span class="math inline">\(\bigcup_i A_i = \Omega\)</span></p>
-</section>
 </section>
 <section id="bayes-theorem" class="level1">
 <h1>Bayes Theorem</h1>
@@ -546,8 +543,8 @@ A 1.666667e-03 0.16500</code></pre>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="st">  Driving -&gt; Year2;</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="st">}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-7b15df5b029d61979e19" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-7b15df5b029d61979e19">{"x":{"diagram":"\ndigraph AP {\n  Driving -> Year1;\n  Driving -> Year2;\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a3d3ddff8cd14bd97ca3" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-a3d3ddff8cd14bd97ca3">{"x":{"diagram":"\ndigraph AP {\n  Driving -> Year1;\n  Driving -> Year2;\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -574,8 +571,8 @@ A 1.666667e-03 0.16500</code></pre>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="st">  COVID -&gt; pcrTest;</span></span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="st">}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a1d34f97248c633f82d8" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-a1d34f97248c633f82d8">{"x":{"diagram":"\ndigraph Autotrain {\n  Train -> COVID;\n  Train -> MaskOnTrain;\n  MaskOnTrain -> COVID;\n  Vaccine -> COVID;\n  COVID -> fever;\n  COVID -> congestion;\n  COVID -> pcrTest;\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-8e45065b6be64cce8748" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-8e45065b6be64cce8748">{"x":{"diagram":"\ndigraph Autotrain {\n  Train -> COVID;\n  Train -> MaskOnTrain;\n  MaskOnTrain -> COVID;\n  Vaccine -> COVID;\n  COVID -> fever;\n  COVID -> congestion;\n  COVID -> pcrTest;\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -588,8 +585,8 @@ A 1.666667e-03 0.16500</code></pre>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="st">  Skill2 -&gt; X</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="st">}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-8d4f5a0792bf507d988b" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-8d4f5a0792bf507d988b">{"x":{"diagram":"\ndigraph CompExpl {\n  Skill1 -> X\n  Skill2 -> X\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a1dd27a1b0fdfa2fc8bd" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-a1dd27a1b0fdfa2fc8bd">{"x":{"diagram":"\ndigraph CompExpl {\n  Skill1 -> X\n  Skill2 -> X\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <ul>
@@ -606,15 +603,21 @@ A 1.666667e-03 0.16500</code></pre>
 </section>
 <section id="d-separation" class="level1">
 <h1>D-Separation</h1>
-<p>For , , and  edges conditioning on middle variables renders outer variables independent</p>
 <ul>
-<li><span class="math display">\[ A \leftarrow B \leftarrow C\]</span></li>
-<li><span class="math display">\[ A \rightarrow B \leftarrow C\]</span></li>
-<li><span class="math display">\[ A \rightarrow B \rightarrow C\]</span></li>
-</ul>
-<p>For  (collider) edges, if middle variable (or descendent is known) then variables are dependent</p>
+<li>Non-collider edge patterns, ←← , ←→ , →→
 <ul>
-<li><span class="math display">\[ A \leftarrow B \rightarrow C\]</span></li>
+<li>If middle variable is <em>unknown</em> outer variables are <em>independent</em></li>
+<li>conditional independence</li>
+<li><span class="math inline">\(A \rightarrow B \rightarrow C\)</span></li>
+<li><span class="math inline">\(A \leftarrow B \rightarrow C\)</span></li>
+<li><span class="math inline">\(A \leftarrow B \leftarrow C\)</span></li>
+</ul></li>
+<li>For →← (collider) edges
+<ul>
+<li>if middle variable (or descendant) is <em>known</em> then variables are <em>dependent</em></li>
+<li>Competing Explanation</li>
+<li><span class="math inline">\(A \rightarrow B \leftarrow C\)</span></li>
+</ul></li>
 </ul>
 <p>A path is <em>active</em> if collider with middle node observed, or non-collider with middle node unobserved</p>
 <section id="d-separation-example" class="level2">
@@ -628,12 +631,12 @@ A 1.666667e-03 0.16500</code></pre>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="st">  D -&gt; E -&gt; F;</span></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-9cdd37fe4a9ef549ea10" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-9cdd37fe4a9ef549ea10">{"x":{"diagram":"\ndigraph DSep {\n  rankdir = \"LR\";\n  A -> B; A -> C;\n  B -> D; C -> D;\n  D -> E -> F;\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-7c6229b7417c91e25774" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-7c6229b7417c91e25774">{"x":{"diagram":"\ndigraph DSep {\n  rankdir = \"LR\";\n  A -> B; A -> C;\n  B -> D; C -> D;\n  D -> E -> F;\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> are independent if <span class="math inline">\(A\)</span> is known and all of <span class="math inline">\(D\)</span>, <span class="math inline">\(E\)</span> or <span class="math inline">\(F\)</span> are not known.</p>
-<p><span class="math inline">\(D\)</span> is indepedent of <span class="math inline">\(F\)</span> if <span class="math inline">\(E\)</span> is known.</p>
+<p><span class="math inline">\(D\)</span> is independent of <span class="math inline">\(F\)</span> if <span class="math inline">\(E\)</span> is known.</p>
 </section>
 <section id="d-separation-exercise" class="level2">
 <h2 class="anchored" data-anchor-id="d-separation-exercise">D-Separation Exercise</h2>
@@ -645,8 +648,8 @@ A 1.666667e-03 0.16500</code></pre>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="st">  D -&gt; F; D -&gt; G; E -&gt; G; E -&gt; H;</span></span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-b7f04becd970c62736aa" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-b7f04becd970c62736aa">{"x":{"diagram":"\ndigraph DSepEx {\n  rankdir = \"TB\";\n  A -> D; B -> D; B -> E; C -> E;\n  D -> F; D -> G; E -> G; E -> H;\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-a2299b9a1090c445e317" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-a2299b9a1090c445e317">{"x":{"diagram":"\ndigraph DSepEx {\n  rankdir = \"TB\";\n  A -> D; B -> D; B -> E; C -> E;\n  D -> F; D -> G; E -> G; E -> H;\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <ul>
@@ -670,12 +673,13 @@ A 1.666667e-03 0.16500</code></pre>
 </section>
 <section id="building-up-complex-networks" class="level1">
 <h1>Building Up Complex Networks</h1>
-<p>Pick an ordering of the nodes: <span class="math inline">\(V_1, V_J)\)</span>.</p>
+<p>Pick an ordering of the nodes: <span class="math inline">\(V_1, \ldots, V_J\)</span>.</p>
 <p><span class="math display">\[p(v_1,\ldots,v_J) = p(v_J|v_{J-1},\ldots,v_1)
 p(v_{J-1}|v_{J-2},\ldots,v_1) \cdots p(v_2|v_1) p(v_1)\]</span></p>
 <p><span class="math display">\[ = \prod{j=1}^{J} p(v_j|v_{j-1},\ldots, v_1) = \prod_{j=1}^{J}
 p(v_j|Pa(V_j)) \]</span></p>
 <p><span class="math display">\[Pa(v_j)\]</span> is the set of nodes that come earlier in the sequence.</p>
+<p>If <span class="math inline">\({\cal G}\)</span> is a Bayesian network whose nodes are <span class="math inline">\({\cal V}\)</span>, then we can replace <span class="math display">\[Pa(v_j)\]</span> with <span class="math display">\[Pa_{{\cal G}}(V_j)\]</span>, the parents of <span class="math inline">\(V_j\)</span> in the graph.</p>
 <p>If <span class="math inline">\({\cal G}\)</span> is a Bayesian network whose nodes are <span class="math inline">\({\cal V}\)</span>, then we can replace <span class="math display">\[Pa(v_j)\]</span> with <span class="math display">\[Pa_{{\cal G}}(V_j)\]</span>, the parents of <span class="math inline">\(V_j\)</span> in the graph.</p>
 <section id="building-up-complex-networks-irt" class="level2">
 <h2 class="anchored" data-anchor-id="building-up-complex-networks-irt">Building Up Complex Networks: IRT</h2>
@@ -689,8 +693,8 @@ p(v_j|Pa(V_j)) \]</span></p>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="st">  Q -&gt; X1; Q-&gt; X2; Q-&gt;andC [style="invis"]; Q-&gt;XJ</span></span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-9286694a8a606e9ff510" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-9286694a8a606e9ff510">{"x":{"diagram":"\ndigraph IRT {\n  subgraph{ Q[label=\"θ\"] }\n  subgraph {\n  X1; X2; andC[shape=none,label=\"...\"]; XJ\n  }\n  Q -> X1; Q-> X2; Q->andC [style=\"invis\"]; Q->XJ\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-df8ab168e303dad69d10" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-df8ab168e303dad69d10">{"x":{"diagram":"\ndigraph IRT {\n  subgraph{ Q[label=\"θ\"] }\n  subgraph {\n  X1; X2; andC[shape=none,label=\"...\"]; XJ\n  }\n  Q -> X1; Q-> X2; Q->andC [style=\"invis\"]; Q->XJ\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>For example, in IRT, item responses are conditionally independent given <span class="math inline">\(\theta\)</span>:</p>
@@ -706,14 +710,14 @@ p(v_j|Pa(V_j)) \]</span></p>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="st">  D -&gt; F; E -&gt; F</span></span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="st">}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-6a3e1cbd32c87fd7f018" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-6a3e1cbd32c87fd7f018">{"x":{"diagram":"\ndigraph ABN {\n  A -> C; B -> C;\n  C -> D; C -> E;\n  D -> F; E -> F\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-b2ef1737ba0c4436e70a" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-b2ef1737ba0c4436e70a">{"x":{"diagram":"\ndigraph ABN {\n  A -> C; B -> C;\n  C -> D; C -> E;\n  D -> F; E -> F\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<p>One factor for each node in graph in recursive representation</p>
+<p>One factor for each node in graph</p>
 <p>This factor is conditioned on parents in graph</p>
 <p>“Prior” nodes have no parents</p>
-<p><span class="math display">\[p(A)p(B)p(C|A,B)p(D|C)p(E|C)p(F|D,E) = p(A,B,C,D,E,F)\]</span></p>
+<p><span class="math display">\[p(A)p(B)p(C|A\,B)p(D|C)p(E|C)p(F|D\,E) = p(A\,B\,C\,D\,E\,F)\]</span></p>
 <p>Digraph must be acyclic</p>
 </section>
 <section id="activity-2-build-a-bayes-net" class="level2">

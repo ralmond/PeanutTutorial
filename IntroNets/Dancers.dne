@@ -1,0 +1,172 @@
+// ~->[DNET-1]->~
+
+// File created by an unlicensed user using Netica 5.05 on Nov 28, 2014 at 13:50:03.
+
+bnet Dancers {
+autoupdate = TRUE;
+whenchanged = 1334254740;
+
+visual V3 {
+	defdispform = LABELBOX;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 9;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	windowposn = (12, 52, 1000, 463);
+	resolution = 72;
+	drawingbounds = (1259, 720);
+	showpagebreaks = FALSE;
+	usegrid = TRUE;
+	gridspace = (6, 6);
+	NodeSet Node {BuiltIn = 1; Color = 0x00C0C0C0;};
+	NodeSet Nature {BuiltIn = 1; Color = 0x00F8EED2;};
+	NodeSet Deterministic {BuiltIn = 1; Color = 0x00D3CAA6;};
+	NodeSet Finding {BuiltIn = 1; Color = 0x00C8C8C8;};
+	NodeSet Constant {BuiltIn = 1; Color = 0x00FFFFFF;};
+	NodeSet ConstantValue {BuiltIn = 1; Color = 0x00FFFFB4;};
+	NodeSet Utility {BuiltIn = 1; Color = 0x00FFBDBD;};
+	NodeSet Decision {BuiltIn = 1; Color = 0x00DEE8FF;};
+	NodeSet Documentation {BuiltIn = 1; Color = 0x00F0FAFA;};
+	NodeSet Title {BuiltIn = 1; Color = 0x00FFFFFF;};
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		magnify = 1;
+		};
+	};
+
+node DancingSkill {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = ();
+	whenchanged = 1334254467;
+	visual V3 {
+		center = (216, 108);
+		height = 1;
+		};
+	};
+
+node Performance1 {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = (DancingSkill);
+	whenchanged = 1334254537;
+	visual V3 {
+		center = (492, 54);
+		height = 2;
+		link 1 {
+			path = ((261, 99), (446, 63));
+			};
+		};
+	};
+
+node Performance2 {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = (DancingSkill);
+	whenchanged = 1334254541;
+	visual V3 {
+		center = (486, 114);
+		height = 3;
+		};
+	};
+
+node Performance3 {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = (DancingSkill);
+	whenchanged = 1334254547;
+	visual V3 {
+		center = (486, 168);
+		height = 4;
+		link 1 {
+			path = ((255, 117), (446, 159));
+			};
+		};
+	};
+
+node Rater1 {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = ();
+	whenchanged = 1334254559;
+	visual V3 {
+		center = (894, 42);
+		height = 5;
+		};
+	};
+
+node Score11 {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = (Rater1, Performance1);
+	title = "Score 1-1";
+	whenchanged = 1334254658;
+	visual V3 {
+		center = (702, 42);
+		height = 8;
+		};
+	};
+
+node Rater2 {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = ();
+	whenchanged = 1334254575;
+	visual V3 {
+		center = (894, 102);
+		height = 6;
+		};
+	};
+
+node Score12 {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = (Performance1, Rater2);
+	title = "Score 1-2";
+	whenchanged = 1334254673;
+	visual V3 {
+		center = (708, 90);
+		height = 7;
+		link 2 {
+			path = ((865, 100), (746, 92));
+			};
+		};
+	};
+
+node Score21 {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = (Performance2, Rater1);
+	title = "Score 2-1";
+	whenchanged = 1334254735;
+	visual V3 {
+		center = (702, 156);
+		height = 9;
+		link 1 {
+			path = ((531, 123), (665, 149));
+			};
+		};
+	};
+
+node Score22 {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = (Performance2, Rater2);
+	title = "Score 2-2";
+	whenchanged = 1334254740;
+	visual V3 {
+		center = (696, 210);
+		height = 10;
+		};
+	};
+};

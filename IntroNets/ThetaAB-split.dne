@@ -1,0 +1,118 @@
+// ~->[DNET-1]->~
+
+// File created by an unlicensed user using Netica 4.09 on Mar 12, 2015 at 15:40:41.
+
+bnet ThetaAB_split {
+AutoCompile = TRUE;
+autoupdate = TRUE;
+whenchanged = 1423164812;
+
+visual V1 {
+	defdispform = BELIEFBARS;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 9;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	windowposn = (83, 186, 1196, 698);
+	scrollposn = (87, 103);
+	resolution = 72;
+	magnification = 2;
+	drawingbounds = (1080, 720);
+	showpagebreaks = FALSE;
+	usegrid = TRUE;
+	gridspace = (6, 6);
+	NodeSet Node {BuiltIn = 1; Color = 0xc0c0c0;};
+	NodeSet Nature {BuiltIn = 1; Color = 0xf8eed2;};
+	NodeSet Deterministic {BuiltIn = 1; Color = 0xd3caa6;};
+	NodeSet Finding {BuiltIn = 1; Color = 0xc8c8c8;};
+	NodeSet Constant {BuiltIn = 1; Color = 0xffffff;};
+	NodeSet ConstantValue {BuiltIn = 1; Color = 0xffffb4;};
+	NodeSet Utility {BuiltIn = 1; Color = 0xffbdbd;};
+	NodeSet Decision {BuiltIn = 1; Color = 0xdee8ff;};
+	NodeSet Documentation {BuiltIn = 1; Color = 0xf0fafa;};
+	NodeSet Title {BuiltIn = 1; Color = 0xffffff;};
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		landscape = FALSE;
+		magnify = 1;
+		};
+	};
+
+node ThetaA {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (High, Low);
+	parents = ();
+	probs = 
+		// High         Low          
+		  (0.11,        0.89);
+	title = "Theta A";
+	whenchanged = 1423164415;
+	belief = (0.5103457, 0.4896543);
+	visual V1 {
+		center = (210, 168);
+		height = 3;
+		};
+	};
+
+node ThetaB {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (High, Low);
+	parents = ();
+	probs = 
+		// High         Low          
+		  (0.11,        0.89);
+	title = "Theta B";
+	whenchanged = 1423164434;
+	belief = (0.5103457, 0.4896543);
+	visual V1 {
+		center = (456, 174);
+		height = 4;
+		};
+	};
+
+node X1 {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Right, Wrong);
+	parents = (ThetaA, ThetaB);
+	probs = 
+		// Right        Wrong           // ThetaA ThetaB 
+		(((0.99,        0.01),          // High   High   
+		  (0.9,         0.1)),          // High   Low    
+		 ((0.9,         0.1),           // Low    High   
+		  (0.01,        0.99)));        // Low    Low    ;
+	whenchanged = 1423164771;
+	evidence = Right;
+	belief = (1, 0);
+	visual V1 {
+		center = (210, 300);
+		height = 1;
+		};
+	};
+
+node X2 {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Right, Wrong);
+	parents = (ThetaA, ThetaB);
+	probs = 
+		// Right        Wrong           // ThetaA ThetaB 
+		(((0.91,        0.09),          // High   High   
+		  (0.05,        0.95)),         // High   Low    
+		 ((0.9,         0.1),           // Low    High   
+		  (0.01,        0.99)));        // Low    Low    ;
+	whenchanged = 1423164524;
+	belief = (0.4827891, 0.5172109);
+	visual V1 {
+		center = (456, 294);
+		height = 2;
+		};
+	};
+ElimOrder = (X1, ThetaA, ThetaB, X2);
+};

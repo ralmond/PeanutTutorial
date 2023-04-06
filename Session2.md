@@ -590,9 +590,9 @@ Learning and assessment reliability\!\!\!\!\!
 
 # Acknowledgements
 
-Special thanks to Val Shute for letting us used ACED data and models in this tutorial\.
+Special thanks to Val Shute for letting us used ACED data and models in this tutorial.
 
-ACED development and data collection was sponsored by National Science Foundation Grant  No\. 0313202\.
+ACED development and data collection was sponsored by National Science Foundation Grant  No. 0313202.
 
-Complete data available at:  http://ecd\.ralmond\.net/ecdwiki/ACED/ACED
+Complete data available at:  http://ecd.ralmond.net/ecdwiki/ACED/ACED
 

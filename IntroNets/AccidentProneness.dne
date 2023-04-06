@@ -1,0 +1,99 @@
+// ~->[DNET-1]->~
+
+// File created by an unlicensed user using Netica 4.09 on Mar 12, 2015 at 15:30:15.
+
+bnet AccidentProneness {
+AutoCompile = TRUE;
+autoupdate = TRUE;
+whenchanged = 1421352924;
+
+visual V2 {
+	defdispform = BELIEFBARS;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 9;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	windowposn = (75, 75, 1188, 587);
+	scrollposn = (0, 24);
+	resolution = 72;
+	magnification = 2;
+	drawingbounds = (1080, 720);
+	showpagebreaks = FALSE;
+	usegrid = TRUE;
+	gridspace = (6, 6);
+	NodeSet Node {BuiltIn = 1; Color = 0xc0c0c0;};
+	NodeSet Nature {BuiltIn = 1; Color = 0xf8eed2;};
+	NodeSet Deterministic {BuiltIn = 1; Color = 0xd3caa6;};
+	NodeSet Finding {BuiltIn = 1; Color = 0xc8c8c8;};
+	NodeSet Constant {BuiltIn = 1; Color = 0xffffff;};
+	NodeSet ConstantValue {BuiltIn = 1; Color = 0xffffb4;};
+	NodeSet Utility {BuiltIn = 1; Color = 0xffbdbd;};
+	NodeSet Decision {BuiltIn = 1; Color = 0xdee8ff;};
+	NodeSet Documentation {BuiltIn = 1; Color = 0xf0fafa;};
+	NodeSet Title {BuiltIn = 1; Color = 0xffffff;};
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		landscape = FALSE;
+		magnify = 1;
+		};
+	};
+
+node Driving {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Normal, AccidentProne);
+	parents = ();
+	probs = 
+		// Normal       AccidentProne 
+		  (0.8333334,   0.1666667);
+	numcases = 6;
+	whenchanged = 1421352919;
+	belief = (0.3333333, 0.6666667);
+	visual V2 {
+		center = (126, 114);
+		height = 3;
+		};
+	};
+
+node Year1 {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Accident, Safe);
+	parents = (Driving);
+	probs = 
+		// Accident     Safe           // Driving       
+		 ((0.01,        0.99),         // Normal        
+		  (0.1,         0.9));         // AccidentProne ;
+	numcases = 1;
+	whenchanged = 1421352924;
+	evidence = Accident;
+	belief = (1, 0);
+	visual V2 {
+		center = (360, 78);
+		height = 2;
+		};
+	};
+
+node Year2 {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Accident, Safe);
+	inputs = (Driving);
+	parents = (Driving);
+	probs = 
+		// Accident     Safe           // Driving       
+		 ((0.01,        0.99),         // Normal        
+		  (0.1,         0.9));         // AccidentProne ;
+	numcases = 1;
+	whenchanged = 1421352817;
+	belief = (0.07, 0.93);
+	visual V2 {
+		center = (366, 150);
+		height = 1;
+		};
+	};
+ElimOrder = (Year1, Driving, Year2);
+};

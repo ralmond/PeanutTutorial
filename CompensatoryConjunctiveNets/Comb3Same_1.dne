@@ -1,0 +1,206 @@
+// ~->[DNET-1]->~
+
+// File created by ZapataD at ETSTech using Netica 2.17 on Mar 28, 2006 at 15:43:09.
+
+bnet Comb3Same_1 {
+autoupdate = TRUE;
+whenchanged = 1143578546;
+
+visual V3 {
+	defdispform = BELIEFBARS;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 10;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	windowposn = (66, 66, 674, 393);
+	resolution = 72;
+	drawingbounds = (1080, 720);
+	showpagebreaks = FALSE;
+	usegrid = TRUE;
+	gridspace = (6, 6);
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		landscape = FALSE;
+		magnify = 1;
+		};
+	};
+
+node P1_conj {
+	kind = NATURE;
+	discrete = TRUE;
+	states = (H, M, L);
+	parents = ();
+	probs = 
+		// H            M            L            
+		  (0.3333333,   0.3333333,   0.3333333);
+	title = "P1_conj";
+	whenchanged = 1143578546;
+	belief = (0.333333, 0.333333, 0.333333);
+	visual V3 {
+		center = (360, 252);
+		height = 3;
+		};
+	};
+
+node P2_conj {
+	kind = NATURE;
+	discrete = TRUE;
+	states = (H, M, L);
+	parents = ();
+	probs = 
+		// H            M            L            
+		  (0.3333333,   0.3333333,   0.3333333);
+	title = "P2_conj";
+	whenchanged = 1121797885;
+	belief = (0.333333, 0.333333, 0.333333);
+	visual V3 {
+		center = (504, 252);
+		height = 2;
+		};
+	};
+
+node Conjunctive {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Right, Wrong);
+	parents = (P1_conj, P2_conj);
+	probs = 
+		// Right        Wrong           // P1_conj P2_conj 
+		(((0.9,         0.1),           // H       H       
+		  (0.7,         0.3),           // H       M       
+		  (0.3,         0.7)),          // H       L       
+		 ((0.7,         0.3),           // M       H       
+		  (0.7,         0.3),           // M       M       
+		  (0.3,         0.7)),          // M       L       
+		 ((0.3,         0.7),           // L       H       
+		  (0.3,         0.7),           // L       M       
+		  (0.3,         0.7)));         // L       L       ;
+	title = "Conjunctive";
+	whenchanged = 1143578541;
+	belief = (0.5, 0.5);
+	visual V3 {
+		center = (426, 378);
+		height = 8;
+		};
+	};
+
+node P2_Comp {
+	kind = NATURE;
+	discrete = TRUE;
+	states = (H, M, L);
+	parents = ();
+	probs = 
+		// H            M            L            
+		  (0.3333333,   0.3333333,   0.3333333);
+	title = "P2_Comp";
+	whenchanged = 1121797885;
+	belief = (0.333333, 0.333333, 0.333333);
+	visual V3 {
+		center = (216, 252);
+		height = 6;
+		};
+	};
+
+node P1_comp {
+	kind = NATURE;
+	discrete = TRUE;
+	states = (H, M, L);
+	parents = ();
+	probs = 
+		// H            M            L            
+		  (0.3333333,   0.3333333,   0.3333333);
+	title = "P1_comp";
+	whenchanged = 1143578538;
+	belief = (0.333333, 0.333333, 0.333333);
+	visual V3 {
+		center = (72, 252);
+		height = 1;
+		};
+	};
+
+node Compensatory {
+	kind = NATURE;
+	discrete = TRUE;
+	states = (Right, Wrong);
+	parents = (P1_comp, P2_Comp);
+	probs = 
+		// Right        Wrong           // P1_comp P2_Comp 
+		(((0.9,         0.1),           // H       H       
+		  (0.7,         0.3),           // H       M       
+		  (0.5,         0.5)),          // H       L       
+		 ((0.7,         0.3),           // M       H       
+		  (0.5,         0.5),           // M       M       
+		  (0.3,         0.7)),          // M       L       
+		 ((0.5,         0.5),           // L       H       
+		  (0.3,         0.7),           // L       M       
+		  (0.1,         0.9)));         // L       L       ;
+	title = "Compensatory";
+	whenchanged = 1143578540;
+	belief = (0.5, 0.5);
+	visual V3 {
+		center = (138, 378);
+		height = 7;
+		};
+	};
+
+node P1_disj {
+	kind = NATURE;
+	discrete = TRUE;
+	states = (H, M, L);
+	parents = ();
+	probs = 
+		// H            M            L            
+		  (0.3333333,   0.3333333,   0.3333333);
+	title = "P1_disj";
+	whenchanged = 1143578544;
+	belief = (0.333333, 0.333333, 0.333333);
+	visual V3 {
+		center = (660, 252);
+		height = 4;
+		};
+	};
+
+node P2_disj {
+	kind = NATURE;
+	discrete = TRUE;
+	states = (H, M, L);
+	parents = ();
+	probs = 
+		// H            M            L            
+		  (0.3333333,   0.3333333,   0.3333333);
+	title = "P2_disj";
+	whenchanged = 1121797885;
+	belief = (0.333333, 0.333333, 0.333333);
+	visual V3 {
+		center = (804, 252);
+		height = 5;
+		};
+	};
+
+node Disjunctive {
+	kind = NATURE;
+	discrete = TRUE;
+	states = (Right, Wrong);
+	parents = (P1_disj, P2_disj);
+	probs = 
+		// Right        Wrong           // P1_disj P2_disj 
+		(((0.7,         0.3),           // H       H       
+		  (0.7,         0.3),           // H       M       
+		  (0.7,         0.3)),          // H       L       
+		 ((0.7,         0.3),           // M       H       
+		  (0.3,         0.7),           // M       M       
+		  (0.3,         0.7)),          // M       L       
+		 ((0.7,         0.3),           // L       H       
+		  (0.3,         0.7),           // L       M       
+		  (0.1,         0.9)));         // L       L       ;
+	title = "Disjunctive";
+	whenchanged = 1143578543;
+	belief = (0.5, 0.5);
+	visual V3 {
+		center = (720, 378);
+		height = 9;
+		};
+	};
+ElimOrder = (P1_conj, P2_conj, Conjunctive, P2_Comp, P1_comp, Compensatory, P1_disj, P2_disj, Disjunctive);
+};

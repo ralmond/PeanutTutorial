@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Peanut Tutorial – session3</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Peanut Tutorial</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./ECD.html">
+ <span class="menu-text">ECD Intro</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./BayesNets.html">
+ <span class="menu-text">Bayesian Networks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Scoring.html">
+ <span class="menu-text">Scoring</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Building.html">
+ <span class="menu-text">Building Nets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Updating.html">
+ <span class="menu-text">Calibration</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Visualization.html">
+ <span class="menu-text">Model checking and visualzation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Dynamic.html">
+ <span class="menu-text">Dynamic Models</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Resources.html">
+ <span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./References.html">
+ <span class="menu-text">References</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./img/PeanutLogo.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Peanut Logo</figcaption><p></p>
+</figure>
+</div>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#rnetica" id="toc-rnetica" class="nav-link active" data-scroll-target="#rnetica">RNetica</a></li>
+  <li><a href="#quick-start-guide" id="toc-quick-start-guide" class="nav-link" data-scroll-target="#quick-start-guide">Quick Start Guide</a></li>
+  <li><a href="#downloading" id="toc-downloading" class="nav-link" data-scroll-target="#downloading">Downloading</a></li>
+  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
+  <li><a href="#installing-the-license-key" id="toc-installing-the-license-key" class="nav-link" data-scroll-target="#installing-the-license-key">Installing the License Key</a></li>
+  <li><a href="#the-r-heap-and-the-netica-heap" id="toc-the-r-heap-and-the-netica-heap" class="nav-link" data-scroll-target="#the-r-heap-and-the-netica-heap">The R heap and the Netica heap</a></li>
+  <li><a href="#active-and-inactive-pointers" id="toc-active-and-inactive-pointers" class="nav-link" data-scroll-target="#active-and-inactive-pointers">Active and Inactive pointers</a></li>
+  <li><a href="#mini-aced-proficiency-model" id="toc-mini-aced-proficiency-model" class="nav-link" data-scroll-target="#mini-aced-proficiency-model">Mini-ACED Proficiency model</a></li>
+  <li><a href="#mini-aced-em-fragments" id="toc-mini-aced-em-fragments" class="nav-link" data-scroll-target="#mini-aced-em-fragments">Mini-ACED EM Fragments</a></li>
+  <li><a href="#task-to-em-map" id="toc-task-to-em-map" class="nav-link" data-scroll-target="#task-to-em-map">Task to EM map</a></li>
+  <li><a href="#scoring-script" id="toc-scoring-script" class="nav-link" data-scroll-target="#scoring-script">Scoring Script</a></li>
+  <li><a href="#reloading-nets-and-nodes" id="toc-reloading-nets-and-nodes" class="nav-link" data-scroll-target="#reloading-nets-and-nodes">Reloading Nets and Nodes</a></li>
+  <li><a href="#aside-1-node-sets" id="toc-aside-1-node-sets" class="nav-link" data-scroll-target="#aside-1-node-sets">Aside 1: Node Sets</a></li>
+  <li><a href="#aside-2-rnetica-functions" id="toc-aside-2-rnetica-functions" class="nav-link" data-scroll-target="#aside-2-rnetica-functions">Aside 2: RNetica Functions</a></li>
+  <li><a href="#aside-2-inference" id="toc-aside-2-inference" class="nav-link" data-scroll-target="#aside-2-inference">Aside 2: Inference</a></li>
+  <li><a href="#aside-2-example" id="toc-aside-2-example" class="nav-link" data-scroll-target="#aside-2-example">Aside 2: Example</a></li>
+  <li><a href="#back-to-work" id="toc-back-to-work" class="nav-link" data-scroll-target="#back-to-work">Back to work</a></li>
+  <li><a href="#a-student-walks-into-the-test-center" id="toc-a-student-walks-into-the-test-center" class="nav-link" data-scroll-target="#a-student-walks-into-the-test-center">A student walks into the test center …</a></li>
+  <li><a href="#start-a-new-student" id="toc-start-a-new-student" class="nav-link" data-scroll-target="#start-a-new-student">Start a new student</a></li>
+  <li><a href="#score-1st-task" id="toc-score-1st-task" class="nav-link" data-scroll-target="#score-1st-task">Score 1st Task</a></li>
+  <li><a href="#stats-and-cleanup-for-1st-task" id="toc-stats-and-cleanup-for-1st-task" class="nav-link" data-scroll-target="#stats-and-cleanup-for-1st-task">Stats and Cleanup for 1st task</a></li>
+  <li><a href="#nd-task" id="toc-nd-task" class="nav-link" data-scroll-target="#nd-task">2nd Task</a></li>
+  <li><a href="#save-and-restore" id="toc-save-and-restore" class="nav-link" data-scroll-target="#save-and-restore">Save and Restore</a></li>
+  <li><a href="#getting-serious" id="toc-getting-serious" class="nav-link" data-scroll-target="#getting-serious">Getting Serious</a></li>
+  <li><a href="#setup-for-mini-aced" id="toc-setup-for-mini-aced" class="nav-link" data-scroll-target="#setup-for-mini-aced">Setup for mini-ACED</a></li>
+  <li><a href="#setup-new-student" id="toc-setup-new-student" class="nav-link" data-scroll-target="#setup-new-student">Setup new Student</a></li>
+  <li><a href="#loop-part-1-add-evidence" id="toc-loop-part-1-add-evidence" class="nav-link" data-scroll-target="#loop-part-1-add-evidence">Loop Part 1: Add Evidence</a></li>
+  <li><a href="#loop-part-2-capture-statistics" id="toc-loop-part-2-capture-statistics" class="nav-link" data-scroll-target="#loop-part-2-capture-statistics">Loop Part 2: Capture Statistics</a></li>
+  <li><a href="#weight-of-evidence" id="toc-weight-of-evidence" class="nav-link" data-scroll-target="#weight-of-evidence">Weight of Evidence</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<p><img src="img/2021 BN Session IIIa_RNetica0.jpg" class="img-fluid"></p>
+<p><img src="img/2021 BN Session IIIa_RNetica1.png" class="img-fluid"></p>
+<p><strong>Bayesian Networks in</strong> <strong>Educational Assessment</strong></p>
+<p><strong>Tutorial</strong></p>
+<p><strong>Session III:</strong> __ __ <strong>Bayes Net with R</strong></p>
+<p>Duanli Yan, Diego Zapata, ETS</p>
+<p>Russell Almond, FSU</p>
+<p>2021 NCME Tutorial: Bayesian Networks in Educational Assessment</p>
+<p><em>SESSION</em> __ __ <em>TOPIC</em> __ __ <em>PRESENTERS</em></p>
+<p><strong>Session 1</strong> : Evidence Centered Design Diego Zapata Bayesian Networks</p>
+<p><strong>Session 2</strong> : Bayes Net Applications Duanli Yan &amp; ACED: ECD in Action Russell Almond</p>
+<p><strong>Session 3</strong> : Bayes Nets with R Russell Almond &amp; Duanli Yan</p>
+<p><strong>Session 4</strong> : Refining Bayes Nets with Duanli Yan &amp; Data Russell Almond</p>
+<section id="rnetica" class="level1">
+<h1>RNetica</h1>
+</section>
+<section id="quick-start-guide" class="level1">
+<h1>Quick Start Guide</h1>
+<p>Scoring A Student</p>
+<p>RNetica Quick Start</p>
+</section>
+<section id="downloading" class="level1">
+<h1>Downloading</h1>
+<ul>
+<li><a href="http://pluto.coe.fsu.edu/RNetica/">http://pluto.coe.fsu.edu/RNetica/</a></li>
+<li>Four Packages:
+<ul>
+<li>RNetica – R to Netica link</li>
+<li>CPTtools – Design patterns for CPTs</li>
+<li>Peanut/PNetica -- Object-Oriented Parameterized Network</li>
+</ul></li>
+<li>Source &amp; binary version (Win 64, Mac OS X)
+<ul>
+<li>Binary versions include Netica.dll/libNetica.so
+<ul>
+<li>In RStudio select “Package Archive” rather than CRAN</li>
+</ul></li>
+<li>Source version need to download from <a href="http://www.norsys.com/">http://www.norsys.com/</a> first
+<ul>
+<li>See INSTALLATION</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>RNetica Quick Start</p>
+</section>
+<section id="license" class="level1">
+<h1>License</h1>
+<ul>
+<li>R – GPL-3 (Free and open source)</li>
+<li>RNetica – Artistic (Free and open source)</li>
+<li>Netica.dll/libNetica.so – Commercial (open API, but not open source)
+<ul>
+<li>Free Student/Demo version
+<ul>
+<li>Limited number of nodes</li>
+<li>Limited usage (education, evaluation of Netica)</li>
+</ul></li>
+<li>Paid version (see <a href="http://www.norsys.com/">http://www.norsys.com/</a> for price information)
+<ul>
+<li>Need to purchase API not GUI version of Netica</li>
+<li>May want both (use GUI to visualize networks build in RNetica)</li>
+</ul></li>
+</ul></li>
+<li>CPTtools – Artistic (Free and open source), does not depend on Netica</li>
+</ul>
+<p>RNetica Quick Start</p>
+</section>
+<section id="installing-the-license-key" class="level1">
+<h1>Installing the License Key</h1>
+<ul>
+<li>When you purchase a license, Norsys will send you a license key. Something that looks like: “+Course/FloridaSU/Ex15-05-30,120,310/XXXXX” (Where I’ve obscured the last 5 security digits)</li>
+<li>To install the license key, start R in your project directory and type:
+<ul>
+<li><blockquote class="blockquote">
+<p>NeticaLicenseKey &lt;- “+Course/FloridaSU/Ex15-05-30,120,310/XXXXX”</p>
+</blockquote></li>
+<li><blockquote class="blockquote">
+<p>q(“yes”)</p>
+</blockquote></li>
+</ul></li>
+<li>Restart R and type
+<ul>
+<li><blockquote class="blockquote">
+<p>library(RNetica)</p>
+</blockquote></li>
+</ul></li>
+<li>If license key is not installed, then you will get the limited/student mode. Most of these examples will run</li>
+</ul>
+<p>RNetica Quick Start</p>
+</section>
+<section id="the-r-heap-and-the-netica-heap" class="level1">
+<h1>The R heap and the Netica heap</h1>
+<p>R and Netica have two different workspaces (memory heaps)</p>
+<p>R workspace is saved and restored automatically when you quick and restart R.</p>
+<p>Netica heap must be reconnected manually.</p>
+<p>RNetica Quick Start</p>
+</section>
+<section id="active-and-inactive-pointers" class="level1">
+<h1>Active and Inactive pointers</h1>
+<p>When RNetica creates/finds a Netica object it creates a corresponding R object</p>
+<p>If the R object is active then it points to the Netica object, and the Netica object points back at it</p>
+<p>If the pointer gets broken (saving &amp; restarting R, deleting the network/node) then the R object becomes inactive.</p>
+<p>The function is.active(nodeOrNet) test to see if the node/net is active</p>
+<p>RNetica Quick Start</p>
+</section>
+<section id="mini-aced-proficiency-model" class="level1">
+<h1>Mini-ACED Proficiency model</h1>
+<p>Subset of ACED network (Shute, Hansen &amp; Almond (2008); <a href="http://ecd.ralmond.net/ecdwiki/ACED">http://ecd.ralmond.net/ecdwiki/ACED</a> )</p>
+<p>Proficiency Model subset:</p>
+<p><img src="img/2021 BN Session IIIa_RNetica2.png" class="img-fluid"></p>
+<p>RNetica Quick Start</p>
+</section>
+<section id="mini-aced-em-fragments" class="level1">
+<h1>Mini-ACED EM Fragments</h1>
+<p>All ACED tasks were scored correct/incorrect</p>
+<p>Each evidence model is represented by a fragment consisting of observables with <em>stub </em> edges indicating where it should be <em>adjoined</em> with the network.</p>
+<p><img src="img/2021 BN Session IIIa_RNetica3.png" class="img-fluid"></p>
+<p><img src="img/2021 BN Session IIIa_RNetica4.png" class="img-fluid"></p>
+<p>Common Ratio Easy</p>
+<p>Model Extend Table Hard</p>
+<p>RNetica Quick Start</p>
+</section>
+<section id="task-to-em-map" class="level1">
+<h1>Task to EM map</h1>
+<p>Need a table to tell us which EM to use with which task</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Task ID</th>
+<th style="text-align: center;">EM Filename</th>
+<th style="text-align: center;">X</th>
+<th style="text-align: center;">Y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">tCommonRatio1b</td>
+<td style="text-align: center;">CommonRatioEasyEM</td>
+<td style="text-align: center;">108</td>
+<td style="text-align: center;">414</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">tCommonRatio2a</td>
+<td style="text-align: center;">CommonRatioMedEM</td>
+<td style="text-align: center;">108</td>
+<td style="text-align: center;">534</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">tCommonRatio2b</td>
+<td style="text-align: center;">CommonRatioMedEM</td>
+<td style="text-align: center;">108</td>
+<td style="text-align: center;">654</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">tCommonRatio3a</td>
+<td style="text-align: center;">CommonRatioHardEM</td>
+<td style="text-align: center;">108</td>
+<td style="text-align: center;">774</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">tCommonRatio3b</td>
+<td style="text-align: center;">CommonRatioHardEM</td>
+<td style="text-align: center;">108</td>
+<td style="text-align: center;">894</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">tExamplesGeometric1a</td>
+<td style="text-align: center;">ExamplesEasyEM</td>
+<td style="text-align: center;">342</td>
+<td style="text-align: center;">294</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">tExamplesGeometric1b</td>
+<td style="text-align: center;">ExamplesEasyEM</td>
+<td style="text-align: center;">342</td>
+<td style="text-align: center;">414</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p>RNetica Quick Start</p>
+</section>
+<section id="scoring-script" class="level1">
+<h1>Scoring Script</h1>
+<p>Follow along using the script found in ScoringScript.R in the miniACED folder.</p>
+<p>Don’t forget to setwd() to the miniACED folder (as it needs to find its networks).</p>
+<p>Don’t forget to set the license key before issuing library(RNetica) command.</p>
+<p>RNetica Quick Start</p>
+</section>
+<section id="reloading-nets-and-nodes" class="level1">
+<h1>Reloading Nets and Nodes</h1>
+<p><span style="color:#00B050">## Scoring Script</span></p>
+<p><span style="color:#00B050">## Preliminaries</span></p>
+<p>library(RNetica)</p>
+<p>library(CPTtools)</p>
+<p><span style="color:#00B050">## Read in network – Do this every time R is restarted</span></p>
+<p>profModel &lt;- ReadNetworks(“miniACEDPnet.dne”)</p>
+<p><span style="color:#00B050">## If </span> <span style="color:#00B050">profModels</span> <span style="color:#00B050"> already exists could also use</span></p>
+<p><span style="color:#00B050">## Reconnect nodes – Do this every time R is restarted</span></p>
+<p>allNodes &lt;- NetworkAllNodes(profModel)</p>
+<p>sgp &lt;- allNodes$SolveGeometricProblems</p>
+<p>profNodes &lt;- NetworkNodesInSet(profModel,“Proficiencies”)</p>
+<p>RNetica Quick Start</p>
+</section>
+<section id="aside-1-node-sets" class="level1">
+<h1>Aside 1: Node Sets</h1>
+<ul>
+<li>Netica defines a node set functionality which
+<ul>
+<li>Adds a collection of labels (sets) to each node</li>
+<li>Defines a collection of nodes with that label</li>
+</ul></li>
+<li>Netica GUI really only offers the opportunity to color nodes by set</li>
+<li>RNetica can loop over node sets (lists of nodes)</li>
+<li><span style="color:#00B050">## Node Sets</span></li>
+<li>NetworkNodeSets(profModel)</li>
+<li>NetworkNodesInSet(profModel,“pnodes”)</li>
+<li>NodeSets(sgp)</li>
+<li><span style="color:#00B050">## These are all settable</span></li>
+<li>NodeSets(sgp) &lt;- c(NodeSets(sgp),“HighLevel”)</li>
+<li>NodeSets(sgp)</li>
+</ul>
+<p>RNetica Quick Start</p>
+</section>
+<section id="aside-2-rnetica-functions" class="level1">
+<h1>Aside 2: RNetica Functions</h1>
+<p><span style="color:#00B050">## Querying Nodes</span></p>
+<p>NodeStates(sgp) <span style="color:#00B050">#List states</span></p>
+<p>NodeParents(sgp) <span style="color:#00B050">#List parents</span></p>
+<p>NodeLevels(sgp) <span style="color:#00B050">#List numeric values associated with states</span></p>
+<p>NodeProbs(sgp) <span style="color:#00B050"># Conditional Probability Table (as array)</span></p>
+<p>sgp[] <span style="color:#00B050"># Conditional Probability Table (as data frame)</span></p>
+<p><span style="color:#00B050">## These are all settable (can be used on RHS of &lt;-) for </span></p>
+<p><span style="color:#00B050">## model construction</span></p>
+<p><span style="color:#00B050">## Inference</span></p>
+<p>CompileNetwork(profModel) <span style="color:#00B050">#Lightning bolt on GUI</span></p>
+<p><span style="color:#00B050">## Must do this before inference</span></p>
+<p><span style="color:#00B050">## Recompiling an already compiled network is harmless</span></p>
+<p>RNetica Quick Start</p>
+</section>
+<section id="aside-2-inference" class="level1">
+<h1>Aside 2: Inference</h1>
+<p><span style="color:#00B050">## Enter Evidence by setting values for these functions</span></p>
+<p>NodeValue(sgp) <span style="color:#00B050">#View or set the value</span></p>
+<p>NodeLikelihood(sgp) <span style="color:#00B050">#Virtual evidence</span></p>
+<p><span style="color:#00B050">## Query beliefs</span></p>
+<p>NodeBeliefs(sgp) <span style="color:#00B050">#Current probability (given entered evidence)</span></p>
+<p>NodeExpectedValue(sgp) <span style="color:#00B050">#If node has values, EAP</span></p>
+<p><span style="color:#00B050">## These aren’t settable</span></p>
+<p><span style="color:#00B050">## Retract Evidence</span></p>
+<p>RetractNodeFinding(profNodes$ExamplesGeometric)</p>
+<p>RetractNetFindings(profModel)</p>
+<p>RNetica Quick Start</p>
+</section>
+<section id="aside-2-example" class="level1">
+<h1>Aside 2: Example</h1>
+<p><span style="color:#00B050">## Enter Evidence</span></p>
+<p>NodeValue(profNodes$CommonRatio) &lt;- “Medium”</p>
+<p><span style="color:#00B050">## Enter Evidence “Not Low” (“High or Medium”)</span></p>
+<p>NodeLikelihood(profNodes$ExamplesGeometric) &lt;- c(1,1,0)</p>
+<p>NodeBeliefs(sgp) <span style="color:#00B050">#Current probability (given entered evidence)</span></p>
+<p>NodeExpectedValue(sgp) <span style="color:#00B050">#If node has values, EAP</span></p>
+<p><span style="color:#00B050">## Retract Evidence</span></p>
+<p>RetractNetFindings(profModel)</p>
+<p><span style="color:#00B050">## Many more examples</span></p>
+<p>help(RNetica)</p>
+<p>RNetica Quick Start</p>
+</section>
+<section id="back-to-work" class="level1">
+<h1>Back to work</h1>
+<p>Load the evidence model table</p>
+<p>Row names are task IDs</p>
+<p>EM column contains evidence model name</p>
+<p>EM filename has suffix “.dne” attached.</p>
+<p><span style="color:#00B050">## Read in task-&gt;evidence model mapping</span></p>
+<p>EMtable &lt;- read.csv(“MiniACEDEMTable.csv”,row.names=1,</p>
+<p>as.is=2) <span style="color:#00B050">#Keep EM names as strings</span></p>
+<p>head(EMtable)</p>
+<p>RNetica Quick Start</p>
+</section>
+<section id="a-student-walks-into-the-test-center" class="level1">
+<h1>A student walks into the test center …</h1>
+<ul>
+<li>Student gives the name “Fred”</li>
+<li>Student is the right grade/age for ACED (8th or 9th grader, pre-algebra)</li>
+<li>Bayes net has three states
+<ul>
+<li>Fred logs into ACED</li>
+<li>Fred attempts the task tCommonRatio1a and gets it right</li>
+<li>Fred attempts the task tCommonRatio2a and gets it wrong</li>
+</ul></li>
+</ul>
+<p>RNetica Quick Start</p>
+</section>
+<section id="start-a-new-student" class="level1">
+<h1>Start a new student</h1>
+<p><span style="color:#00B050">## Copy the master proficiency model</span></p>
+<p><span style="color:#00B050">## to make student model</span></p>
+<p>Fred.SM &lt;- CopyNetworks(profModel,“Fred”)</p>
+<p>Fred.SMvars &lt;- NetworkAllNodes(Fred.SM)</p>
+<p>CompileNetwork(Fred.SM)</p>
+<p><span style="color:#00B050">## Setup score history</span></p>
+<p>prior &lt;- NodeBeliefs(Fred.SMvars$SolveGeometricProblems)</p>
+<p>Fred.History &lt;- matrix(prior,1,3)</p>
+<p>row.names(Fred.History) &lt;- “*Baseline*”</p>
+<p>colnames(Fred.History) &lt;- names(prior)</p>
+<p>Fred.History</p>
+<p>RNetica Quick Start</p>
+</section>
+<section id="score-1st-task" class="level1">
+<h1>Score 1st Task</h1>
+<p><span style="color:#00B050">### Fred does a task</span></p>
+<p>t.name &lt;- “tCommonRatio1a”</p>
+<p>t.isCorrect &lt;- “Yes”</p>
+<p><span style="color:#00B050">## Adjoin SM and EM</span></p>
+<p>EMnet &lt;- ReadNetworks(paste(EMtable[t.name,“EM”],“dne”,sep=“.”))</p>
+<p>obs &lt;- AdjoinNetwork(Fred.SM,EMnet)</p>
+<p>NetworkAllNodes(Fred.SM)</p>
+<p><span style="color:#00B050">## Fred.SM is now the Motif for the current task.</span></p>
+<p>CompileNetwork(Fred.SM)</p>
+<p><span style="color:#00B050">## Enter finding</span></p>
+<p>NodeFinding(obs$isCorrect) &lt;- t.isCorrect</p>
+<p>RNetica Quick Start</p>
+</section>
+<section id="stats-and-cleanup-for-1st-task" class="level1">
+<h1>Stats and Cleanup for 1st task</h1>
+<p><span style="color:#00B050">## Calculate statistics of interest</span></p>
+<p>post &lt;- NodeBeliefs(Fred.SMvars$SolveGeometricProblems)</p>
+<p>Fred.History &lt;- rbind(Fred.History,new=post)</p>
+<p>rownames(Fred.History)[nrow(Fred.History)] &lt;- paste(t.name,t.isCorrect,sep=“=”)</p>
+<p>Fred.History</p>
+<p><span style="color:#00B050">## Cleanup and Observable no longer needed, so absorb it:</span></p>
+<p>DeleteNetwork(EMnet) ## Delete EM</p>
+<p><span style="color:#00B050">##</span> AbsorbNodes(obs)</p>
+<p><span style="color:#00B050">## Currently, there is a </span> <span style="color:#00B050">Netica</span> <span style="color:#00B050"> bug with Absorb Nodes, we will leave</span></p>
+<p><span style="color:#00B050">## this node in place as that is mostly harmless.</span></p>
+<p>RNetica Quick Start</p>
+</section>
+<section id="nd-task" class="level1">
+<h1>2nd Task</h1>
+<p><span style="color:#00B050">### Fred does another task</span></p>
+<p>t.name &lt;- “tCommonRatio2a”</p>
+<p>t.isCorrect &lt;- “No”</p>
+<p>EMnet &lt;- ReadNetworks(paste(EMtable[t.name,“EM”],“dne”,sep=“.”))</p>
+<p>obs &lt;- AdjoinNetwork(Fred.SM,EMnet)</p>
+<p>NetworkAllNodes(Fred.SM)</p>
+<p><span style="color:#00B050">## Fred.SM is now the Motif for the current task.</span></p>
+<p>CompileNetwork(Fred.SM)</p>
+<p>NodeFinding(obs[[1]]) &lt;- t.isCorrect</p>
+<p>post &lt;- NodeBeliefs(Fred.SMvars$SolveGeometricProblems)</p>
+<p>Fred.History &lt;- rbind(Fred.History,new=post)</p>
+<p>rownames(Fred.History)[nrow(Fred.History)] &lt;-</p>
+<p>paste(t.name,t.isCorrect,sep=“=”)</p>
+<p>Fred.History</p>
+<p># <span style="color:#00B050"># Cleanup: Delete EM and Absorb observables</span></p>
+<p>DeleteNetwork(EMnet) ## Delete EM</p>
+<p><span style="color:#00B050">##</span> AbsorbNodes(obs)</p>
+<p>RNetica Quick Start</p>
+</section>
+<section id="save-and-restore" class="level1">
+<h1>Save and Restore</h1>
+<p><span style="color:#00B050">## Fred logs out</span></p>
+<p>WriteNetworks(Fred.SM,“FredSM.dne”)</p>
+<p>DeleteNetwork(Fred.SM)</p>
+<p>is.active(Fred.SM)</p>
+<p><span style="color:#00B050">## No longer active in </span> <span style="color:#00B050">Netica</span> <span style="color:#00B050"> space</span></p>
+<p><span style="color:#00B050">## Fred logs back in</span></p>
+<p>Fred.SM &lt;- ReadNetworks(“FredSM.dne”)</p>
+<p>is.active(Fred.SM)</p>
+<p>RNetica Quick Start</p>
+</section>
+<section id="getting-serious" class="level1">
+<h1>Getting Serious</h1>
+<ul>
+<li>ACED field test has 230 students attempt all 63 tasks.</li>
+<li>File miniACED-Geometric contains 30 task subset
+<ul>
+<li>There may be data registration issues here, don’t publish using these data before checking with me for an update</li>
+</ul></li>
+<li>Each row is one student Record</li>
+<li>Lets score the first student
+<ul>
+<li>And build a score history</li>
+</ul></li>
+</ul>
+<p>RNetica Quick Start</p>
+</section>
+<section id="setup-for-mini-aced" class="level1">
+<h1>Setup for mini-ACED</h1>
+<p>miniACED.data &lt;- read.csv(“miniACED-Geometric.csv”,row.names=1)</p>
+<p>head(miniACED.data)</p>
+<p>names(miniACED.data)</p>
+<p><span style="color:#00B050">## Mark columns of table corresponding to tasks</span></p>
+<p>first.task &lt;- 9</p>
+<p>last.task &lt;- ncol(miniACED.data)</p>
+<p><span style="color:#00B050">## Code key for numeric values</span></p>
+<p>t.vals &lt;- c(“No”,“Yes”)</p>
+<p>RNetica Quick Start</p>
+</section>
+<section id="setup-new-student" class="level1">
+<h1>Setup new Student</h1>
+<p><span style="color:#00B050">## Pick a student, we might normally iterate over this.</span></p>
+<p>Student.row &lt;- 1</p>
+<p><span style="color:#00B050">## Setup for student in sample</span></p>
+<p><span style="color:#00B050">## Create Student Model from Proficiency Model</span></p>
+<p>Student.SM &lt;- CopyNetworks(profModel,“Student”)</p>
+<p>Student.SMvars &lt;- NetworkAllNodes(Student.SM)</p>
+<p>CompileNetwork(Student.SM)</p>
+<p><span style="color:#00B050">## Initialize history list</span></p>
+<p>prior &lt;- NodeBeliefs(Student.SMvars$SolveGeometricProblems)</p>
+<p>Student.History &lt;- matrix(prior,1,3)</p>
+<p>row.names(Student.History) &lt;- “*Baseline*”</p>
+<p>colnames(Student.History) &lt;- names(prior)</p>
+<p>RNetica Quick Start</p>
+</section>
+<section id="loop-part-1-add-evidence" class="level1">
+<h1>Loop Part 1: Add Evidence</h1>
+<p><span style="color:#00B050">## Now loop over tasks</span></p>
+<p>for (itask in first.task:last.task) {</p>
+<p><span style="color:#00B050"> ## Look up the EM for the task, and adjoin it.</span></p>
+<p>tid &lt;- names(miniACED.data)[itask]</p>
+<p>EMnet &lt;- ReadNetworks(paste(EMtable[tid,“EM”],“dne”,sep=“.”))</p>
+<p>obs &lt;- AdjoinNetwork(Student.SM,EMnet)</p>
+<p>CompileNetwork(Student.SM)</p>
+<p><span style="color:#00B050">## Add the evidence</span></p>
+<p>t.val &lt;- t.vals[miniACED.data[Student.row,itask]] <span style="color:#00B050">#Decode integer</span></p>
+<p>NodeFinding(obs[[1]]) &lt;- t.val</p>
+<p>RNetica Quick Start</p>
+</section>
+<section id="loop-part-2-capture-statistics" class="level1">
+<h1>Loop Part 2: Capture Statistics</h1>
+<p><span style="color:#00B050">## Update the history</span></p>
+<p>post &lt;- NodeBeliefs(Student.SMvars$SolveGeometricProblems)</p>
+<p>Student.History &lt;- rbind(Student.History,new=post)</p>
+<p>rownames(Student.History)[nrow(Student.History)] &lt;- paste(tid,t.val,sep=“=”)</p>
+<p><span style="color:#00B050">## Cleanup, Delete EM and </span> <span style="color:#00B050">Absob</span> <span style="color:#00B050"> Observables</span></p>
+<p>DeleteNetwork(EMnet)</p>
+<p><span style="color:#00B050">## </span> <span style="color:#00B050">AbsorbNodes</span> <span style="color:#00B050">(</span> <span style="color:#00B050">obs</span> <span style="color:#00B050">) # Still broken</span></p>
+<p>}</p>
+<p>RNetica Quick Start</p>
+</section>
+<section id="weight-of-evidence" class="level1">
+<h1>Weight of Evidence</h1>
+<p>Good (1985)</p>
+<p><em>H</em> is binary hypothesis, e.g., <em>Proficiency</em> &gt; <em>Medium</em></p>
+<p><em>E</em> is evidence for hypothesis</p>
+<p>Weight of Evidence (WOE) is</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
