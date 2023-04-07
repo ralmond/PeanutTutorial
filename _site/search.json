@@ -487,7 +487,7 @@
     "href": "BayesNets.html#irt-rasch-evidence-model",
     "title": "Bayesian Networks",
     "section": "IRT (Rasch) Evidence Model",
-    "text": "IRT (Rasch) Evidence Model\n\nLet \\(X_j\\) be observable outcome variable from Task \\(j\\).\n\\(\\P(X+j =\\text{right} | \\theta, \\beta_j) = \\frac{1}{1+e^{-(\\theta-\\beta_j)}\\) - \\(\\beta_j\\) is the difficulty of the item.\nCan crank through the formula for each of the five possible values of \\(\\theta\\) to get values for Conditional Probability Tables (CPT)"
+    "text": "IRT (Rasch) Evidence Model\n\nLet \\(X_j\\) be observable outcome variable from Task \\(j\\).\n\\(\\Pr(X_j =\\text{right} | \\theta, \\beta_j) = \\frac{1}{1+e^{-(\\theta-\\beta_j)}}\\) - \\(\\beta_j\\) is the difficulty of the item.\nCan crank through the formula for each of the five possible values of \\(\\theta\\) to get values for Conditional Probability Tables (CPT)"
   },
   {
     "objectID": "BayesNets.html#irt-assembly-model",
@@ -515,7 +515,7 @@
     "href": "BayesNets.html#context-effect-variables",
     "title": "Bayesian Networks",
     "section": "“Context” effect – Variables",
-    "text": "“Context” effect – Variables\n\nDiagrammeR::grViz('\ndigraph IRTC {\n  subgraph{ Q[label=\"θ\"], Context }\n  subgraph {\n  X1; X2; X3; X4; X5;\n  }\n  Q -> X1; Q-> X2; Q-> X3; Q->X4; Q->X5\n  Context -> X3; Context -> X4;\n}')\n\n\n\n\n\n\nContext variable – A parent variable introduced to handle conditional dependence among observables (testlet)\n\nConsistent with Stout’s (1987) ‘essential n-dimensionality’\nWang, Bradlow & Wainer (2001) SCORIGHT program for IRT\nPatz & Junker (1999) model for multiple ratings"
+    "text": "“Context” effect – Variables\n\nDiagrammeR::grViz('\ndigraph IRTC {\n  subgraph{ Q[label=\"θ\"]; Context }\n  subgraph {\n  X1; X2; X3; X4; X5;\n  }\n  Q -> X1; Q-> X2; Q-> X3; Q->X4; Q->X5\n  Context -> X3; Context -> X4;\n}')\n\n\n\n\n\n\nContext variable – A parent variable introduced to handle conditional dependence among observables (testlet)\n\nConsistent with Stout’s (1987) ‘essential n-dimensionality’\nWang, Bradlow & Wainer (2001) SCORIGHT program for IRT\nPatz & Junker (1999) model for multiple ratings"
   },
   {
     "objectID": "BayesNets.html#context-effect-example",

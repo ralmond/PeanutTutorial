@@ -121,7 +121,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script src="site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
 <script src="site_libs/viz-1.8.2/viz.js"></script>
 <link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="site_libs/grViz-binding-1.0.9/grViz.js"></script>
@@ -334,7 +334,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="irt-rasch-evidence-model">IRT (Rasch) Evidence Model</h2>
 <ul>
 <li>Let <span class="math inline">\(X_j\)</span> be observable outcome variable from Task <span class="math inline">\(j\)</span>.</li>
-<li><span class="math inline">\(\P(X+j =\text{right} | \theta, \beta_j) = \frac{1}{1+e^{-(\theta-\beta_j)}\)</span> - <span class="math inline">\(\beta_j\)</span> is the <em>difficulty</em> of the item.</li>
+<li><span class="math inline">\(\Pr(X_j =\text{right} | \theta, \beta_j) = \frac{1}{1+e^{-(\theta-\beta_j)}}\)</span> - <span class="math inline">\(\beta_j\)</span> is the <em>difficulty</em> of the item.</li>
 <li>Can crank through the formula for each of the five possible values of <span class="math inline">\(\theta\)</span> to get values for Conditional Probability Tables (CPT)</li>
 </ul>
 </section>
@@ -465,7 +465,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>DiagrammeR<span class="sc">::</span><span class="fu">grViz</span>(<span class="st">'</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">digraph IRTC {</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">  subgraph{ Q[label="θ"], Context }</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">  subgraph{ Q[label="θ"]; Context }</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">  subgraph {</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="st">  X1; X2; X3; X4; X5;</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
@@ -473,8 +473,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">  Context -&gt; X3; Context -&gt; X4;</span></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-52e0cf83245177460a82" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-52e0cf83245177460a82">{"x":{"diagram":"\ndigraph IRTC {\n  subgraph{ Q[label=\"θ\"], Context }\n  subgraph {\n  X1; X2; X3; X4; X5;\n  }\n  Q -> X1; Q-> X2; Q-> X3; Q->X4; Q->X5\n  Context -> X3; Context -> X4;\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-33392772a5d59c33e2c1" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-33392772a5d59c33e2c1">{"x":{"diagram":"\ndigraph IRTC {\n  subgraph{ Q[label=\"θ\"]; Context }\n  subgraph {\n  X1; X2; X3; X4; X5;\n  }\n  Q -> X1; Q-> X2; Q-> X3; Q->X4; Q->X5\n  Context -> X3; Context -> X4;\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <ul>
