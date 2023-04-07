@@ -36,7 +36,7 @@ Each task has a *single* observable outcome variable.
 ## IRT (Rasch) Evidence Model
 
 -   Let $X_j$ be observable outcome variable from Task $j$.
--   $\P(X+j =\text{right} | \theta, \beta_j) = \frac{1}{1+e^{-(\theta-\beta_j)}$ - $\beta_j$ is the *difficulty* of the item.
+-   $\Pr(X_j =\text{right} | \theta, \beta_j) = \frac{1}{1+e^{-(\theta-\beta_j)}}$ - $\beta_j$ is the *difficulty* of the item.
 -   Can crank through the formula for each of the five possible values of $\theta$ to get values for Conditional Probability Tables (CPT)
 
 ## IRT Assembly Model
@@ -112,7 +112,7 @@ To clear a value, click on it again, or right click and select "undefined".
 ```{r ContextBN}
 DiagrammeR::grViz('
 digraph IRTC {
-  subgraph{ Q[label="θ"], Context }
+  subgraph{ Q[label="θ"]; Context }
   subgraph {
   X1; X2; X3; X4; X5;
   }

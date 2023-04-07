@@ -12,7 +12,7 @@ The RNetica suite consists of a number of packages:
 
 1.  `CPTtools` is a collection of tools for building conditional probability tables (particularly, the DiBello models). It stands alone.
 
-2.  `RNetica` links R to the [Netica](https://norsys.com) Bayes net engine. \_Note: non-trivial uses of RNetica require a Netica API (not GUI) license from [Norsys](https://norsys.com).
+2.  `RNetica` links R to the [Netica](https://norsys.com) Bayes net engine. _Note: non-trivial uses of RNetica require a Netica API (not GUI) license from [Norsys](https://norsys.com)._
 
 ## Peanut packages
 

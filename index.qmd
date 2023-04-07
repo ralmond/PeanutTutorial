@@ -4,8 +4,11 @@ title: "PeanutTutorial"
 
 This website contains the downloads and handouts for the tutorial *Bayesian Networks in Educational Assessment*. using the `Peanut` Bayesian network toolkit.
 
-You can acess this tutorial in two ways:\
-\* Online viewing through <https://pluto.coe.fsu.edu/PeanutTutorial>. \* Download the source code from <https://github.com/ralmond/PeanutTutorial.git>.
+You can access this tutorial in two ways:
+
+* Online viewing through <https://pluto.coe.fsu.edu/PeanutTutorial>. 
+
+* Download the source code from <https://github.com/ralmond/PeanutTutorial.git>.
 
 The latter allows you to reproduce the calculations on your own computer using R Studio. See the [Resources](Resources.qmd) page for more information about the software you need to download.
 
@@ -17,14 +20,12 @@ The complete tutorial has the following parts:
 
 3.  Using Peanut to Manipulate Bayes nets
 
-```{=html}
 <!-- -->
-```
+
 a.  [Scoring using RNetica](Scoring.qmd)
 b.  [Building a Net with Peanut](Building.qmd)
 c.  [Calibrating Model Parameters to Data](Updating.qmd)
 
-```{=html}
 <!-- -->
-```
+
 4.  [Dynamic Bayesian Networks](Dynamic.qmd)
