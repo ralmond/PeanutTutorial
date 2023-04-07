@@ -204,7 +204,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </figure>
 </div>
 </div></div>
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#these-web-pages" id="toc-these-web-pages" class="nav-link active" data-scroll-target="#these-web-pages">These Web Pages</a></li>
+  <li><a href="#netica" id="toc-netica" class="nav-link" data-scroll-target="#netica">Netica</a></li>
+  <li><a href="#peanut-and-rnetia" id="toc-peanut-and-rnetia" class="nav-link" data-scroll-target="#peanut-and-rnetia">Peanut and RNetia</a></li>
+  <li><a href="#sample-networks." id="toc-sample-networks." class="nav-link" data-scroll-target="#sample-networks.">Sample Networks.</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -226,14 +235,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
+<section id="these-web-pages" class="level2">
+<h2 class="anchored" data-anchor-id="these-web-pages">These Web Pages</h2>
+<p>These web pages are available in both a static version (<a href="https://pluto.coe.fsu.edu/PeanutTutorial" class="uri">https://pluto.coe.fsu.edu/PeanutTutorial</a>) and a source version (<a href="https://github.com/ralmond/PeanutTutorial" class="uri">https://github.com/ralmond/PeanutTutorial</a>).</p>
+<p>The easiest way to access the Peanut tutorial is to use <a href="https://posit.co/products/open-source/rstudio/">R Studio</a>. Go to new project, and select “From Version control”, then “Git” then put ‘https://pluto.coe.fsu.edu/ralmond/PeanutTutorial.git’ in the ‘Repository URL’ box.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/GitDialog.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Git dialog</figcaption><p></p>
+</figure>
+</div>
+<p>The <code>.qmd</code> files contain a mixture of text and R code. You will need to download the <code>quarto</code> package for these to work properly, but R Studio will guide you through this.</p>
+</section>
+<section id="netica" class="level2">
+<h2 class="anchored" data-anchor-id="netica">Netica</h2>
 <p>There are a number of packages that will do the basic Bayesian network computations. For the purposes of this tutorial, we are using <a href="https://norsys.com">Netica</a>Ⓡ. Netica is available in two versions: a graphical user interface (GUI) version and an application programmers interface (API). We will use both in this class.</p>
 <p>Netica also comes in both a free (but not open source) version and a paid version. The paid version is used by purchasing an unlock code from Norsys. The free version is specifically for training and evaluation. It is limited in the size of the networks, but it has sufficient capacity for most of the exercises in this tutorial.</p>
 <ul>
 <li>Go to <code>https://norsys.com</code> and download the latest version of <code>Netica.exe</code>.</li>
 <li>Unix/linux users: <code>Netica.exe</code> runs without major problems under Wine.</li>
-<li>Mac OS Intell – I have built a wineskin version of <code>Netica.exe</code>.</li>
+<li>Mac OS Intell – I have built a wineskin version of <code>Netica.exe</code>. It is available at <a href="https://pluto.coe.fsu.edu/MacNetica1.app.zip" class="uri">https://pluto.coe.fsu.edu/MacNetica1.app.zip</a>.</li>
 <li>Mac OS ARM – ???</li>
 </ul>
+</section>
+<section id="peanut-and-rnetia" class="level2">
+<h2 class="anchored" data-anchor-id="peanut-and-rnetia">Peanut and RNetia</h2>
 <p>The R package <code>RNetica</code> provides an R binding of the Netica API (hence, it requires the API and not GUI license). <code>RNetica</code> is available at <a href="https://ralmond.r-universe.dev/" class="uri">https://ralmond.r-universe.dev/</a> (source code is at <a href="https://github.com/ralmond/" class="uri">https://github.com/ralmond/</a>).</p>
 <p>If you have not already done so, we recommend downloading <a href="https://posit.co/products/open-source/rstudio/">R Studio</a>, in the process of installing R Studio, you will need to install R itself (&lt;https://cloud.r-project.org/).</p>
 <p>Once you have R installed, you can install <code>RNetica</code> and running related packages by running the following code:</p>
@@ -266,8 +292,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>PNetica</code> — All of the Netica specific implementation of the <code>Peanut</code> protocol.</li>
 </ul>
 <p>The intention is that <code>Peanut</code> (and <code>CPTtools</code>) are open implementation protocols that are independent of the specific Bayes net implementation. I’m currently looking for volunteers to build the equivalent of <code>PNetica</code> for other Bayes net engines.</p>
+</section>
+<section id="sample-networks." class="level2">
+<h2 class="anchored" data-anchor-id="sample-networks.">Sample Networks.</h2>
+<p>The following zip files contain the sample networks used in the tutorial. (If you have downloaded the complete tutorial from github, you have already downloaded these and can skip this step.)</p>
+<ul>
+<li><a href="https://pluto.coe.fsu.edu/PeanutTutorial/IntroNets.zip">IntroNets.zip</a> Used in Session 1</li>
+<li><a href="https://pluto.coe.fsu.edu/PeanutTutorial/CompensatoryConjunctiveNets.zip">CompensatoryConjunctiveNets.zip</a> Used in Session 2</li>
+<li><a href="https://pluto.coe.fsu.edu/PeanutTutorial/miniACED.zip">miniACED</a> Used in Session 3a</li>
+<li><a href="https://pluto.coe.fsu.edu/PeanutTutorial/LearningNets.zip">LearningNets</a> Used in Session ??</li>
+<li><a href="https://pluto.coe.fsu.edu/PeanutTutorial/DBNExamples.zip">DBNExamples</a> Used in Session 4</li>
+</ul>
+<p>Download these and unzip them in the directory from which you will be running R.</p>
+<p>(If you put them somewhere else, you may need to adjust scripts to point to the right directory.)</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
