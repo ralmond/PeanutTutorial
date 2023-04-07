@@ -29,7 +29,7 @@ sufficient capacity for most of the exercises in this tutorial.
 
 -   Go to `https://norsys.com` and download the latest version of `Netica.exe`.
 -   Unix/linux users: `Netica.exe` runs without major problems under Wine.
--   Mac OS Intell -- I have built a wineskin version of `Netica.exe`.  It is available at <https://pluto.coe.fsu.edu/MacNetica1.app.zip>.
+-   Mac OS Intell -- I have built a wineskin version of `Netica.exe`.  It is available at <https://pluto.coe.fsu.edu/MacNetica2.app.zip>.
 -   Mac OS ARM -- ???
 
 
