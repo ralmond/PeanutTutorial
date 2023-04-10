@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Peanut Tutorial – leaningcpts</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Peanut Tutorial</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./ECD.html">
+ <span class="menu-text">ECD Intro</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./BayesNets.html">
+ <span class="menu-text">Bayesian Networks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Scoring.html">
+ <span class="menu-text">Scoring</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./DiBelloModels.html">
+ <span class="menu-text">Making CPTs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Building.html">
+ <span class="menu-text">Building Nets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Updating.html">
+ <span class="menu-text">Calibration</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Visualization.html">
+ <span class="menu-text">Model checking and visualzation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Dynamic.html">
+ <span class="menu-text">Dynamic Models</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Resources.html">
+ <span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./References.html">
+ <span class="menu-text">References</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./img/PeanutLogo.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Peanut Logo</figcaption><p></p>
+</figure>
+</div>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-cpts" id="toc-learning-cpts" class="nav-link active" data-scroll-target="#learning-cpts">Learning CPTs</a></li>
+  <li><a href="#thanks-to-bob-mislevy-for-letting-me-use-some-of-the-slides-from-his-class." id="toc-thanks-to-bob-mislevy-for-letting-me-use-some-of-the-slides-from-his-class." class="nav-link" data-scroll-target="#thanks-to-bob-mislevy-for-letting-me-use-some-of-the-slides-from-his-class.">Thanks to Bob Mislevy for letting me use some of the slides from his class.</a></li>
+  <li><a href="#first-layer" id="toc-first-layer" class="nav-link" data-scroll-target="#first-layer">First Layer</a></li>
+  <li><a href="#distributions-and-variables" id="toc-distributions-and-variables" class="nav-link" data-scroll-target="#distributions-and-variables">Distributions and Variables</a></li>
+  <li><a href="#different-people-same-distributions" id="toc-different-people-same-distributions" class="nav-link" data-scroll-target="#different-people-same-distributions">Different People, Same Distributions</a></li>
+  <li><a href="#second-layer" id="toc-second-layer" class="nav-link" data-scroll-target="#second-layer">Second Layer</a></li>
+  <li><a href="#speigelhalter-and-lauritzen-1990" id="toc-speigelhalter-and-lauritzen-1990" class="nav-link" data-scroll-target="#speigelhalter-and-lauritzen-1990">Speigelhalter And Lauritzen (1990)</a></li>
+  <li><a href="#a-closer-look-at-the-binomial-distribution" id="toc-a-closer-look-at-the-binomial-distribution" class="nav-link" data-scroll-target="#a-closer-look-at-the-binomial-distribution">A closer look at the binomial distribution</a></li>
+  <li><a href="#a-closer-look-at-the-beta-distribution" id="toc-a-closer-look-at-the-beta-distribution" class="nav-link" data-scroll-target="#a-closer-look-at-the-beta-distribution">A closer look at the Beta distribution</a></li>
+  <li><a href="#an-example-with-a-continuous-variable-a-beta-binomial-examplethe-prior-distribution" id="toc-an-example-with-a-continuous-variable-a-beta-binomial-examplethe-prior-distribution" class="nav-link" data-scroll-target="#an-example-with-a-continuous-variable-a-beta-binomial-examplethe-prior-distribution">An example with a continuous variable: A beta-binomial example–the Prior Distribution</a></li>
+  <li><a href="#an-example-with-a-continuous-variable-a-beta-binomial-examplethe-likelihood" id="toc-an-example-with-a-continuous-variable-a-beta-binomial-examplethe-likelihood" class="nav-link" data-scroll-target="#an-example-with-a-continuous-variable-a-beta-binomial-examplethe-likelihood">An example with a continuous variable: A beta-binomial example–the Likelihood</a></li>
+  <li><a href="#an-example-with-a-continuous-variable-obtaining-the-posterior-by-bayes-theorem" id="toc-an-example-with-a-continuous-variable-obtaining-the-posterior-by-bayes-theorem" class="nav-link" data-scroll-target="#an-example-with-a-continuous-variable-obtaining-the-posterior-by-bayes-theorem">An example with a continuous variable: Obtaining the posterior by Bayes Theorem</a></li>
+  <li><a href="#an-example-with-a-continuous-variable-in-pictures" id="toc-an-example-with-a-continuous-variable-in-pictures" class="nav-link" data-scroll-target="#an-example-with-a-continuous-variable-in-pictures">An example with a continuous variable: In pictures</a></li>
+  <li><a href="#dirichletcategorical-conjugate-distribution" id="toc-dirichletcategorical-conjugate-distribution" class="nav-link" data-scroll-target="#dirichletcategorical-conjugate-distribution">Dirichlet—Categorical conjugate distribution</a></li>
+  <li><a href="#updating-an-unconditional-probability-table-no-parent-variables" id="toc-updating-an-unconditional-probability-table-no-parent-variables" class="nav-link" data-scroll-target="#updating-an-unconditional-probability-table-no-parent-variables">Updating an unconditional probability table (no parent variables)</a></li>
+  <li><a href="#details" id="toc-details" class="nav-link" data-scroll-target="#details">Details</a></li>
+  <li><a href="#cpt-updating-when-parents-are-fully-observed" id="toc-cpt-updating-when-parents-are-fully-observed" class="nav-link" data-scroll-target="#cpt-updating-when-parents-are-fully-observed">CPT updating when parents are fully observed</a></li>
+  <li><a href="#netica-example-fully-observed" id="toc-netica-example-fully-observed" class="nav-link" data-scroll-target="#netica-example-fully-observed">Netica example – fully observed</a></li>
+  <li><a href="#rnetica-example-ex-8.3" id="toc-rnetica-example-ex-8.3" class="nav-link" data-scroll-target="#rnetica-example-ex-8.3">RNetica example (Ex 8.3)</a></li>
+  <li><a href="#set-up-prior-for-observation" id="toc-set-up-prior-for-observation" class="nav-link" data-scroll-target="#set-up-prior-for-observation">Set up prior for Observation</a></li>
+  <li><a href="#prior-cpt" id="toc-prior-cpt" class="nav-link" data-scroll-target="#prior-cpt">Prior CPT</a></li>
+  <li><a href="#netica-case-files" id="toc-netica-case-files" class="nav-link" data-scroll-target="#netica-case-files">Netica Case files</a></li>
+  <li><a href="#case-table-for-ex-8.3" id="toc-case-table-for-ex-8.3" class="nav-link" data-scroll-target="#case-table-for-ex-8.3">Case Table for Ex 8.3</a></li>
+  <li><a href="#example-case-file" id="toc-example-case-file" class="nav-link" data-scroll-target="#example-case-file">Example Case File</a></li>
+  <li><a href="#learn-cpts" id="toc-learn-cpts" class="nav-link" data-scroll-target="#learn-cpts">Learn CPTs</a></li>
+  <li><a href="#prior-and-posterior-cpts" id="toc-prior-and-posterior-cpts" class="nav-link" data-scroll-target="#prior-and-posterior-cpts">Prior and Posterior CPTs</a></li>
+  <li><a href="#prior-and-posterior-alphas" id="toc-prior-and-posterior-alphas" class="nav-link" data-scroll-target="#prior-and-posterior-alphas">Prior and Posterior Alphas</a></li>
+  <li><a href="#problems-with-hyper-dirichlet-approach" id="toc-problems-with-hyper-dirichlet-approach" class="nav-link" data-scroll-target="#problems-with-hyper-dirichlet-approach">Problems with hyper-Dirichlet approach</a></li>
+  <li><a href="#learning-cpts-for-a-parametric-family" id="toc-learning-cpts-for-a-parametric-family" class="nav-link" data-scroll-target="#learning-cpts-for-a-parametric-family">Learning CPTs for a parametric family</a></li>
+  <li><a href="#newton-raphson-method" id="toc-newton-raphson-method" class="nav-link" data-scroll-target="#newton-raphson-method">Newton-Raphson Method</a></li>
+  <li><a href="#animation" id="toc-animation" class="nav-link" data-scroll-target="#animation">Animation</a></li>
+  <li><a href="#gradient-decent" id="toc-gradient-decent" class="nav-link" data-scroll-target="#gradient-decent">Gradient Decent</a></li>
+  <li><a href="#missing-and-latent-variables" id="toc-missing-and-latent-variables" class="nav-link" data-scroll-target="#missing-and-latent-variables">Missing and Latent Variables</a></li>
+  <li><a href="#mcar-mar-or-non-ignorable-ex-9.2" id="toc-mcar-mar-or-non-ignorable-ex-9.2" class="nav-link" data-scroll-target="#mcar-mar-or-non-ignorable-ex-9.2">MCAR, MAR or Non-ignorable (Ex 9.2)</a></li>
+  <li><a href="#em-algorithm-dempster-laird-rubin-1977" id="toc-em-algorithm-dempster-laird-rubin-1977" class="nav-link" data-scroll-target="#em-algorithm-dempster-laird-rubin-1977">EM Algorithm (Dempster, Laird &amp; Rubin, 1977)</a></li>
+  <li><a href="#em-algorithm-details" id="toc-em-algorithm-details" class="nav-link" data-scroll-target="#em-algorithm-details">EM algorithm details</a></li>
+  <li><a href="#expected-value-of-missing-latent-node" id="toc-expected-value-of-missing-latent-node" class="nav-link" data-scroll-target="#expected-value-of-missing-latent-node">Expected value of missing (latent) node</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#em-for-hyper-dirichlet-rnetica-learncpts-function" id="toc-em-for-hyper-dirichlet-rnetica-learncpts-function" class="nav-link" data-scroll-target="#em-for-hyper-dirichlet-rnetica-learncpts-function">EM for hyper-Dirichlet (RNetica LearnCPTs function)</a></li>
+  <li><a href="#netica-example-partially-observed" id="toc-netica-example-partially-observed" class="nav-link" data-scroll-target="#netica-example-partially-observed">Netica example – partially observed</a></li>
+  <li><a href="#parameterized-tables" id="toc-parameterized-tables" class="nav-link" data-scroll-target="#parameterized-tables">Parameterized tables</a></li>
+  <li><a href="#breakdown-of-global-parameter-independence" id="toc-breakdown-of-global-parameter-independence" class="nav-link" data-scroll-target="#breakdown-of-global-parameter-independence">Breakdown of global parameter independence</a></li>
+  <li><a href="#markov-chain-monte-carlo-mcmc" id="toc-markov-chain-monte-carlo-mcmc" class="nav-link" data-scroll-target="#markov-chain-monte-carlo-mcmc">Markov Chain Monte Carlo (MCMC)</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<p><img src="img/LearningCPTs0.jpg" width="100px"></p>
+<p><img src="img/LearningCPTs1.png" width="227px"></p>
+<p><strong>Bayesian Networks in</strong> <strong>Educational Assessment</strong></p>
+<p><strong>Tutorial</strong></p>
+<p><strong>Session III:</strong> <strong>Bayes Net with R</strong></p>
+<p>Duanli Yan, Diego Zapata, ETS</p>
+<p>Russell Almond, FSU</p>
+<p>2021 NCME Tutorial: Bayesian Networks in Educational Assessment</p>
+<p><em>SESSION</em> <em>TOPIC</em> <em>PRESENTERS</em></p>
+<p><strong>Session 1</strong> : Evidence Centered Design Diego Zapata Bayesian Networks</p>
+<p><strong>Session 2</strong> : Bayes Net Applications Duanli Yan &amp; ACED: ECD in Action Russell Almond</p>
+<p><strong>Session 3</strong> : Bayes Nets with R Russell Almond &amp; Duanli Yan</p>
+<p><strong>Session 4</strong> : Refining Bayes Nets with Duanli Yan &amp;</p>
+<p>Data Russell Almond</p>
+<section id="learning-cpts" class="level1">
+<h1>Learning CPTs</h1>
+</section>
+<section id="thanks-to-bob-mislevy-for-letting-me-use-some-of-the-slides-from-his-class." class="level1">
+<h1>Thanks to Bob Mislevy for letting me use some of the slides from his class.</h1>
+</section>
+<section id="first-layer" class="level1">
+<h1>First Layer</h1>
+<p>A simple model with two skills and 3 observables</p>
+</section>
+<section id="distributions-and-variables" class="level1">
+<h1>Distributions and Variables</h1>
+<p>Variables (values are person specific)</p>
+<p><em>Distributions</em> provide probabilities for variables</p>
+</section>
+<section id="different-people-same-distributions" class="level1">
+<h1>Different People, Same Distributions</h1>
+</section>
+<section id="second-layer" class="level1">
+<h1>Second Layer</h1>
+<p><img src="img/LearningCPTs2.png" width="345px"></p>
+<p>Distributions have Parameters</p>
+<p>Parameters are the same across all people</p>
+<p>Parameters drop down into first layer to do person specific computations (e.g., scoring)</p>
+<p>Probability distributions of parameters are called <em>Laws</em></p>
+<p><img src="img/LearningCPTs3.png" width="345px"></p>
+<p>Distributions have Parameters</p>
+<p>Parameters are the same across all people</p>
+<p>Parameters drop down into first layer to do person specific computations (e.g., scoring)</p>
+<p>Probability distributions of parameters are called <em>Laws</em></p>
+<p><img src="img/LearningCPTs4.png" width="345px"></p>
+<p><img src="img/LearningCPTs5.png" width="335px"></p>
+</section>
+<section id="speigelhalter-and-lauritzen-1990" class="level1">
+<h1>Speigelhalter And Lauritzen (1990)</h1>
+<p><em>Global Parameter Independence</em> – parameters of laws for different CPTs are independent</p>
+<p><em>Local Parameter Independence –</em> parameters for laws for different rows of CPTs are independent</p>
+<p>Under these two assumptions, the natural conjugate law of a Bayesian network is a <em>hyper-</em> <em>Dirichlet</em> <em>law</em> , a law where the probabilities on each row of each CPT follow aDirichletlaw.</p>
+<p>Abusing the definition, we say that a CPT for which each rows is given an independentDirichletlaw follows a <em>hyper-</em> <em>Dirichlet</em> <em>distribution (</em> really should be law).</p>
+</section>
+<section id="a-closer-look-at-the-binomial-distribution" class="level1">
+<h1>A closer look at the binomial distribution</h1>
+<p><strong>Binomial.</strong> For counts of successes in binary trials, each with probability p, in n independent trials. E.g., n coin flips, with p the common probability of heads.</p>
+<p>Count of successes</p>
+<p>Count of failures</p>
+<p>The “success probability” parameter</p>
+<p>The failure probability</p>
+<p>The success probability</p>
+<p>We will be using this as a likelihood in an example of the use of conjugate distributions.</p>
+</section>
+<section id="a-closer-look-at-the-beta-distribution" class="level1">
+<h1>A closer look at the Beta distribution</h1>
+<p><strong>Beta.</strong> Defined on [0,1]. Conjugate prior for the probability parameter in Bernoulli &amp; binomial models.</p>
+<p>p ~ dbeta(a,b)</p>
+<p>Mean(p):</p>
+<p>Variance(p):</p>
+<p>Mode(p):</p>
+<p>PseudoCount</p>
+<p>of successes</p>
+<p>PseudoCount</p>
+<p>of failures</p>
+<p>The variable:</p>
+<p>“success probability”</p>
+<p>The failure</p>
+<p>probability</p>
+<p>Shape, or</p>
+<p>“prior sample info”</p>
+<p>The success</p>
+<p>probability</p>
+</section>
+<section id="an-example-with-a-continuous-variable-a-beta-binomial-examplethe-prior-distribution" class="level1">
+<h1>An example with a continuous variable: A beta-binomial example–the Prior Distribution</h1>
+<ul>
+<li>The prior distribution:</li>
+<li>Let’s suppose we think it is more likely that the coin is close to fair, sopis probably nearer to .5 than it is to either 0 or 1. We don’t have any reason to think it is biased toward either heads or tails, so we’ll want a prior distribution that is symmetric around .5. We’re not real sure about whatpmight be--say about as sure as only 6 observations. This corresponds to 3 pseudo-counts of H and 3 of T, which, if we want to use a beta distribution to express this belief, corresponds to beta(4,4):</li>
+</ul>
+<p><strong>Beta.</strong> Defined on [0,1]. Conjugate prior for the probability parameter in Bernoulli &amp; binomial models.</p>
+<p>p~ dbeta(4,4)</p>
+<p>Mean(p):</p>
+<p>Variance(p):</p>
+<p>Mode(p):</p>
+<p>PseudoCount</p>
+<p>of successes</p>
+<p>PseudoCount</p>
+<p>of failures</p>
+<p>The variable:</p>
+<p>“success probability”</p>
+<p>The failure</p>
+<p>probability</p>
+<p>Shape, or</p>
+<p>“prior sample info”</p>
+<p>The success</p>
+<p>probability</p>
+</section>
+<section id="an-example-with-a-continuous-variable-a-beta-binomial-examplethe-likelihood" class="level1">
+<h1>An example with a continuous variable: A beta-binomial example–the Likelihood</h1>
+<ul>
+<li>The likelihood:</li>
+<li>Next we will flip the coin ten times. Assuming the same true (but unknown to us) value ofpis in effect for each of ten independent trials, we can use the binomial distribution to model the probability of getting any number of heads: i.e.,</li>
+</ul>
+<p>Count of <em>observed</em> successes</p>
+<p>Count of <em>observed</em></p>
+<p>failures</p>
+<p>The “success probability” parameter</p>
+<p>The failure probability</p>
+<p>The success probability</p>
+<ul>
+<li>The likelihood:</li>
+<li>We flip the coin ten times, and observe 7 heads; i.e., r=7. The likelihood is obtained now using the same form as in the preceding slide, except now r is fixed at 7 and we are interested in the relative value of this function at different possible values ofp:</li>
+</ul>
+</section>
+<section id="an-example-with-a-continuous-variable-obtaining-the-posterior-by-bayes-theorem" class="level1">
+<h1>An example with a continuous variable: Obtaining the posterior by Bayes Theorem</h1>
+<p>posterior likelihood prior</p>
+<p>General form:</p>
+<p>In our example, 7 plays the role of x*, and p plays the role of y. Before normalizing:</p>
+<p>This function is proportional to a beta(11,7) distribution.</p>
+<p>After normalizing:</p>
+<p>Now, how can we get an idea of what this means we believe aboutpafter combining our prior belief and our observations?</p>
+</section>
+<section id="an-example-with-a-continuous-variable-in-pictures" class="level1">
+<h1>An example with a continuous variable: In pictures</h1>
+<p>Prior</p>
+<p>x</p>
+<p>Likelihood</p>
+<p>Posterior</p>
+</section>
+<section id="dirichletcategorical-conjugate-distribution" class="level1">
+<h1>Dirichlet—Categorical conjugate distribution</h1>
+<p>Assume a variable <em>X</em> takes on category <em>1,…,K</em> with probabilities <em>p</em> <em>1</em> <em>,…</em> <em>p</em> <em>K</em></p>
+<p>Take <em>N</em> draws from this distribution and observe counts <em>N=X</em> <em>1</em> <em>+ … + X</em> <em>K</em></p>
+<p>Likelihood is</p>
+<p>DirichletPrior:</p>
+<p>Posterior:</p>
+<p><img src="img/LearningCPTs6.png" width="500px"></p>
+<p><img src="img/LearningCPTs7.png" width="500px"></p>
+<p><img src="img/LearningCPTs8.png" width="500px"></p>
+</section>
+<section id="updating-an-unconditional-probability-table-no-parent-variables" class="level1">
+<h1>Updating an unconditional probability table (no parent variables)</h1>
+<p>Prior is a table of alphas:</p>
+<p>Sum of alphas is pseudo-sample size for prior:Neticacalls this Node Experience</p>
+<p>Sufficient statistic is a table of counts in each category</p>
+<p>Posterior is an updated table</p>
+<p>With updated Node Experience <em>A’=A+N</em></p>
+<p><img src="img/LearningCPTs9.png" width="350px"></p>
+</section>
+<section id="details" class="level1">
+<h1>Details</h1>
+<p>Equivalent to beta-binomial when variable only takes two values</p>
+<p>Alphas must be positive, but don’t need to be integers</p>
+<p>Alpha = ½ is non-informative prior</p>
+<p>A (sum of alphas) acts like a pseudo-sample size for the prior</p>
+<p>Can also write as</p>
+<p><img src="img/LearningCPTs10.png" width="188px"></p>
+</section>
+<section id="cpt-updating-when-parents-are-fully-observed" class="level1">
+<h1>CPT updating when parents are fully observed</h1>
+<p>Data are contingency table of child variable given parents</p>
+<p>Prior is a table of pseudo-counts</p>
+<p>Get posterior by adding them together</p>
+<p>Note: Both prior and posterior effective sample size (Node Experience) can be different for each row.</p>
+<p><img src="img/LearningCPTs11.png" width="500px"></p>
+</section>
+<section id="netica-example-fully-observed" class="level1">
+<h1>Netica example – fully observed</h1>
+<p><img src="img/LearningCPTs12.png" width="500px"></p>
+<p>2011 NCME Tutorial: Bayesian Networks in Educational Assessment - Session IV</p>
+</section>
+<section id="rnetica-example-ex-8.3" class="level1">
+<h1>RNetica example (Ex 8.3)</h1>
+<p>Set up network</p>
+<p>Two parents, one child</p>
+<p>hdnet&lt;-CreateNetwork(“hyperDirchlet”)</p>
+<p>skills &lt;-NewDiscreteNode(hdnet,c(“Skill1”,“Skill2”),c(“High”,“Medium”,“Low”))</p>
+<p>obs&lt;-NewDiscreteNode(hdnet,“Observable”,c(“Right”,“Wrong”))</p>
+<p>NodeParents(obs) &lt;- skills</p>
+</section>
+<section id="set-up-prior-for-observation" class="level1">
+<h1>Set up prior for Observation</h1>
+<p>Do this by setting CPT andNodeExperience(row pseudo-sample sizes)</p>
+<p>ptab&lt;-data.frame(Skill1=rep(c(“High”,“Medium”,“Low”),3), Skill2=rep(c(“High”,“Medium”,“Low”),each=3), Right=c(.975,.875,.5,.875,.5,.125,.5,.125,.025),</p>
+<p>Wrong=1-c(.975,.875,.5,.875,.5,.125,.5,.125,.025))</p>
+<p>obs[] &lt;-ptab</p>
+<p>NodeExperience(obs) &lt;- 10 #All rows equally weighted</p>
+</section>
+<section id="prior-cpt" class="level1">
+<h1>Prior CPT</h1>
+<p>ptab</p>
+<p>rescaleTable(ptab,10)</p>
+<p>Skill1 Skill2 Right Wrong</p>
+<p>1 HighHigh0.975 0.025</p>
+<p>2 Medium High 0.875 0.125</p>
+<p>3 Low High 0.500 0.500</p>
+<p>4 High Medium 0.875 0.125</p>
+<p>5 MediumMedium0.500 0.500</p>
+<p>6 Low Medium 0.125 0.875</p>
+<p>7 High Low 0.500 0.500</p>
+<p>8 Medium Low 0.125 0.875</p>
+<p>9 LowLow0.025 0.975</p>
+<p>Skill1 Skill2 Right Wrong</p>
+<p>1 HighHigh9.75 0.25</p>
+<p>2 Medium High 8.75 1.25</p>
+<p>3 Low High 5.00 5.00</p>
+<p>4 High Medium 8.75 1.25</p>
+<p>5 MediumMedium5.00 5.00</p>
+<p>6 Low Medium 1.25 8.75</p>
+<p>7 High Low 5.00 5.00</p>
+<p>8 Medium Low 1.25 8.75</p>
+<p>9 LowLow0.25 9.75</p>
+</section>
+<section id="netica-case-files" class="level1">
+<h1>Netica Case files</h1>
+<p>Text file, column separated by tabs (same as .xlsfiles, but have .casextension)</p>
+<p>One column for each observed variable (need both parents and child in this case)</p>
+<p>OptionalIDnumcolumn</p>
+<p>OptionalNumCasescolumn gives replication count</p>
+<p>So can either repeat out cases, or use summary counts.</p>
+<p>write.CaseFile() writes out a case file for use withNetica</p>
+</section>
+<section id="case-table-for-ex-8.3" class="level1">
+<h1>Case Table for Ex 8.3</h1>
+<p>dtab&lt;-data.frame(Skill1=rep(c(“High”,“Medium”,“Low”),3,each=2),</p>
+<p>Skill2=rep(c(“High”,“Medium”,“Low”),each=6),</p>
+<p>Observable=rep(c(“Right”,“Wrong”),9),</p>
+<p>NumCases=c(293,3,</p>
+<p>112,16,</p>
+<p>0,1,</p>
+<p>14,1,</p>
+<p>92,55,</p>
+<p>4,5,</p>
+<p>5,1,</p>
+<p>62,156,</p>
+<p>8,172))</p>
+<p>write.CaseFile(dtab,“Ex8.3.cas”)</p>
+</section>
+<section id="example-case-file" class="level1">
+<h1>Example Case File</h1>
+<p>Skill1 Skill2 ObservableNumCases</p>
+<p>1 HighHighRight 293</p>
+<p>2 HighHighWrong 3</p>
+<p>3 Medium High Right 112</p>
+<p>4 Medium High Wrong 16</p>
+<p>5 Low High Right 0</p>
+<p>6 Low High Wrong 1</p>
+<p>7 High Medium Right 14</p>
+<p>8 High Medium Wrong 1</p>
+<p>9 MediumMediumRight 92</p>
+<p>10 MediumMediumWrong 55</p>
+<p>11 Low Medium Right 4</p>
+<p>12 Low Medium Wrong 5</p>
+<p>13 High Low Right 5</p>
+<p>14 High Low Wrong 1</p>
+<p>15 Medium Low Right 62</p>
+<p>16 Medium Low Wrong 156</p>
+<p>17 LowLowRight 8</p>
+<p>18 LowLowWrong 172</p>
+</section>
+<section id="learn-cpts" class="level1">
+<h1>Learn CPTs</h1>
+<p>LearnCasesdoes complete data hyper-Dirichletupdating</p>
+<p>LearnCases(“Ex8.3.cas”,obs)</p>
+<p>NodeExperience(obs)</p>
+<p>Skill2</p>
+<p>Skill1 High Medium Low</p>
+<p>High 306 25 16</p>
+<p>Medium 138 157 228</p>
+<p>Low 11 19 190</p>
+</section>
+<section id="prior-and-posterior-cpts" class="level1">
+<h1>Prior and Posterior CPTs</h1>
+<p>Prior</p>
+<p>Posterior</p>
+<p>Skill1 Skill2 Right Wrong</p>
+<p>1 HighHigh0.975 0.025</p>
+<p>2 Medium High 0.875 0.125</p>
+<p>3 Low High 0.500 0.500</p>
+<p>4 High Medium 0.875 0.125</p>
+<p>5 MediumMedium0.500 0.500</p>
+<p>6 Low Medium 0.125 0.875</p>
+<p>7 High Low 0.500 0.500</p>
+<p>8 Medium Low 0.125 0.875</p>
+<p>9 LowLow0.025 0.975</p>
+<p>Skill1 Skill2 Right Wrong</p>
+<p>1 HighHigh0.989 0.011</p>
+<p>2 Medium High 0.848 0.152</p>
+<p>3 Low High 0.795 0.205</p>
+<p>4 High Medium 0.760 0.240</p>
+<p>5 MediumMedium0.588 0.412</p>
+<p>6 Low Medium 0.276 0.724</p>
+<p>7 High Low 0.859 0.141</p>
+<p>8 Medium Low 0.277 0.723</p>
+<p>9 LowLow0.068 0.932</p>
+</section>
+<section id="prior-and-posterior-alphas" class="level1">
+<h1>Prior and Posterior Alphas</h1>
+<p>Prior</p>
+<p>Posterior</p>
+<p>Skill1 Skill2 Right Wrong</p>
+<p>1 HighHigh9.75 0.25</p>
+<p>2 Medium High 8.75 1.25</p>
+<p>3 Low High 5.00 5.00</p>
+<p>4 High Medium 8.75 1.25</p>
+<p>5 MediumMedium5.00 5.00</p>
+<p>6 Low Medium 1.25 8.75</p>
+<p>7 High Low 5.00 5.00</p>
+<p>8 Medium Low 1.25 8.75</p>
+<p>9 LowLow0.25 9.75</p>
+<p>Skill1 Skill2 Right Wrong</p>
+<p>1 HighHigh302.75 3.25</p>
+<p>2 Medium High 117.00 21.00</p>
+<p>3 Low High 8.75 2.25</p>
+<p>4 High Medium 19.00 6.00</p>
+<p>5 MediumMedium92.25 64.75</p>
+<p>6 Low Medium 5.25 13.75</p>
+<p>7 High Low 13.75 2.25</p>
+<p>8 Medium Low 63.25 164.75</p>
+<p>9 LowLow13.00 177.00</p>
+</section>
+<section id="problems-with-hyper-dirichlet-approach" class="level1">
+<h1>Problems with hyper-Dirichlet approach</h1>
+<ul>
+<li>Learn more about some rows than others</li>
+<li>Local parameter independence assumption is unrealistic – often want CPT to be monotonic (increasing skill means increasing chance of success)
+<ul>
+<li><em>l</em> <em>2,2</em> <em>&gt;</em> <em>l</em> <em>2,1</em> <em>&gt;</em> <em>l</em> <em>1,1</em> and <em>l</em> <em>2,2</em> <em>&gt;</em> <em>l</em> <em>1,2</em> <em>&gt;</em> <em>l</em> <em>1,1</em></li>
+</ul></li>
+<li>Solution is to use parametric models for CPT:
+<ul>
+<li>Noisy-min &amp; Noisy-max</li>
+<li>DiBello-Samejimafamilies</li>
+<li>Discrete Partial Credit families</li>
+</ul></li>
+</ul>
+</section>
+<section id="learning-cpts-for-a-parametric-family" class="level1">
+<h1>Learning CPTs for a parametric family</h1>
+<ul>
+<li>Contingency table is sufficient statistic for law for any CPT!</li>
+<li>Pick value of law parameters that maximize the posterior probability (or likelihood) of the observed contingency table.</li>
+<li>Fully Bayesian method
+<ul>
+<li>Put hyper-laws over lawhyperparameters</li>
+<li>Calculate observed contingency table</li>
+<li>MAP estimates maximize posterior probability of contingency table</li>
+</ul></li>
+<li>Semi-Bayesian method
+<ul>
+<li>Use priorhyperparametersto calculate prior table.</li>
+<li>Establish a pseudo-sample size for each row and calculate prior alphas</li>
+<li>Do hyper-Dirichletupdating to get posterior alphas</li>
+<li>MAP estimates maximize posterior probability of posterior alphas (treating them as if they were data)</li>
+<li>CPTtoolsfunctionmapCPTdoes this</li>
+</ul></li>
+</ul>
+</section>
+<section id="newton-raphson-method" class="level1">
+<h1>Newton-Raphson Method</h1>
+<ul>
+<li>Originally for finding zeros of a function, but if we apply it to the first derivative, then it finds local maxima and minima of the function</li>
+<li>Each step moves closer to the maximum</li>
+<li>May be multiple maxima
+<ul>
+<li>Multiple starting points</li>
+<li>Simulated annealing &amp; other modifications</li>
+</ul></li>
+</ul>
+</section>
+<section id="animation" class="level1">
+<h1>Animation</h1>
+<p><a href="http://en.wikipedia.org/wiki/File:NewtonIteration_Ani.gif">http://en.wikipedia.org/wiki/File:NewtonIteration_Ani.gif</a></p>
+<p><img src="img/LearningCPTs13.gif" width="500px"></p>
+</section>
+<section id="gradient-decent" class="level1">
+<h1>Gradient Decent</h1>
+<p><a href="http://vis.supstat.com/2013/03/gradient-descent-algorithm-with-r/">http://vis.supstat.com/2013/03/gradient-descent-algorithm-with-r/</a></p>
+</section>
+<section id="missing-and-latent-variables" class="level1">
+<h1>Missing and Latent Variables</h1>
+<ul>
+<li><em>Missing completely at random (MCAR) –</em> whether or not <em>Y</em> <em>i</em> is missing is independent of both <em>Y</em> <em>i</em> and any observed covariate <em>X</em> <em>i</em>
+<ul>
+<li>Casewisedeletion provides an unbiased estimate only in this case!</li>
+</ul></li>
+<li><em>Missing at Random (MAR)</em> – whether or not <em>Y</em> <em>i</em> is missing is independent of <em>Y</em> <em>i</em> given observed covariates <em>X</em> <em>i</em>
+<ul>
+<li>EM algorithm &amp; MCMC work here</li>
+<li>Latent variables are a special case</li>
+</ul></li>
+<li><em>Non-ignorable</em> <em>missingness</em> <em>–</em> Not MAR</li>
+</ul>
+</section>
+<section id="mcar-mar-or-non-ignorable-ex-9.2" class="level1">
+<h1>MCAR, MAR or Non-ignorable (Ex 9.2)</h1>
+<p>A survey of high school seniors asks the school administrator to provide grade point average and college entrance exam scores. College entrance exam scores are missing for students who have not taken the test.</p>
+<p>Same survey except now survey additionally asks whether or not student has declared an intent to apply for college.</p>
+<p>To reduce the burden on thestudents fillingout the survey, the background questions are divided into several sections, and each student is assigned only some of the sections using a spiral pattern. Responses on the unassigned section are missing.</p>
+<p>Some students when asked their race decline to answer.</p>
+<p>1. John did not answer Task j because it was not on the test form he was administered.</p>
+<p>2.Diwakardid not answer Task j because there are linked harder and easier test forms, intended for fourth and sixth grade students; Task j is an easy item that only appears on the fourth grade form; andDiwakaris in sixth grade, so he was administered the hard form.</p>
+<p>3. Rodrigo took an adaptive test. He did well, the items he was administered tended to be harder as he went along, and Task j was not selected to administer because his responses suggested it was too easy to provide much information about his proficiency.</p>
+<p>4. Task j was near the end of the test, and Ting did not answer it because she ran out of time.</p>
+<p>5.Shahrukhlooked at Task j and decided not to answer it because she thought she would probably not do well on it.</p>
+<p>6. Howard was instructed to examine four items and choose two of them to answer. Task j was one of the four, and not one that Howard chose.</p>
+</section>
+<section id="em-algorithm-dempster-laird-rubin-1977" class="level1">
+<h1>EM Algorithm (Dempster, Laird &amp; Rubin, 1977)</h1>
+<p>Key idea:</p>
+<p>Pick a set of value for parameters</p>
+<p><em>E-step (a):</em> Calculate distribution for missing variables given observed variables &amp; current parameter values.</p>
+<p><em>E-step (b):</em> Calculate expected value of sufficient statistics</p>
+<p><em>M-step:</em> Use Gradient Decent to produce MAP/MLE estimates for parameters given sufficient statistics</p>
+<p>Loop 2—4 until convergence</p>
+</section>
+<section id="em-algorithm-details" class="level1">
+<h1>EM algorithm details</h1>
+<ul>
+<li>Only need to take a few steps of the gradient algorithm in Step 4 (Generalized EM)</li>
+<li>Can exploit conditional independence conditions, particularly global parameter independence (StructualEM,Mengand van Dyke)
+<ul>
+<li>Once CPT at a time</li>
+</ul></li>
+<li>Can be slow
+<ul>
+<li>But not as slow as MCMC</li>
+</ul></li>
+<li>Neticaprovides built-in support for special case of hyper-Dirichletlaw</li>
+</ul>
+</section>
+<section id="expected-value-of-missing-latent-node" class="level1">
+<h1>Expected value of missing (latent) node</h1>
+<p>Can calculate this using ordinaryNeticaoperations (instantiate all observed variables and read off joint beliefs)</p>
+<p>Instead of adding count to the table, add fractional count to the table</p>
+<p>Similarly use joint beliefs when more than one parent is missing</p>
+</section>
+<section id="example" class="level1">
+<h1>Example</h1>
+<ul>
+<li>Observable <em>X</em> in <em>{0, 1};</em> Latent <em>q</em> in <em>{H,M,L}</em></li>
+<li>Observations:
+<ul>
+<li><em>X=1; p(</em> <em>q</em> <em>) = H:.33, M:.33, L:.33</em></li>
+<li><em>X=1; p(</em> <em>q</em> <em>) = H:.5, M:.33, L:.2</em></li>
+<li><em>X=0; p(</em> <em>q</em> <em>) = H:.2, M:.3, L:.5</em></li>
+</ul></li>
+<li>Expected table:</li>
+</ul>
+</section>
+<section id="em-for-hyper-dirichlet-rnetica-learncpts-function" class="level1">
+<h1>EM for hyper-Dirichlet (RNetica LearnCPTs function)</h1>
+<p>Use current CPTs to calculate expected tables for all of the CPTs we are learning</p>
+<p>Use the hyper-Dirichletconjugate updating to update the CPTs</p>
+<p>Loop 1 and 2 until convergence</p>
+<p><em>Note:</em> <em>RNetica</em> <em>LearnCPT</em> <em>function currently does not reveal whether or not convergence was reached.</em></p>
+</section>
+<section id="netica-example-partially-observed" class="level1">
+<h1>Netica example – partially observed</h1>
+<p><img src="img/LearningCPTs14.png" width="500px"></p>
+<p>2011 NCME Tutorial: Bayesian Networks in Educational Assessment - Session IV</p>
+</section>
+<section id="parameterized-tables" class="level1">
+<h1>Parameterized tables</h1>
+<p>Use current parameters to set initial CPTs</p>
+<p>UseNetica’sLearnCPTsto calculate posterior tables</p>
+<p>Multiple posterior tables by node experience to get pseudo-table for each CPT</p>
+<p>Use gradient decent to optimize CPT parameters</p>
+<p>Loop 1—4 until convergence</p>
+<p>I’m currently working on an implementation in R.</p>
+</section>
+<section id="breakdown-of-global-parameter-independence" class="level1">
+<h1>Breakdown of global parameter independence</h1>
+<p>Even if parameters are <em>a priori</em> independent, when there is missing (or latent) data then parameters are not independent <em>a posteriori</em> .</p>
+<p>EM algorithm only gives point estimate, does not capture this dependence</p>
+<p>There might also be other information which makes parameters dependent.</p>
+<p><img src="img/LearningCPTs15.png" width="483px"></p>
+</section>
+<section id="markov-chain-monte-carlo-mcmc" class="level1">
+<h1>Markov Chain Monte Carlo (MCMC)</h1>
+<p>In place of E-step, randomly sample values for unknown (latent &amp; missing) variables</p>
+<p>In place of M-step, randomly sample values for parameters</p>
+<p>Takes longer than EM, but gives you an impression of the whole distributionrather than just a part.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

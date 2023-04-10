@@ -143,14 +143,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html">
- <span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./about.html">
- <span class="menu-text">About</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="./ECD.html">
  <span class="menu-text">ECD Intro</span></a>
   </li>  
@@ -161,6 +153,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li class="nav-item">
     <a class="nav-link" href="./Scoring.html">
  <span class="menu-text">Scoring</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./DiBelloModels.html">
+ <span class="menu-text">Making CPTs</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./Building.html">
@@ -185,6 +181,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li class="nav-item">
     <a class="nav-link" href="./References.html">
  <span class="menu-text">References</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">
+ <span class="menu-text">About</span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -252,11 +252,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>There are a number of packages that will do the basic Bayesian network computations. For the purposes of this tutorial, we are using <a href="https://norsys.com">Netica</a>Ⓡ. Netica is available in two versions: a graphical user interface (GUI) version and an application programmers interface (API). We will use both in this class.</p>
 <p>Netica also comes in both a free (but not open source) version and a paid version. The paid version is used by purchasing an unlock code from Norsys. The free version is specifically for training and evaluation. It is limited in the size of the networks, but it has sufficient capacity for most of the exercises in this tutorial.</p>
 <ul>
-<li>Go to <code>https://norsys.com</code> and download the latest version of <code>Netica.exe</code>.</li>
-<li>Unix/linux users: <code>Netica.exe</code> runs without major problems under Wine.</li>
-<li>Mac OS Intell – I have built a wineskin version of <code>Netica.exe</code>. It is available at <a href="https://pluto.coe.fsu.edu/MacNetica2.app.zip" class="uri">https://pluto.coe.fsu.edu/MacNetica2.app.zip</a>.</li>
-<li>Mac OS ARM – ???</li>
+<li>Go to <code>https://norsys.com</code> and download the latest version of <a href="https://norsys.com/downloads/Netica_Win.exe"><code>Netica.exe</code></a>.</li>
+<li>Unix/linux users: <code>Netica.exe</code> runs without major problems under Wine64.</li>
 </ul>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install wine64</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> https://norsys.com/downloads/Netica_Win.exe <span class="op">&gt;</span> Netica_Win.exe</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">wine64</span> Netica_Win.exe</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">wine64</span> <span class="st">"C:</span><span class="dt">\\</span><span class="st">Netica\Netica 609\Netica.exe"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li>Mac OS Intel – I have built a wineskin version of <code>Netica.exe</code>. It is available at <a href="https://pluto.coe.fsu.edu/MacNetica2.app.zip" class="uri">https://pluto.coe.fsu.edu/MacNetica2.app.zip</a> (You may need to right click on the app, and then open the Wineskin app inside).</li>
+<li>Mac OS ARM – I don’t have access to an ARM Mac to do testing. I am seeing reports that the latest version of Wine supports Rosetta. If you are using homebrew, you can try:</li>
+</ul>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> wine-stable</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> https://norsys.com/downloads/Netica_Win.exe <span class="op">&gt;</span> Netica_Win.exe</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">wine</span> Netica_Win.exe</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">wine</span> <span class="st">"C:</span><span class="dt">\\</span><span class="st">Netica\Netica 609\Netica.exe"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
 <section id="peanut-and-rnetia" class="level2">
 <h2 class="anchored" data-anchor-id="peanut-and-rnetia">Peanut and RNetia</h2>
@@ -264,9 +284,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If you have not already done so, we recommend downloading <a href="https://posit.co/products/open-source/rstudio/">R Studio</a>, in the process of installing R Studio, you will need to install R itself (&lt;https://cloud.r-project.org/).</p>
 <p>Once you have R installed, you can install <code>RNetica</code> and running related packages by running the following code:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">'PNetica'</span>)) </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">'CPTtootls'</span>,<span class="st">'RNetica'</span>,<span class="st">'Peanut'</span>,<span class="st">'PNetica'</span>),</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">'https://ralmond.r-universe.dev'</span>,    <span class="st">'https://cloud.r-project.org'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">'PNetica'</span>)) </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">'CPTtootls'</span>,<span class="st">'RNetica'</span>,<span class="st">'Peanut'</span>,<span class="st">'PNetica'</span>),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">'https://ralmond.r-universe.dev'</span>,    <span class="st">'https://cloud.r-project.org'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: PNetica</code></pre>
 </div>
@@ -275,9 +295,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: CPTtools</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: futile.logger</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: Peanut</code></pre>

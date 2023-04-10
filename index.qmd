@@ -23,9 +23,13 @@ The complete tutorial has the following parts:
 <!-- -->
 
 a.  [Scoring using RNetica](Scoring.qmd)
+b.  [DiBello Models for Conditional Probability Tables](DiBelloModels.qmd)
 b.  [Building a Net with Peanut](Building.qmd)
 c.  [Calibrating Model Parameters to Data](Updating.qmd)
 
 <!-- -->
 
 4.  [Dynamic Bayesian Networks](Dynamic.qmd)
+
+An older version of the resources with powerpoint slides is available at
+<https://pluto.coe.fsu.edu/BNinEA/NCMETutorial>

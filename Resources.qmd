@@ -27,10 +27,27 @@ from Norsys. The free version is specifically for training and
 evaluation. It is limited in the size of the networks, but it has
 sufficient capacity for most of the exercises in this tutorial.
 
--   Go to `https://norsys.com` and download the latest version of `Netica.exe`.
--   Unix/linux users: `Netica.exe` runs without major problems under Wine.
--   Mac OS Intell -- I have built a wineskin version of `Netica.exe`.  It is available at <https://pluto.coe.fsu.edu/MacNetica2.app.zip>.
--   Mac OS ARM -- ???
+-   Go to `https://norsys.com` and download the latest version of [`Netica.exe`](https://norsys.com/downloads/Netica_Win.exe).
+-   Unix/linux users: `Netica.exe` runs without major problems under Wine64.
+```{bash}
+#| eval: FALSE
+#| code-fold: TRUE
+sudo apt install wine64
+curl https://norsys.com/downloads/Netica_Win.exe > Netica_Win.exe
+wine64 Netica_Win.exe
+wine64 "C:\\Netica\Netica 609\Netica.exe"
+```
+
+-   Mac OS Intel -- I have built a wineskin version of `Netica.exe`.  It is available at <https://pluto.coe.fsu.edu/MacNetica2.app.zip> (You may need to right click on the app, and then open the Wineskin app inside).
+-   Mac OS ARM -- I don't have access to an ARM Mac to do testing.  I am seeing reports that the latest version of Wine supports Rosetta.  If you are using homebrew, you can try:
+```{bash}
+#| eval: FALSE
+#| code-fold: TRUE
+brew install --cask wine-stable
+curl https://norsys.com/downloads/Netica_Win.exe > Netica_Win.exe
+wine Netica_Win.exe
+wine "C:\\Netica\Netica 609\Netica.exe"
+```
 
 
 ## Peanut and RNetia
