@@ -5,15 +5,14 @@ website:
   title: "Peanut Tutorial"
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
       - href: ECD.qmd
         text: "ECD Intro"
       - href: BayesNets.qmd
         text: "Bayesian Networks"
       - href: Scoring.qmd
         text: "Scoring"
+      - href: DiBelloModels.qmd
+        text: "Making CPTs"
       - href: Building.qmd
         text: "Building Nets"
       - href: Updating.qmd
@@ -26,7 +25,7 @@ website:
         text:  Resources
       - href: References.qmd
         text: References
-
+      - href: about.qmd
 
 margin-header: |
   ![Peanut Logo](/img/PeanutLogo.png)
