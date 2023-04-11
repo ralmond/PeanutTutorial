@@ -2,4 +2,726 @@
 title: "Building Networks Models with Expert Opinion"
 ---
 
-<https://docs.google.com/spreadsheets/d/1t4ZPfeNmSFXm4ejQPjdGri8_U8VkEsR9mwKwE1AM0p4/edit#gid=304999643>
+## Preliminaries
+
+First, the `Peanut` libraries need to be loaded, along with an
+implementation.  As `PNetica` is the currently available
+implementation, that will be used in this example.  The
+[Resources](Resources.qmd) section shows how to install this.
+
+```{r}
+#| echo: true
+#| include: false
+#| context: setup
+library(PNetica)
+library(Peanut)
+sess <- RNetica::NeticaSession() # Add the license key here
+RNetica::startSession(sess)
+```
+
+After some experience using various graphical tools, -@matrix2 found
+that the easiest way to work with experts in eliciting a Bayesian
+network structure is to use a spreadsheet. The spreadsheet for the
+miniACED example is available through [Google
+Sheets](https://docs.google.com/spreadsheets/d/1t4ZPfeNmSFXm4ejQPjdGri8_U8VkEsR9mwKwE1AM0p4/)
+
+Note that the format here is a bit of a work in progress.  I am
+looking for ways to simplify the presentation, in particular,
+collapsing over lines, so look for htat in the future.
+
+As the example network data is stored in a Google sheet, we will also
+need the `googlesheets4` library. The `knitr` package provides table
+formatting.
+
+With Google sheets, Google needs to verify that your computer is
+authorized to read the sheet.  Fortunately, the example sheet is
+readable by the public.  So we will call `gs4_deauth()` to make sure
+that Google uses the public interface. (See the `googlesheets4`
+documentation for more information about OAuth support.)  The sheet ID
+is the long string of digits and numbers after `spreadsheets/d/` in
+the URI for the sheet.
+
+
+```{r}
+#| echo: true
+#| include: false
+#| context: setup
+library(googlesheets4)
+googlesheets4::gs4_deauth()
+sheetID <- "1t4ZPfeNmSFXm4ejQPjdGri8_U8VkEsR9mwKwE1AM0p4"
+```
+
+## Defining Networks
+
+
+Note that this sheet has five tabs which the analyst must complete to specify the model.
+
+1.  **Nets**---describes the competency and evidence models.
+
+2.  **Nodes**---describes the nodes and their states.
+
+3.  **Q**---describes the distribution of variables representing observable indicators that appear in the evidence models.
+
+4.  **Omega**---describes the relationship and distribution of the competency model variables.
+
+5.  **Statistics**---describes what values will be written out.
+
+Note that there is a extra tab **Dropdowns**. This is used as part of the network validation, and doesn't need to be filled out by the analyst. 
+
+## Nets
+
+The first spreadsheet is the network manifest; which basically lists
+all of the nets.
+
+
+```{r netManifest}
+#| echo: true
+#| include: false
+netman <- read_sheet(sheetID,"Nets")
+```
+
+```{r}
+#| label:  tbl-nets
+#| tbl-cap: "Nets Tab"
+knitr::kable(netman)
+```
+
+This table is the easiest to understand. Each row represents a Bayes
+net model, either a comptency model or an evidence model. The columns
+have the following meaning.
+
+-   `Name` --- the identifier of the network. Note that projects using
+    Netica will need to follow the Netica syntax for identifiers,
+    which is the identifier, must start with a letter and may contain
+    only letters, numbers or underscores (`_`). It is also limited to
+    32 characters.
+
+-   `Title` --- A longer version of the name, with no character restrictions.
+
+-   `Hub` --- For evidence models, this is the name of the
+    corresponding competency model; for competency models, leave if
+    blank.
+
+-   `Pathname` --- The name of the file for storing the network. This
+    defaults to the name plus the `.dne` extension, which is Netica's
+    extension for the text representation of a Bayes net.
+
+-   `Description` --- A place for user comments.
+
+The `Peanut` package works by creating a `Warehouse` for the
+networks. The idea is that if the network has already been created,
+then the `Net Warehouse` will go ahead and build it using the
+specifications in the manifest; which is the `netman` file.
+
+```{r BuildNetWarehouse}
+#| context: setup
+#| echo: true
+#| include: false
+Nethouse <- PNetica::BNWarehouse(netman,sess)
+```
+
+Note here the use of the `PNetica` package and the `RNetica::Session`
+object, `sess`. This is one of two places in which the explicit
+dependence on Netica is required. (The other is the creation of the
+Node Warehouse in the next session). The rest of the commands use
+function calls in the `Peanut` or `CPTtools` frameworks, which are
+agnostic as to the Bayes net engine used (although so far, only the
+`PNetica` implementation exists).
+
+## Nodes
+
+The next spreadsheet defines the nodes. There are two things which are
+important to note about the nodes. The first is that each network
+defines its own namespace. Thus, the node `isCorrect` in the
+`CommonRatioEasyEM` and in the `ExamplesGeometricEasyEM` are different. Thus, the variable is identified by the first two columns in the spreadsheet.
+
+The second thing of note is that there are some information which is
+specific to the possible states of the node. Thus, if the node has 3
+possible states, then there are three rows for each node.  
+
+[Note:  This should change in a future version.  The idea is to instead use a a vector notation, i.e., `[state1,state2,state3]`, to express multiple states.]
+
+
+```{r LoadVariableManifest}
+#| include: false
+#| echo: false
+nodeman <- read_sheet(sheetID,"Nodes")
+```
+
+```{r nodeManifest}
+#| label:  tbl-nodes
+#| tbl-cap: "Nodes Tab"
+knitr::kable(nodeman)
+```
+
+### Node Primary Key
+
+The following columns are present in the spreadsheet:
+
+-   `Model` --- The name of the network, this should appear in the `Name` column of the `Nets` sheet.
+
+-   `NodeName` --- The name of the node. This should correspond to the Netica naming rules.
+
+Note that the `(Model, NodeName)` ordered pair is the primary key for the table.
+
+### Node-level properties
+
+The following values are assigned at the node level.
+
+-   `ModelHub` --- The name of the proficiency/competency model. (This information is redundant with that in the `Nets` sheet.
+
+-   `NodeTitle` --- A longer name for the node which does not need to conform to variable naming rules.
+
+-   `NodeDescription` --- Documentation for the node.
+
+-   `Continuous` --- A logical value. If `FALSE`, then the node has a number of discrete values. If `TRUE`, then the node is a discritized version of an underlying continuous value.
+
+-   `Nstates` --- The number of states of the node. If the node is discrete (`Continuous=FALSE`), then this is the number of possible values. If the node is continuous, then this is the number of states the node will be partitioned into.
+
+Note that most of the state level value must be vectors of the same length as `Nstates` for that row.
+
+### State-level descriptors
+
+-   `StateName` --- An identifier for the state. Must follow variable rules.
+
+-   `StateTitle` --- A longer descriptor which doesn't need to follow varaible rules.
+
+-   `StateDescription` --- Documentation for the state.
+
+-   `StateValue` --- This is used in both the CPT construction
+    algorithms and in calculating expected values and varainces for
+    nodes. The best practice here is to map these values to quantiles
+    of the normal distribution (@bninea). Note that for three levels
+    these are approximately 1, 0 and -1.
+
+- `LowerBound`, `UpperBound` [Depricated, next version will use Cuts].
+  These are lists of upper and lower bounds for an underlying
+  continuous variable.  Note that `-Inf` and `Inf` are acceptable
+  values. Note also that the upper bound for one state must match the
+  lower bound for the next.
+
+-   `Cuts` --- Only used for continuous nodes. These are the upper and
+    lower cuts for the underlying continuous variable. There should be
+    one more value in the vector than there are states in the
+    node. The continuous variable is chopped into intervals with the
+    given cut points (including the minimum and maximum). Note that
+    `-Inf` and `Inf` are acceptable values.
+
+
+### Node Warehouse
+
+`Peanut` uses the same Warehouse metaphor to build the nodes. The `Nodes` spreadsheet is the instruction for building the node (if it is not already built).
+
+```{r NodeWarehouse}
+#| context: setup
+#| include: false
+#| echo: true
+## Note, need old format sheet until we update Peanut.
+nodeman <- read_sheet(sheetID,"Nodes")
+Nodehouse <- PNetica::NNWarehouse(nodeman,sess)
+```
+
+This is the last place in which we explicitly reference Netica. The
+`WarehouseSupply` method on the Net or Node Warehouse returns an
+object of the abstract type `Peanut::Pnet` or `Peanut::Pnode`, which
+then supports all of the other operations.
+
+The two warehouses give us the basic definitions of the networks and
+the nodes. The next step is to describe the relationships among the
+nodes and the conditional probability tables that are defined.
+
+@matrix2 divides this into two pieces: the $Q$-matrix which describes
+the relationship between the competency nodes and the observable
+outcomes(@sec-Q), and the $\Omega$ matrix which describes the
+relationship among the competency variables (Section @sec-Omega). 
+@sec-growth).
+
+## Omega {#sec-Omega}
+
+The Omega ($\Omega$) matrix is named for the inverse of the covariance
+matrix. Is is based on the observation that zero in the inverse
+covariance matrix leads to a conditional independence assumption (and
+hence lack of edge) in the graphical model [@dempster1972;
+@whittaker1990].  However, rather than specify the covariance matrix,
+the approach used in Peanut is to specify the joint distribution of
+the variable in the competency (proficiency) model through a series of
+regressions.
+
+### Omega Matrix Structure
+
+The first part of the model is specifying which variables should be
+predictors (inputs) to the others. In the $\Omega$-matrix
+(@fig-Omega), the rows represent the variables in their roles as
+dependent (output) variables and the columns the role as input
+variables. A check mark indicates that the column variable is a parent
+of the row variable (an input in its regression).
+
+![Omega Matrix Structure](images/Omega.png){#fig-Omega}
+
+This defines the graphical structure. An edge is placed between the
+nodes corresponding to the edges. Figure @fig-OmegaGr shows this
+graph.
+
+```{dot}
+//| label: "fig-OmegaGr"
+//| fig-cap: "Graph of EASD Net"
+digraph EASD {
+	SGP [label="Solve Geometric Problems"]
+	CR [label="Common Ratio"]
+	ExamG [label="Example Geometric"]
+	ExtG [label="Extend Geometric"]
+	TabEG [label="Table \n Extend Geometric"]
+	ModTEG [label="Model Table \n Extend Geometric"]
+	SGP -> CR; SGP -> ExamG; SGP -> ExtG; SGP -> TabEG; SGP ModTEG
+}
+```
+
+Note that the nodes are ordered (in both rows and columns) so that the
+parents of a given node always fall earlier in the sequence than the
+child. With this topological sorting, all of the checked boxes
+(selected edges) should be in the lower triangle; this will ensure
+that the model graph has no directed cycles.
+
+```{r loadOmega}
+#| context: setup
+#| include: false
+#| echo: true
+omega <- as.data.frame(read_sheet(sheetID,"Omega"))
+CM <- WarehouseSupply(Nethouse,"miniACEDPM")
+CM1 <- Omega2Pnet(omega,CM,Nodehouse,override=TRUE)
+```
+
+### Ancestral Nodes (without parents)
+
+The regression model with no parents is just a normal distribution. The parameters specify the mean and variance of the model. 
+
+```{r normal}
+#| eval: false
+SGP <- PnetFindNode(CM1,"SolveGeometricProblems")
+gadget1 <- MakeRegressionGadget(SGP)
+shiny::shinyApp(gadget1$ui,gadget1$server, options(height=2000))
+```
+An online version of this gadget can be seen at
+<https://pluto.coe.fsu.edu/rdemos/Peanut/miniACED_SGP.Rmd>.
+
+The distribution is discretized, but adjusting mean parameter controls
+which bars the distribution is concentrated in, and how concentrated
+it is.
+
+### Competency Variables with one parent.
+
+Here again the `normalLink` is chosen because the parent variable
+states will be mapped to quantiles of the normal distribution.
+
+Rather expressing the regression in terms of the residual standard
+deviation, it is easier to think of it in terms of $R^2$. In the final
+model, the coefficients are scaled so that final model has the
+appropriate $R^2$.
+
+In particular, the residual standard deviation is set to
+
+$$ \sqrt{ \left ( \frac{1}{K}\sum_{k \in \text{parents}} a_k^2 \right
+) \left ( \frac{1}{R^2} - 1 \right ) } .$$
+
+Here, $K$ is the number of parents and $k$ is an index that ranges
+over the parent variables. The $a_k$ are the discriminations
+(regression weights) input through the system and $R^2$ is the
+selected $R^2$ value. The $1/K$ scale factor is set so that if all of
+the parent variables have an SD of 1, and all of the coefficients are
+1, the child variable has a marginal SD of 1 as well.
+
+Finally, the intercept column represents a shift in the mean of the
+distribution relative to the parents. Positive values mean that more
+people in the population have this skill relative to the parents, and
+negative values mean fewer.
+
+```{r normal1}
+#| eval: false
+CR <- PnetFindNode(CM1,"CommonRatio")
+gadget2 <- MakeRegressionGadget(CR)
+shiny::shinyApp(gadget2$ui,gadget2$server, options(height=2000))
+```
+
+The resulting gadget is in: <https://pluto.coe.fsu.edu/rdemos/Peanut/miniACED_CR.Rmd>. 
+
+
+### Columns in the Omega Matrix
+
+In this model, `SolveGeometricProblems` is the ancestral node. The others all have just the one parent.  Therefore
+
+![Omega Matrix Parameters](img/OmegaA.png){#fig-OmegaA}
+
+Overall, the columns in the $\Omega$-matrix are as follows:
+
+-   `Node` -- The name of the nodes in the competency model. The order is important, generally, the parents of a given node should come before the child nodes in the sequence.
+
+-   *NodeNames* -- The names of the nodes appear also in the columns, in the same order as the first column. The cells here provide check boxes for the edges. Note that the diagonal is not used.
+
+-   `Link` -- The link function used (see next section). Note that currently the `normalLink` is the only available choice for the $\Omega$-matrix.
+
+-   `Rules` -- The combination function used (see next section). The choice of `Compensatory` gives the discrete regression model.
+
+-   `R2` -- The $R^2$ is the measure of how much of the variance of the child variable can be explained by the parents.
+
+-   `A.`*NodeName* -- There is one column here for each node. This gives the slope/discrimination value for that node.
+
+-   `Intercept` -- The intercept for the regression; positive is the child skill is more prevalent in the population than the parent skills, and negative if it is less prevalent. Note this is a negative difficulty parameter.
+
+-   `PriorWeight` -- Used in Bayesian parameter updating, the prior parameter values are assigned the equivalent weight as this many observations.
+
+## $Q$-matrix {#sec-Q}
+
+The two warehouses give us the basic definitions of the networks and
+the nodes. The $\Omega$-matrix has the distributions for the competency model variables.  The next step is to describe the relationships between the competency variables and the observable outcomes in the evidence models.  Note that the same variable name, e.g., `isCorrect` can be reused across many evidence models, so the full name of the variable has both the model and variable name.
+
+
+
+### Representing Structure
+
+The $Q$-matrix is the place to start. @tatsuoka1983 popularized the
+use of a matrix $Q$ to represent the cognitive structure of an
+assessment, where the rows represent items (or in the case of more
+complex assessment observable variables) and the columns represent
+*attributes*. Tatsuoka used the term attribute to emphasize the
+duality between the cognitive skill possessed by the subjects and the
+items which demand that skill. Tatsuoka's rule space model regarded
+the attributes as binary, but the notation works equally well if the
+cognitive variables are ordinal or scale.
+
+There is a simple relationship between the $Q$-matrix and the Bayesian
+network. If an element $q_{jk}=1$, then there is an edge between
+Competency Variable $k$ and Observable Variable $j$ in the
+corresponding evidence model. For every observable variable, the
+parents can be determined by looking across the row to find all cell
+entries with a one.
+
+![Q-matrix in the Spreadhseet](img/QmatInSheet.png){#fig-Q1}
+
+Note that the first two columns are `Model` and `Node`. The
+*isCorrect* nodes in the models *CommonRatioEasyEM*,
+*ExamplesGeometricMedEM* and *ModelTableExtendGeometricHardEM* are all
+different variables. In particular, they have different entries in the
+$Q$-matrix. In ACED, the observable names reflect the targeted
+competencies, but that was merely a convention used by the design
+team.
+
+Note also that in the spreadsheet the cells of the $Q$-matrix is
+represented with check boxes. This emphasizes the idea that checking
+the box is showing that skill referenced in the column is needed for
+the observable node referenced in the row.
+
+The Bayes net structure (for the evidence models) follows directly
+from the $Q$-matrix. The parents for the observable variables are the
+nodes (in the competency model) that correspond to the checked columns
+in the $Q$-matrix.
+
+### Defining Conditional Probability Tables.
+
+In addition to the graphical structure, a conditional probability table for each node, given its parents must be specified. Lou DiBello pressed some models from item response theory (IRT) into service to provide a language for describing relationships using the familiar psychometric parameters "difficulty" and "discrimination" [@bninea].
+
+#### The DiBello Framework
+
+The DiBello method has three steps:
+
+1.  Map the states of the parent variable onto a unit normal $\theta$
+    scale. Let $\theta_{k,s_{k,m}}$ be the numeric value associated
+    with the Parent Variable $S_k$ being in State $s_{k,m}$.  These
+    are represented by the *StateValue* column in the "Nodes" sheet.
+
+2.  Combine the parent $\theta$ values into a single variable using
+    combination *Rules*. This yields a single set of effective
+    $\theta$ values for each combination of the parent variables. Let
+    $\eta_{j,c}(\theta_1, \ldots, \theta_K)$ be the function which
+    calculates this effective theta for observable $Y_j$ associated
+    with the transition between State $c-1$ and State $c$ for the
+    child variable. (In the simple cases below, $\eta_{j,c}(\cdot)$
+    has the same functional form for all $c$, but possibly different
+    values of the parameters.)  This is specified through the *Rules*
+    column in the "Q" matrix spreadsheet.
+
+3.  Change the effective $\theta$s into conditional probabilities
+    using a *Link* function. Let $g_j(\eta_{j,1},\ldots,\eta_{j,C})$
+    be the link function.  This is specified through the *Link* column
+    in the "Q" matrix spreadsheet.
+
+The setup is similar in many ways to generalized linear models, where
+$\eta(\cdot)$ takes the place of the linear predictor. (The method
+allows non-linear functions, but favors monotonic combination
+functions.)
+
+The first step was already done in the "Nodes" sheet, as the
+`NodeValues` column provides the values. Note that the chosen values
+of $[1, 0, -1]$ are close to the midpoints (with respect to the normal
+distribution) of three equal probability intervals, which would be
+$[.97, 0, -.97]$.
+
+For the last step, the `partialCredit` link function is chosen (see
+the last column of @fig-Q1). This is the most flexible of the
+currently available link functions, as it allows for a different
+probability to transition from `NoCredit` to `Partial` credit, and
+`Partial` credit to `Full` credit. Note that in general, the link
+function needs to address the transitions between states and not the
+states themselves.[^1] In this case, all of the observables are
+binary, so there is no difference between the `partialCredit` and
+`gradedResponse` link functions.
+
+[^1]: Link functions are represented as actual functions in the
+    CPTtools package [@CPTtools]. The currently supported link
+    functions are `partialCredit`, `gradedResponse` and
+    `normalLink`. The system is extendable.
+
+Finally, the combination rule is chosen in consultation with the task
+designers and subject matter experts. The `Compensatory` rule 
+states that all skills are necessary for solving the problem so that
+performance will be dominated by the weakest skill.[^2]
+
+[^2]: Combination functions are also implemented as functions in the
+    CPTtools package. The currently recommended functions are
+    `Compensatory`, `OffsetConjunctive` and `OffsetDisjunctive`.
+
+### Multiple-A Rules
+
+In the compensatory model, there needs to be one slope parameter for
+each parent variable, and a difficulty (negative interncept)
+parameter.  The first is named "A._VariableName_", and the latter is
+named "B".  Note that only the cells corresponding to the 1's in the
+Q-matrix columns.
+
+![Q-matrix A-parameters](img/QmatAcols.png)
+
+Note that there is another set of combination rules (the
+`OffsetConjuctive` and `OffsetDisjunctive`) rules in which there is a
+different difficulty (demand) parameter for each parent and a single
+slope ($A$).  This is the Multiple-B style.  These columns are
+currently hidden.
+
+Note also, that if the observable values has more than two states,
+there will in general be one fewer numbers in each column than the
+number of states.  (The old way of representing this is with multiple
+rows in the Q-matrix; the revised method will include multiple entries
+in each cell.
+
+
+### A graphical example
+
+```{r BuidEMs}
+#| include: false
+#| eval: false
+Q1 <- as.data.frame(read_sheet(sheetID,"Q"))
+Qmat2Pnet(Q1,Nethouse,Nodehouse)
+```
+
+```{r BuildGadget}
+#| eval: false
+EM <- WarehouseSupply(Nethouse,"TableExtendGadget")
+isC <- PnetFindNode(EM,"isCorrect")
+gadget3 <- MakeDPCGadget(isC)
+shiny::shinyApp(gadget3$ui,gadget3$server)
+```
+
+The gadget can be seen at <https://pluto.coe.fsu.edu/rdemos/Peanut/miniACED_TE.Rmd>.
+
+### Columns in the Extended Q-matrix
+
+The first two columns in the $Q$-matrix sheet identify the variable.
+
+-   `Model`, `Node` -- The name of the model and node. Note that two variables with the same name (`Node` column) but different models are distinct.
+
+-   `NStates` -- Number of States the node has. This should agree with the Nodes sheet.
+
+-   `States` -- The names of all but one of the states. In general, probabilities are built for the transition between states. States are assume to be in decreasing order: (`High`, `Medium`, `Low`), so in the $Q$-matrix the state `High` refers to the transition from `Medium` to `High` and `Medium` refers to the transition from `Low` to `Medium`. It is assumed that all responses are at least `Low`, so no parameters are needed for the last state.
+
+-   `Link` -- The name of the link function. Currently supported are `partialCredit` and `gradedResponse`. There is limited support for `normalLink` as well.
+
+-   `LinkScale` -- An additional scale parameter (e.g., residual standard deviation) for the link function. Currently only the `normalLink` uses this. If supplied, it should be a positive number.
+
+-   $Q$-matrix proper (*NodeName*) -- Next, there are columns in the $Q$-matrix corresponding to the variables in the competency model. There is a check in the corresponding box if the observable referenced in the row depends on the competency variable in the column.
+
+-   `Rules` -- This is the name of the combination function that is used. Note that under the `partialCredit` link function, this can be either a single value or a distinct value for each state transition. (If a single value is given it is replicated out to the number of sites minus 1).
+
+There are two types of rules, which require different sets of
+parameters. *Multi-A Rules* (`Compensatory` and all `Conjuctive` and
+`Disjunctive`[^4]) have one discrimination ($A_p$) parameter for each
+parent variable, and a single difficulty/demand ($B$)
+parameter. *Multi-B Rules* (`OffsetConjunctive` and
+`OffsetDisjunctive`) have one demand parameter ($B_p$) for each parent
+variable, and a single discrimination (\$A%). Therefore different
+columns in the spreadsheet are used depending on the choice of rules.
+
+[^4]: The `Conjunctive` and `Disjunctive` rules are deprecated in
+    favor of the `OffsetConjuctive` and `OffsetDisjunctive` rules,
+    differing demands makes more sense than differening discrimination
+    when `max()` and `min()` are used for dimension reduction.
+
+#### Multi-A Table Columns.
+
+These are regression-like models. There is one slope ($A_p$) for each
+parent variable, and a single intercept ($B$).
+
+-   `A.`*NodeName* -- is used to give the weight for the corresponding
+    parent variable. This should be left blank if the column is not a
+    parent variable (not checked in the $Q$-matrix).
+
+-   `B` -- Difficulty/demand. The `B` column without a variable name
+    attached is used to specify the overall difficulty of the item.
+
+In each case there can be a single value, or a list of values
+corresponding to the state transitions.
+
+There are some additional rules depending on the link function.
+
+-   `partialCredit` -- no restrictions on the parameters. Some
+    discriminations can be 0 or missing to indicate that a particular
+    parent variable has no role in that transition.
+
+-   `gradedResponse` -- This model requires parameter restrictions to
+    prevent negative probabilities. In particular, there must be one
+    difficulty ($B$) parameter for each transition and they must be
+    non-increasing. Although it is possible to have multiple
+    discrimination parameters, restricting the discrimination
+    parameters to be the same for every level ensures there will be no
+    negative probabilities.
+
+-   `normalLink` -- This link function requires a single set of
+    parameters for all state transitions. (It also requres the
+    `LinkScale`).
+
+#### Multi-B Parameters
+
+The `OffsetConjunctive` and `OffsetDisjunctive` models use `min()` and
+`max()` respectively to collapse from the $p$ dimensions of the
+parents to the single dimension of the child. There is one offset
+parameter ($B_p$), a difficulty or a demand, for each parent. There is
+only a single discrimination ($A$).
+
+-   `A` -- Discrimination (slope). The `A` column without a variable
+    name attached is used to specify the overall discrimination of the
+    item.
+
+-   `B`._NodeName_ -- There is a demand parameter for each relevant
+    (box checked in the $Q$-matrix) competency variable.
+
+In each case there can be a single value, or a list of values
+corresponding to the state transitions.
+
+There are some additional rules depending on the link function.
+
+-   `partialCredit` -- no restrictions on the parameters. Some
+    discriminations can be infinite or missing to indicate that a
+    particular parent variable has no role in that transition.
+
+-   `gradedResponse` -- Each difficulty parameter should be a
+    non-increasing series. Again, is safest to use a common
+    discrimination parameter for all transitions.
+
+-   `normalLink` -- Again, a single set of parameters for all
+    transitions is used here.
+
+Finally, the last column in the spreadsheet for both multi-$A$ and
+multi-$B$ rules is the `PriorWeight`. This has the same interpretation
+as it does in the $\Omega$-matrix.
+
+## Statistics
+
+After student specific evidence, the Bayesian network contains the
+posterior distribution over the possible skill states for the student
+based on both the prior (population) model and the observed evidence.
+Rather than look at the full posterior distribution, usually the
+Bayesian networks outputs certain statistics of the posterior
+distribution.  Most of these are focused on a single node.
+
+The currently supported statistics are:
+
+* `PnodeMargin` -- This returns the marginal posterior probability for
+  the node.  It is a vector (simplex) over the states of the node.
+
+* `PnodeMode` -- The state of the node that has the highest marginal
+  probability.  (Value is a character scalar).
+
+* `PnodeMedian` -- (Assumes states are ordered).  The state of the
+  node which is associated with cumulative probability of .5.  (Values
+  is a character scalar).
+
+The next two statistics assume that real values have been assigned to
+the states, making it a random variable.
+
+* `PnodeEAP` -- The expected a posterior value or posterior mean for
+  the random variable's marginal distribution.
+
+* `PnodeSD` -- The standard deviation of the marginal distribution of
+  the random variable.
+
+![Statistics Table](img/Statistics.png)
+
+## Putting it all together
+
+First download and clean all the sheets.  
+
+```{r Downloads}
+netman <- read_sheet(sheetID,"Nets")
+nodeman <- read_sheet(sheetID,"Nodes")
+omega <- read_sheet(sheetID,"Omega")
+QQ <- read_sheet(sheetID,"Q")
+stats <- read_sheet(sheetID,"Statistics")
+```
+
+Next, build the Network and Node warehouse.  Note that for `PNetica`
+this requires a reference to the `NeticaSession` object.  Note also,
+that the network warehouse has a reference to a directory where the
+network file will be stored.
+
+```{r Warehouses}
+Nethouse <- PNetica::BNWarehouse(manifest=netman,session=sess,
+                                 address=file.path("miniACED1"),
+                                 key="Name")
+Nodehouse <- PNetica::NNWarehouse(manifest=nodeman,
+                                  key=c("Model","NodeName"),
+                                  session=sess)
+```
+
+Next build the competency model.  First create a blank network from
+the Network arehouse, then, use the `Omega2Pnet` function.
+
+```{r ProcessOmega}
+CM <- WarehouseSupply(Nethouse,"miniACEDPM")
+Omega2Pnet(omega,CM,Nodehouse,override=TRUE)
+```
+
+Once the competency model is built, build the evidence models.
+
+
+```{r ProcessQmatrix}
+Qmat2Pnet(QQ,Nethouse,Nodehouse,override=TRUE)
+```
+
+Next write out the nets.  The Warehouse takes care of the mechanics here.
+
+```{r WriteNets}
+for (name in netman$Name) {
+  if (nchar(name)>0L) {
+    net <- WarehouseSave(Nethouse,name)
+  }
+}
+```
+
+Write out the manifest.  In this case, there are six variants of each
+task type: 1a and 1b are easy, 2a and 2b are medium and 3a and 3b are
+hard.  So this can be used to build up the manifest file which maps tasks to evidence models.
+
+```{r EMTable}
+#: eval: false
+EMs <- c("CommonRatio","ExamplesGeometric","ExtendGeometric",
+         "TableExtendGeometric","ModelTableExtend")
+EMTable <- data.frame(
+    Task=paste("t",rep(EMs,each=6),
+               rep(c("1a","1b","2a","2b","3a","3b"),5),sep=""),
+    EM=paste(rep(EMs,each=6),rep(c("Easy","Easy","Med","Med","Hard","Hard"),5),
+             "EM",sep=""),
+    X=rep(c(108,342,588,1134,858),each=6),
+    Y=rep(c(282,402,522,642,762,882),5))
+write.csv(EMTable,file.path("miniACED1","EMTable.csv"))
+write.csv(stats,file.path("miniACED1","Statistics.csv"))
+```
+
+
+
