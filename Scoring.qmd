@@ -12,7 +12,7 @@ The RNetica suite consists of a number of packages:
 
 1.  `CPTtools` is a collection of tools for building conditional probability tables (particularly, the DiBello models). It stands alone.
 
-2.  `RNetica` links R to the [Netica](https://norsys.com) Bayes net engine. _Note: non-trivial uses of RNetica require a Netica API (not GUI) license from [Norsys](https://norsys.com)._
+2.  `RNetica` links R to the [Netica](https://norsys.com) Bayes net engine. *Note: non-trivial uses of RNetica require a Netica API (not GUI) license from [Norsys](https://norsys.com).*
 
 ## Peanut packages
 
@@ -56,7 +56,7 @@ Source code is on github <https://github.com/ralmond/>.
         -   Need to purchase API not GUI version ofNetica
         -   May want both (use GUI to visualize networks built in RNetica)
 -   CPTtools, Peanut -- Artistic (Free and open source), does not depend on Netica
--   RNetica -- Artistic, but depends on RNetica.
+-   PNetica -- Artistic, but depends on RNetica.
 
 ## Installing the License Key
 
@@ -104,9 +104,9 @@ Everything in this tutorial should run without the license.
 -   When searching for networks.
 -   Certain global properties
 
-`NeticaBN` objects have a `$session` proprty which points back to the session.
+`NeticaBN` objects have a `$Session` property which points back to the session.
 
-`NeticaNode` objects have a `$node` property which points back to the network (which points to the session).
+`NeticaNode` objects have a `$net` property which points back to the network (which points to the session).
 
 ## The R heap and the Netica heap
 
@@ -114,13 +114,13 @@ R and Netica have two different workspaces (memory heaps)
 
 R workspace is saved and restored automatically when you quick and restart R.
 
-Neticaheap must be reconnected manually.
+Netica heap must be reconnected manually.
 
 ![R and Netica Heaps](img/NeticaR1.png)
 
 ## Active and Inactive pointers
 
-When RNetica creates/finds aNeticaobject it creates a corresponding R object
+When RNetica creates/finds a Netica object it creates a corresponding R object
 
 If the R object is active then it points to the Netica object, and the Netica object points back at it.
 
@@ -549,8 +549,8 @@ for (itask in first.task:last.task) {
   EMnet <- ReadNetworks(file.path("miniACED",
                                   paste(EMtable[tid,"EM"],"dne",sep=".")),
                         session=sess)
-  print(sapply(NetworkAllNodes(EMnet),NodeVisPos))
-  browser()
+  #print(sapply(NetworkAllNodes(EMnet),NodeVisPos))
+  #browser()
   obs <- AdjoinNetwork(Student.SM,EMnet)
   CompileNetwork(Student.SM)
 
@@ -565,7 +565,7 @@ for (itask in first.task:last.task) {
 
   ## Cleanup, Delete EM and Absob Observables
   DeleteNetwork(EMnet)
-  #try(AbsorbNodes(obs)) # Still broken
+  try(AbsorbNodes(obs)) # Still broken
 }
 ```
 
@@ -609,6 +609,18 @@ woeBal(Student.History,c("High","Medium"),"Low",
        title=paste("Evidence Balance Sheet for ",
                    rownames(miniACED.data)[Student.row]))
 ```
+## Building a marginal graph.
+
+```{r calcMargins}
+CompileNetwork(Student.SM)
+profs <- NetworkNodesInSet(Student.SM,"Proficiencies")
+allBeliefs <- sapply(profs,function(n) rev(NodeBeliefs(n)))
+allBeliefs
+```
+```{r stackedBars}
+stackedBars(allBeliefs,2)
+```
+
 
 ## For More information
 

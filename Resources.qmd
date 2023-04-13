@@ -4,31 +4,23 @@ title: "Resources"
 
 ## These Web Pages
 
-These web pages are available in both a static version (<https://pluto.coe.fsu.edu/PeanutTutorial>) and a source version (<https://github.com/ralmond/PeanutTutorial>).
+These web pages are available in both a static version (<https://pluto.coe.fsu.edu/PeanutTutorial>) and a source version (<https://github.com/ralmond/PeanutTutorial>.git).
 
-The easiest way to access the Peanut tutorial is to use [R Studio](https://posit.co/products/open-source/rstudio/).  Go to new project, and select "From Version control", then "Git" then put 'https://pluto.coe.fsu.edu/ralmond/PeanutTutorial.git' in the 'Repository URL' box.
+The easiest way to access the Peanut tutorial is to use [R Studio](https://posit.co/products/open-source/rstudio/). Go to new project, and select "From Version control", then "Git" then put 'https://github.com/ralmond/PeanutTutorial.git' in the 'Repository URL' box.
 
 ![Git dialog](img/GitDialog.png)
 
-The `.qmd` files contain a mixture of text and R code.  You will need
-to download the `quarto` package for these to work properly, but R Studio will guide you through this.
+The `.qmd` files contain a mixture of text and R code. You will need to download the `quarto` package for these to work properly, but R Studio will guide you through this.
 
 ## Netica
 
-There are a number of packages that will do the basic Bayesian network
-computations. For the purposes of this tutorial, we are using
-[Netica](https://norsys.com)Ⓡ. Netica is available in two versions: a
-graphical user interface (GUI) version and an application programmers
-interface (API). We will use both in this class.
+There are a number of packages that will do the basic Bayesian network computations. For the purposes of this tutorial, we are using [Netica](https://norsys.com)Ⓡ. Netica is available in two versions: a graphical user interface (GUI) version and an application programmers interface (API). We will use both in this class.
 
-Netica also comes in both a free (but not open source) version and a
-paid version. The paid version is used by purchasing an unlock code
-from Norsys. The free version is specifically for training and
-evaluation. It is limited in the size of the networks, but it has
-sufficient capacity for most of the exercises in this tutorial.
+Netica also comes in both a free (but not open source) version and a paid version. The paid version is used by purchasing an unlock code from Norsys. The free version is specifically for training and evaluation. It is limited in the size of the networks, but it has sufficient capacity for most of the exercises in this tutorial.
 
 -   Go to `https://norsys.com` and download the latest version of [`Netica.exe`](https://norsys.com/downloads/Netica_Win.exe).
 -   Unix/linux users: `Netica.exe` runs without major problems under Wine64.
+
 ```{bash}
 #| eval: FALSE
 #| code-fold: TRUE
@@ -38,8 +30,9 @@ wine64 Netica_Win.exe
 wine64 "C:\\Netica\Netica 609\Netica.exe"
 ```
 
--   Mac OS Intel -- I have built a wineskin version of `Netica.exe`.  It is available at <https://pluto.coe.fsu.edu/MacNetica2.app.zip> (You may need to right click on the app, and then open the Wineskin app inside).
--   Mac OS ARM -- I don't have access to an ARM Mac to do testing.  I am seeing reports that the latest version of Wine supports Rosetta.  If you are using homebrew, you can try:
+-   Mac OS Intel -- I have built a wineskin version of `Netica.exe`. It is available at <https://pluto.coe.fsu.edu/MacNetica2.app.zip> (You may need to right click on the app, and then open the Wineskin app inside).
+-   Mac OS ARM -- I don't have access to an ARM Mac to do testing. I am seeing reports that the latest version of Wine supports Rosetta. If you are using homebrew, you can try:
+
 ```{bash}
 #| eval: FALSE
 #| code-fold: TRUE
@@ -49,21 +42,13 @@ wine Netica_Win.exe
 wine "C:\\Netica\Netica 609\Netica.exe"
 ```
 
-
 ## Peanut and RNetia
 
-The R package `RNetica` provides an R binding of the Netica API
-(hence, it requires the API and not GUI license). `RNetica` is
-available at <https://ralmond.r-universe.dev/> (source code is at
-<https://github.com/ralmond/>).
+The R package `RNetica` provides an R binding of the Netica API (hence, it requires the API and not GUI license). `RNetica` is available at <https://ralmond.r-universe.dev/> (source code is at <https://github.com/ralmond/>).
 
-If you have not already done so, we recommend downloading [R
-Studio](https://posit.co/products/open-source/rstudio/), in the
-process of installing R Studio, you will need to install R itself
-(\<https://cloud.r-project.org/).
+If you have not already done so, we recommend downloading [R Studio](https://posit.co/products/open-source/rstudio/), in the process of installing R Studio, you will need to install R itself (\<https://cloud.r-project.org/).
 
-Once you have R installed, you can install `RNetica` and running
-related packages by running the following code:
+Once you have R installed, you can install `RNetica` and running related packages by running the following code:
 
 ```{r InstallRNetica}
 if (!require('PNetica')) 
@@ -78,24 +63,18 @@ This bundle contains the following packages:
 -   `Peanut` --- An object oriented layer for working with parameterized networks (`PNet`s).\
 -   `PNetica` --- All of the Netica specific implementation of the `Peanut` protocol.
 
-The intention is that `Peanut` (and `CPTtools`) are open
-implementation protocols that are independent of the specific Bayes
-net implementation. I'm currently looking for volunteers to build the
-equivalent of `PNetica` for other Bayes net engines.
+The intention is that `Peanut` (and `CPTtools`) are open implementation protocols that are independent of the specific Bayes net implementation. I'm currently looking for volunteers to build the equivalent of `PNetica` for other Bayes net engines.
 
 ## Sample Networks.
 
-The following zip files contain the sample networks used in the
-tutorial.  (If you have downloaded the complete tutorial from github,
-you have already downloaded these and can skip this step.)
+The following zip files contain the sample networks used in the tutorial. (If you have downloaded the complete tutorial from github, you have already downloaded these and can skip this step.)
 
-* [IntroNets.zip](https://pluto.coe.fsu.edu/PeanutTutorial/IntroNets.zip)  Used in Session 1
-* [CompensatoryConjunctiveNets.zip](https://pluto.coe.fsu.edu/PeanutTutorial/CompensatoryConjunctiveNets.zip)  Used in Session 2
-* [miniACED](https://pluto.coe.fsu.edu/PeanutTutorial/miniACED.zip)  Used in Session 3a
-* [LearningNets](https://pluto.coe.fsu.edu/PeanutTutorial/LearningNets.zip)  Used in Session ??
-* [DBNExamples](https://pluto.coe.fsu.edu/PeanutTutorial/DBNExamples.zip) Used in Session 4
+-   [IntroNets.zip](https://pluto.coe.fsu.edu/PeanutTutorial/IntroNets.zip) Used in Session 1
+-   [CompensatoryConjunctiveNets.zip](https://pluto.coe.fsu.edu/PeanutTutorial/CompensatoryConjunctiveNets.zip) Used in Session 2
+-   [miniACED](https://pluto.coe.fsu.edu/PeanutTutorial/miniACED.zip) Used in Session 3a
+-   [LearningNets](https://pluto.coe.fsu.edu/PeanutTutorial/LearningNets.zip) Used in Session ??
+-   [DBNExamples](https://pluto.coe.fsu.edu/PeanutTutorial/DBNExamples.zip) Used in Session 4
 
 Download these and unzip them in the directory from which you will be running R.
 
 (If you put them somewhere else, you may need to adjust scripts to point to the right directory.)
-
