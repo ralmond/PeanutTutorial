@@ -1,0 +1,35 @@
+---
+title: "Medical Index"
+---
+
+1) Reworked ECD -- Patient Status Model -- Evidence Model (Test outcomes) -- Assembly Model
+
+2) Bayes Net Basics 
+  - Nodes and edges
+  - Local independence
+  - Competing Explanations.
+  
+3) Simple Examples
+  - L&S example (Lung Cancer)
+  - Compensatory/Conjunction
+  - Heart Disease (diagnosis) 
+  
+4) Weight of Evidence
+  - Evidence Spreadsheet
+  - Test Selection
+  
+5) Influence Diagrams
+  - Decisions
+  - Utility
+  - Plans
+
+6) Dynamic Models
+  - DBN
+  - POMDP
+  
+7) Fitting Models to Data
+  - Fixed Structure
+    - EM appraoches
+    - MCMC approaches
+  - Learning Structure
+  

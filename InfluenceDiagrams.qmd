@@ -1,0 +1,3 @@
+---
+title: "Influence Diagrams"
+---
