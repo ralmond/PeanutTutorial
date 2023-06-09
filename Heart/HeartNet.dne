@@ -1,0 +1,511 @@
+// ~->[DNET-1]->~
+
+// File created by an unlicensed user using Netica 6.09 on May 30, 2023 at 16:49:18 UTC.
+
+bnet HeartNet {
+AutoCompile = TRUE;
+autoupdate = TRUE;
+whenchanged = 1685465355;
+
+visual V2 {
+	defdispform = BELIEFBARS;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 9;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	ShowLinkStrengths = 1;
+	windowposn = (43, 7, 1728, 917);
+	resolution = 72;
+	drawingbounds = (1899, 950);
+	showpagebreaks = FALSE;
+	usegrid = TRUE;
+	gridspace = (6, 6);
+	NodeSet Node {BuiltIn = 1; Color = 0x00e1e1e1;};
+	NodeSet Nature {BuiltIn = 1; Color = 0x00f8eed2;};
+	NodeSet Deterministic {BuiltIn = 1; Color = 0x00d3caa6;};
+	NodeSet Finding {BuiltIn = 1; Color = 0x00c8c8c8;};
+	NodeSet Constant {BuiltIn = 1; Color = 0x00ffffff;};
+	NodeSet ConstantValue {BuiltIn = 1; Color = 0x00ffffb4;};
+	NodeSet Utility {BuiltIn = 1; Color = 0x00ffbdbd;};
+	NodeSet Decision {BuiltIn = 1; Color = 0x00dee8ff;};
+	NodeSet Documentation {BuiltIn = 1; Color = 0x00f0fafa;};
+	NodeSet Title {BuiltIn = 1; Color = 0x00ffffff;};
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		};
+	};
+
+node health {
+	discrete = TRUE;
+	states = (Healthy, S1, S2, S3, S4);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = ();
+	probs = 
+		// Healthy      S1           S2           S3           S4           
+		  (0.5357143,   0.1818182,   0.1201299,   0.1168831,   0.04545455);
+	numcases = 308;
+	title = "Health-State";
+	whenchanged = 1685465185;
+	belief = (0.5357144, 0.1818181, 0.1201299, 0.1168831, 0.04545456);
+	visual V2 {
+		center = (942, 462);
+		height = 6;
+		};
+	};
+
+node thal {
+	discrete = TRUE;
+	states = (Normal, FixedDefect, ReversibleDefect);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (health);
+	probs = 
+		// Normal       FixedDefect  ReversibleDefect  // health     
+		  (0.7831326,   0.04216867,  0.1746988,    // Healthy 
+		   0.3965517,   0.06896552,  0.5344828,    // S1      
+		   0.2105263,   0.1842105,   0.6052632,    // S2      
+		   0.1842105,   0.05263158,  0.7631579,    // S3      
+		   0.1875,      0.1875,      0.625);       // S4      ;
+	numcases = 
+		                 // health     
+		  (166,          // health 
+		   58,           // S1      
+		   38,           // S2      
+		   38,           // S3      
+		   16);          // S4      ;
+	title = "Exer-Thal-Defects";
+	whenchanged = 1683533912;
+	belief = (0.54698, 0.07193319, 0.3810868);
+	visual V2 {
+		center = (678, 282);
+		height = 2;
+		link 1 {
+			path = ((873, 415), (726, 316));
+			};
+		};
+	};
+
+node restecg {
+	discrete = TRUE;
+	states = (Normal, STTabnormality, LeftVentricularHypertrophy);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (health);
+	probs = 
+		// Normal       STTabnormality LeftVentricularH  // health     
+		  (0.5748503,   0.01197605,  0.4131736,    // Healthy 
+		   0.4137931,   0.01724138,  0.5689655,    // S1      
+		   0.5128205,   0.05128205,  0.4358974,    // S2      
+		   0.3421053,   0.05263158,  0.6052632,    // S3      
+		   0.1875,      0.125,       0.6875);      // S4      ;
+	numcases = 
+		                 // health     
+		  (167,          // Healthy 
+		   58,           // S1      
+		   39,           // S2      
+		   38,           // S3      
+		   16);          // S4      ;
+	title = "Rest-Ecg";
+	whenchanged = 1683533912;
+	belief = (0.4933048, 0.0275446, 0.4791506);
+	visual V2 {
+		center = (1122, 288);
+		height = 7;
+		link 1 {
+			path = ((991, 415), (1088, 322));
+			};
+		};
+	};
+
+node fbs {
+	discrete = TRUE;
+	states = (high, normal);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (health);
+	probs = 
+		// high         low           // health     
+		  (0.1445783,   0.8554217,    // Healthy 
+		   0.0877193,   0.9122807,    // S1      
+		   0.2631579,   0.7368421,    // S2      
+		   0.2432432,   0.7567568,    // S3      
+		   0.1333333,   0.8666667);   // S4      ;
+	numcases = 
+		                 // health     
+		  (166,          // Healthy 
+		   57,           // S1      
+		   38,           // S2      
+		   37,           // S3      
+		   15);          // S4      ;
+	title = "Fast-Bsug";
+	whenchanged = 1683533912;
+	belief = (0.1595064, 0.8404936);
+	visual V2 {
+		center = (1380, 306);
+		height = 15;
+		};
+	};
+
+node ca {
+	discrete = TRUE;
+	states = (Zero, One, Two, Three, Four);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (health);
+	probs = 
+		// Zero         One          Two          Three        Four          // health     
+		  (0.7891566,   0.1325301,   0.04819277,  0.02409638,  0.006024096,  // Healthy 
+		   0.4576271,   0.3389831,   0.1186441,   0.06779661,  0.01694915,   // S1      
+		   0.2439024,   0.3658537,   0.2439024,   0.1219512,   0.02439024,   // S2      
+		   0.225,       0.225,       0.375,       0.15,        0.025,        // S3      
+		   0.2222222,   0.2222222,   0.1666667,   0.3333333,   0.05555556);  // S4      ;
+	numcases = 
+		                 // health     
+		  (166,          // Healthy 
+		   59,           // S1      
+		   41,           // S2      
+		   40,           // S3      
+		   18);          // S4      ;
+	title = "Colored-Floro";
+	whenchanged = 1683533912;
+	belief = (0.5716671, 0.2129812, 0.1280961, 0.0725694, 0.01468618);
+	visual V2 {
+		center = (1458, 426);
+		height = 10;
+		};
+	};
+
+node thalach {
+	discrete = TRUE;
+	states = (Low, Moderate, High);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (health);
+	probs = 
+		// Low          Moderate     High          // health     
+		  (0.005988024, 0.005988024, 0.9880239,    // Healthy 
+		   0.01724138,  0.01724138,  0.9655172,    // S1      
+		   0.02564103,  0.02564103,  0.948718,     // S2      
+		   0.02631579,  0.02631579,  0.9473684,    // S3      
+		   0.0625,      0.0625,      0.875);       // S4      ;
+	numcases = 
+		                 // health     
+		  (167,          // Healthy 
+		   58,           // S1      
+		   39,           // S2      
+		   38,           // S3      
+		   16);          // S4      ;
+	title = "Max-Heart-Rate";
+	whenchanged = 1683533912;
+	belief = (0.0153397, 0.0153397, 0.9693206);
+	visual V2 {
+		center = (942, 660);
+		height = 11;
+		};
+	};
+
+node slope {
+	discrete = TRUE;
+	states = (down, flat, up);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (health, thalach);
+	probs = 
+		// down         flat         up            // health     thalach  
+		  (0.3333333,   0.3333333,   0.3333333,    // Healthy Low      
+		   0.3333333,   0.3333333,   0.3333333,    // Healthy Moderate 
+		   0.6407186,   0.2994012,   0.05988024,   // Healthy High     
+		   0.3333333,   0.3333333,   0.3333333,    // S1      Low      
+		   0.3333333,   0.3333333,   0.3333333,    // S1      Moderate 
+		   0.3965517,   0.5517241,   0.05172414,   // S1      High     
+		   0.3333333,   0.3333333,   0.3333333,    // S2      Low      
+		   0.3333333,   0.3333333,   0.3333333,    // S2      Moderate 
+		   0.2051282,   0.6923077,   0.1025641,    // S2      High     
+		   0.3333333,   0.3333333,   0.3333333,    // S3      Low      
+		   0.3333333,   0.3333333,   0.3333333,    // S3      Moderate 
+		   0.1842105,   0.6578947,   0.1578947,    // S3      High     
+		   0.3333333,   0.3333333,   0.3333333,    // S4      Low      
+		   0.3333333,   0.3333333,   0.3333333,    // S4      Moderate 
+		   0.125,       0.6875,      0.1875);      // S4      High     ;
+	numcases = 
+		                 // health     thalach  
+		  (3,            // Healthy Low      
+		   3,            // Healthy Moderate 
+		   167,          // Healthy High     
+		   3,            // S1      Low      
+		   3,            // S1      Moderate 
+		   58,           // S1      High     
+		   3,            // S2      Low      
+		   3,            // S2      Moderate 
+		   39,           // S2      High     
+		   3,            // S3      Low      
+		   3,            // S3      Moderate 
+		   38,           // S3      High     
+		   3,            // S4      Low      
+		   3,            // S4      Moderate 
+		   16);          // S4      High     ;
+	title = "Slope-Peak";
+	whenchanged = 1683533912;
+	belief = (0.4677198, 0.4446487, 0.08763155);
+	visual V2 {
+		center = (1272, 636);
+		height = 8;
+		};
+	};
+
+node oldpeak {
+	discrete = TRUE;
+	states = (High, Zero, Low);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (health, slope);
+	probs = 
+		// High         Zero         Low           // health     slope 
+		  (0.01834862,  0.5963303,   0.3853211,    // Healthy down  
+		   0.05769231,  0.1730769,   0.7692308,    // Healthy flat  
+		   0.4166667,   0.1666667,   0.4166667,    // Healthy up    
+		   0.04,        0.6,         0.36,         // S1      down  
+		   0.2647059,   0.1176471,   0.6176471,    // S1      flat  
+		   0.4,         0.2,         0.4,          // S1      up    
+		   0.2,         0.4,         0.4,          // S2      down  
+		   0.3793103,   0.06896552,  0.5517241,    // S2      flat  
+		   0.5,         0.1666667,   0.3333333,    // S2      up    
+		   0.2222222,   0.3333333,   0.4444444,    // S3      down  
+		   0.2962963,   0.1111111,   0.5925926,    // S3      flat  
+		   0.75,        0.125,       0.125,        // S3      up    
+		   0.25,        0.5,         0.25,         // S4      down  
+		   0.5384616,   0.07692308,  0.3846154,    // S4      flat  
+		   0.6,         0.2,         0.2);         // S4      up    ;
+	numcases = 
+		                 // health     slope 
+		  (109,          // Healthy down  
+		   52,           // Healthy flat  
+		   12,           // Healthy up    
+		   25,           // S1      down  
+		   34,           // S1      flat  
+		   5,            // S1      up    
+		   10,           // S2      down  
+		   29,           // S2      flat  
+		   6,            // S2      up    
+		   9,            // S3      down  
+		   27,           // S3      flat  
+		   8,            // S3      up    
+		   4,            // S4      down  
+		   13,           // S4      flat  
+		   5);           // S4      up    ;
+	title = "Old-Peak";
+	whenchanged = 1683533949;
+	belief = (0.1707198, 0.3376887, 0.4915915);
+	visual V2 {
+		center = (1458, 552);
+		height = 9;
+		};
+	};
+
+node Age {
+	discrete = TRUE;
+	states = (FiftyMinus, FiftyPlus, SixtyMinus, SixtyPlus);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (thalach, health);
+	probs = 
+		// FiftyMinus   FiftyPlus    SixtyMinus   SixtyPlus     // thalach  healthy     
+		  (0.25,        0.25,        0.25,        0.25,         // Low      Healthy 
+		   0.25,        0.25,        0.25,        0.25,         // Low      S1      
+		   0.25,        0.25,        0.25,        0.25,         // Low      S2      
+		   0.25,        0.25,        0.25,        0.25,         // Low      S3      
+		   0.25,        0.25,        0.25,        0.25,         // Low      S4      
+		   0.25,        0.25,        0.25,        0.25,         // Moderate Healthy 
+		   0.25,        0.25,        0.25,        0.25,         // Moderate S1      
+		   0.25,        0.25,        0.25,        0.25,         // Moderate S2      
+		   0.25,        0.25,        0.25,        0.25,         // Moderate S3      
+		   0.25,        0.25,        0.25,        0.25,         // Moderate S4      
+		   0.005952381, 0.2321429,   0.1666667,   0.5952381,    // High     Healthy 
+		   0.01694915,  0.1355932,   0.3050847,   0.5423729,    // High     S1      
+		   0.025,       0.1,         0.3,         0.575,        // High     S2      
+		   0.02564103,  0.2051282,   0.2820513,   0.4871795,    // High     S3      
+		   0.05882353,  0.1176471,   0.2941177,   0.5294118);   // High     S4      ;
+	numcases = 
+		                 // thalach  health     
+		  (4,            // Low      Healthy 
+		   4,            // Low      S1      
+		   4,            // Low      S2      
+		   4,            // Low      S3      
+		   4,            // Low      S4      
+		   4,            // Moderate Healthy 
+		   4,            // Moderate S1      
+		   4,            // Moderate S2      
+		   4,            // Moderate S3      
+		   4,            // Moderate S4      
+		   168,          // High     Healthy 
+		   59,           // High     S1      
+		   40,           // High     S2      
+		   39,           // High     S3      
+		   17);          // High     S4      ;
+	whenchanged = 1685465182;
+	belief = (0.02182391, 0.1931361, 0.2265641, 0.5584759);
+	visual V2 {
+		center = (618, 606);
+		height = 3;
+		};
+	};
+
+node CP {
+	discrete = TRUE;
+	states = (TypicalAnginal, AtypicalAnginal, NonAnginal, Asymptotic);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (health);
+	probs = 
+		// TypicalAnginal AtypicalAnginal NonAnginal Asymptotic  // health     
+		  (0.1011905,   0.25,        0.4107143,   0.2380952,    // Healthy 
+		   0.1016949,   0.1186441,   0.1694915,   0.6101695,    // S1      
+		   0.05,        0.05,        0.125,       0.775,        // S2      
+		   0.02564103,  0.07692308,  0.1282051,   0.7692308,    // S3      
+		   0.1176471,   0.05882353,  0.1176471,   0.7058824);   // S4      ;
+	numcases = 
+		                 // health     
+		  (168,          // Healthy 
+		   59,           // S1      
+		   40,           // S2      
+		   39,           // S3      
+		   17);          // S4      ;
+	title = "Chest-Pain";
+	whenchanged = 1685465184;
+	belief = (0.08705027, 0.1731715, 0.286191, 0.4535872);
+	visual V2 {
+		center = (624, 462);
+		height = 5;
+		};
+	};
+
+node healthy {
+	discrete = TRUE;
+	states = (Yes, No);
+	kind = NATURE;
+	chance = DETERMIN;
+	parents = (health);
+	functable = 
+		                    // health     
+		  (Yes,             // Healthy 
+		   No,              // S1      
+		   No,              // S2      
+		   No,              // S3      
+		   No);             // S4      ;
+	title = "Healthy?";
+	whenchanged = 1685465355;
+	belief = (0.5357144, 0.4642856);
+	visual V2 {
+		center = (306, 282);
+		height = 4;
+		};
+	};
+
+node Sex {
+	discrete = TRUE;
+	states = (Male, Female);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (thal);
+	probs = 
+		// Male         Female        // thal             
+		  (0.5178571,   0.4821429,    // Normal           
+		   0.9,         0.1,          // FixedDefect      
+		   0.8655462,   0.1344538);   // ReversibleDefect ;
+	numcases = 
+		                 // thal             
+		  (168,          // Normal           
+		   20,           // FixedDefect      
+		   119);         // ReversibleDefect ;
+	whenchanged = 1683533912;
+	belief = (0.6778456, 0.3221544);
+	visual V2 {
+		center = (870, 150);
+		height = 1;
+		};
+	};
+
+node chol {
+	discrete = TRUE;
+	states = (Normal, Moderate, High, VeryHigh);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (restecg);
+	probs = 
+		// Normal       Moderate     High         VeryHigh      // restecg          
+		  (0.006451613, 0.006451613, 0.006451613, 0.9806452,    // Normal           
+		   0.125,       0.125,       0.125,       0.625,        // STTabnormality   
+		   0.006578947, 0.006578947, 0.006578947, 0.9802632);   // LeftVentricularH ;
+	numcases = 
+		                 // restecg          
+		  (155,          // Normal           
+		   8,            // STTabnormality   
+		   152);         // LeftVentricularH ;
+	title = "Chol";
+	whenchanged = 1683533912;
+	belief = (0.009777994, 0.009777994, 0.009777994, 0.970666);
+	visual V2 {
+		center = (1362, 144);
+		height = 14;
+		};
+	};
+
+node trestbps {
+	discrete = TRUE;
+	states = (low, moderate, high);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (Age);
+	probs = 
+		// low          moderate     high          // Age        
+		  (0.3333333,   0.3333333,   0.3333333,    // FiftyMinus 
+		   0.01694915,  0.01694915,  0.9661017,    // FiftyPlus  
+		   0.01388889,  0.01388889,  0.9722222,    // SixtyMinus 
+		   0.005524862, 0.005524862, 0.9889503);   // SixtyPlus  ;
+	numcases = 
+		                 // Age        
+		  (3,            // FiftyMinus 
+		   59,           // FiftyPlus  
+		   72,           // SixtyMinus 
+		   181);         // SixtyPlus  ;
+	title = "Rest-BP";
+	whenchanged = 1683533912;
+	belief = (0.01678036, 0.01678036, 0.9664393);
+	visual V2 {
+		center = (372, 726);
+		height = 12;
+		};
+	};
+
+node exang {
+	discrete = TRUE;
+	states = (Yes, No);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (CP);
+	probs = 
+		// Yes          No            // CP              
+		  (0.2,         0.8,          // TypicalAnginal  
+		   0.09615385,  0.9038461,    // AtypicalAnginal 
+		   0.1363636,   0.8636364,    // NonAnginal      
+		   0.5547945,   0.4452055);   // Asymptotic      ;
+	numcases = 
+		                 // CP              
+		  (25,           // TypicalAnginal  
+		   52,           // AtypicalAnginal 
+		   88,           // NonAnginal      
+		   146);         // Asymptotic      ;
+	title = "Exer-Angina";
+	whenchanged = 1683533912;
+	belief = (0.3247349, 0.6752651);
+	visual V2 {
+		center = (354, 534);
+		height = 13;
+		link 1 {
+			path = ((524, 489), (424, 516));
+			};
+		};
+	};
+ElimOrder = (Sex, exang, fbs, healthy, chol, trestbps, thal, restecg, CP, ca, oldpeak, slope, health, thalach, Age);
+};

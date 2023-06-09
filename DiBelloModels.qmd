@@ -196,28 +196,32 @@ PnodeStateValues(Skills[[1]]) <- effectiveThetas(PnodeNumStates(Skills[[1]]))
 
 2 Combine the parent variables using a *combination rule* to create a single effective theta for each row.
 
-    + The combination rule generally has slope (discrimination)
-    parameters ($\alpha$'s or $a$'s)
+```         
++ The combination rule generally has slope (discrimination)
+parameters ($\alpha$'s or $a$'s)
 
-    + The combination rule generally has difficulty (intercept)
-    parameters ($\beta$'s or $b$'s)
++ The combination rule generally has difficulty (intercept)
+parameters ($\beta$'s or $b$'s)
 
-    + Some rules (e.g., `Compensatory`) have multiple-a's, some (e.g.,
-    `OffsetConjuctive`) have multiple-b's
++ Some rules (e.g., `Compensatory`) have multiple-a's, some (e.g.,
+`OffsetConjuctive`) have multiple-b's
 
-    + Some link functions allow (or even require) different b's for
-    each state of the child variable (step difficulties).
++ Some link functions allow (or even require) different b's for
+each state of the child variable (step difficulties).
 
-    + The partial credit link function allows different a's as well.
++ The partial credit link function allows different a's as well.
+```
 
 ## DiBello Procedure 3:
 
 3 Convert the effective thetas to conditional probablities using a *link function* (IRT-like models)
 
-    + `gradedResponse` -- Lou's original suggestion
-    + `partialCredit` -- More flexible alternative
-    + `normalLink` -- Regression-like model for proficiency variables.
-        - Requires a _link scale parameters_
+```         
++ `gradedResponse` -- Lou's original suggestion
++ `partialCredit` -- More flexible alternative
++ `normalLink` -- Regression-like model for proficiency variables.
+    - Requires a _link scale parameters_
+```
 
 The function `calcDPCFrame` in the CPTtools package does the work. (DPC = Discrete Partial Credit)
 
