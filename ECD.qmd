@@ -257,13 +257,7 @@ sum(Year12[,"Yes"])/sum(Year1[,"Yes"])
 
 $\Pr(S=\text{normal}|A_i)$ -- Probability in normal category given accident.
 
-```{r ciGraph}
-DiagrammeR::grViz("
-digraph AP {
-  Driving -> Year1;
-  Driving -> Year2;
-}")
-```
+![Accident Proneness Graph](img/AP.png)
 
 ## Conditional Independence
 
@@ -274,28 +268,11 @@ digraph AP {
 
 ## Another Example
 
-```{r covidGraph}
-DiagrammeR::grViz("
-digraph Autotrain {
-  Train -> COVID;
-  Train -> MaskOnTrain;
-  MaskOnTrain -> COVID;
-  Vaccine -> COVID;
-  COVID -> fever;
-  COVID -> congestion;
-  COVID -> pcrTest;
-}")
-```
+![Catching Covid on a Train Ride](img/CovidTrain.png)
 
 ## Competing Explanations
 
-```{r CompeteExplain}
-DiagrammeR::grViz("
-digraph CompExpl {
-  Skill1 -> X
-  Skill2 -> X
-}")
-```
+![Competing Explanations](img/CompExpl.png)
 
 -   `Skill1` and `Skill2` are (a priori) independent in population
 -   Task `X` requires both skills (conjunctive model)
@@ -321,15 +298,7 @@ A path is *active* if collider with middle node observed, or non-collider with m
 
 ## D-separation Example
 
-```{r DSep}
-DiagrammeR::grViz('
-digraph DSep {
-  rankdir = "LR";
-  A -> B; A -> C;
-  B -> D; C -> D;
-  D -> E -> F;
-}')
-```
+![D-separation example](img/DSep.png)
 
 $B$ and $C$ are independent if $A$ is known and all of $D$, $E$ or $F$ are not known.
 
@@ -337,14 +306,7 @@ $D$ is independent of $F$ if $E$ is known.
 
 ## D-Separation Exercise
 
-```{r DSepEx}
-DiagrammeR::grViz('
-digraph DSepEx {
-  rankdir = "TB";
-  A -> D; B -> D; B -> E; C -> E;
-  D -> F; D -> G; E -> G; E -> H;
-}')
-```
+![D-separation Exercise](img/DSepEx.png)
 
 -   Are *A* and *C* independent if
     -   We have observed no other variables?
@@ -372,16 +334,7 @@ If ${\cal G}$ is a Bayesian network whose nodes are ${\cal V}$, then we can repl
 
 ## Building Up Complex Networks: IRT
 
-```{r IRT}
-DiagrammeR::grViz('
-digraph IRT {
-  subgraph{ Q[label="θ"] }
-  subgraph {
-  X1; X2; andC[shape=none,label="..."]; XJ
-  }
-  Q -> X1; Q-> X2; Q->andC [style="invis"]; Q->XJ
-}')
-```
+![IRT Graphical Model](img/IRT.png)
 
 For example, in IRT, item responses are conditionally independent given $\theta$:
 
@@ -389,14 +342,7 @@ $$ p(X_1,\ldots,X_J,\theta) = p(\theta) \prod_{j=1}^{J} p(X_j|\theta)$$
 
 ## Bayes net
 
-```{r ABN}
-DiagrammeR::grViz("
-digraph ABN {
-  A -> C; B -> C;
-  C -> D; C -> E;
-  D -> F; E -> F
-}")
-```
+![A Bayesian Network](img/ABN.png)
 
 One factor for each node in graph
 

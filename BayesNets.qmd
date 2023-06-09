@@ -109,17 +109,8 @@ To clear a value, click on it again, or right click and select "undefined".
 
 ## "Context" effect -- Variables
 
-```{r ContextBN}
-DiagrammeR::grViz('
-digraph IRTC {
-  subgraph{ Q[label="θ"]; Context }
-  subgraph {
-  X1; X2; X3; X4; X5;
-  }
-  Q -> X1; Q-> X2; Q-> X3; Q->X4; Q->X5
-  Context -> X3; Context -> X4;
-}')
-```
+![IRT model with context effect](img/IRTC.dot.png)
+
 
 -   Context variable -- A parent variable introduced to handle conditional dependence among observables (testlet)
     -   Consistent with Stout's (1987) 'essential n-dimensionality'

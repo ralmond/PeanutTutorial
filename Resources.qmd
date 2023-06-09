@@ -6,6 +6,7 @@ title: "Resources"
 
 These web pages are available in both a static version (<https://pluto.coe.fsu.edu/PeanutTutorial>) and a source version (<https://github.com/ralmond/PeanutTutorial>.git).
 
+
 The easiest way to access the Peanut tutorial is to use [R Studio](https://posit.co/products/open-source/rstudio/). Go to new project, and select "From Version control", then "Git" then put 'https://github.com/ralmond/PeanutTutorial.git' in the 'Repository URL' box.
 
 ![Git dialog](img/GitDialog.png)
@@ -30,8 +31,22 @@ wine64 Netica_Win.exe
 wine64 "C:\\Netica\Netica 609\Netica.exe"
 ```
 
+<<<<<<< HEAD
 -   Mac OS Intel -- I have built a wineskin version of `Netica.exe`. It is available at <https://pluto.coe.fsu.edu/MacNetica2.app.zip> (You may need to right click on the app, and then open the Wineskin app inside).
 -   Mac OS ARM -- I don't have access to an ARM Mac to do testing. I am seeing reports that the latest version of Wine supports Rosetta. If you are using homebrew, you can try:
+=======
+-   There is also a version of [Cross Over](https://www.codeweavers.com/crossover) for Linux; this uses the same Wine code base, but provides 1-year technical support. There is also a 30-day free trial.
+
+-   Mac OS. A couple of options:
+
+-   *Prebuilt wineskin*. I've used the [wineskin](https://github.com/Gcenx/WineskinServer/) tool to pre-wrap an image. This is available at [NeticaMac.dmg](https://pluto.coe.fsu.edu/BNinEA/NeticaMac.dmg).
+
+    -   This is not properly signed, so will generate issues with the apple quarantine system. ~~Open the `System Preferences...` and go to the `Security & Privacy` tab. Unlock (requires admin password) and then select "App Store and identified developers". Click on the "NeticaSilicon.app", this will give an error message. Go back to the security and privacy tab, and a button asking if you want to run the application should be there. Click it to give it permission to run.~~
+    - Apple's GateKeeper **really** doesn't want you to run research software on your computer.  I think this works, but it needs to be a user with admin privileges.  Copy `NeticaSilicon.app` to someplace on your computer, I'm assuming you are copying it to `/Applications`.  Then open a terminal and type `xattr -c -r /Applications/NeticaSilicon.app`  (change the location if you installed the file someplace else).  This may give a few error messages, but it should now work.
+    
+
+-   *Install Wine* If you are using [homebrew](https://brew.sh), you can try:
+>>>>>>> 1b8aba9584e85d6ddafaae1e8ed80053a7dbf65f
 
 ```{bash}
 #| eval: FALSE
@@ -41,6 +56,14 @@ curl https://norsys.com/downloads/Netica_Win.exe > Netica_Win.exe
 wine Netica_Win.exe
 wine "C:\\Netica\Netica 609\Netica.exe"
 ```
+
+
+-   Use [Cross Over](https://www.codeweavers.com/crossover) (see above).
+
+Note, these all install the unlicensed version of Netica. You will still need to purchase a license key from Norsys (https://norsys.com). Note that GUI license key and the API license key needed for RNetica, are separate purchase. (You can buy a combined key but it is twice as expensive).
+
+Brent Borelange (Norsys CEO) has expressed willingness to support Netica run under Wine/Crossover. (I have not had problems.)
+
 
 ## Peanut and RNetia
 
@@ -64,6 +87,17 @@ This bundle contains the following packages:
 -   `PNetica` --- All of the Netica specific implementation of the `Peanut` protocol.
 
 The intention is that `Peanut` (and `CPTtools`) are open implementation protocols that are independent of the specific Bayes net implementation. I'm currently looking for volunteers to build the equivalent of `PNetica` for other Bayes net engines.
+
+
+If you purchase a license key from Norsys, I recommend putting it into the `.Renviron` file in your home directory.
+
+```{bash}
+#|eval: false
+NETICA_LICENSE_KEY="+AlmondR/FloridaStateU/120,310-6-A/XXXXX"
+```
+
+The `RNetica` package will set the license key from this variable if it is present when it launches.
+
 
 ## Sample Networks.
 

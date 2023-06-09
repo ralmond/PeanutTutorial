@@ -1,0 +1,9 @@
+digraph Autotrain {
+  Train -> COVID;
+  Train -> MaskOnTrain;
+  MaskOnTrain -> COVID;
+  Vaccine -> COVID;
+  COVID -> fever;
+  COVID -> congestion;
+  COVID -> pcrTest;
+}

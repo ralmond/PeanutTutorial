@@ -9,9 +9,9 @@ library(PNetica)
 ```
 
 ## Start RNetica Session
+
 ```{r startNetica}
 ## I put my license key in my .Renviron
 sess <- RNetica::NeticaSession(Sys.getenv("NETICA_LICENSE_KEY"))
 startSession(sess)
 ```
-

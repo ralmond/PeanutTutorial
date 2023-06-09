@@ -9,6 +9,8 @@ website:
         text: "ECD Intro"
       - href: BayesNets.qmd
         text: "Bayesian Networks"
+      - href: Heart.qmd
+        text: "Heart Example"
       - href: Scoring.qmd
         text: "Scoring"
       - href: DiBelloModels.qmd
@@ -30,7 +32,7 @@ website:
 margin-header: |
   ![Peanut Logo](/img/PeanutLogo.png)
 
-bibliography:  bninea.bib
+bibliography:  PeanutTutorial.bib
 csl:  apa.csl
 
 format:
@@ -39,5 +41,5 @@ format:
     css: styles.css
     toc: true
 
-editor: visual
+editor: source
 

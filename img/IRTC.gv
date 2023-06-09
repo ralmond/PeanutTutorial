@@ -1,0 +1,8 @@
+digraph IRTC {
+  subgraph{ Q[label="θ"]; Context }
+  subgraph {
+  X1; X2; X3; X4; X5;
+  }
+  Q -> X1; Q-> X2; Q-> X3; Q->X4; Q->X5
+  Context -> X3; Context -> X4;
+}
