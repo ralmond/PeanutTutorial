@@ -609,6 +609,7 @@ woeBal(Student.History,c("High","Medium"),"Low",
        title=paste("Evidence Balance Sheet for ",
                    rownames(miniACED.data)[Student.row]))
 ```
+
 ## Building a marginal graph.
 
 ```{r calcMargins}
@@ -617,10 +618,10 @@ profs <- NetworkNodesInSet(Student.SM,"Proficiencies")
 allBeliefs <- sapply(profs,function(n) rev(NodeBeliefs(n)))
 allBeliefs
 ```
+
 ```{r stackedBars}
 stackedBars(allBeliefs,2)
 ```
-
 
 ## For More information
 

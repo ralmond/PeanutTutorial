@@ -315,7 +315,7 @@ node healthy {
 node oldpeak {
 	discrete = FALSE;
 	states = (Zero, Low, High);
-	levels = (-1, 1, 2, 10);
+	levels = (-10, 1, 2, 10);
 	kind = NATURE;
 	chance = CHANCE;
 	parents = (health, slope);

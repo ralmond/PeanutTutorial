@@ -14,122 +14,42 @@ library(PNetica)
 
 ## Abstract:
 
-Cognitively diagnostic models (CDMs) contain factors which describes
-the relationship between variables describing examinee skills and the
-observable outcome variables from tasks used to assess those
-skills. For discrete variables, this factor can be expressed as a
-conditional probability table (CPT; the term comes from Bayesian
-networks, but applicable to any discrete CDM). This paper introduces a
-visualization of the CPT where each conditional distribution is
-represented with a split bar. There is one bar for each possible
-combinations of skills. The visualization is interactive: the view
-changes as the model parameters change. This tool should be useful for
-teaching the differences between conjunctive, disjunctive and
-compensatory models as well as for eliciting prior opinion about model
-parameters from experts.
+Cognitively diagnostic models (CDMs) contain factors which describes the relationship between variables describing examinee skills and the observable outcome variables from tasks used to assess those skills. For discrete variables, this factor can be expressed as a conditional probability table (CPT; the term comes from Bayesian networks, but applicable to any discrete CDM). This paper introduces a visualization of the CPT where each conditional distribution is represented with a split bar. There is one bar for each possible combinations of skills. The visualization is interactive: the view changes as the model parameters change. This tool should be useful for teaching the differences between conjunctive, disjunctive and compensatory models as well as for eliciting prior opinion about model parameters from experts.
 
-## Introduction: 
+## Introduction:
 
-Bayesian networks (Almond, Mislevy, Steinberg, Yan and Williamson,
-2015) are a mathematical notation for representing cognitively
-diagnostic models (CDMs). The distribution for discrete Bayesian
-networks associates a conditional probability table (CPT) with each
-node (variable) in the network. Configurations of the parent variables
-define the rows of the table and the columns correspond to the
-possible states of the target variable. Each row is a (conditional)
-probability distribution, whose values sum to one. There is a close
-correspondence between the graphical structure of the Bayes net and
-the Q-matrix (Almond, 2010); ones in the Q-matrix map to the arrows in
-the directed graph. 
-
-
-
+Bayesian networks (Almond, Mislevy, Steinberg, Yan and Williamson, 2015) are a mathematical notation for representing cognitively diagnostic models (CDMs). The distribution for discrete Bayesian networks associates a conditional probability table (CPT) with each node (variable) in the network. Configurations of the parent variables define the rows of the table and the columns correspond to the possible states of the target variable. Each row is a (conditional) probability distribution, whose values sum to one. There is a close correspondence between the graphical structure of the Bayes net and the Q-matrix (Almond, 2010); ones in the Q-matrix map to the arrows in the directed graph.
 
 ## DiBello Models:
 
-Lou DiBello (Almond, et al, 2001) devised a three-step procedure to
-parameterize conditional probability tables for a target
-variable. This procedure (a) associates an effective theta (a real
-value) to each possible level of each parent (skill) variable, (b)
-defines a structure function that projects the parent effective thetas
-into a linear scale for the target variable, and (c) a link function
-that maps the projected effective theta onto a conditional probability
-distribution over the target. Different forms for the structure
-functions yield different kinds of relationships. Functions based on
-sums produce compensatory models, minimums produce conjunctive models,
-and maximums produce disjunctive models.  
+Lou DiBello (Almond, et al, 2001) devised a three-step procedure to parameterize conditional probability tables for a target variable. This procedure (a) associates an effective theta (a real value) to each possible level of each parent (skill) variable, (b) defines a structure function that projects the parent effective thetas into a linear scale for the target variable, and (c) a link function that maps the projected effective theta onto a conditional probability distribution over the target. Different forms for the structure functions yield different kinds of relationships. Functions based on sums produce compensatory models, minimums produce conjunctive models, and maximums produce disjunctive models.
 
 ## Visualization:
 
-The CPT is an array of probability distributions with each cell
-corresponding to a configuration of the parent variables. The
-distributions are represented with a split bar using a color intensity
-scale. The bottom half of Figure 1 shows an example. Note that Figure
-1 is a tabbed: the viewer can switch between a tabular view of the
-probabilities or the effective thetas, or the graphical
-representation. 
+The CPT is an array of probability distributions with each cell corresponding to a configuration of the parent variables. The distributions are represented with a split bar using a color intensity scale. The bottom half of Figure 1 shows an example. Note that Figure 1 is a tabbed: the viewer can switch between a tabular view of the probabilities or the effective thetas, or the graphical representation.
 
-Figure 1 is an R shiny (Chang, Cheng, Allaire, Xie and McPherson,
-2018) gadget. The sliders represent model parameters and the drop down
-menus select structure and link functions. Manipulating these controls
-produces immediate feedback in the graph and tables below. 
+Figure 1 is an R shiny (Chang, Cheng, Allaire, Xie and McPherson, 2018) gadget. The sliders represent model parameters and the drop down menus select structure and link functions. Manipulating these controls produces immediate feedback in the graph and tables below.
 
-Figure 1 represents a version of the gadget that uses the compensatory
-structure function. In this version of the gadget, there is one slope
-(alpha) per parent variable and one beta (difficulty, negative
-intercept) per state of the child variable.  
+Figure 1 represents a version of the gadget that uses the compensatory structure function. In this version of the gadget, there is one slope (alpha) per parent variable and one beta (difficulty, negative intercept) per state of the child variable.
 
-Figure 2 represents an alternative view for conjunctive and
-disjunctive models. In this representation, there is a different beta
-for each parent and a different alpha for each level. 
+Figure 2 represents an alternative view for conjunctive and disjunctive models. In this representation, there is a different beta for each parent and a different alpha for each level.
 
-Figure 3 represents and alternative link function, one based on the
-normal distribution. This link function has an extra scale
-parameter. With the compensatory structure function, this produces a
-discrete regression. This can also be used with no parent variables
-(Figure 4). 
+Figure 3 represents and alternative link function, one based on the normal distribution. This link function has an extra scale parameter. With the compensatory structure function, this produces a discrete regression. This can also be used with no parent variables (Figure 4).
 
-Figures 5a and 5b show the most complex case. The use of the partial
-credit link function allows the use of a different structure function
-and a different set of parent variables for each transition. These are
-represented in separate tabs. This allows construction of models using
-an inner Q-matrix (Almond, 2018). 
+Figures 5a and 5b show the most complex case. The use of the partial credit link function allows the use of a different structure function and a different set of parent variables for each transition. These are represented in separate tabs. This allows construction of models using an inner Q-matrix (Almond, 2018).
 
-The software for these visualizations are available from
-https://pluto.coe.fsu.edu/RNetica/Peanut.html or
-https://github.com/ralmond/Peanut.
-
+The software for these visualizations are available from <https://pluto.coe.fsu.edu/RNetica/Peanut.html> or <https://github.com/ralmond/Peanut>.
 
 ## References:
 
-Almond, R. G. (2010). `I can name that Bayesian Network in Two Matrixes.' _International Journal of Approximate Reasoning_, **51**, 167-178.
+Almond, R. G. (2010). \`I can name that Bayesian Network in Two Matrixes.' *International Journal of Approximate Reasoning*, **51**, 167-178.
 
-Almond, R. G. (2015). An IRT-based Parameterization for Conditional
-Probability Tables.   In Agosta, J. M. & Carvalho,
-R. N. (Eds.). _Proceedings of the Twelfth UAI Bayesian Modeling
-Applications Workshop (BMAW 2015)_, **CEUR Workshop Proceedings
-1565**, 14-23. (URL http://ceur-ws.org/Vol-1565/bmaw2015_paper4.pdf) 
+Almond, R. G. (2015). An IRT-based Parameterization for Conditional Probability Tables. In Agosta, J. M. & Carvalho, R. N. (Eds.). *Proceedings of the Twelfth UAI Bayesian Modeling Applications Workshop (BMAW 2015)*, **CEUR Workshop Proceedings 1565**, 14-23. (URL <http://ceur-ws.org/Vol-1565/bmaw2015_paper4.pdf>)
 
-Almond, R. G. (2018). Inner and Outer Q-matrixes for Multi-step Problems.
-Presentation at the _Annual Meeting of the American Educational
-Research Association,_ Cognition and Assessment SIG, Toronto, Ontario,
-Canada. 
+Almond, R. G. (2018). Inner and Outer Q-matrixes for Multi-step Problems. Presentation at the *Annual Meeting of the American Educational Research Association,* Cognition and Assessment SIG, Toronto, Ontario, Canada.
 
-Almond, R. G., Dibello, L. V., Jenkins, F.,  Mislevy, R. J., Senturk,
-D., Steinberg, L. S, & Yan, D. (2001). Models for Conditional
-Probability Tables in Educational Assessment. In Jaakkola, T. &
-Richardson, T. (Eds.). _Artificial Intelligence and Statistics 2001_,
-Morgan Kaufmann, 137-143.  
+Almond, R. G., Dibello, L. V., Jenkins, F., Mislevy, R. J., Senturk, D., Steinberg, L. S, & Yan, D. (2001). Models for Conditional Probability Tables in Educational Assessment. In Jaakkola, T. & Richardson, T. (Eds.). *Artificial Intelligence and Statistics 2001*, Morgan Kaufmann, 137-143.
 
-Almond, R. G., Mislevy, R. J., Steinberg, L. S., Yan, D. & Williamson,
-D. M. (2015). _Bayesian Networks in Educational
-Assessment_. Springer. 
+Almond, R. G., Mislevy, R. J., Steinberg, L. S., Yan, D. & Williamson, D. M. (2015). *Bayesian Networks in Educational Assessment*. Springer.
 
-Chang, W., Cheng, J., Alaire J. J., Xie, Y & McPherson,
-J. (2018). shiny: Web Application Framework for R. R package version
-1.1.0. (URL https://CRAN.R-project.org/package=shiny.) 
-
-
-
-
-
+Chang, W., Cheng, J., Alaire J. J., Xie, Y & McPherson, J. (2018). shiny: Web Application Framework for R. R package version 1.1.0. (URL <https://CRAN.R-project.org/package=shiny>.)

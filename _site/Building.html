@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,44 +47,33 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -122,6 +112,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
@@ -138,57 +129,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">Peanut Tutorial</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./ECD.html">
+    <a class="nav-link" href="./ECD.html" rel="" target="">
  <span class="menu-text">ECD Intro</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./BayesNets.html">
+    <a class="nav-link" href="./BayesNets.html" rel="" target="">
  <span class="menu-text">Bayesian Networks</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Scoring.html">
+    <a class="nav-link" href="./Heart.html" rel="" target="">
+ <span class="menu-text">Heart Example</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Scoring.html" rel="" target="">
  <span class="menu-text">Scoring</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./DiBelloModels.html">
+    <a class="nav-link" href="./DiBelloModels.html" rel="" target="">
  <span class="menu-text">Making CPTs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./Building.html" aria-current="page">
+    <a class="nav-link active" href="./Building.html" rel="" target="" aria-current="page">
  <span class="menu-text">Building Nets</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Updating.html">
+    <a class="nav-link" href="./Updating.html" rel="" target="">
  <span class="menu-text">Calibration</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Visualization.html">
+    <a class="nav-link" href="./Visualization.html" rel="" target="">
  <span class="menu-text">Model checking and visualzation</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Dynamic.html">
+    <a class="nav-link" href="./Dynamic.html" rel="" target="">
  <span class="menu-text">Dynamic Models</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Resources.html">
+    <a class="nav-link" href="./Resources.html" rel="" target="">
  <span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./References.html">
+    <a class="nav-link" href="./References.html" rel="" target="">
  <span class="menu-text">References</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html">
+    <a class="nav-link" href="./about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -201,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./img/PeanutLogo.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Peanut Logo</figcaption><p></p>
+<figcaption class="figure-caption">Peanut Logo</figcaption>
 </figure>
 </div>
 </div></div>
@@ -262,7 +259,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="preliminaries" class="level2">
 <h2 class="anchored" data-anchor-id="preliminaries">Preliminaries</h2>
 <p>First, the <code>Peanut</code> libraries need to be loaded, along with an implementation. As <code>PNetica</code> is the currently available implementation, that will be used in this example. The <a href="./Resources.html">Resources</a> section shows how to install this.</p>
-<p>After some experience using various graphical tools, -<span class="citation" data-cites="matrix2">(<a href="#ref-matrix2" role="doc-biblioref"><strong>matrix2?</strong></a>)</span> found that the easiest way to work with experts in eliciting a Bayesian network structure is to use a spreadsheet. The spreadsheet for the miniACED example is available through <a href="https://docs.google.com/spreadsheets/d/1t4ZPfeNmSFXm4ejQPjdGri8_U8VkEsR9mwKwE1AM0p4/">Google Sheets</a></p>
+<p>After some experience using various graphical tools, -<span class="citation" data-cites="matrix2">Almond (<a href="#ref-matrix2" role="doc-biblioref">2010</a>)</span> found that the easiest way to work with experts in eliciting a Bayesian network structure is to use a spreadsheet. The spreadsheet for the miniACED example is available through <a href="https://docs.google.com/spreadsheets/d/1t4ZPfeNmSFXm4ejQPjdGri8_U8VkEsR9mwKwE1AM0p4/">Google Sheets</a></p>
 <p>Note that the format here is a bit of a work in progress. I am looking for ways to simplify the presentation, in particular, collapsing over lines, so look for htat in the future.</p>
 <p>As the example network data is stored in a Google sheet, we will also need the <code>googlesheets4</code> library. The <code>knitr</code> package provides table formatting.</p>
 <p>With Google sheets, Google needs to verify that your computer is authorized to read the sheet. Fortunately, the example sheet is readable by the public. So we will call <code>gs4_deauth()</code> to make sure that Google uses the public interface. (See the <code>googlesheets4</code> documentation for more information about OAuth support.) The sheet ID is the long string of digits and numbers after <code>spreadsheets/d/</code> in the URI for the sheet.</p>
@@ -286,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(netman)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="tbl-nets" class="anchored">
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small">
 <caption>Table&nbsp;1: Nets Tab</caption>
 <colgroup>
 <col style="width: 14%">
@@ -308,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td style="text-align: left;">miniACEDPM</td>
 <td style="text-align: left;">ACED subset</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;">miniACEDPM</td>
 <td style="text-align: left;">miniACEDPM.dne</td>
 <td style="text-align: left;">A subset of the full ACED model</td>
 </tr>
@@ -437,12 +434,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="nodes">Nodes</h2>
 <p>The next spreadsheet defines the nodes. There are two things which are important to note about the nodes. The first is that each network defines its own namespace. Thus, the node <code>isCorrect</code> in the <code>CommonRatioEasyEM</code> and in the <code>ExamplesGeometricEasyEM</code> are different. Thus, the variable is identified by the first two columns in the spreadsheet.</p>
 <p>The second thing of note is that there are some information which is specific to the possible states of the node. Thus, if the node has 3 possible states, then there are three rows for each node.</p>
-<p>[Note: This should change in a future version. The idea is to instead use a a vector notation, i.e., <code>[state1,state2,state3]</code>, to express multiple states.]</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This should change in a future version. The idea is to instead use a a vector notation, i.e., <code>[state1,state2,state3]</code>, to express multiple states.</p>
+</div>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(nodeman)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="tbl-nodes" class="anchored">
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small">
 <caption>Table&nbsp;2: Nodes Tab</caption>
 <colgroup>
 <col style="width: 7%">
@@ -1279,8 +1288,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>StateName</code> — An identifier for the state. Must follow variable rules.</p></li>
 <li><p><code>StateTitle</code> — A longer descriptor which doesn’t need to follow varaible rules.</p></li>
 <li><p><code>StateDescription</code> — Documentation for the state.</p></li>
-<li><p><code>StateValue</code> — This is used in both the CPT construction algorithms and in calculating expected values and varainces for nodes. The best practice here is to map these values to quantiles of the normal distribution (<span class="citation" data-cites="bninea">(<a href="#ref-bninea" role="doc-biblioref"><strong>bninea?</strong></a>)</span>). Note that for three levels these are approximately 1, 0 and -1.</p></li>
-<li><p><code>LowerBound</code>, <code>UpperBound</code> [Depricated, next version will use Cuts]. These are lists of upper and lower bounds for an underlying continuous variable. Note that <code>-Inf</code> and <code>Inf</code> are acceptable values. Note also that the upper bound for one state must match the lower bound for the next.</p></li>
+<li><p><code>StateValue</code> — This is used in both the CPT construction algorithms and in calculating expected values and varainces for nodes. The best practice here is to map these values to quantiles of the normal distribution (<span class="citation" data-cites="bninea">Almond et al. (<a href="#ref-bninea" role="doc-biblioref">2015</a>)</span>). Note that for three levels these are approximately 1, 0 and -1.</p></li>
+<li><p><code>LowerBound</code>, <code>UpperBound</code>. These are lists of upper and lower bounds for an underlying continuous variable. Note that <code>-Inf</code> and <code>Inf</code> are acceptable values. Note also that the upper bound for one state must match the lower bound for the next. ::: {.callout-warning title=“Depricated” collapse=“true”} This will be replaced in a future version with a new field <code>Cuts</code> which will use the cutpoints. :::</p></li>
 <li><p><code>Cuts</code> — Only used for continuous nodes. These are the upper and lower cuts for the underlying continuous variable. There should be one more value in the vector than there are states in the node. The continuous variable is chopped into intervals with the given cut points (including the minimum and maximum). Note that <code>-Inf</code> and <code>Inf</code> are acceptable values.</p></li>
 </ul>
 </section>
@@ -1289,7 +1298,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>Peanut</code> uses the same Warehouse metaphor to build the nodes. The <code>Nodes</code> spreadsheet is the instruction for building the node (if it is not already built).</p>
 <p>This is the last place in which we explicitly reference Netica. The <code>WarehouseSupply</code> method on the Net or Node Warehouse returns an object of the abstract type <code>Peanut::Pnet</code> or <code>Peanut::Pnode</code>, which then supports all of the other operations.</p>
 <p>The two warehouses give us the basic definitions of the networks and the nodes. The next step is to describe the relationships among the nodes and the conditional probability tables that are defined.</p>
-<p><span class="citation" data-cites="matrix2">(<a href="#ref-matrix2" role="doc-biblioref"><strong>matrix2?</strong></a>)</span> divides this into two pieces: the <span class="math inline">\(Q\)</span>-matrix which describes the relationship between the competency nodes and the observable outcomes(<a href="#sec-Q">Section&nbsp;6</a>), and the <span class="math inline">\(\Omega\)</span> matrix which describes the relationship among the competency variables (Section <a href="#sec-Omega">Section&nbsp;5</a>). <strong>?@sec-growth</strong>).</p>
+<p><span class="citation" data-cites="matrix2">Almond (<a href="#ref-matrix2" role="doc-biblioref">2010</a>)</span> divides this into two pieces: the <span class="math inline">\(Q\)</span>-matrix which describes the relationship between the competency nodes and the observable outcomes(<a href="#sec-Q">Section&nbsp;6</a>), and the <span class="math inline">\(\Omega\)</span> matrix which describes the relationship among the competency variables (Section <a href="#sec-Omega">Section&nbsp;5</a>). <strong>?@sec-growth</strong>).</p>
 </section>
 </section>
 <section id="sec-Omega" class="level2">
@@ -1300,8 +1309,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The first part of the model is specifying which variables should be predictors (inputs) to the others. In the <span class="math inline">\(\Omega\)</span>-matrix (<a href="#fig-Omega">Figure&nbsp;1</a>), the rows represent the variables in their roles as dependent (output) variables and the columns the role as input variables. A check mark indicates that the column variable is a parent of the row variable (an input in its regression).</p>
 <div id="fig-Omega" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="images/Omega.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: Omega Matrix Structure</figcaption><p></p>
+<p><img src="img/Omega.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Omega Matrix Structure</figcaption>
 </figure>
 </div>
 <p>This defines the graphical structure. An edge is placed between the nodes corresponding to the edges. Figure <a href="#fig-OmegaGr">Figure&nbsp;2</a> shows this graph.</p>
@@ -1309,8 +1318,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell-output-display">
 <div id="fig-OmegaGr" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p>
-<svg width="672" height="480" viewbox="0.00 0.00 715.40 161.66" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 715.40 161.66" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 157.66)">
 <title>
 EASD
@@ -1357,8 +1366,8 @@ ModTEG
 </title>
 <ellipse fill="none" stroke="black" cx="560.32" cy="-124.25" rx="86.16" ry="29.33"></ellipse> <text text-anchor="middle" x="560.32" y="-128.45" font-family="Times,serif" font-size="14.00">Model Table </text> <text text-anchor="middle" x="560.32" y="-111.65" font-family="Times,serif" font-size="14.00"> Extend Geometric</text> </g> </g>
 </svg>
-</p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2: Graph of EASD Net</figcaption><p></p>
+</div>
+<figcaption class="figure-caption">Figure&nbsp;2: Graph of EASD Net</figcaption>
 </figure>
 </div>
 </div>
@@ -1398,7 +1407,7 @@ ModTEG
 <div id="fig-OmegaA" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="img/OmegaA.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;3: Omega Matrix Parameters</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Omega Matrix Parameters</figcaption>
 </figure>
 </div>
 <p>Overall, the columns in the <span class="math inline">\(\Omega\)</span>-matrix are as follows:</p>
@@ -1419,12 +1428,12 @@ ModTEG
 <p>The two warehouses give us the basic definitions of the networks and the nodes. The <span class="math inline">\(\Omega\)</span>-matrix has the distributions for the competency model variables. The next step is to describe the relationships between the competency variables and the observable outcomes in the evidence models. Note that the same variable name, e.g., <code>isCorrect</code> can be reused across many evidence models, so the full name of the variable has both the model and variable name.</p>
 <section id="representing-structure" class="level3">
 <h3 class="anchored" data-anchor-id="representing-structure">Representing Structure</h3>
-<p>The <span class="math inline">\(Q\)</span>-matrix is the place to start. <span class="citation" data-cites="tatsuoka1983">(<a href="#ref-tatsuoka1983" role="doc-biblioref"><strong>tatsuoka1983?</strong></a>)</span> popularized the use of a matrix <span class="math inline">\(Q\)</span> to represent the cognitive structure of an assessment, where the rows represent items (or in the case of more complex assessment observable variables) and the columns represent <em>attributes</em>. Tatsuoka used the term attribute to emphasize the duality between the cognitive skill possessed by the subjects and the items which demand that skill. Tatsuoka’s rule space model regarded the attributes as binary, but the notation works equally well if the cognitive variables are ordinal or scale.</p>
+<p>The <span class="math inline">\(Q\)</span>-matrix is the place to start. <span class="citation" data-cites="tatsuoka1983">Tatsuoka (<a href="#ref-tatsuoka1983" role="doc-biblioref">1983</a>)</span> popularized the use of a matrix <span class="math inline">\(Q\)</span> to represent the cognitive structure of an assessment, where the rows represent items (or in the case of more complex assessment observable variables) and the columns represent <em>attributes</em>. Tatsuoka used the term attribute to emphasize the duality between the cognitive skill possessed by the subjects and the items which demand that skill. Tatsuoka’s rule space model regarded the attributes as binary, but the notation works equally well if the cognitive variables are ordinal or scale.</p>
 <p>There is a simple relationship between the <span class="math inline">\(Q\)</span>-matrix and the Bayesian network. If an element <span class="math inline">\(q_{jk}=1\)</span>, then there is an edge between Competency Variable <span class="math inline">\(k\)</span> and Observable Variable <span class="math inline">\(j\)</span> in the corresponding evidence model. For every observable variable, the parents can be determined by looking across the row to find all cell entries with a one.</p>
 <div id="fig-Q1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="img/QmatInSheet.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;4: Q-matrix in the Spreadhseet</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;4: Q-matrix in the Spreadhseet</figcaption>
 </figure>
 </div>
 <p>Note that the first two columns are <code>Model</code> and <code>Node</code>. The <em>isCorrect</em> nodes in the models <em>CommonRatioEasyEM</em>, <em>ExamplesGeometricMedEM</em> and <em>ModelTableExtendGeometricHardEM</em> are all different variables. In particular, they have different entries in the <span class="math inline">\(Q\)</span>-matrix. In ACED, the observable names reflect the targeted competencies, but that was merely a convention used by the design team.</p>
@@ -1433,7 +1442,7 @@ ModTEG
 </section>
 <section id="defining-conditional-probability-tables." class="level3">
 <h3 class="anchored" data-anchor-id="defining-conditional-probability-tables.">Defining Conditional Probability Tables.</h3>
-<p>In addition to the graphical structure, a conditional probability table for each node, given its parents must be specified. Lou DiBello pressed some models from item response theory (IRT) into service to provide a language for describing relationships using the familiar psychometric parameters “difficulty” and “discrimination” <span class="citation" data-cites="bninea">(<a href="#ref-bninea" role="doc-biblioref"><strong>bninea?</strong></a>)</span>.</p>
+<p>In addition to the graphical structure, a conditional probability table for each node, given its parents must be specified. Lou DiBello pressed some models from item response theory (IRT) into service to provide a language for describing relationships using the familiar psychometric parameters “difficulty” and “discrimination” <span class="citation" data-cites="bninea">(<a href="#ref-bninea" role="doc-biblioref">Almond et al., 2015</a>)</span>.</p>
 <section id="the-dibello-framework" class="level4">
 <h4 class="anchored" data-anchor-id="the-dibello-framework">The DiBello Framework</h4>
 <p>The DiBello method has three steps:</p>
@@ -1454,7 +1463,7 @@ ModTEG
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/QmatAcols.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Q-matrix A-parameters</figcaption><p></p>
+<figcaption class="figure-caption">Q-matrix A-parameters</figcaption>
 </figure>
 </div>
 <p>Note that there is another set of combination rules (the <code>OffsetConjuctive</code> and <code>OffsetDisjunctive</code>) rules in which there is a different difficulty (demand) parameter for each parent and a single slope (<span class="math inline">\(A\)</span>). This is the Multiple-B style. These columns are currently hidden.</p>
@@ -1533,7 +1542,7 @@ ModTEG
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/Statistics.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Statistics Table</figcaption><p></p>
+<figcaption class="figure-caption">Statistics Table</figcaption>
 </figure>
 </div>
 </section>
@@ -1591,7 +1600,7 @@ ModTEG
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>CM <span class="ot">&lt;-</span> <span class="fu">WarehouseSupply</span>(Nethouse,<span class="st">"miniACEDPM"</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Omega2Pnet</span>(omega,CM,Nodehouse,<span class="at">override=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>INFO [2023-04-11 11:07:18] Proficiency variables are
+<pre><code>INFO [2023-06-09 18:32:50] Proficiency variables are
 
 [1] "SolveGeometricProblems" "CommonRatio"            "ExamplesGeometric"     
 [4] "ExtendGeometric"        "TableGeometric"         "ModelGeometric"        </code></pre>
@@ -1601,60 +1610,60 @@ ModTEG
 Setting row names on a tibble is deprecated.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>INFO [2023-04-11 11:07:18] Building list of nodes.
-INFO [2023-04-11 11:07:18] Processing links.
-WARN [2023-04-11 11:07:18] While processing links for node: CommonRatio
-WARN [2023-04-11 11:07:18] Node has parents: 
+<pre><code>INFO [2023-06-09 18:32:50] Building list of nodes.
+INFO [2023-06-09 18:32:50] Processing links.
+WARN [2023-06-09 18:32:50] While processing links for node: CommonRatio
+WARN [2023-06-09 18:32:50] Node has parents: 
 
                          
 "SolveGeometricProblems" 
-WARN [2023-04-11 11:07:18] But Omega matrix has parents: 
+WARN [2023-06-09 18:32:50] But Omega matrix has parents: 
 
 character(0)
-WARN [2023-04-11 11:07:18] Changing node CommonRatio to match Omega matrix.
-WARN [2023-04-11 11:07:18] While processing links for node: ExamplesGeometric
-WARN [2023-04-11 11:07:18] Node has parents: 
+WARN [2023-06-09 18:32:50] Changing node CommonRatio to match Omega matrix.
+WARN [2023-06-09 18:32:50] While processing links for node: ExamplesGeometric
+WARN [2023-06-09 18:32:50] Node has parents: 
 
                          
 "SolveGeometricProblems" 
-WARN [2023-04-11 11:07:18] But Omega matrix has parents: 
+WARN [2023-06-09 18:32:50] But Omega matrix has parents: 
 
 character(0)
-WARN [2023-04-11 11:07:18] Changing node ExamplesGeometric to match Omega matrix.
-WARN [2023-04-11 11:07:18] While processing links for node: ExtendGeometric
-WARN [2023-04-11 11:07:18] Node has parents: 
+WARN [2023-06-09 18:32:50] Changing node ExamplesGeometric to match Omega matrix.
+WARN [2023-06-09 18:32:50] While processing links for node: ExtendGeometric
+WARN [2023-06-09 18:32:50] Node has parents: 
 
                          
 "SolveGeometricProblems" 
-WARN [2023-04-11 11:07:18] But Omega matrix has parents: 
+WARN [2023-06-09 18:32:50] But Omega matrix has parents: 
 
 character(0)
-WARN [2023-04-11 11:07:18] Changing node ExtendGeometric to match Omega matrix.
-WARN [2023-04-11 11:07:18] While processing links for node: TableGeometric
-WARN [2023-04-11 11:07:18] Node has parents: 
+WARN [2023-06-09 18:32:50] Changing node ExtendGeometric to match Omega matrix.
+WARN [2023-06-09 18:32:50] While processing links for node: TableGeometric
+WARN [2023-06-09 18:32:50] Node has parents: 
 
                          
 "SolveGeometricProblems" 
-WARN [2023-04-11 11:07:18] But Omega matrix has parents: 
+WARN [2023-06-09 18:32:50] But Omega matrix has parents: 
 
 character(0)
-WARN [2023-04-11 11:07:18] Changing node TableGeometric to match Omega matrix.
-WARN [2023-04-11 11:07:18] While processing links for node: ModelGeometric
-WARN [2023-04-11 11:07:18] Node has parents: 
+WARN [2023-06-09 18:32:50] Changing node TableGeometric to match Omega matrix.
+WARN [2023-06-09 18:32:50] While processing links for node: ModelGeometric
+WARN [2023-06-09 18:32:50] Node has parents: 
 
                          
 "SolveGeometricProblems" 
-WARN [2023-04-11 11:07:18] But Omega matrix has parents: 
+WARN [2023-06-09 18:32:50] But Omega matrix has parents: 
 
 character(0)
-WARN [2023-04-11 11:07:18] Changing node ModelGeometric to match Omega matrix.
-INFO [2023-04-11 11:07:18] Processing CPTs.
-WARN [2023-04-11 11:07:18] Alpha vector for node SolveGeometricProblems is empty.
-WARN [2023-04-11 11:07:18] Alpha vector for node CommonRatio is empty.
-WARN [2023-04-11 11:07:18] Alpha vector for node ExamplesGeometric is empty.
-WARN [2023-04-11 11:07:18] Alpha vector for node ExtendGeometric is empty.
-WARN [2023-04-11 11:07:18] Alpha vector for node TableGeometric is empty.
-WARN [2023-04-11 11:07:18] Alpha vector for node ModelGeometric is empty.</code></pre>
+WARN [2023-06-09 18:32:50] Changing node ModelGeometric to match Omega matrix.
+INFO [2023-06-09 18:32:50] Processing CPTs.
+WARN [2023-06-09 18:32:50] Alpha vector for node SolveGeometricProblems is empty.
+WARN [2023-06-09 18:32:50] Alpha vector for node CommonRatio is empty.
+WARN [2023-06-09 18:32:50] Alpha vector for node ExamplesGeometric is empty.
+WARN [2023-06-09 18:32:50] Alpha vector for node ExtendGeometric is empty.
+WARN [2023-06-09 18:32:50] Alpha vector for node TableGeometric is empty.
+WARN [2023-06-09 18:32:50] Alpha vector for node ModelGeometric is empty.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Netica Network named  miniACEDPM 
@@ -1666,40 +1675,40 @@ WARN [2023-04-11 11:07:18] Alpha vector for node ModelGeometric is empty.</code>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Qmat2Pnet</span>(QQ,Nethouse,Nodehouse,<span class="at">override=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>INFO [2023-04-11 11:07:18] Proficiency variables:
+<pre><code>INFO [2023-06-09 18:32:50] Proficiency variables:
 
 [1] "SolveGeometricProblems" "CommonRatio"            "ExamplesGeometric"     
 [4] "ExtendGeometric"        "TableGeometric"         "ModelGeometric"        
-INFO [2023-04-11 11:07:18] Processing net CommonRatioEasyEM
-INFO [2023-04-11 11:07:18] Processing node isCorrect in net CommonRatioEasyEM
-INFO [2023-04-11 11:07:18] Processing net CommonRatioMedEM
-INFO [2023-04-11 11:07:18] Processing node isCorrect in net CommonRatioMedEM
-INFO [2023-04-11 11:07:18] Processing net CommonRatioHardEM
-INFO [2023-04-11 11:07:18] Processing node isCorrect in net CommonRatioHardEM
-INFO [2023-04-11 11:07:18] Processing net ExamplesEasyEM
-INFO [2023-04-11 11:07:18] Processing node isCorrect in net ExamplesEasyEM
-INFO [2023-04-11 11:07:18] Processing net ExamplesMedEM
-INFO [2023-04-11 11:07:18] Processing node isCorrect in net ExamplesMedEM
-INFO [2023-04-11 11:07:18] Processing net ExamplesHardEM
-INFO [2023-04-11 11:07:18] Processing node isCorrect in net ExamplesHardEM
-INFO [2023-04-11 11:07:18] Processing net ExtendEasyEM
-INFO [2023-04-11 11:07:18] Processing node isCorrect in net ExtendEasyEM
-INFO [2023-04-11 11:07:18] Processing net ExtendMedEM
-INFO [2023-04-11 11:07:18] Processing node isCorrect in net ExtendMedEM
-INFO [2023-04-11 11:07:18] Processing net ExtendHardEM
-INFO [2023-04-11 11:07:18] Processing node isCorrect in net ExtendHardEM
-INFO [2023-04-11 11:07:18] Processing net TableExtendEasyEM
-INFO [2023-04-11 11:07:18] Processing node isCorrect in net TableExtendEasyEM
-INFO [2023-04-11 11:07:18] Processing net TableExtendMedEM
-INFO [2023-04-11 11:07:18] Processing node isCorrect in net TableExtendMedEM
-INFO [2023-04-11 11:07:18] Processing net TableExtendHardEM
-INFO [2023-04-11 11:07:18] Processing node isCorrect in net TableExtendHardEM
-INFO [2023-04-11 11:07:18] Processing net ModelTableExtendEasyEM
-INFO [2023-04-11 11:07:18] Processing node isCorrect in net ModelTableExtendEasyEM
-INFO [2023-04-11 11:07:19] Processing net ModelTableExtendMedEM
-INFO [2023-04-11 11:07:19] Processing node isCorrect in net ModelTableExtendMedEM
-INFO [2023-04-11 11:07:19] Processing net ModelTableExtendHardEM
-INFO [2023-04-11 11:07:19] Processing node isCorrect in net ModelTableExtendHardEM</code></pre>
+INFO [2023-06-09 18:32:50] Processing net CommonRatioEasyEM
+INFO [2023-06-09 18:32:50] Processing node isCorrect in net CommonRatioEasyEM
+INFO [2023-06-09 18:32:50] Processing net CommonRatioMedEM
+INFO [2023-06-09 18:32:50] Processing node isCorrect in net CommonRatioMedEM
+INFO [2023-06-09 18:32:50] Processing net CommonRatioHardEM
+INFO [2023-06-09 18:32:50] Processing node isCorrect in net CommonRatioHardEM
+INFO [2023-06-09 18:32:50] Processing net ExamplesEasyEM
+INFO [2023-06-09 18:32:50] Processing node isCorrect in net ExamplesEasyEM
+INFO [2023-06-09 18:32:50] Processing net ExamplesMedEM
+INFO [2023-06-09 18:32:50] Processing node isCorrect in net ExamplesMedEM
+INFO [2023-06-09 18:32:50] Processing net ExamplesHardEM
+INFO [2023-06-09 18:32:50] Processing node isCorrect in net ExamplesHardEM
+INFO [2023-06-09 18:32:50] Processing net ExtendEasyEM
+INFO [2023-06-09 18:32:50] Processing node isCorrect in net ExtendEasyEM
+INFO [2023-06-09 18:32:50] Processing net ExtendMedEM
+INFO [2023-06-09 18:32:50] Processing node isCorrect in net ExtendMedEM
+INFO [2023-06-09 18:32:50] Processing net ExtendHardEM
+INFO [2023-06-09 18:32:50] Processing node isCorrect in net ExtendHardEM
+INFO [2023-06-09 18:32:50] Processing net TableExtendEasyEM
+INFO [2023-06-09 18:32:50] Processing node isCorrect in net TableExtendEasyEM
+INFO [2023-06-09 18:32:51] Processing net TableExtendMedEM
+INFO [2023-06-09 18:32:51] Processing node isCorrect in net TableExtendMedEM
+INFO [2023-06-09 18:32:51] Processing net TableExtendHardEM
+INFO [2023-06-09 18:32:51] Processing node isCorrect in net TableExtendHardEM
+INFO [2023-06-09 18:32:51] Processing net ModelTableExtendEasyEM
+INFO [2023-06-09 18:32:51] Processing node isCorrect in net ModelTableExtendEasyEM
+INFO [2023-06-09 18:32:51] Processing net ModelTableExtendMedEM
+INFO [2023-06-09 18:32:51] Processing node isCorrect in net ModelTableExtendMedEM
+INFO [2023-06-09 18:32:51] Processing net ModelTableExtendHardEM
+INFO [2023-06-09 18:32:51] Processing node isCorrect in net ModelTableExtendHardEM</code></pre>
 </div>
 </div>
 <p>Next write out the nets. The Warehouse takes care of the mechanics here.</p>
@@ -1727,10 +1736,21 @@ INFO [2023-04-11 11:07:19] Processing node isCorrect in net ModelTableExtendHard
 </div>
 
 
+
 </section>
 
 
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list">
+<div id="ref-matrix2" class="csl-entry" role="listitem">
+Almond, R. G. (2010). <span>“<span>I</span> can name that <span>Bayesian Network</span> in <span>Two Matrixes</span>.”</span> <em>International Journal of Approximate Reasoning</em>, <em>51</em>, 167–178. <a href="https://doi.org/10.1016/j.ijar.2009.04.005">https://doi.org/10.1016/j.ijar.2009.04.005</a>
+</div>
+<div id="ref-bninea" class="csl-entry" role="listitem">
+Almond, R. G., Mislevy, R. J., Steinberg, L. S., Williamson, D. M., &amp; Yan, D. (2015). <em>Bayesian <span>Networks</span> in <span>Educational Assessment</span></em>. <span>Springer New York</span>.
+</div>
+<div id="ref-tatsuoka1983" class="csl-entry" role="listitem">
+Tatsuoka, K. K. (1983). Rule space: <span>An</span> approach for dealing with misconceptions based on item response theory. <em>Journal of Educational Measurement</em>, <em>20</em>, 345–354.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
 <li id="fn1"><p>Link functions are represented as actual functions in the CPTtools package <span class="citation" data-cites="CPTtools">(<a href="#ref-CPTtools" role="doc-biblioref"><strong>CPTtools?</strong></a>)</span>. The currently supported link functions are <code>partialCredit</code>, <code>gradedResponse</code> and <code>normalLink</code>. The system is extendable.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
@@ -1765,9 +1785,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1832,6 +1866,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

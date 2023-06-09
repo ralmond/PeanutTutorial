@@ -9,6 +9,7 @@ This example is based on a study by @janosi1989 and recorded in the UCI Machine 
 ## Bayesian network
 
 ```{r BNlibs}
+#| warning: false
 library(PNetica)
 sess <- NeticaSession()
 startSession(sess)
@@ -72,6 +73,7 @@ Calling `NetworkAllNodes` builds R objects which point at internal `Netica` obje
 Need to redo these steps every time R session is restarted.
 
 ```{r loadNet}
+#| warning: false
 heart <- ReadNetworks("Heart/Heart.dne",sess)
 heart.nodes <- NetworkAllNodes(heart)
 ```
@@ -80,10 +82,11 @@ A `NeticaBN` or `NeticaNode` object is *active* if it points to an object inside
 
 Saving/restorting the R object will disconnect it from its corresponding Netica object.
 
-::: Note
+::: {.callout-note collapse="false"}
 `NeticaSession` and `NeticaNetwork` objects wrap R environments which contain the networks and nodes respectively. So can access with `$` operator.
 
 ```{r netsAndNodes}
+#| warning: false
 sess$nets$Heart
 heart$nodes$Age
 ```
@@ -96,6 +99,7 @@ The basic function for querying the network is `NodeBelief`. This gives the marg
 Note that the network needs to be compiled before doing inference.
 
 ```{r margin}
+#| warning: false
 CompileNetwork(heart)
 health <- NetworkFindNode(heart,"health")
 baseline <- NodeBeliefs(health)
@@ -166,7 +170,7 @@ The probability is now spread out over the other categories.
 
 Can eliminate more than one categories.
 
-```{r negFindings}
+```{r negFindings2}
 RetractNodeFinding(heart$nodes$CP)
 before <- NodeBeliefs(heart$nodes$CP)
 EnterNegativeFinding(heart$nodes$CP,c("Asymptomatic","NonAnginal"))
@@ -395,14 +399,14 @@ Read in the Cleveland data set from @janosi1989. The `heart.features` is informa
 heart.features <- list(
   Age=c(0,below50=50,between50and60=60,above60=100),
   Sex=c(Male=1,Female=0),
-  CP=c(TypicalAnginal=1, AtypicalAnginal=2, NonAnginal=3, Asymptotic=4),
+  CP=c(TypicalAnginal=1, AtypicalAnginal=2, NonAnginal=3, Asymptomatic=4),
   trestbps=c(0,low=120,moderate=140,high=300),
-  chol=c(0,Normal=200, Moderate=250, High=300, VeryHigh=500),
+  chol=c(0,Normal=200, Moderate=250, High=300, VeryHigh=750),
   fbs=c(high=1,normal=0),
   restecg=c(Normal=0, STTabnormality=0, LeftVentricularHypertrophy=2),
   thalach=c(0,Low=130,Moderate=160,High=500),
   exang=c(Yes=1, No=0),
-  oldpeak=c(-1,Zero=1,Low=2,High=10),
+  oldpeak=c(-10,Zero=1,Low=2,High=10),
   slope=c(down=1, flat=2, up=3),
   ca=c(Zero=0, One=1, Two=2, Three=3, Four=4),
   thal=c(Normal=3, FixedDefect=6, ReversibleDefect=7),
@@ -444,6 +448,8 @@ heart.structure <- dget("Heart/heartinfo.R")
 Make a new network
 
 ```{r heart1}
+heart1 <- GetNamedNetworks("Heart1",sess)
+if (!is.null(heart1)) DeleteNetwork(heart1)
 heart1 <- CreateNetwork("Heart1",sess)
 NetworkTitle(heart1) <- "Heart example built from Cleveland data."
 ```
@@ -562,13 +568,13 @@ WriteNetworks(heart1,tmpfile)
 
 ## Working with Case Files
 
-Netica supports _case files_, which are essentially CSV files.  These are easier ways to manage large numbers of cases.
+Netica supports *case files*, which are essentially CSV files. These are easier ways to manage large numbers of cases.
 
-The function `CaseFileStream()`  generates a new file stream.  The functions `ReadFindings()` and `WriteFindings()` read and write to the case stream.
+The function `CaseFileStream()` generates a new file stream. The functions `ReadFindings()` and `WriteFindings()` read and write to the case stream.
 
 As we want the `CaseStream` to stay open while we are reading, explicitly call `OpenCaseStream` and `CloseCaseStream`.
 
-Note that good programming style requires that the `CaseStream` be closed when you are done with it.  To ensure this, use `WithOpenCaseStream(`_stream_,`{...})`.
+Note that good programming style requires that the `CaseStream` be closed when you are done with it. To ensure this, use `WithOpenCaseStream(`*stream*,`{...})`.
 
 ```{r wocs}
 #| eval: false
@@ -586,14 +592,11 @@ WithOpenCaseStream(filestream, {
 
 Note that the `CaseStream` is opened in the Netica environment, not the R environment.
 
-
 ### Generating random cases
 
 Start by generating random cases.
 
-Note that Netica uses a different random number sequence than R.  To make 
-a reproducible sequence, we need to create a `NeticaRNG` object and give it a seed.  Use the `FreeNeticaRNG` method to free it when you are done (or use `WithNeticaRNG` to free it at the end of the computation.
-
+Note that Netica uses a different random number sequence than R. To make a reproducible sequence, we need to create a `NeticaRNG` object and give it a seed. Use the `FreeNeticaRNG` method to free it when you are done (or use `WithNeticaRNG` to free it at the end of the computation.
 
 You can also associate the RNG with a network using `NetworkSetRNG()`.
 
@@ -620,8 +623,7 @@ The function `read.CaseFile` reads the generated cases and sets them up as a dat
 
 ### Converting data into case file format
 
-Note that continuous variables are left at their numeric values.  Need
-to reread cleveland data and not do the conversion this time.
+Note that continuous variables are left at their numeric values. Need to reread cleveland data and not do the conversion this time.
 
 ```{r rereadCleveland}
 cleveland1 <- read_csv("Heart/processed.cleveland.csv",
@@ -645,6 +647,7 @@ write.CaseFile(cleveland1,"Heart/cleveland.cas",session=sess)
 ```
 
 While we are at it, lets convert the Swiss and Hungarian data to case files.
+
 ```{r otherDat}
 swiss <- read_csv("Heart/processed.switzerland.csv",
                       col_names=names(heart.features),
@@ -674,25 +677,79 @@ write.CaseFile(swiss,"Heart/switzerland.cas",session=sess)
 write.CaseFile(hungary,"Heart/hungary.cas",session=sess)
 ```
 
-
 ### Bulk Scoring and Testing
 
-`NetworkTester`
+Bulk Scoring can be done by looping through the case file.
+
+```{r bulkScore}
+swissStream <- CaseFileStream("Heart/switzerland.cas",sess)
+testnodes <- c(NetworkNodesInSet(heart,"office"),
+               NetworkNodesInSet(heart,"lab"))
+WithOpenCaseStream(swissStream, {
+  for (i in 1L:10L) {
+    RetractNetFindings(heart)
+    swissStream <- 
+      ReadFindings(testnodes,
+                  swissStream,
+                  ifelse(i==1L,"FIRST","NEXT"))
+    cat("Case ", i,"\n")
+    print(NodeBeliefs(health),digits=3)
+    if (is.na(getCaseStreamPos(swissStream))) break
+  }
+})
+```
+
+Obviously, what we want to do is compare this to the actual readings.  The `NetworkTester` allows us to do that.
+
+```{r swissTest}
+RetractNetFindings(heart)
+swiss.test <- 
+  testNetwork(list(health),
+              OpenCaseStream(swissStream))
+summary(swiss.test)
+```
 
 
 ### Learning CPTs
 
-`LearnFindings`, `LearnCases`, `LearnCPTs`
+With a case stream we can learn all of the CPTs at once.
+
+```{r learnCases}
+lnodes <- c(NetworkNodesInSet(heart1,"office"),
+            NetworkNodesInSet(heart1,"lab"))
+invisible(sapply(lnodes,DeleteNodeTable))
+LearnCases("Heart/cleveland.cas",lnodes)
+```
+Look at the new values.
+
+Node experience is how many responses were used in that row of the table.
+```{r newVals}
+heart1$nodes$trestbps[]
+NodeExperience(heart1$nodes$trestbps)
+```
+
+
+LearnCases uses the same counting algorithm shown above (building the CPT), so it doesn't handle missing data.
+
+LearnCPTs does.  There are three methods.  I recommend EM
+
+```{r EMlearning}
+invisible(sapply(lnodes,DeleteNodeTable))
+LearnCPTs("Heart/cleveland.cas",lnodes, method="EM")
+heart1$nodes$trestbps[]
+NodeExperience(heart1$nodes$trestbps)
+```
 
 ## Learning Structure from Data
 
-## Validating inferences using a second data set.
 
-## Fixing the HeartNet to properly use continuous nodes.
+::: {.callout-caution collapse="true"}
+# Fixing the HeartNet to properly use continuous nodes.
 
 (This was some code I used to fix and issue with the initial version of the test network which had the continuous nodes coded as discrete.)
 
 ```{r GetData}
+#| eval: false
 heart.info <- lapply(heart.nodes, function (nd) {
   list(parents = ParentNames(nd),
        cpt = NodeProbs(nd),
@@ -704,6 +761,7 @@ heart.info <- lapply(heart.nodes, function (nd) {
 Number of states of Age has changed, need to fix some CPTs.
 
 ```{r fixCPTs}
+#| eval: false
 fixme <- c("Age","trestbps")
 for (nodename in fixme) {
   xtab <- as.array(table(cleveland[c(heart.info[[nodename]]$parents,nodename)]))
@@ -714,6 +772,7 @@ for (nodename in fixme) {
 ```
 
 ```{r replaceContinuous}
+#| eval: false
 for ( nodename in names(heart.features)) {
   states <- heart.features[[nodename]]
   if (all(names(states)!="")) next
@@ -738,6 +797,7 @@ for ( nodename in names(heart.features)) {
 ```
 
 ```{r replaceCPTs}
+#| eval: false
 ## Fix up any set of broken parent relationships.
 for (nodename in names(heart.info)) {
   cat(nodename,"\n")
@@ -749,10 +809,13 @@ for (nodename in names(heart.info)) {
 ```
 
 ```{r compileAndWrite}
+#| eval: false
 CompileNetwork(heart)
 WriteNetworks(heart,"Heart/Heart.dne")
 ```
 
 ```{r spellingError}
+#| eval: false
 NodeStates(heart$nodes$CP)[4] <- "Asymptomatic"
 ```
+:::

@@ -1,0 +1,7 @@
+digraph IRT {
+  subgraph{ Q[label="θ"] }
+  subgraph {
+  X1; X2; andC[shape=none,label="..."]; XJ
+  }
+  Q -> X1; Q-> X2; Q->andC [style="invis"]; Q->XJ
+}

@@ -1,0 +1,4 @@
+digraph CompExpl {
+  Skill1 -> X
+  Skill2 -> X
+}

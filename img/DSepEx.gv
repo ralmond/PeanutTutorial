@@ -1,0 +1,5 @@
+digraph DSepEx {
+  rankdir = "TB";
+  A -> D; B -> D; B -> E; C -> E;
+  D -> F; D -> G; E -> G; E -> H;
+}
