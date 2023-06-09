@@ -1,3 +1,758 @@
 ---
 title: "Heart Disease Example"
 ---
+
+This example is based on a study by @janosi1989 and recorded in the UCI Machine Learning Repository (@Murphy1992). The direct link is: <https://archive.ics.uci.edu/dataset/45/heart+disease>
+
+@testSelection used it as an extended example.
+
+## Bayesian network
+
+```{r BNlibs}
+library(PNetica)
+sess <- NeticaSession()
+startSession(sess)
+```
+
+A saved version of the network can be found `Heart/Heart.dne`
+
+![Heart Disease Model](Heart/HeartBase.svg)
+
+## Discrete and Continuous nodes
+
+Note that some of the nodes have a number, plus or minus a second number.
+
+This is the Expected value, plus or minus the standard deviation.
+
+This can be done in one of two ways.
+
+-   Add State levels to a discrete node.
+    -   See `Colored-Flor` and Health-State\` (which represents number of blood vessels with high levels of blockage).
+    -   Each state is assigned a number. (Note Netica state names must start with a letter).
+-   Take a continuous node and cut it into pieces
+    -   See `Age`, `Rest-BP`, `Max-Heart-Rate`, `Chol` and `Old-Peak`
+    -   The levels define the boundaries between categories.
+    -   There is one more boundary than there is categories (like the R function `cut`).
+    -   `Inf` and `-Inf` are legal cut points.
+
+Note: Netica deals with continuous nodes by discritizing them.
+
+If all nodes in a Bayesian network are discrete, the propagation algorithms involve only sums not integrals.
+
+For graphs with a mixture of continuous and discrete variables, the propagation algorithms may involve integrals that can't be solved analytically.
+
+## Functional Dependencies
+
+Look at the node `Healty?`
+
+This is a reduction of the `Health-State` variable, collapsing states `S1` through `S4` into the single category `No`.
+
+The conditional probability table only has `0` or `1` as entries.
+
+Can be represented with a table:
+
+| Health-State | Healthy? |
+|--------------|----------|
+| Healthy      | Yes      |
+| S1           | No       |
+| S2           | No       |
+| S3           | No       |
+| S4           | No       |
+
+This is really useful for conditioning on `Healthy? = No`.
+
+## Inferences
+
+Start by loading the network.
+
+Note, need to pass reference to `NeticaSession` to `ReadNetworks`.
+
+Calling `NetworkAllNodes` builds R objects which point at internal `Netica` objects.
+
+Need to redo these steps every time R session is restarted.
+
+```{r loadNet}
+heart <- ReadNetworks("Heart/Heart.dne",sess)
+heart.nodes <- NetworkAllNodes(heart)
+```
+
+A `NeticaBN` or `NeticaNode` object is *active* if it points to an object inside of the Netica heap.
+
+Saving/restorting the R object will disconnect it from its corresponding Netica object.
+
+::: Note
+`NeticaSession` and `NeticaNetwork` objects wrap R environments which contain the networks and nodes respectively. So can access with `$` operator.
+
+```{r netsAndNodes}
+sess$nets$Heart
+heart$nodes$Age
+```
+:::
+
+### Beliefs
+
+The basic function for querying the network is `NodeBelief`. This gives the marginal probability of the node.
+
+Note that the network needs to be compiled before doing inference.
+
+```{r margin}
+CompileNetwork(heart)
+health <- NetworkFindNode(heart,"health")
+baseline <- NodeBeliefs(health)
+print(baseline,digits=2)
+```
+
+This is the unconditional probability. To get the *conditional* probability, we need to add some evidence.
+
+As we have mapped the states to numeric values we can also get the mean and variance.
+
+```{r expSD}
+NodeExpectedValue(health)
+```
+
+### First pass data
+
+James Goodfellow is a 55 year old man who comes to the doctor complaining of typical anginal pain.
+
+The `NodeFinding` function is used to set (or get) the value of a node. As `Age` is a continuous node, its finding can be entered directly with `NodeValue`
+
+```{r setValues}
+NodeFinding(heart$nodes$Sex) <- "Male"
+NodeFinding(heart$nodes$CP) <- "TypicalAnginal"
+NodeValue(heart$nodes$Age) <- 55
+NodeFinding(heart$nodes$Age)
+```
+
+The value of the beliefs for the target mode have now changed.
+
+```{r officeVisit}
+office <- NodeBeliefs(health)
+print(rbind(baseline=baseline,office=office),digits=2)
+```
+
+### Blocked Evidence
+
+Assume that the nurse takes Mr. Goodfellows resting blood pressure and it is 130.
+
+```{r bloodPreassure}
+NodeValue(heart$nodes$trestbps) <- 130
+bp <- NodeBeliefs(health)
+print(rbind(baseline=baseline,office=office,bp=bp),digits=2)
+```
+
+Why didn't it change?
+
+Look closely at the graph. The path between `Rest-BP` and `Health-State` goes through `Age` which is known. Therefore, the resting blood pressure provides no additional information.
+
+The function `RetractNodeFinding` clears it.
+
+```{r Retract}
+RetractNodeFinding(heart$nodes$trestbps)
+```
+
+### Virutal Evidence
+
+Suppose that the doctor is not able to classify the Mr. Goodfellow's complaint other than to say it is not Asymptomatic. The `EnterNegativeFindings` function allows eliminating one of the findings.
+
+```{r negFindings}
+RetractNodeFinding(heart$nodes$CP)
+before <- NodeBeliefs(heart$nodes$CP)
+EnterNegativeFinding(heart$nodes$CP,"Asymptomatic")
+after <- NodeBeliefs(heart$nodes$CP)
+print(cbind(before=before, after=after),digits=3)
+```
+
+The probability is now spread out over the other categories.
+
+Can eliminate more than one categories.
+
+```{r negFindings}
+RetractNodeFinding(heart$nodes$CP)
+before <- NodeBeliefs(heart$nodes$CP)
+EnterNegativeFinding(heart$nodes$CP,c("Asymptomatic","NonAnginal"))
+after <- NodeBeliefs(heart$nodes$CP)
+print(cbind(before=before, after=after),digits=3)
+```
+
+Finally, if the evidence from a sensor is uncertain, a likelihood can be entered.
+
+Suppose that the technician doing the thalium stress test is uncertain about the result. They are pretty sure (80%) there is a defect, but they are uncertain as to whether it is fixed or reversible.
+
+This can be expressed as a likelihood: `c(.2,.4,.4)` and can be set using `NodeLikelihood`
+
+```{r virutal}
+NodeFinding(heart$nodes$CP) <- "TypicalAnginal"  ## Return to previous state.
+NodeLikelihood(heart$nodes$thal) <- c(.2,.4,.4)
+thalTest <- NodeBeliefs(health)
+print(rbind(baseline=baseline,office=office,thaliumStressTest=thalTest),digits=3)
+```
+
+### Likelihood
+
+The first pass of the propagation algorithm calculates the probability of all of the observed (including vitrual observations) findings, that is the *likelihood* of the observations.
+
+The function `FindingsProbablity` extracts this.
+
+```{r likelihood}
+FindingsProbability(heart)
+```
+
+For contrast, lets retract the findings and move back to the baseline.
+
+```{r retractAll}
+RetractNetFindings(heart)
+FindingsProbability(heart)
+```
+
+## Weight of Evidence balance sheet
+
+How much does each observation contribute to the conclusion that James Goodfellow is healthy.
+
+One measure is the weight of evidence (WOE; @good1950).
+
+$$
+WOE(H:E) = \log \frac{P(H|E)}{P(\neg H|E)} - \log \frac{P(H)}{P(\neg H)} =
+\log \frac{P(E|H)}{P(E|\neg H)}
+$$
+
+Note that this can be calculated by simply differencing the probability of the target node before and after.
+
+### Conditional Weight of Evidence
+
+As the value of the other nodes changes, the WOE will as well.
+
+The conditional weight of evidence is defined by:
+
+$$ 
+WOE(H:E_1|E_2) = \log \frac{P(H|E_1,E_2)}{P(\neg H|E_1,E_2)} - \log \frac{P(H|E_1)}{P(\neg H|E_1)} =
+\log \frac{P(E_2|H,E_1)}{P(E_2|\neg H,E_1)}
+$$
+
+Note that these add:
+
+$$ WOE(H: E_1, E_2) = WOE(H: E_1) + WOE(H: E_2|E_1) $$
+
+We can use this to evaluate evidence as it come in
+
+### Example
+
+```{r data}
+jgoodfellow <- list(
+  Sex="Male",
+  Age=55,
+  CP="TypicalAnginal",
+  trestbps=130,
+  chol=255,
+  fbs="high",
+  exang="No",
+  restecg="Normal")  
+```
+
+Build up a history
+
+```{r hist}
+RetractNetFindings(heart)
+healthy <- NetworkFindNode(heart,"healthy")
+baseline <- NodeBeliefs(healthy)
+hist <- matrix(baseline,nrow=1,dimnames=list(c("*baseline*"),names(baseline)))
+for (i in 1:length(jgoodfellow)) {
+  nodename <- names(jgoodfellow)[i]
+  nodeval <- jgoodfellow[[i]]
+  node <- NetworkFindNode(heart,nodename)
+  if (is.numeric(nodeval)) {
+    NodeValue(node) <- nodeval
+  } else {
+    NodeFinding(node) <- nodeval
+  }
+  event <- paste(nodename,nodeval,sep="=")
+  probs <- NodeBeliefs(healthy)
+  hist <- rbind(hist,probs)
+  rownames(hist)[i+1] <- event
+}
+hist
+```
+
+The function `woe` calculates the joint WOE of all of the nodes.
+
+```{r jgoodfellowWOE}
+woe(heart.nodes[names(jgoodfellow)],healthy,"Yes")
+```
+
+The function `CPTtools::woeHist` provides a history of the changes.
+
+```{r woeHist}
+jgoodHist <- woeHist(hist,"Yes","No")
+print(jgoodHist,digits=2)
+```
+
+### Weight of Evidence Balance Sheet
+
+@madigan1997 provides a nice graphical summary. The function `CPTtools::woeBal` generates this.
+
+```{r woeBal}
+woeBal(hist,"Yes","No",title="Health status of James Goodfellow")
+```
+
+### Order sensitivity
+
+-   The total weight of evidence does not change with the order in which it is entered.
+
+-   The incremental weight of evidence is order sensitive.
+
+To illustrate this, enter the blood pressure before entering the sex.
+
+```{r newOrder}
+RetractNetFindings(heart)
+healthy <- NetworkFindNode(heart,"healthy")
+baseline <- NodeBeliefs(healthy)
+hist1 <- matrix(baseline,nrow=1,dimnames=list(c("*baseline*"),names(baseline)))
+for (i in c(4,1:3,5:length(jgoodfellow))) {
+  nodename <- names(jgoodfellow)[i]
+  nodeval <- jgoodfellow[[i]]
+  node <- NetworkFindNode(heart,nodename)
+  if (is.numeric(nodeval)) {
+    NodeValue(node) <- nodeval
+  } else {
+    NodeFinding(node) <- nodeval
+  }
+  event <- paste(nodename,nodeval,sep="=")
+  probs <- NodeBeliefs(healthy)
+  hist1 <- rbind(hist1,probs)
+  rownames(hist1)[nrow(hist1)] <- event
+}
+jgoodHist1 <- woeHist(hist1,"Yes","No")
+print(cbind(order0=jgoodHist,order1=jgoodHist1),digits=3)
+```
+
+## Test Selection and Value of Information
+
+Suppose the cardiologist is interested in determining the health status of Mr. Goodfellow. There are a number of information measures that can be used to evaluate the tests (corresponding to nodes in the network).
+
+### Expected Weight of Evidence
+
+@goodCard1971 propose using the *expected weight of evidence* as a measure of potential information.
+
+$$
+EWOE (H: E) = \sum_{e \in E} W(H:e) P(e|H).
+$$
+
+Note this is the expectation wrt the conditional distribution given the hypothesis (using the marginal distribution will have expectation).
+
+@testSelection offers a simple algorithm for calculating the EWOE for a number of nodes at once.
+
+1.  Enter any known findings into the network.
+2.  Enter a finding (or virtual evidence) that the Hypothesis is true.
+
+-   Calculate $P(E_i|H)$ for all $E_i$ (just reading `NodeBeliefs(`$E_i$`)`)
+
+3.  Replace this with a finding that the hypothesis is false
+
+-   Calculate $P(E_i|\neg H)$ for all $E_i$
+
+4.  Rectract the hypothesis finding
+5.  Calcualte EWOE for all $E_i$
+
+The function `ewoe` does this for us.
+
+```{r ewoeConditional}
+enodes <- heart.nodes[c("thal", "ca", "thalach", "slope", "oldpeak")]
+print(ewoe(enodes,healthy,"Yes"),digits=2)
+```
+
+### Mutual Information
+
+EWOE only works with binary hypotheses. A similar measure which works with all states is the *mutual information*.
+
+$$MI(X,Y) = \sum_{x,y} Pr(x,y) \log \frac{\Pr(x,y)}{Pr(x)Pr(y)}$$ To use it as test selection metric, we select a target node, and then calculate the mutual information with all of the potential evidence nodes.
+
+In the Netica GUI, you can do this by selecting the target node, and then the menu item \`Network \> Sensitivity to Findings ..."
+
+In the API, we call the `MutualInfo` function for each target.
+
+```{r mutualInfo}
+print(MutualInfo(health,enodes),digits=3)
+```
+
+### Reduction in Variance
+
+As the target node has numeric values, another meaningful measure is the reduction in variance. This is also reported in the Netica report, or can be calculated with the `VarianceOfReal` function.
+
+```{r varOfReal}
+print(VarianceOfReal(health,enodes))
+```
+
+## Learning Models from Data
+
+Basic idea. Sufficient statistic for conditional probability table is contingency table with parent and child variable. We can calculate this from a data set.
+
+```{r Rpacks}
+library(tidyverse)
+```
+
+Read in the Cleveland data set from @janosi1989. The `heart.features` is information about the coding from the web site.
+
+```{r DownloadData}
+heart.features <- list(
+  Age=c(0,below50=50,between50and60=60,above60=100),
+  Sex=c(Male=1,Female=0),
+  CP=c(TypicalAnginal=1, AtypicalAnginal=2, NonAnginal=3, Asymptotic=4),
+  trestbps=c(0,low=120,moderate=140,high=300),
+  chol=c(0,Normal=200, Moderate=250, High=300, VeryHigh=500),
+  fbs=c(high=1,normal=0),
+  restecg=c(Normal=0, STTabnormality=0, LeftVentricularHypertrophy=2),
+  thalach=c(0,Low=130,Moderate=160,High=500),
+  exang=c(Yes=1, No=0),
+  oldpeak=c(-1,Zero=1,Low=2,High=10),
+  slope=c(down=1, flat=2, up=3),
+  ca=c(Zero=0, One=1, Two=2, Three=3, Four=4),
+  thal=c(Normal=3, FixedDefect=6, ReversibleDefect=7),
+  health=c(Healthy=0, S1=1, S2=2, S3=3, S4=4)
+)
+heart.cont <- sapply(heart.features,function(states) length(names(states)[1])==0L)
+
+cleveland <- read_csv("Heart/processed.cleveland.csv",
+                      col_names=names(heart.features),
+                      col_types=str_pad("",
+                                       width=length(heart.features),
+                                       pad="n"),
+                      na="?")
+
+for (var in names(heart.features)) {
+  states <- heart.features[[var]]
+  if (names(states)[1]=="") {
+    ## Continuous node, use cut to create variable.
+    cleveland[[var]] <- cut(cleveland[[var]],as.numeric(states),
+                            labels=names(states)[-1])
+  } else {
+    ## Discrete node, use factor.
+    cleveland[[var]] <- factor(as.integer(cleveland[[var]]),
+                               levels=as.integer(states),labels=names(states))
+  }
+}
+
+cleveland
+```
+
+### Build network structure.
+
+For this example, I've saved out the network structure, both the node positions and the parents of each node. Read this in:
+
+```{r readstructure}
+heart.structure <- dget("Heart/heartinfo.R")
+```
+
+Make a new network
+
+```{r heart1}
+heart1 <- CreateNetwork("Heart1",sess)
+NetworkTitle(heart1) <- "Heart example built from Cleveland data."
+```
+
+```{r buildTheNodes}
+for ( nodename in names(heart.features)) {
+  states <- heart.features[[nodename]]
+  if (all(names(states)!="")) {
+    ## Discrete Node
+    newnode <- NewDiscreteNode(heart1,nodename,names(states))
+    NodeLevels(newnode) <- as.numeric(states)
+  } else {
+    newnode <- NewContinuousNode(heart1,nodename)
+    NodeLevels(newnode) <- as.numeric(states)
+    NodeStates(newnode) <- names(states)[-1]
+  }
+  ## Fix properties
+  NodeTitle(newnode) <- heart.structure[[nodename]]$title
+  NodeVisPos(newnode) <- heart.structure[[nodename]]$pos
+}  
+heart1.nodes <- NetworkAllNodes(heart1)
+```
+
+The easiest way of inputting the structure is to look at the list of parents for all nodes.
+
+```{r LinkParents}
+
+for (nodename in names(heart.structure)) {
+  parnames <- heart.structure[[nodename]]$parents
+  if (length(parnames)==0L) next
+  node <- heart1.nodes[[nodename]]
+  if (is.null(node)) next
+  parents <- heart1.nodes[parnames]
+  NodeParents(node) <- parents
+}
+```
+
+### Node Sets
+
+Node sets allow variables to be tagged according to how they are used.
+
+```{r nodeSets}
+NodeSets(heart1$nodes$health) <- "Target"
+NetworkNodesInSet(heart1,"office") <-
+  heart1.nodes[c("Age","Sex","CP","trestbps","chol","fbs")]
+NetworkNodesInSet(heart1,"lab") <-
+  heart1.nodes[c("restecg", "thalach", "exang", "oldpeak", "slope", "ca", "thal")]
+```
+
+### Building CPTs from tables
+
+```{r buildingATable}
+Age <- heart1.nodes[["Age"]]
+parnames <- ParentNames(Age)
+AgeTab <- table(cleveland[c(parnames,"Age")])
+AgeTab
+```
+
+There are basically two representations for CPTs, arrays `CPTtools::CPA` and data frames, `CPTtools::CPF`
+
+```{r asCPF}
+as.CPF(AgeTab)
+```
+
+Add 1/(Number of states) to get rid of zeros and then normalize
+
+```{r norm}
+normalize(as.CPF(AgeTab+1/NodeNumStates(Age)))
+```
+
+```{r setTheCPT}
+Age[] <- normalize(as.CPF(AgeTab+1/NodeNumStates(Age)))
+Age[]
+```
+
+The `NodeProbs` function uses the array format.
+
+```{r NodeProbs}
+NodeProbs(Age)
+```
+
+```{r buildCPT}
+for (node in heart1.nodes) {
+  tab <- table(cleveland[c(ParentNames(node),NodeName(node))])
+  node[] <- normalize(as.CPF(tab+1/NodeNumStates(node)))
+}
+
+```
+
+### The Healthy? node
+
+This is a deterministic node and requires special treatment.
+
+```{r healthy}
+healthy <- NewDiscreteNode(heart1,"healthy") # Default states are Yes, No
+NodeTitle(healthy) <- "Healthy?"
+NodeParents(healthy) <- list(heart1$nodes$health)
+NodeVisPos(healthy) <- heart.structure[["healthy"]]$pos
+healthy[["Healthy"]] <- "Yes"
+healthy[[c("S1","S2","S3","S4")]] <- "No"
+healthy[[]]
+```
+
+Compiling the network will give a warning if any node lacks a CPT.
+
+```{r compileIt}
+CompileNetwork(heart1)
+```
+
+Write it out.
+
+```{r write}
+tmpfile <- tempfile("Heart",fileext=".dne")  ## DNE is ascii representations; NETA is binary
+WriteNetworks(heart1,tmpfile)
+```
+
+## Working with Case Files
+
+Netica supports _case files_, which are essentially CSV files.  These are easier ways to manage large numbers of cases.
+
+The function `CaseFileStream()`  generates a new file stream.  The functions `ReadFindings()` and `WriteFindings()` read and write to the case stream.
+
+As we want the `CaseStream` to stay open while we are reading, explicitly call `OpenCaseStream` and `CloseCaseStream`.
+
+Note that good programming style requires that the `CaseStream` be closed when you are done with it.  To ensure this, use `WithOpenCaseStream(`_stream_,`{...})`.
+
+```{r wocs}
+#| eval: false
+casefile <- tempfile(fileext=".cas")
+filestream <- CaseFileStream(casefile,session=sess)
+WithOpenCaseStream(filestream, {
+  ## Do some stuff
+})
+## Or equivalently use the withr::defer construct
+{
+  OpenCaseStream(filestream)
+  withr::defer(CloseCaseStream(filestream))
+}
+```
+
+Note that the `CaseStream` is opened in the Netica environment, not the R environment.
+
+
+### Generating random cases
+
+Start by generating random cases.
+
+Note that Netica uses a different random number sequence than R.  To make 
+a reproducible sequence, we need to create a `NeticaRNG` object and give it a seed.  Use the `FreeNeticaRNG` method to free it when you are done (or use `WithNeticaRNG` to free it at the end of the computation.
+
+
+You can also associate the RNG with a network using `NetworkSetRNG()`.
+
+```{r random}
+CompileNetwork(heart)
+RetractNetFindings(heart)
+rnodes <- NetworkAllNodes(heart)
+casefile <- tempfile("heartrandom",fileext=".cas")
+filestream <- CaseFileStream(casefile,session=sess)
+rng <- NewNeticaRNG(12345,session=sess)
+N <- 10L
+WithRNG(rng,
+  WithOpenCaseStream(filestream,
+    for (n in 1L:N) {
+      GenerateRandomCase(rnodes,rng=rng)
+      WriteFindings(rnodes,filestream,n)
+      RetractNetFindings(heart)
+    }))
+ranCases <- read.CaseFile(casefile,session=sess)
+ranCases
+```
+
+The function `read.CaseFile` reads the generated cases and sets them up as a data frame.
+
+### Converting data into case file format
+
+Note that continuous variables are left at their numeric values.  Need
+to reread cleveland data and not do the conversion this time.
+
+```{r rereadCleveland}
+cleveland1 <- read_csv("Heart/processed.cleveland.csv",
+                      col_names=names(heart.features),
+                      col_types=str_pad("",
+                                        width=length(heart.features),
+                                        pad="n"),
+                      na="?")
+
+for (var in names(heart.features)) {
+  states <- heart.features[[var]]
+  if (names(states)[1]=="") {
+    ## Continuous node, leave as is create variable.
+  } else {
+    ## Discrete node, use factor.
+    cleveland1[[var]] <- factor(as.integer(cleveland1[[var]]),
+               levels=as.integer(states),labels=names(states))
+  }
+}
+write.CaseFile(cleveland1,"Heart/cleveland.cas",session=sess)
+```
+
+While we are at it, lets convert the Swiss and Hungarian data to case files.
+```{r otherDat}
+swiss <- read_csv("Heart/processed.switzerland.csv",
+                      col_names=names(heart.features),
+                      col_types=str_pad("",
+                                        width=length(heart.features),
+                                        pad="n"),
+                      na="?")
+hungary <- read_csv("Heart/processed.hungarian.csv",
+                      col_names=names(heart.features),
+                      col_types=str_pad("",
+                                        width=length(heart.features),
+                                        pad="n"),
+                      na="?")
+for (var in names(heart.features)) {
+  states <- heart.features[[var]]
+  if (names(states)[1]=="") {
+    ## Continuous node, leave as is create variable.
+  } else {
+    ## Discrete node, use factor.
+    swiss[[var]] <- factor(as.integer(swiss[[var]]),
+               levels=as.integer(states),labels=names(states))
+    hungary[[var]] <- factor(as.integer(hungary[[var]]),
+               levels=as.integer(states),labels=names(states))
+  }
+}
+write.CaseFile(swiss,"Heart/switzerland.cas",session=sess)
+write.CaseFile(hungary,"Heart/hungary.cas",session=sess)
+```
+
+
+### Bulk Scoring and Testing
+
+`NetworkTester`
+
+
+### Learning CPTs
+
+`LearnFindings`, `LearnCases`, `LearnCPTs`
+
+## Learning Structure from Data
+
+## Validating inferences using a second data set.
+
+## Fixing the HeartNet to properly use continuous nodes.
+
+(This was some code I used to fix and issue with the initial version of the test network which had the continuous nodes coded as discrete.)
+
+```{r GetData}
+heart.info <- lapply(heart.nodes, function (nd) {
+  list(parents = ParentNames(nd),
+       cpt = NodeProbs(nd),
+       pos= NodeVisPos(nd),
+       title=NodeTitle(nd))
+})
+```
+
+Number of states of Age has changed, need to fix some CPTs.
+
+```{r fixCPTs}
+fixme <- c("Age","trestbps")
+for (nodename in fixme) {
+  xtab <- as.array(table(cleveland[c(heart.info[[nodename]]$parents,nodename)]))
+  class(xtab) <- c("CPA","array")
+  probs <- normalize(xtab+1/last(dim(xtab)))
+  heart.info[[nodename]]$cpt <- probs
+}
+```
+
+```{r replaceContinuous}
+for ( nodename in names(heart.features)) {
+  states <- heart.features[[nodename]]
+  if (all(names(states)!="")) next
+  oldnode <- heart.nodes[[nodename]]
+  ## Save old data
+  title <- NodeTitle(oldnode)
+  descrip <- NodeDescription(oldnode)
+  vispos <- NodeVisPos(oldnode)
+  ## Replace node
+  DeleteNodes(oldnode)
+  newnode <- NewContinuousNode(heart,nodename)
+  ## Fix properties
+  NodeTitle(newnode) <- title
+  NodeDescription(newnode) <- descrip
+  NodeVisPos(newnode) <- vispos
+  ## Fix the states
+  NodeLevels(newnode) <- as.numeric(states)
+  NodeStates(newnode) <- names(states)[-1]
+  ## Fix the list of nodes.
+  heart.nodes[[nodename]] <- newnode
+}
+```
+
+```{r replaceCPTs}
+## Fix up any set of broken parent relationships.
+for (nodename in names(heart.info)) {
+  cat(nodename,"\n")
+  node <- heart.nodes[[nodename]]
+  parents <- heart.nodes[heart.info[[nodename]]$parents]
+  NodeParents(node) <- parents
+  NodeProbs(node) <- heart.info[[nodename]]$cpt
+}
+```
+
+```{r compileAndWrite}
+CompileNetwork(heart)
+WriteNetworks(heart,"Heart/Heart.dne")
+```
+
+```{r spellingError}
+NodeStates(heart$nodes$CP)[4] <- "Asymptomatic"
+```
