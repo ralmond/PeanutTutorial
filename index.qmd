@@ -6,9 +6,9 @@ This website contains the downloads and handouts for the tutorial *Bayesian Netw
 
 You can access this tutorial in two ways:
 
-* Online viewing through <https://pluto.coe.fsu.edu/PeanutTutorial>. 
+-   Online viewing through <https://pluto.coe.fsu.edu/PeanutTutorial>.
 
-* Download the source code from <https://github.com/ralmond/PeanutTutorial.git>.
+-   Download the source code from <https://github.com/ralmond/PeanutTutorial.git>.
 
 The latter allows you to reproduce the calculations on your own computer using R Studio. See the [Resources](Resources.qmd) page for more information about the software you need to download.
 
@@ -24,12 +24,22 @@ The complete tutorial has the following parts:
 
 a.  [Scoring using RNetica](Scoring.qmd)
 b.  [DiBello Models for Conditional Probability Tables](DiBelloModels.qmd)
-b.  [Building a Net with Peanut](Building.qmd)
-c.  [Calibrating Model Parameters to Data](Updating.qmd)
+c.  [Building a Net with Peanut](Building.qmd)
+d.  [Calibrating Model Parameters to Data](Updating.qmd)
 
 <!-- -->
 
 4.  [Dynamic Bayesian Networks](Dynamic.qmd)
 
-An older version of the resources with powerpoint slides is available at
-<https://pluto.coe.fsu.edu/BNinEA/NCMETutorial>
+An older version of the resources with powerpoint slides is available at <https://pluto.coe.fsu.edu/BNinEA/NCMETutorial>
+
+
+## Powerpoint Slides
+
+These are from the ISCA slides which are a general stat (as opposed to psychometric) audience.
+
+[Session 1](BNGeneralSession1.pptx)
+[Session 2](BNGeneralSession2.pptx)
+[Session 3](BNGeneralSession3.pptx)
+[Session 4](BNGeneralSession4.pptx)
+

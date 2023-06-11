@@ -1,0 +1,466 @@
+---
+title: "Graph theory details"
+---
+
+This is a more technical introduction to graph theory
+
+# Basic Graph Theory
+
+${\cal G} = \langle {\cal
+N, E} \rangle$ --- *nodes* or *vertices* --- *edges* or *links* (sets of
+nodes).
+
+*Simple Graph* --- edges are unordered pairs.
+
+*Directed Graph* --- edges are ordered pairs.
+
+*Hypergraph* --- edges are sets of arbitrary size.
+
+In *Graphical Model*, ${\it node} = {\it variable}$.
+
+*Frame of Discernment* is outcome space associated with set of nodes.
+
+## Simple Graphs
+
+In a simple graph all of the edges are unordered pairs.
+
+
+![A simple Graph](img/abcdefGraph.png)
+
+
+### Simple Graph Terms
+
+Nodes are *neighbors* if connected by an edge.
+
+The set of all neighbors of a node $A_i$ is called the *neighborhood*,
+${\rm N}(A_i|\cal G)$.
+
+Let ${\bf C}$ be a set of nodes.
+
+If all nodes in ${\bf C}$ are neighbors, ${\bf C}$ is complete.
+
+A maximal complete set is called a *clique*.
+
+## Directed Graphs
+
+A *directed graph* is simple graph whose edges are ordered pairs.
+
+![A directed graph](img/adcdefDigraph.png)
+
+### Directed Graph Terms
+
+The nodes $\{A^* | (A^*,A) \in {\cal E}\}$ are the *parents* of $A$;
+$\pi(A|{\cal G})$.
+
+The nodes $\{A_* | (A,A_*) \in {\cal E} \}$ are the *children* of $A$.
+
+## Separation
+
+Let $A_0, A_1, \ldots, A_n$ be a series of nodes such that $A_i$ and
+$A_{i+1}$ are neighbors. Such a series is called a *path* (simple graph)
+or *chain* (directed graph).
+
+In a directed graph, to make a path $(A_i,A_{i+1})$ must be an edge. (i.e.,
+must travel in edge direction).
+
+Two nodes are *connected* if there exists a path or chain between them.
+
+A graph is *connected* if all its nodes are connected.
+
+A path whose first and last node are the same is a *cycle*.
+
+A *Tree* is an *acyclic* graph.
+
+![A Tree contains no cycles](img/abcdefTree.png)
+
+*Acyclic directed graphs* (directed graphs which contain no directed
+cycles) play a special role in the construction of models. (Note that
+these graphs may contain directed cycles). Such graphs are often called
+by the euphonious misnomer DAG.
+
+![A Cyclic Directed Graph](img/abcCyca.png)
+![An Acyclic Directed Graph](img/abcCycb.png)
+
+A *chord* is a shortcut through a cycle. (Dotted edge in Figure 5).
+
+A simple graph that has no simple chordless cycles of length greater
+than three is called *triangulated*.
+
+If a graph is not triangulated, additional edges can be *filled in*
+until it is triangulated.
+
+\[triangulation\]Filling-in edges for triangulationhsize=2.75truein
+vsize=2.75truein/Without the dotted edge, this graph is not
+triangulated. Adding the dotted edge makes the graph triangulated.
+
+A.3.1 Separation and D-separation
+
+The idea of separation in the graph is important for reading conditional
+independence statements from the graph. However, we use a different
+definition for separation in directed and undirected graphs.
+
+.
+
+. Let ${\bf X\/}$, ${\bf Y\/}$, and ${\bf
+Z\/}$ be sets of nodes in a graph, $\cal G$. ${\bf Z\/}$ separates
+${\bf X\/}$ and ${\bf Y\/}$, if for every $A_x$ in ${\bf X\/}$ and for
+every $A_y$ in ${\bf Y\/}$, all paths from $A_x$ to $A_y$ in $\cal G$
+contain at least one node of ${\bf Z\/}$.
+
+Another equivalent way to think about the separation is that deletion of
+the nodes ${\bf Z\/}$ from graph disconnects the nodes of ${\bf X\/}$
+from the nodes of ${\bf Y\/}$.
+
+.
+
+. (Pearl\[1988\]) Let ${\bf X\/}$, ${\bf
+Y\/}$, and ${\bf Z\/}$ be sets of nodes in a directed graph, $\cal G$.
+${\bf Z\/}$ d-separates ${\bf X\/}$ and ${\bf Y\/}$, if for every $A_x$
+in ${\bf X\/}$ and for every $A_y$ in ${\bf Y\/}$, there is no chains
+from $A_x$ to $A_y$ in $\cal G$ along which the following conditions
+hold: (1) every node with converging arrows is in ${\bf
+Z\/}$ or has a descendent in ${\bf Z\/}$ and (2) every other node is
+outside ${\bf Z\/}$.
+
+*Intuition:* Assume we "know" values for variables in ${\bf Z\/}$.
+
+(1) Knowing common (direct) ancestors separates $A_x$ and $A_y$.
+
+(2) Knowing intermediate steps along a path separates $A_x$ and $A_y$.
+
+(3) Knowing common descendents joins $A_x$ and $A_y$, even if they would
+have been separated if the common descendent was unknown.
+
+\[d-separation\]Separation and D-Separationhsize=6truein
+vsize=2truein/(Pearl \[1988\]). Here, $\{E\}$ d-separate $D$ and $F$
+(intermediate step in chain). $\{A\}$ d-separates $B$ and $C$ (common
+ancestor), but $\{A,F\}$ does not (common descendents must not be
+included).
+
+B. Independence and Conditional Independence
+
+. Let $A$ and $B$ be any two events such that ${\rm P\/}(B)\not=0$.
+Define the conditional probability of $A$ given $B$ (written
+${\rm P\/}(A|B)$) as follows:
+$${\rm P\/}(A|B) = {{\rm P\/}(A \cap B) \over {\rm P\/}(B)} \ .\eqno (1)$$
+
+We write $A\indep B$.
+
+. Let $A_1, \ldots,
+A_n$ be a partition and let $B$ be another event. Then
+$${\rm P\/}(B) = \sum_{i=1}^n {\rm P\/}(B|A_i){\rm P\/}(A_i)\
+.\eqno (2)$$
+
+. Let $A_1, \ldots, A_n$ be a partition and $B$ be an event, such that
+${\rm P\/}(B) >0$ and ${\rm P\/}(A_i)
+>0$ for all $i$. Then:
+$${\rm P\/}(A_i|B) = {{{\rm P\/}(B|A_i){\rm P\/}(A_i)}\over
+        {\displaystyle \sum_{i=1}^n {\rm P\/}(B|A_i){\rm P\/}(A_i)}} 
+\ .\eqno (3)$$
+
+B.1 Marginal Independence
+
+. Let $A$ and $B$ be two events. Then we say $A$ and $B$ are independent
+if and only if
+$${\rm P\/}(A \cap B) = {\rm P\/}(A) \cdot {\rm P\/}(B)\ .\eqno (4)$$
+
+This is also called *Marginal Independence* to distinguish it from
+*Conditional Independence*.
+
+If additionally ${\rm P\/}(A)>0$ and ${\rm P\/}(B)>0$, then the
+following lemma shows how to interpret independence in terms of
+conditional probability. Note that Pearl \[1988\] takes this as the
+definition.
+
+Alternative Definition of Independence. If $A$ and $B$ are two events
+such that ${\rm P\/}(A)>0$ and ${\rm P\/}(B)>0$. Then the following
+three statements are equivalent: $A$ and $B$ are independent
+(Equation 4),
+$${\rm P\/}(A|B) = {\rm P\/}(A) = {\rm P\/}(A|\overline B) \ ,\eqno (5a)$$
+and
+$${\rm P\/}(B|A) = {\rm P\/}(B) = {\rm P\/}(B|\overline A) \ .\eqno (5b)$$
+
+. Let $A_1, \ldots, A_n$ be a set of $n$ events. These events are
+mutually independent if
+${\rm P\/}(A_1 \cap \cdots \cap A_n) = \prod_{i=1}^n {\rm P\/}(A_i)$ and
+any smaller subset of those events is mutually independent.
+
+Note that pairwise independence does not imply mutual independence.
+
+B.2 Conditional Independence
+
+. Let $A$, $B$ and $C$ be three events. Then we say $A$ and $B$ are
+conditionally independent given $C$ if and only if
+$${\rm P\/}(A \cap B | C) = {\rm P\/}(A|C) \cdot {\rm P\/}(B|C)\ .\eqno(6)$$
+
+We write $A\indep B \mathrel| C$.
+
+Conditional independence does not imply marginal independence nor *visa
+versa* (Simpson's Paradox).
+
+B.3 Common Parameter Dependence
+
+\[This is a small illustrative example we cut from the talk.\]
+
+Accident Proneness (Feller \[1968\]). Imagine a population with two
+types of individuals: $N$, normal, and $\overline N$, accident prone.
+And suppose that 5/6 of these people are normal, so that if we randomly
+select a person from this population the probability that the chosen
+person is normal is $P(N) =
+5/6$.
+
+Let $A_i$ be the event that an individual has an accident in year $i$.
+For *each individual* $A_i$ is independent of $A_j$ whenever $i \ne j$.
+Thus for each individual, whether or not that person has an accident
+follows a Bernoulli process. The accident probability, however, is
+different for the two classes of individuals.
+$$P(A_i|N) = .01    \qquad\qquad    P(A_i|\overline N) = .1$$ The chance
+of a randomly chosen individual having an accident in a given year
+follows from the Law of Total Probability. $$\eqalign{
+P(A_i)  & = P(A_i|N)P(N) + P(A_i|\overline N)P(\overline N) \cr
+    & = {.05\over 6} + {.1\over 6} = {1.5\over 6} = .025\ .\cr}$$ The
+probability that a randomly chosen individual has an accident in both
+the first and second year follows from the Law of Total Probability and
+the fact that $A_1$ and $A_2$ are independent for a given individual
+$$\eqalign{
+P(A_1 \cap A_2) 
+    &= P(A_1 \cap A_2 |N)P(N) + P(A_1 \cap A_2|\overline N)P(\overline N)   \cr
+    &= P(A_1|N)P(A_2|N)P(N)   + P(A_1|\overline N)P(A_2|\overline N)P(\overline N)\cr
+    &= .01\times .01 \times {5\over 6} + .1\times .1 \times{1\over 6}\cr
+    & =  {.0005\over 6} + {.01/6} = {.0105\over 6} = .00175 \ .\cr}$$
+Note that:
+$$P(A_2|A_1) = {P(A_1\cap A_2)\over P(A_2)} =  {.00175\over .025} =
+.07\ .$$ Therefore $A_1$ and $A_2$ are not (unconditionally)
+independent!
+
+\[spurious\]Graph for Feller's Accident Proneness examplehsize=5truein
+vsize=2truein/
+
+The explanation for this phenomenon lies with the interpretation of
+probability as a state of information. When we learn that the individual
+in question has had an accident during the first year, that provides
+information about whether or not he is accident prone which in turn
+provides information about what will happen during the next year. In
+general, whenever the parameter is unknown, information about one sample
+value provides information about the others through the parameter. This
+is the essence of common parameter dependence.
+
+\[uirt\]Unidimensional IRT as a graphical modelhsize=4truein
+vsize=2truein/
+
+A very common example from educational testing is Unidimensional IRT.
+Here the latent trait $\theta$ accounts for all of the dependence
+between the observations. This is sometimes called the "naïve Bayes"
+model, although in practice the assessment can be engineered to make
+this model fit pretty well.
+
+B.4 Competing Explanations
+
+Conditioning on common descendents induces dependencies. This is the
+*Competing Explanation* phenomenon.
+
+\[compete\]Variables $\theta_1$ and $\theta_2$ are conditionally
+dependent given $X$hsize=4.5truein vsize=1.5truein/Note that even though
+$\theta_1$ and $\theta_2$ are marginally independent, if $X$ is known
+they become dependent.
+
+Conjunctive Skills Model. Suppose $\theta_1$ and $\theta_2$ represent
+two skills (, reading and writing) and $X$ represents performance on a
+task which requires both (, document based writing task). Poor
+performance on the task could be a sign of lack of either of the skills.
+Suppose we learned (from an earlier reading test) that the reading
+skills of the examinee were high; we would then conclude that there was
+a deficiency in writing. Thus, observing the performance on the task
+induces a dependency in our knowledge about the skill variables.
+
+This is intuition behind D-separation.
+
+B.5 I-Maps and D-Maps
+
+Ideally, the separation properties of the model graph should show all of
+the conditional independence relationships in the graphical model.
+
+*I-map* (*Independence Map*) Separation in graph implies conditional
+independence.
+
+*D-map* (*Dependence Map*) Conditional independence implies separation
+in graph.
+
+DAGs are good for making maximal D-maps. Undirected Graphs are good for
+making minimal I-maps.
+
+Pearl \[1988\] develops these ideas.
+
+C. Factorization and Hypergraphs
+
+C.1 Products of Potentials
+
+Key idea: Here we are using the law of total probability to break a big
+probability distribution up into many small factors. Each of those small
+factors should be related to things going on in the graph.
+
+${\rm P\/}(A,B,C,D,E,F)={\rm P\/}(A){\rm P\/}(B){\rm P\/}(C|A,B){\rm P\/}(D|C){\rm P\/}(E|C){\rm P\/}(F|E,D)$
+
+The probability function ${\rm P\/}_{\cal G}$ is called the *total
+probability* and is defined by: $${\rm P\/}_{\cal G} =
+\prod_{{\bf C\/} \in {\cal C}} \Phi_{\bf C\/}  \ .
+\eqno (7)$$
+
+$\Phi_{\bf C\/}$ is a *potential* and represents either a probability or
+conditional probability.
+
+C.2 Three Graphical Representations
+
+\[abcdefDigraph\]Directed Graph representing
+${\rm P\/}(A){\rm P\/}(B){\rm P\/}(C|A,B){\rm P\/}(D|C){\rm P\/}(E|C){\rm P\/}(F|E,D)$
+hsize=6truein vsize=1.25truein/
+
+In directed graph, factors correspond to nodes and their parents.
+
+\[abcdefHypergraph\]Hypergraph representing
+${\rm P\/}(A){\rm P\/}(B){\rm P\/}(C|A,B){\rm P\/}(D|C){\rm P\/}(E|C){\rm P\/}(F|E,D)$
+hsize=6truein vsize=1.25truein/
+
+Hyperedges (edges with arbitrary number of nodes) represent factors of
+the joint probability distribution are drawn with square boxes.
+
+Tentacles link hyperedges to nodes.
+
+Note here factors in the graphical model are represented by icons in the
+graph. Shenoy and Shafer \[1990\] call this representation "Valuation
+based system."
+
+We make an undirected *2-section* by connecting nodes in the same
+hyperedge.
+
+\[abcdefGraph\]Simple graph representing
+${\rm P\/}(A){\rm P\/}(B){\rm P\/}(C|A,B){\rm P\/}(D|C){\rm P\/}(E|C){\rm P\/}(F|E,D)$hsize=6truein
+vsize=1.25truein/
+
+In simple graph, potentials correspond to cliques of graph.
+
+The *moral graph* for a DAG is the 2-section of its directed hypergraph.
+(I-map for this distribution.)
+
+C.3. Gibb--Markov Equivalence Theorem
+
+Moussouris \[1974\] discusses this problem under the name *Gibbs--Markov
+equivalence*.
+
+"Markov" means separation in the graph implies conditional independence.
+(I-map)
+
+"Gibbs" means can be factored according to Equation (7).
+
+. The model hypergraph is an I-map of its graphical model, or
+equivalently, a graphical model is Markov with respect to its model
+hypergraph.
+
+C.4. Causality
+
+Building directed graphical models is easier than building undirected
+graphs. The consistency constraint is that each variable must appear as
+the child in exactly one factor, and the (directed) graph must be
+acyclic.
+
+The direction of arrows means the "direction of conditioning." Can be in
+either "causal" or "diagnostic" direction.
+
+\[causal\]Directed Graph running in "causal" direction:
+${\rm P\/}({\rm Skill}){\rm P\/}({\rm Performance}|{\rm Skill})$
+hsize=6truein vsize=1.0truein/
+
+\[diagnostic\]Directed Graph running in "diagnostic" direction:
+${\rm P\/}({\rm Performance}){\rm P\/}({\rm Skill}|{\rm Performance})$
+hsize=6truein vsize=1.0truein/
+
+Can use Bayes theorem to translate between the two (called *arc
+reversal* in influence diagram literature.
+
+Graphs running in the "causal" direction are generally simpler.
+
+Causality, however, is not necessary. Weaker notions like "tendency to
+cause", "influence" or "knowledge dependence" are sufficient. The word
+"causal" is easy to misinterpret by the lay public.
+
+BUT
+
+If we have a causal theory, we can use it to help build efficient
+models.
+
+For example, Cognative Theory about factors which go into performance on
+an assessment task can be used to build a model of that performance
+(Mislevy \[1994\]).
+
+"All models are false, but some models are useful."
+
+D. Related Models
+
+D.1 Influence Diagrams
+
+Related to the concept of causal models are influence diagrams (Howard
+and Matheson \[1981\], Shachter \[1986\], and Oliver and Smith
+\[1990\]). Influence diagrams use both probabilities and utilities which
+represent preferences among outcomes. Influence diagrams also use two
+classes of nodes, one to represent random variables and one to represent
+decisions (under the control of the decision maker). The "solution" to
+an influence diagram is a strategy for making the decisions involved in
+the problem to maximize the expected utility.
+
+\[ValueOfInformation\]Influence diagram for skill training
+decisionhsize=6truein vsize=3truein/An influence diagram which shows
+factors revolving around decision on whether or not to send a candidate
+for traiing in a particular skill.
+
+Square boxes are *decision variables* Round boxes are *chance nodes*
+Hexagonal boxes are *utilities* (costs are negative utilities).
+
+Arrows into decision nodes represent information available at time of
+decision.
+
+An influence diagram will all chance nodes is called a *relevance
+diagram* and is a Bayesian Network.
+
+C.2 Structural Equation Models
+
+\[sem\]Grahical ModelStructural Equation Modelhsize=2.5in vsize=1.5in/
+
+Marginal Independence rather than Conditional independence
+
+Cyclical Relationships allowed
+
+Mixed Directed and Undirected edges
+
+Typically used to describe overall relationships rather than to make
+predictions for single individuals
+
+D. Graph Queries
+
+What kinds of questions might we want to ask our model?
+
+1. *Marginal Belief* "What is the probability that the learner has skill
+$S_1$?" $${\rm P\/}(S_1)$$
+
+Term "Margin" comes from contingency tables, this is the "Margin" of the
+table associated with $S_1$.
+
+2. *Conditional Belief* "What is the probability that the learner has
+skill $S_1$ given we have made observations on tasks $X_1,\ldots, X_n$?"
+$${\rm P\/}(S_1|{\bf X})$$
+
+3. *Hypothetical Belief* \"Given that we have made observations on tasks
+$X_1,\ldots, X_n$, if we observed a performance on task $Y$, how would
+our beliefs change?\"
+$${\rm P\/}(S_1|{\bf X},Y)\over{\rm P\/}(S_1|{\bf X})$$
+
+Let $p_Y = {\rm P\/}(Y|S_1)$, that is the probability of seeing a good
+performance on task Y given that the learner has skill $S_1$.
+
+4. *Sensitivity Analysis* "How do our conclusions about the learner
+change as $p_Y$ changes?" $${\rm P\/}(S_1|{\bf X},Y) = f(p_Y)$$
+
+Suppose further that we say $p_Y \sim {\rm Gamma\/}(\cdots)$.
+
+5. *Uncertainty Analysis* "What is the expected value of our beliefs
+about $S_1$, the variance?"
+$$E\left[{\rm P\/}(S_1|{\bf X},Y)\right]  \qquad Var\left({\rm P\/}(S_1|{\bf X},Y)\right)$$

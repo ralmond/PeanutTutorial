@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Peanut Tutorial - Graph theory details</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Peanut Tutorial</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./ECD.html" rel="" target="">
+ <span class="menu-text">ECD Intro</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./BayesNets.html" rel="" target="">
+ <span class="menu-text">Bayesian Networks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Heart.html" rel="" target="">
+ <span class="menu-text">Heart Example</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Scoring.html" rel="" target="">
+ <span class="menu-text">Scoring</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./DiBelloModels.html" rel="" target="">
+ <span class="menu-text">Making CPTs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Building.html" rel="" target="">
+ <span class="menu-text">Building Nets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Updating.html" rel="" target="">
+ <span class="menu-text">Calibration</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Visualization.html" rel="" target="">
+ <span class="menu-text">Model checking and visualzation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Dynamic.html" rel="" target="">
+ <span class="menu-text">Dynamic Models</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Resources.html" rel="" target="">
+ <span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./References.html" rel="" target="">
+ <span class="menu-text">References</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./img/PeanutLogo.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Peanut Logo</figcaption>
+</figure>
+</div>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#basic-graph-theory" id="toc-basic-graph-theory" class="nav-link active" data-scroll-target="#basic-graph-theory">Basic Graph Theory</a>
+  <ul class="collapse">
+  <li><a href="#simple-graphs" id="toc-simple-graphs" class="nav-link" data-scroll-target="#simple-graphs">Simple Graphs</a>
+  <ul class="collapse">
+  <li><a href="#simple-graph-terms" id="toc-simple-graph-terms" class="nav-link" data-scroll-target="#simple-graph-terms">Simple Graph Terms</a></li>
+  </ul></li>
+  <li><a href="#directed-graphs" id="toc-directed-graphs" class="nav-link" data-scroll-target="#directed-graphs">Directed Graphs</a>
+  <ul class="collapse">
+  <li><a href="#directed-graph-terms" id="toc-directed-graph-terms" class="nav-link" data-scroll-target="#directed-graph-terms">Directed Graph Terms</a></li>
+  </ul></li>
+  <li><a href="#separation" id="toc-separation" class="nav-link" data-scroll-target="#separation">Separation</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Graph theory details</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>This is a more technical introduction to graph theory</p>
+<section id="basic-graph-theory" class="level1">
+<h1>Basic Graph Theory</h1>
+<p><span class="math inline">\({\cal G} = \langle {\cal N, E} \rangle\)</span> — <em>nodes</em> or <em>vertices</em> — <em>edges</em> or <em>links</em> (sets of nodes).</p>
+<p><em>Simple Graph</em> — edges are unordered pairs.</p>
+<p><em>Directed Graph</em> — edges are ordered pairs.</p>
+<p><em>Hypergraph</em> — edges are sets of arbitrary size.</p>
+<p>In <em>Graphical Model</em>, <span class="math inline">\({\it node} = {\it variable}\)</span>.</p>
+<p><em>Frame of Discernment</em> is outcome space associated with set of nodes.</p>
+<section id="simple-graphs" class="level2">
+<h2 class="anchored" data-anchor-id="simple-graphs">Simple Graphs</h2>
+<p>In a simple graph all of the edges are unordered pairs.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/abcdefGraph.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">A simple Graph</figcaption>
+</figure>
+</div>
+<section id="simple-graph-terms" class="level3">
+<h3 class="anchored" data-anchor-id="simple-graph-terms">Simple Graph Terms</h3>
+<p>Nodes are <em>neighbors</em> if connected by an edge.</p>
+<p>The set of all neighbors of a node <span class="math inline">\(A_i\)</span> is called the <em>neighborhood</em>, <span class="math inline">\({\rm N}(A_i|\cal G)\)</span>.</p>
+<p>Let <span class="math inline">\({\bf C}\)</span> be a set of nodes.</p>
+<p>If all nodes in <span class="math inline">\({\bf C}\)</span> are neighbors, <span class="math inline">\({\bf C}\)</span> is complete.</p>
+<p>A maximal complete set is called a <em>clique</em>.</p>
+</section>
+</section>
+<section id="directed-graphs" class="level2">
+<h2 class="anchored" data-anchor-id="directed-graphs">Directed Graphs</h2>
+<p>A <em>directed graph</em> is simple graph whose edges are ordered pairs.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/adcdefDigraph.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">A directed graph</figcaption>
+</figure>
+</div>
+<section id="directed-graph-terms" class="level3">
+<h3 class="anchored" data-anchor-id="directed-graph-terms">Directed Graph Terms</h3>
+<p>The nodes <span class="math inline">\(\{A^* | (A^*,A) \in {\cal E}\}\)</span> are the <em>parents</em> of <span class="math inline">\(A\)</span>; <span class="math inline">\(\pi(A|{\cal G})\)</span>.</p>
+<p>The nodes <span class="math inline">\(\{A_* | (A,A_*) \in {\cal E} \}\)</span> are the <em>children</em> of <span class="math inline">\(A\)</span>.</p>
+</section>
+</section>
+<section id="separation" class="level2">
+<h2 class="anchored" data-anchor-id="separation">Separation</h2>
+<p>Let <span class="math inline">\(A_0, A_1, \ldots, A_n\)</span> be a series of nodes such that <span class="math inline">\(A_i\)</span> and <span class="math inline">\(A_{i+1}\)</span> are neighbors. Such a series is called a <em>path</em> (simple graph) or <em>chain</em> (directed graph).</p>
+<p>In a directed graph, to make a path <span class="math inline">\((A_i,A_{i+1})\)</span> must be an edge. (i.e., must travel in edge direction).</p>
+<p>Two nodes are <em>connected</em> if there exists a path or chain between them.</p>
+<p>A graph is <em>connected</em> if all its nodes are connected.</p>
+<p>A path whose first and last node are the same is a <em>cycle</em>.</p>
+<p>A <em>Tree</em> is an <em>acyclic</em> graph.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/abcdefTree.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">A Tree contains no cycles</figcaption>
+</figure>
+</div>
+<p><em>Acyclic directed graphs</em> (directed graphs which contain no directed cycles) play a special role in the construction of models. (Note that these graphs may contain directed cycles). Such graphs are often called by the euphonious misnomer DAG.</p>
+<p><img src="img/abcCyca.png" class="img-fluid" alt="A Cyclic Directed Graph"> <img src="img/abcCycb.png" class="img-fluid" alt="An Acyclic Directed Graph"></p>
+<p>A <em>chord</em> is a shortcut through a cycle. (Dotted edge in Figure&nbsp;5).</p>
+<p>A simple graph that has no simple chordless cycles of length greater than three is called <em>triangulated</em>.</p>
+<p>If a graph is not triangulated, additional edges can be <em>filled in</em> until it is triangulated.</p>
+<p>[triangulation]Filling-in edges for triangulationhsize=2.75truein vsize=2.75truein/Without the dotted edge, this graph is not triangulated. Adding the dotted edge makes the graph triangulated.</p>
+<p>A.3.1 Separation and D-separation</p>
+<p>The idea of separation in the graph is important for reading conditional independence statements from the graph. However, we use a different definition for separation in directed and undirected graphs.</p>
+<p>.</p>
+<p>. Let <span class="math inline">\({\bf X\/}\)</span>, <span class="math inline">\({\bf Y\/}\)</span>, and <span class="math inline">\({\bf Z\/}\)</span> be sets of nodes in a graph, <span class="math inline">\(\cal G\)</span>. <span class="math inline">\({\bf Z\/}\)</span> separates <span class="math inline">\({\bf X\/}\)</span> and <span class="math inline">\({\bf Y\/}\)</span>, if for every <span class="math inline">\(A_x\)</span> in <span class="math inline">\({\bf X\/}\)</span> and for every <span class="math inline">\(A_y\)</span> in <span class="math inline">\({\bf Y\/}\)</span>, all paths from <span class="math inline">\(A_x\)</span> to <span class="math inline">\(A_y\)</span> in <span class="math inline">\(\cal G\)</span> contain at least one node of <span class="math inline">\({\bf Z\/}\)</span>.</p>
+<p>Another equivalent way to think about the separation is that deletion of the nodes <span class="math inline">\({\bf Z\/}\)</span> from graph disconnects the nodes of <span class="math inline">\({\bf X\/}\)</span> from the nodes of <span class="math inline">\({\bf Y\/}\)</span>.</p>
+<p>.</p>
+<p>. (Pearl[1988]) Let <span class="math inline">\({\bf X\/}\)</span>, <span class="math inline">\({\bf Y\/}\)</span>, and <span class="math inline">\({\bf Z\/}\)</span> be sets of nodes in a directed graph, <span class="math inline">\(\cal G\)</span>. <span class="math inline">\({\bf Z\/}\)</span> d-separates <span class="math inline">\({\bf X\/}\)</span> and <span class="math inline">\({\bf Y\/}\)</span>, if for every <span class="math inline">\(A_x\)</span> in <span class="math inline">\({\bf X\/}\)</span> and for every <span class="math inline">\(A_y\)</span> in <span class="math inline">\({\bf Y\/}\)</span>, there is no chains from <span class="math inline">\(A_x\)</span> to <span class="math inline">\(A_y\)</span> in <span class="math inline">\(\cal G\)</span> along which the following conditions hold: (1)&nbsp;every node with converging arrows is in <span class="math inline">\({\bf Z\/}\)</span> or has a descendent in <span class="math inline">\({\bf Z\/}\)</span> and (2)&nbsp;every other node is outside <span class="math inline">\({\bf Z\/}\)</span>.</p>
+<p><em>Intuition:</em> Assume we “know” values for variables in <span class="math inline">\({\bf Z\/}\)</span>.</p>
+<ol type="1">
+<li><p>Knowing common (direct) ancestors separates <span class="math inline">\(A_x\)</span> and <span class="math inline">\(A_y\)</span>.</p></li>
+<li><p>Knowing intermediate steps along a path separates <span class="math inline">\(A_x\)</span> and <span class="math inline">\(A_y\)</span>.</p></li>
+<li><p>Knowing common descendents joins <span class="math inline">\(A_x\)</span> and <span class="math inline">\(A_y\)</span>, even if they would have been separated if the common descendent was unknown.</p></li>
+</ol>
+<p>[d-separation]Separation and D-Separationhsize=6truein vsize=2truein/(Pearl [1988]). Here, <span class="math inline">\(\{E\}\)</span> d-separate <span class="math inline">\(D\)</span> and <span class="math inline">\(F\)</span> (intermediate step in chain). <span class="math inline">\(\{A\}\)</span> d-separates <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> (common ancestor), but <span class="math inline">\(\{A,F\}\)</span> does not (common descendents must not be included).</p>
+<p>B. Independence and Conditional Independence</p>
+<p>. Let <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> be any two events such that <span class="math inline">\({\rm P\/}(B)\not=0\)</span>. Define the conditional probability of <span class="math inline">\(A\)</span> given <span class="math inline">\(B\)</span> (written <span class="math inline">\({\rm P\/}(A|B)\)</span>) as follows: <span class="math display">\[{\rm P\/}(A|B) = {{\rm P\/}(A \cap B) \over {\rm P\/}(B)} \ .\eqno (1)\]</span></p>
+<p>We write <span class="math inline">\(A\indep B\)</span>.</p>
+<p>. Let <span class="math inline">\(A_1, \ldots, A_n\)</span> be a partition and let <span class="math inline">\(B\)</span> be another event. Then <span class="math display">\[{\rm P\/}(B) = \sum_{i=1}^n {\rm P\/}(B|A_i){\rm P\/}(A_i)\
+.\eqno (2)\]</span></p>
+<p>. Let <span class="math inline">\(A_1, \ldots, A_n\)</span> be a partition and <span class="math inline">\(B\)</span> be an event, such that <span class="math inline">\({\rm P\/}(B) &gt;0\)</span> and <span class="math inline">\({\rm P\/}(A_i) &gt;0\)</span> for all <span class="math inline">\(i\)</span>. Then: <span class="math display">\[{\rm P\/}(A_i|B) = {{{\rm P\/}(B|A_i){\rm P\/}(A_i)}\over
+        {\displaystyle \sum_{i=1}^n {\rm P\/}(B|A_i){\rm P\/}(A_i)}}
+\ .\eqno (3)\]</span></p>
+<p>B.1 Marginal Independence</p>
+<p>. Let <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> be two events. Then we say <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if and only if <span class="math display">\[{\rm P\/}(A \cap B) = {\rm P\/}(A) \cdot {\rm P\/}(B)\ .\eqno (4)\]</span></p>
+<p>This is also called <em>Marginal Independence</em> to distinguish it from <em>Conditional Independence</em>.</p>
+<p>If additionally <span class="math inline">\({\rm P\/}(A)&gt;0\)</span> and <span class="math inline">\({\rm P\/}(B)&gt;0\)</span>, then the following lemma shows how to interpret independence in terms of conditional probability. Note that Pearl [1988] takes this as the definition.</p>
+<p>Alternative Definition of Independence. If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are two events such that <span class="math inline">\({\rm P\/}(A)&gt;0\)</span> and <span class="math inline">\({\rm P\/}(B)&gt;0\)</span>. Then the following three statements are equivalent: <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent (Equation&nbsp;4), <span class="math display">\[{\rm P\/}(A|B) = {\rm P\/}(A) = {\rm P\/}(A|\overline B) \ ,\eqno (5a)\]</span> and <span class="math display">\[{\rm P\/}(B|A) = {\rm P\/}(B) = {\rm P\/}(B|\overline A) \ .\eqno (5b)\]</span></p>
+<p>. Let <span class="math inline">\(A_1, \ldots, A_n\)</span> be a set of <span class="math inline">\(n\)</span> events. These events are mutually independent if <span class="math inline">\({\rm P\/}(A_1 \cap \cdots \cap A_n) = \prod_{i=1}^n {\rm P\/}(A_i)\)</span> and any smaller subset of those events is mutually independent.</p>
+<p>Note that pairwise independence does not imply mutual independence.</p>
+<p>B.2 Conditional Independence</p>
+<p>. Let <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> be three events. Then we say <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are conditionally independent given <span class="math inline">\(C\)</span> if and only if <span class="math display">\[{\rm P\/}(A \cap B | C) = {\rm P\/}(A|C) \cdot {\rm P\/}(B|C)\ .\eqno(6)\]</span></p>
+<p>We write <span class="math inline">\(A\indep B \mathrel| C\)</span>.</p>
+<p>Conditional independence does not imply marginal independence nor <em>visa versa</em> (Simpson’s Paradox).</p>
+<p>B.3 Common Parameter Dependence</p>
+<p>[This is a small illustrative example we cut from the talk.]</p>
+<p>Accident Proneness (Feller [1968]). Imagine a population with two types of individuals: <span class="math inline">\(N\)</span>, normal, and <span class="math inline">\(\overline N\)</span>, accident&nbsp;prone. And suppose that 5/6 of these people are normal, so that if we randomly select a person from this population the probability that the chosen person is normal is <span class="math inline">\(P(N) = 5/6\)</span>.</p>
+<p>Let <span class="math inline">\(A_i\)</span> be the event that an individual has an accident in year <span class="math inline">\(i\)</span>. For <em>each individual</em> <span class="math inline">\(A_i\)</span> is independent of <span class="math inline">\(A_j\)</span> whenever <span class="math inline">\(i \ne j\)</span>. Thus for each individual, whether or not that person has an accident follows a Bernoulli process. The accident probability, however, is different for the two classes of individuals. <span class="math display">\[P(A_i|N) = .01    \qquad\qquad    P(A_i|\overline N) = .1\]</span> The chance of a randomly chosen individual having an accident in a given year follows from the Law of Total Probability. <span class="math display">\[\eqalign{
+P(A_i)  &amp; = P(A_i|N)P(N) + P(A_i|\overline N)P(\overline N) \cr
+    &amp; = {.05\over 6} + {.1\over 6} = {1.5\over 6} = .025\ .\cr}\]</span> The probability that a randomly chosen individual has an accident in both the first and second year follows from the Law of Total Probability and the fact that <span class="math inline">\(A_1\)</span> and <span class="math inline">\(A_2\)</span> are independent for a given individual <span class="math display">\[\eqalign{
+P(A_1 \cap A_2)
+    &amp;= P(A_1 \cap A_2 |N)P(N) + P(A_1 \cap A_2|\overline N)P(\overline N)   \cr
+    &amp;= P(A_1|N)P(A_2|N)P(N)   + P(A_1|\overline N)P(A_2|\overline N)P(\overline N)\cr
+    &amp;= .01\times .01 \times {5\over 6} + .1\times .1 \times{1\over 6}\cr
+    &amp; =  {.0005\over 6} + {.01/6} = {.0105\over 6} = .00175 \ .\cr}\]</span> Note that: <span class="math display">\[P(A_2|A_1) = {P(A_1\cap A_2)\over P(A_2)} =  {.00175\over .025} =
+.07\ .\]</span> Therefore <span class="math inline">\(A_1\)</span> and <span class="math inline">\(A_2\)</span> are not (unconditionally) independent!</p>
+<p>[spurious]Graph for Feller’s Accident Proneness examplehsize=5truein vsize=2truein/</p>
+<p>The explanation for this phenomenon lies with the interpretation of probability as a state of information. When we learn that the individual in question has had an accident during the first year, that provides information about whether or not he is accident prone which in turn provides information about what will happen during the next year. In general, whenever the parameter is unknown, information about one sample value provides information about the others through the parameter. This is the essence of common parameter dependence.</p>
+<p>[uirt]Unidimensional IRT as a graphical modelhsize=4truein vsize=2truein/</p>
+<p>A very common example from educational testing is Unidimensional IRT. Here the latent trait <span class="math inline">\(\theta\)</span> accounts for all of the dependence between the observations. This is sometimes called the “naïve Bayes” model, although in practice the assessment can be engineered to make this model fit pretty well.</p>
+<p>B.4 Competing Explanations</p>
+<p>Conditioning on common descendents induces dependencies. This is the <em>Competing Explanation</em> phenomenon.</p>
+<p>[compete]Variables <span class="math inline">\(\theta_1\)</span> and <span class="math inline">\(\theta_2\)</span> are conditionally dependent given <span class="math inline">\(X\)</span>hsize=4.5truein vsize=1.5truein/Note that even though <span class="math inline">\(\theta_1\)</span> and <span class="math inline">\(\theta_2\)</span> are marginally independent, if <span class="math inline">\(X\)</span> is known they become dependent.</p>
+<p>Conjunctive Skills Model. Suppose <span class="math inline">\(\theta_1\)</span> and <span class="math inline">\(\theta_2\)</span> represent two skills (, reading and writing) and <span class="math inline">\(X\)</span> represents performance on a task which requires both (, document based writing task). Poor performance on the task could be a sign of lack of either of the skills. Suppose we learned (from an earlier reading test) that the reading skills of the examinee were high; we would then conclude that there was a deficiency in writing. Thus, observing the performance on the task induces a dependency in our knowledge about the skill variables.</p>
+<p>This is intuition behind D-separation.</p>
+<p>B.5 I-Maps and D-Maps</p>
+<p>Ideally, the separation properties of the model graph should show all of the conditional independence relationships in the graphical model.</p>
+<p><em>I-map</em> (<em>Independence Map</em>) Separation in graph implies conditional independence.</p>
+<p><em>D-map</em> (<em>Dependence Map</em>) Conditional independence implies separation in graph.</p>
+<p>DAGs are good for making maximal D-maps. Undirected Graphs are good for making minimal I-maps.</p>
+<p>Pearl [1988] develops these ideas.</p>
+<p>C. Factorization and Hypergraphs</p>
+<p>C.1 Products of Potentials</p>
+<p>Key idea: Here we are using the law of total probability to break a big probability distribution up into many small factors. Each of those small factors should be related to things going on in the graph.</p>
+<p><span class="math inline">\({\rm P\/}(A,B,C,D,E,F)={\rm P\/}(A){\rm P\/}(B){\rm P\/}(C|A,B){\rm P\/}(D|C){\rm P\/}(E|C){\rm P\/}(F|E,D)\)</span></p>
+<p>The probability function <span class="math inline">\({\rm P\/}_{\cal G}\)</span> is called the <em>total probability</em> and is defined by: <span class="math display">\[{\rm P\/}_{\cal G} =
+\prod_{{\bf C\/} \in {\cal C}} \Phi_{\bf C\/}  \ .
+\eqno (7)\]</span></p>
+<p><span class="math inline">\(\Phi_{\bf C\/}\)</span> is a <em>potential</em> and represents either a probability or conditional probability.</p>
+<p>C.2 Three Graphical Representations</p>
+<p>[abcdefDigraph]Directed Graph representing <span class="math inline">\({\rm P\/}(A){\rm P\/}(B){\rm P\/}(C|A,B){\rm P\/}(D|C){\rm P\/}(E|C){\rm P\/}(F|E,D)\)</span> hsize=6truein vsize=1.25truein/</p>
+<p>In directed graph, factors correspond to nodes and their parents.</p>
+<p>[abcdefHypergraph]Hypergraph representing <span class="math inline">\({\rm P\/}(A){\rm P\/}(B){\rm P\/}(C|A,B){\rm P\/}(D|C){\rm P\/}(E|C){\rm P\/}(F|E,D)\)</span> hsize=6truein vsize=1.25truein/</p>
+<p>Hyperedges (edges with arbitrary number of nodes) represent factors of the joint probability distribution are drawn with square boxes.</p>
+<p>Tentacles link hyperedges to nodes.</p>
+<p>Note here factors in the graphical model are represented by icons in the graph. Shenoy and Shafer [1990] call this representation “Valuation based system.”</p>
+<p>We make an undirected <em>2-section</em> by connecting nodes in the same hyperedge.</p>
+<p>[abcdefGraph]Simple graph representing <span class="math inline">\({\rm P\/}(A){\rm P\/}(B){\rm P\/}(C|A,B){\rm P\/}(D|C){\rm P\/}(E|C){\rm P\/}(F|E,D)\)</span>hsize=6truein vsize=1.25truein/</p>
+<p>In simple graph, potentials correspond to cliques of graph.</p>
+<p>The <em>moral graph</em> for a DAG is the 2-section of its directed hypergraph. (I-map for this distribution.)</p>
+<p>C.3. Gibb–Markov Equivalence Theorem</p>
+<p>Moussouris [1974] discusses this problem under the name <em>Gibbs–Markov equivalence</em>.</p>
+<p>“Markov” means separation in the graph implies conditional independence. (I-map)</p>
+<p>“Gibbs” means can be factored according to Equation&nbsp;(7).</p>
+<p>. The model hypergraph is an I-map of its graphical model, or equivalently, a graphical model is Markov with respect to its model hypergraph.</p>
+<p>C.4. Causality</p>
+<p>Building directed graphical models is easier than building undirected graphs. The consistency constraint is that each variable must appear as the child in exactly one factor, and the (directed) graph must be acyclic.</p>
+<p>The direction of arrows means the “direction of conditioning.” Can be in either “causal” or “diagnostic” direction.</p>
+<p>[causal]Directed Graph running in “causal” direction: <span class="math inline">\({\rm P\/}({\rm Skill}){\rm P\/}({\rm Performance}|{\rm Skill})\)</span> hsize=6truein vsize=1.0truein/</p>
+<p>[diagnostic]Directed Graph running in “diagnostic” direction: <span class="math inline">\({\rm P\/}({\rm Performance}){\rm P\/}({\rm Skill}|{\rm Performance})\)</span> hsize=6truein vsize=1.0truein/</p>
+<p>Can use Bayes theorem to translate between the two (called <em>arc reversal</em> in influence diagram literature.</p>
+<p>Graphs running in the “causal” direction are generally simpler.</p>
+<p>Causality, however, is not necessary. Weaker notions like “tendency to cause”, “influence” or “knowledge dependence” are sufficient. The word “causal” is easy to misinterpret by the lay public.</p>
+<p>BUT</p>
+<p>If we have a causal theory, we can use it to help build efficient models.</p>
+<p>For example, Cognative Theory about factors which go into performance on an assessment task can be used to build a model of that performance (Mislevy [1994]).</p>
+<p>“All models are false, but some models are useful.”</p>
+<p>D. Related Models</p>
+<p>D.1 Influence Diagrams</p>
+<p>Related to the concept of causal models are influence diagrams (Howard and Matheson [1981], Shachter [1986], and Oliver and Smith [1990]). Influence diagrams use both probabilities and utilities which represent preferences among outcomes. Influence diagrams also use two classes of nodes, one to represent random variables and one to represent decisions (under the control of the decision maker). The “solution” to an influence diagram is a strategy for making the decisions involved in the problem to maximize the expected utility.</p>
+<p>[ValueOfInformation]Influence diagram for skill training decisionhsize=6truein vsize=3truein/An influence diagram which shows factors revolving around decision on whether or not to send a candidate for traiing in a particular skill.</p>
+<p>Square boxes are <em>decision variables</em> Round boxes are <em>chance nodes</em> Hexagonal boxes are <em>utilities</em> (costs are negative utilities).</p>
+<p>Arrows into decision nodes represent information available at time of decision.</p>
+<p>An influence diagram will all chance nodes is called a <em>relevance diagram</em> and is a Bayesian Network.</p>
+<p>C.2 Structural Equation Models</p>
+<p>[sem]Grahical ModelStructural Equation Modelhsize=2.5in vsize=1.5in/</p>
+<p>Marginal Independence rather than Conditional independence</p>
+<p>Cyclical Relationships allowed</p>
+<p>Mixed Directed and Undirected edges</p>
+<p>Typically used to describe overall relationships rather than to make predictions for single individuals</p>
+<p>D. Graph Queries</p>
+<p>What kinds of questions might we want to ask our model?</p>
+<ol type="1">
+<li><em>Marginal Belief</em> “What is the probability that the learner has skill <span class="math inline">\(S_1\)</span>?” <span class="math display">\[{\rm P\/}(S_1)\]</span></li>
+</ol>
+<p>Term “Margin” comes from contingency tables, this is the “Margin” of the table associated with <span class="math inline">\(S_1\)</span>.</p>
+<ol start="2" type="1">
+<li><p><em>Conditional Belief</em> “What is the probability that the learner has skill <span class="math inline">\(S_1\)</span> given we have made observations on tasks <span class="math inline">\(X_1,\ldots, X_n\)</span>?” <span class="math display">\[{\rm P\/}(S_1|{\bf X})\]</span></p></li>
+<li><p><em>Hypothetical Belief</em> "Given that we have made observations on tasks <span class="math inline">\(X_1,\ldots, X_n\)</span>, if we observed a performance on task <span class="math inline">\(Y\)</span>, how would our beliefs change?" <span class="math display">\[{\rm P\/}(S_1|{\bf X},Y)\over{\rm P\/}(S_1|{\bf X})\]</span></p></li>
+</ol>
+<p>Let <span class="math inline">\(p_Y = {\rm P\/}(Y|S_1)\)</span>, that is the probability of seeing a good performance on task Y given that the learner has skill <span class="math inline">\(S_1\)</span>.</p>
+<ol start="4" type="1">
+<li><em>Sensitivity Analysis</em> “How do our conclusions about the learner change as <span class="math inline">\(p_Y\)</span> changes?” <span class="math display">\[{\rm P\/}(S_1|{\bf X},Y) = f(p_Y)\]</span></li>
+</ol>
+<p>Suppose further that we say <span class="math inline">\(p_Y \sim {\rm Gamma\/}(\cdots)\)</span>.</p>
+<ol start="5" type="1">
+<li><em>Uncertainty Analysis</em> “What is the expected value of our beliefs about <span class="math inline">\(S_1\)</span>, the variance?” <span class="math display">\[E\left[{\rm P\/}(S_1|{\bf X},Y)\right]  \qquad Var\left({\rm P\/}(S_1|{\bf X},Y)\right)\]</span></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
