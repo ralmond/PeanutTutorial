@@ -111,7 +111,6 @@ To clear a value, click on it again, or right click and select "undefined".
 
 ![IRT model with context effect](img/IRTC.dot.png)
 
-
 -   Context variable -- A parent variable introduced to handle conditional dependence among observables (testlet)
     -   Consistent with Stout's (1987) 'essential n-dimensionality'
     -   Wang, Bradlow & Wainer (2001) SCORIGHT program for IRT

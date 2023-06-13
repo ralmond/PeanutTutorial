@@ -2,7 +2,7 @@
 title: "Heart Disease Example"
 ---
 
-This example is based on a study by @janosi1989 and recorded in the UCI Machine Learning Repository (@Murphy1992). The direct link is: <https://archive.ics.uci.edu/dataset/45/heart+disease>
+This example is based on a study by @janosi1989 and recorded in the UCI Machine Learning Repository [@murphy1992]. The direct link is: <https://archive.ics.uci.edu/dataset/45/heart+disease>
 
 @testSelection used it as an extended example.
 
@@ -80,7 +80,7 @@ heart.nodes <- NetworkAllNodes(heart)
 
 A `NeticaBN` or `NeticaNode` object is *active* if it points to an object inside of the Netica heap.
 
-Saving/restorting the R object will disconnect it from its corresponding Netica object.
+Saving/restoring the R object will disconnect it from its corresponding Netica object.
 
 ::: {.callout-note collapse="false"}
 `NeticaSession` and `NeticaNetwork` objects wrap R environments which contain the networks and nodes respectively. So can access with `$` operator.
@@ -154,7 +154,7 @@ The function `RetractNodeFinding` clears it.
 RetractNodeFinding(heart$nodes$trestbps)
 ```
 
-### Virutal Evidence
+### Virtual Evidence
 
 Suppose that the doctor is not able to classify the Mr. Goodfellow's complaint other than to say it is not Asymptomatic. The `EnterNegativeFindings` function allows eliminating one of the findings.
 
@@ -212,7 +212,7 @@ FindingsProbability(heart)
 
 How much does each observation contribute to the conclusion that James Goodfellow is healthy.
 
-One measure is the weight of evidence (WOE; @good1950).
+One measure is the weight of evidence [WOE; @good1950].
 
 $$
 WOE(H:E) = \log \frac{P(H|E)}{P(\neg H|E)} - \log \frac{P(H)}{P(\neg H)} =
@@ -353,8 +353,8 @@ Note this is the expectation wrt the conditional distribution given the hypothes
 
 -   Calculate $P(E_i|\neg H)$ for all $E_i$
 
-4.  Rectract the hypothesis finding
-5.  Calcualte EWOE for all $E_i$
+4.  Retract the hypothesis finding
+5.  Calculate EWOE for all $E_i$
 
 The function `ewoe` does this for us.
 
@@ -699,7 +699,7 @@ WithOpenCaseStream(swissStream, {
 })
 ```
 
-Obviously, what we want to do is compare this to the actual readings.  The `NetworkTester` allows us to do that.
+Obviously, what we want to do is compare this to the actual readings. The `NetworkTester` allows us to do that.
 
 ```{r swissTest}
 RetractNetFindings(heart)
@@ -708,7 +708,6 @@ swiss.test <-
               OpenCaseStream(swissStream))
 summary(swiss.test)
 ```
-
 
 ### Learning CPTs
 
@@ -720,18 +719,19 @@ lnodes <- c(NetworkNodesInSet(heart1,"office"),
 invisible(sapply(lnodes,DeleteNodeTable))
 LearnCases("Heart/cleveland.cas",lnodes)
 ```
+
 Look at the new values.
 
 Node experience is how many responses were used in that row of the table.
+
 ```{r newVals}
 heart1$nodes$trestbps[]
 NodeExperience(heart1$nodes$trestbps)
 ```
 
-
 LearnCases uses the same counting algorithm shown above (building the CPT), so it doesn't handle missing data.
 
-LearnCPTs does.  There are three methods.  I recommend EM
+LearnCPTs does. There are three methods. I recommend EM
 
 ```{r EMlearning}
 invisible(sapply(lnodes,DeleteNodeTable))
@@ -742,6 +742,47 @@ NodeExperience(heart1$nodes$trestbps)
 
 ## Learning Structure from Data
 
+Covariance Selection Models: -- zeros in the inverse correlation matrix correspond to conditional independence statements.
+
+1.  Calculate covariance matrix
+
+    I really should deal better with the discrete variables here.
+
+```{r cov}
+cleve.num <- sapply(cleveland1,as.numeric)
+head(cleve.num)
+cleve.var <- 
+  var(as.matrix(cleve.num),use="complete.obs")
+print(cleve.var[1:4,1:4],digits=2)
+```
+
+2.  Invert the covariance matrix and look for zeros. `CPTtools:structMatrix()`
+
+```{r struct}
+cleve.struct <- structMatrix(cleve.var)
+cleve.struct[1:6,1:6]
+```
+
+This gives an undirected graph. To get to directed, we simply need to order the nodes in a way that is compatible with the graph structure. `CPTtools::mcSearch()` does this.
+
+3.  Pick an ordering of the nodes. We can hint that "health" is a good candidate to start.
+
+```{r mcsearch}
+cleve.ord <- mcSearch(cleve.struct,"health")
+cleve.ord
+```
+
+4.  Now specify the directed graph as a list of parents for each node. The function `CPTtools::buildParentList()` calls `mcSearch()` if the order is not specified.
+
+```{r parents}
+cleve.parlis <- buildParentList(cleve.struct,"health")
+head(cleve.parlis)
+
+```
+
+We now have the graph structure, and have reduces everything into a previously solved problem.
+
+Note: Missing positions for the nodes.
 
 ::: {.callout-caution collapse="true"}
 # Fixing the HeartNet to properly use continuous nodes.

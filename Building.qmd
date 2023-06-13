@@ -94,7 +94,7 @@ The next spreadsheet defines the nodes. There are two things which are important
 
 The second thing of note is that there are some information which is specific to the possible states of the node. Thus, if the node has 3 possible states, then there are three rows for each node.
 
-::: {.callout-note}
+::: callout-note
 This should change in a future version. The idea is to instead use a a vector notation, i.e., `[state1,state2,state3]`, to express multiple states.
 :::
 
@@ -146,10 +146,7 @@ Note that most of the state level value must be vectors of the same length as `N
 
 -   `StateValue` --- This is used in both the CPT construction algorithms and in calculating expected values and varainces for nodes. The best practice here is to map these values to quantiles of the normal distribution (@bninea). Note that for three levels these are approximately 1, 0 and -1.
 
--   `LowerBound`, `UpperBound`. These are lists of upper and lower bounds for an underlying continuous variable. Note that `-Inf` and `Inf` are acceptable values. Note also that the upper bound for one state must match the lower bound for the next.
-::: {.callout-warning title="Depricated" collapse="true"}
-This will be replaced in a future version with a new field `Cuts` which will use the cutpoints.
-:::
+-   `LowerBound`, `UpperBound`. These are lists of upper and lower bounds for an underlying continuous variable. Note that `-Inf` and `Inf` are acceptable values. Note also that the upper bound for one state must match the lower bound for the next. ::: {.callout-warning title="Depricated" collapse="true"} This will be replaced in a future version with a new field `Cuts` which will use the cutpoints. :::
 
 -   `Cuts` --- Only used for continuous nodes. These are the upper and lower cuts for the underlying continuous variable. There should be one more value in the vector than there are states in the node. The continuous variable is chopped into intervals with the given cut points (including the minimum and maximum). Note that `-Inf` and `Inf` are acceptable values.
 
@@ -391,7 +388,7 @@ The `OffsetConjunctive` and `OffsetDisjunctive` models use `min()` and `max()` r
 
 -   `A` -- Discrimination (slope). The `A` column without a variable name attached is used to specify the overall discrimination of the item.
 
--   `B`._NodeName_ -- There is a demand parameter for each relevant (box checked in the $Q$-matrix) competency variable.
+-   `B`.\_NodeName\_ -- There is a demand parameter for each relevant (box checked in the $Q$-matrix) competency variable.
 
 In each case there can be a single value, or a list of values corresponding to the state transitions.
 

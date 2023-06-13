@@ -241,15 +241,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">wine64</span> <span class="st">"C:</span><span class="dt">\\</span><span class="st">Netica\Netica 609\Netica.exe"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD - Mac OS Intel – I have built a wineskin version of <code>Netica.exe</code>. It is available at <a href="https://pluto.coe.fsu.edu/MacNetica2.app.zip" class="uri">https://pluto.coe.fsu.edu/MacNetica2.app.zip</a> (You may need to right click on the app, and then open the Wineskin app inside). - Mac OS ARM – I don’t have access to an ARM Mac to do testing. I am seeing reports that the latest version of Wine supports Rosetta. If you are using homebrew, you can try: ======= - There is also a version of <a href="https://www.codeweavers.com/crossover">Cross Over</a> for Linux; this uses the same Wine code base, but provides 1-year technical support. There is also a 30-day free trial.</p>
 <ul>
+<li><p>There is also a version of <a href="https://www.codeweavers.com/crossover">Cross Over</a> for Linux; this uses the same Wine code base, but provides 1-year technical support. There is also a 30-day free trial.</p></li>
 <li><p>Mac OS. A couple of options:</p></li>
 <li><p><em>Prebuilt wineskin</em>. I’ve used the <a href="https://github.com/Gcenx/WineskinServer/">wineskin</a> tool to pre-wrap an image. This is available at <a href="https://pluto.coe.fsu.edu/BNinEA/NeticaMac.dmg">NeticaMac.dmg</a>.</p>
 <ul>
 <li>This is not properly signed, so will generate issues with the apple quarantine system. <del>Open the <code>System Preferences...</code> and go to the <code>Security &amp; Privacy</code> tab. Unlock (requires admin password) and then select “App Store and identified developers”. Click on the “NeticaSilicon.app”, this will give an error message. Go back to the security and privacy tab, and a button asking if you want to run the application should be there. Click it to give it permission to run.</del></li>
 <li>Apple’s GateKeeper <strong>really</strong> doesn’t want you to run research software on your computer. I think this works, but it needs to be a user with admin privileges. Copy <code>NeticaSilicon.app</code> to someplace on your computer, I’m assuming you are copying it to <code>/Applications</code>. Then open a terminal and type <code>xattr -c -r /Applications/NeticaSilicon.app</code> (change the location if you installed the file someplace else). This may give a few error messages, but it should now work.</li>
 </ul></li>
-<li><p><em>Install Wine</em> If you are using <a href="https://brew.sh">homebrew</a>, you can try: &gt;&gt;&gt;&gt;&gt;&gt;&gt; 1b8aba9584e85d6ddafaae1e8ed80053a7dbf65f</p></li>
+<li><p><em>Install Wine</em> If you are using <a href="https://brew.sh">homebrew</a>, you can try:</p></li>
 </ul>
 <div class="cell">
 <details>

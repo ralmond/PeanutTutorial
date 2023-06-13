@@ -214,7 +214,7 @@ div.csl-indent {
   <li><a href="#beliefs" id="toc-beliefs" class="nav-link" data-scroll-target="#beliefs">Beliefs</a></li>
   <li><a href="#first-pass-data" id="toc-first-pass-data" class="nav-link" data-scroll-target="#first-pass-data">First pass data</a></li>
   <li><a href="#blocked-evidence" id="toc-blocked-evidence" class="nav-link" data-scroll-target="#blocked-evidence">Blocked Evidence</a></li>
-  <li><a href="#virutal-evidence" id="toc-virutal-evidence" class="nav-link" data-scroll-target="#virutal-evidence">Virutal Evidence</a></li>
+  <li><a href="#virtual-evidence" id="toc-virtual-evidence" class="nav-link" data-scroll-target="#virtual-evidence">Virtual Evidence</a></li>
   <li><a href="#likelihood" id="toc-likelihood" class="nav-link" data-scroll-target="#likelihood">Likelihood</a></li>
   </ul></li>
   <li><a href="#weight-of-evidence-balance-sheet" id="toc-weight-of-evidence-balance-sheet" class="nav-link" data-scroll-target="#weight-of-evidence-balance-sheet">Weight of Evidence balance sheet</a>
@@ -268,7 +268,7 @@ div.csl-indent {
 
 </header>
 
-<p>This example is based on a study by <span class="citation" data-cites="janosi1989">(<a href="#ref-janosi1989" role="doc-biblioref"><strong>janosi1989?</strong></a>)</span> and recorded in the UCI Machine Learning Repository (<span class="citation" data-cites="Murphy1992">(<a href="#ref-Murphy1992" role="doc-biblioref"><strong>Murphy1992?</strong></a>)</span>). The direct link is: <a href="https://archive.ics.uci.edu/dataset/45/heart+disease" class="uri">https://archive.ics.uci.edu/dataset/45/heart+disease</a></p>
+<p>This example is based on a study by <span class="citation" data-cites="janosi1989">Janosi et al. (<a href="#ref-janosi1989" role="doc-biblioref">1989</a>)</span> and recorded in the UCI Machine Learning Repository <span class="citation" data-cites="murphy1992">(<a href="#ref-murphy1992" role="doc-biblioref">Murphy &amp; Aha, 1992</a>)</span>. The direct link is: <a href="https://archive.ics.uci.edu/dataset/45/heart+disease" class="uri">https://archive.ics.uci.edu/dataset/45/heart+disease</a></p>
 <p><span class="citation" data-cites="testSelection">Madigan &amp; Almond (<a href="#ref-testSelection" role="doc-biblioref">1995</a>)</span> used it as an extended example.</p>
 <section id="bayesian-network" class="level2">
 <h2 class="anchored" data-anchor-id="bayesian-network">Bayesian network</h2>
@@ -362,7 +362,7 @@ Netica is operating without a password; there are some limitations.</code></pre>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>heart.nodes <span class="ot">&lt;-</span> <span class="fu">NetworkAllNodes</span>(heart)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A <code>NeticaBN</code> or <code>NeticaNode</code> object is <em>active</em> if it points to an object inside of the Netica heap.</p>
-<p>Saving/restorting the R object will disconnect it from its corresponding Netica object.</p>
+<p>Saving/restoring the R object will disconnect it from its corresponding Netica object.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -464,8 +464,8 @@ bp          0.49 0.29 0.11 0.039 0.061</code></pre>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">RetractNodeFinding</span>(heart<span class="sc">$</span>nodes<span class="sc">$</span>trestbps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="virutal-evidence" class="level3">
-<h3 class="anchored" data-anchor-id="virutal-evidence">Virutal Evidence</h3>
+<section id="virtual-evidence" class="level3">
+<h3 class="anchored" data-anchor-id="virtual-evidence">Virtual Evidence</h3>
 <p>Suppose that the doctor is not able to classify the Mr.&nbsp;Goodfellow’s complaint other than to say it is not Asymptomatic. The <code>EnterNegativeFindings</code> function allows eliminating one of the findings.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">RetractNodeFinding</span>(heart<span class="sc">$</span>nodes<span class="sc">$</span>CP)</span>
@@ -536,7 +536,7 @@ thaliumStressTest   0.419 0.322 0.137 0.0476 0.0738</code></pre>
 <section id="weight-of-evidence-balance-sheet" class="level2">
 <h2 class="anchored" data-anchor-id="weight-of-evidence-balance-sheet">Weight of Evidence balance sheet</h2>
 <p>How much does each observation contribute to the conclusion that James Goodfellow is healthy.</p>
-<p>One measure is the weight of evidence (WOE; <span class="citation" data-cites="good1950">Good (<a href="#ref-good1950" role="doc-biblioref">1950</a>)</span>).</p>
+<p>One measure is the weight of evidence [WOE; <span class="citation" data-cites="good1950">Good (<a href="#ref-good1950" role="doc-biblioref">1950</a>)</span>].</p>
 <p><span class="math display">\[
 WOE(H:E) = \log \frac{P(H|E)}{P(\neg H|E)} - \log \frac{P(H)}{P(\neg H)} =
 \log \frac{P(E|H)}{P(E|\neg H)}
@@ -622,7 +622,7 @@ restecg=Normal    0.5714988 0.4285012</code></pre>
 </section>
 <section id="weight-of-evidence-balance-sheet-1" class="level3">
 <h3 class="anchored" data-anchor-id="weight-of-evidence-balance-sheet-1">Weight of Evidence Balance Sheet</h3>
-<p><span class="citation" data-cites="madigan1997">(<a href="#ref-madigan1997" role="doc-biblioref"><strong>madigan1997?</strong></a>)</span> provides a nice graphical summary. The function <code>CPTtools::woeBal</code> generates this.</p>
+<p><span class="citation" data-cites="madigan1997">Madigan et al. (<a href="#ref-madigan1997" role="doc-biblioref">1997</a>)</span> provides a nice graphical summary. The function <code>CPTtools::woeBal</code> generates this.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">woeBal</span>(hist,<span class="st">"Yes"</span>,<span class="st">"No"</span>,<span class="at">title=</span><span class="st">"Health status of James Goodfellow"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -697,8 +697,8 @@ EWOE (H: E) = \sum_{e \in E} W(H:e) P(e|H).
 <li>Calculate <span class="math inline">\(P(E_i|\neg H)\)</span> for all <span class="math inline">\(E_i\)</span></li>
 </ul>
 <ol start="4" type="1">
-<li>Rectract the hypothesis finding</li>
-<li>Calcualte EWOE for all <span class="math inline">\(E_i\)</span></li>
+<li>Retract the hypothesis finding</li>
+<li>Calculate EWOE for all <span class="math inline">\(E_i\)</span></li>
 </ol>
 <p>The function <code>ewoe</code> does this for us.</p>
 <div class="cell">
@@ -756,7 +756,7 @@ EWOE (H: E) = \sum_{e \in E} W(H:e) P(e|H).
 ✖ dplyr::lag()    masks stats::lag()</code></pre>
 </div>
 </div>
-<p>Read in the Cleveland data set from <span class="citation" data-cites="janosi1989">(<a href="#ref-janosi1989" role="doc-biblioref"><strong>janosi1989?</strong></a>)</span>. The <code>heart.features</code> is information about the coding from the web site.</p>
+<p>Read in the Cleveland data set from <span class="citation" data-cites="janosi1989">Janosi et al. (<a href="#ref-janosi1989" role="doc-biblioref">1989</a>)</span>. The <code>heart.features</code> is information about the coding from the web site.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>heart.features <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Age=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="at">below50=</span><span class="dv">50</span>,<span class="at">between50and60=</span><span class="dv">60</span>,<span class="at">above60=</span><span class="dv">100</span>),</span>
@@ -811,8 +811,8 @@ EWOE (H: E) = \sum_{e \in E} W(H:e) P(e|H).
  8 between… Fema… Asym… low      Very… norm… Normal  High    Yes   Zero    down 
  9 above60  Male  Asym… moderate High  norm… LeftVe… Modera… No    Low     flat 
 10 between… Male  Asym… moderate Mode… high  LeftVe… Modera… Yes   High    up   
-# … with 293 more rows, and 3 more variables: ca &lt;fct&gt;, thal &lt;fct&gt;,
-#   health &lt;fct&gt;</code></pre>
+# ℹ 293 more rows
+# ℹ 3 more variables: ca &lt;fct&gt;, thal &lt;fct&gt;, health &lt;fct&gt;</code></pre>
 </div>
 </div>
 <section id="build-network-structure." class="level3">
@@ -1289,6 +1289,99 @@ health   -0.3445783</code></pre>
 </section>
 <section id="learning-structure-from-data" class="level2">
 <h2 class="anchored" data-anchor-id="learning-structure-from-data">Learning Structure from Data</h2>
+<p>Covariance Selection Models: – zeros in the inverse correlation matrix correspond to conditional independence statements.</p>
+<ol type="1">
+<li><p>Calculate covariance matrix</p>
+<p>I really should deal better with the discrete variables here.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>cleve.num <span class="ot">&lt;-</span> <span class="fu">sapply</span>(cleveland1,as.numeric)</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cleve.num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Age Sex CP trestbps chol fbs restecg thalach exang oldpeak slope ca thal
+[1,]  63   1  1      145  233   1       3     150     2     2.3     3  1    2
+[2,]  67   1  4      160  286   2       3     108     1     1.5     2  4    1
+[3,]  67   1  4      120  229   2       3     129     1     2.6     2  3    3
+[4,]  37   1  3      130  250   2       1     187     2     3.5     3  1    1
+[5,]  41   2  2      130  204   2       3     172     2     1.4     1  1    1
+[6,]  56   1  2      120  236   2       1     178     2     0.8     1  1    1
+     health
+[1,]      1
+[2,]      3
+[3,]      2
+[4,]      1
+[5,]      1
+[6,]      1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>cleve.var <span class="ot">&lt;-</span> </span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">var</span>(<span class="fu">as.matrix</span>(cleve.num),<span class="at">use=</span><span class="st">"complete.obs"</span>)</span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(cleve.var[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>],<span class="at">digits=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           Age     Sex      CP trestbps
+Age      81.39  0.3486  0.9761    46.85
+Sex       0.35  0.2174 -0.0067     0.42
+CP        0.98 -0.0067  0.9363    -0.72
+trestbps 46.85  0.4167 -0.7165   310.48</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Invert the covariance matrix and look for zeros. <code>CPTtools:structMatrix()</code></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>cleve.struct <span class="ot">&lt;-</span> <span class="fu">structMatrix</span>(cleve.var)</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>cleve.struct[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           Age   Sex    CP trestbps  chol   fbs
+Age       TRUE FALSE FALSE     TRUE  TRUE FALSE
+Sex      FALSE  TRUE  TRUE    FALSE  TRUE FALSE
+CP       FALSE  TRUE  TRUE     TRUE FALSE FALSE
+trestbps  TRUE FALSE  TRUE     TRUE FALSE  TRUE
+chol      TRUE  TRUE FALSE    FALSE  TRUE FALSE
+fbs      FALSE FALSE FALSE     TRUE FALSE  TRUE</code></pre>
+</div>
+</div>
+<p>This gives an undirected graph. To get to directed, we simply need to order the nodes in a way that is compatible with the graph structure. <code>CPTtools::mcSearch()</code> does this.</p>
+<ol start="3" type="1">
+<li>Pick an ordering of the nodes. We can hint that “health” is a good candidate to start.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>cleve.ord <span class="ot">&lt;-</span> <span class="fu">mcSearch</span>(cleve.struct,<span class="st">"health"</span>)</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>cleve.ord</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Age      Sex       CP trestbps     chol      fbs  restecg  thalach 
+       6       10        2        5       11       12       13        3 
+   exang  oldpeak    slope       ca     thal   health 
+       4        7        9        8       14        1 </code></pre>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Now specify the directed graph as a list of parents for each node. The function <code>CPTtools::buildParentList()</code> calls <code>mcSearch()</code> if the order is not specified.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>cleve.parlis <span class="ot">&lt;-</span> <span class="fu">buildParentList</span>(cleve.struct,<span class="st">"health"</span>)</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cleve.parlis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$health
+character(0)
+
+$CP
+[1] "health"
+
+$thalach
+[1] "health" "CP"    
+
+$exang
+[1] "health"  "CP"      "thalach"
+
+$trestbps
+[1] "CP"      "thalach"
+
+$Age
+[1] "thalach"  "trestbps"</code></pre>
+</div>
+</div>
+<p>We now have the graph structure, and have reduces everything into a previously solved problem.</p>
+<p>Note: Missing positions for the nodes.</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1303,62 +1396,62 @@ Fixing the HeartNet to properly use continuous nodes.
 <div class="callout-body-container callout-body">
 <p>(This was some code I used to fix and issue with the initial version of the test network which had the continuous nodes coded as discrete.)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>heart.info <span class="ot">&lt;-</span> <span class="fu">lapply</span>(heart.nodes, <span class="cf">function</span> (nd) {</span>
-<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">parents =</span> <span class="fu">ParentNames</span>(nd),</span>
-<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">cpt =</span> <span class="fu">NodeProbs</span>(nd),</span>
-<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">pos=</span> <span class="fu">NodeVisPos</span>(nd),</span>
-<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="fu">NodeTitle</span>(nd))</span>
-<span id="cb91-6"><a href="#cb91-6" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>heart.info <span class="ot">&lt;-</span> <span class="fu">lapply</span>(heart.nodes, <span class="cf">function</span> (nd) {</span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">parents =</span> <span class="fu">ParentNames</span>(nd),</span>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">cpt =</span> <span class="fu">NodeProbs</span>(nd),</span>
+<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">pos=</span> <span class="fu">NodeVisPos</span>(nd),</span>
+<span id="cb101-5"><a href="#cb101-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="fu">NodeTitle</span>(nd))</span>
+<span id="cb101-6"><a href="#cb101-6" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Number of states of Age has changed, need to fix some CPTs.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>fixme <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Age"</span>,<span class="st">"trestbps"</span>)</span>
-<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (nodename <span class="cf">in</span> fixme) {</span>
-<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>  xtab <span class="ot">&lt;-</span> <span class="fu">as.array</span>(<span class="fu">table</span>(cleveland[<span class="fu">c</span>(heart.info[[nodename]]<span class="sc">$</span>parents,nodename)]))</span>
-<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">class</span>(xtab) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"CPA"</span>,<span class="st">"array"</span>)</span>
-<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>  probs <span class="ot">&lt;-</span> <span class="fu">normalize</span>(xtab<span class="sc">+</span><span class="dv">1</span><span class="sc">/</span><span class="fu">last</span>(<span class="fu">dim</span>(xtab)))</span>
-<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a>  heart.info[[nodename]]<span class="sc">$</span>cpt <span class="ot">&lt;-</span> probs</span>
-<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>fixme <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Age"</span>,<span class="st">"trestbps"</span>)</span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (nodename <span class="cf">in</span> fixme) {</span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>  xtab <span class="ot">&lt;-</span> <span class="fu">as.array</span>(<span class="fu">table</span>(cleveland[<span class="fu">c</span>(heart.info[[nodename]]<span class="sc">$</span>parents,nodename)]))</span>
+<span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">class</span>(xtab) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"CPA"</span>,<span class="st">"array"</span>)</span>
+<span id="cb102-5"><a href="#cb102-5" aria-hidden="true" tabindex="-1"></a>  probs <span class="ot">&lt;-</span> <span class="fu">normalize</span>(xtab<span class="sc">+</span><span class="dv">1</span><span class="sc">/</span><span class="fu">last</span>(<span class="fu">dim</span>(xtab)))</span>
+<span id="cb102-6"><a href="#cb102-6" aria-hidden="true" tabindex="-1"></a>  heart.info[[nodename]]<span class="sc">$</span>cpt <span class="ot">&lt;-</span> probs</span>
+<span id="cb102-7"><a href="#cb102-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ( nodename <span class="cf">in</span> <span class="fu">names</span>(heart.features)) {</span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>  states <span class="ot">&lt;-</span> heart.features[[nodename]]</span>
-<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">all</span>(<span class="fu">names</span>(states)<span class="sc">!=</span><span class="st">""</span>)) <span class="cf">next</span></span>
-<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>  oldnode <span class="ot">&lt;-</span> heart.nodes[[nodename]]</span>
-<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Save old data</span></span>
-<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>  title <span class="ot">&lt;-</span> <span class="fu">NodeTitle</span>(oldnode)</span>
-<span id="cb93-7"><a href="#cb93-7" aria-hidden="true" tabindex="-1"></a>  descrip <span class="ot">&lt;-</span> <span class="fu">NodeDescription</span>(oldnode)</span>
-<span id="cb93-8"><a href="#cb93-8" aria-hidden="true" tabindex="-1"></a>  vispos <span class="ot">&lt;-</span> <span class="fu">NodeVisPos</span>(oldnode)</span>
-<span id="cb93-9"><a href="#cb93-9" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Replace node</span></span>
-<span id="cb93-10"><a href="#cb93-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">DeleteNodes</span>(oldnode)</span>
-<span id="cb93-11"><a href="#cb93-11" aria-hidden="true" tabindex="-1"></a>  newnode <span class="ot">&lt;-</span> <span class="fu">NewContinuousNode</span>(heart,nodename)</span>
-<span id="cb93-12"><a href="#cb93-12" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Fix properties</span></span>
-<span id="cb93-13"><a href="#cb93-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">NodeTitle</span>(newnode) <span class="ot">&lt;-</span> title</span>
-<span id="cb93-14"><a href="#cb93-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">NodeDescription</span>(newnode) <span class="ot">&lt;-</span> descrip</span>
-<span id="cb93-15"><a href="#cb93-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">NodeVisPos</span>(newnode) <span class="ot">&lt;-</span> vispos</span>
-<span id="cb93-16"><a href="#cb93-16" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Fix the states</span></span>
-<span id="cb93-17"><a href="#cb93-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">NodeLevels</span>(newnode) <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(states)</span>
-<span id="cb93-18"><a href="#cb93-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">NodeStates</span>(newnode) <span class="ot">&lt;-</span> <span class="fu">names</span>(states)[<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb93-19"><a href="#cb93-19" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Fix the list of nodes.</span></span>
-<span id="cb93-20"><a href="#cb93-20" aria-hidden="true" tabindex="-1"></a>  heart.nodes[[nodename]] <span class="ot">&lt;-</span> newnode</span>
-<span id="cb93-21"><a href="#cb93-21" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ( nodename <span class="cf">in</span> <span class="fu">names</span>(heart.features)) {</span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>  states <span class="ot">&lt;-</span> heart.features[[nodename]]</span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">all</span>(<span class="fu">names</span>(states)<span class="sc">!=</span><span class="st">""</span>)) <span class="cf">next</span></span>
+<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a>  oldnode <span class="ot">&lt;-</span> heart.nodes[[nodename]]</span>
+<span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Save old data</span></span>
+<span id="cb103-6"><a href="#cb103-6" aria-hidden="true" tabindex="-1"></a>  title <span class="ot">&lt;-</span> <span class="fu">NodeTitle</span>(oldnode)</span>
+<span id="cb103-7"><a href="#cb103-7" aria-hidden="true" tabindex="-1"></a>  descrip <span class="ot">&lt;-</span> <span class="fu">NodeDescription</span>(oldnode)</span>
+<span id="cb103-8"><a href="#cb103-8" aria-hidden="true" tabindex="-1"></a>  vispos <span class="ot">&lt;-</span> <span class="fu">NodeVisPos</span>(oldnode)</span>
+<span id="cb103-9"><a href="#cb103-9" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Replace node</span></span>
+<span id="cb103-10"><a href="#cb103-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">DeleteNodes</span>(oldnode)</span>
+<span id="cb103-11"><a href="#cb103-11" aria-hidden="true" tabindex="-1"></a>  newnode <span class="ot">&lt;-</span> <span class="fu">NewContinuousNode</span>(heart,nodename)</span>
+<span id="cb103-12"><a href="#cb103-12" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Fix properties</span></span>
+<span id="cb103-13"><a href="#cb103-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">NodeTitle</span>(newnode) <span class="ot">&lt;-</span> title</span>
+<span id="cb103-14"><a href="#cb103-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">NodeDescription</span>(newnode) <span class="ot">&lt;-</span> descrip</span>
+<span id="cb103-15"><a href="#cb103-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">NodeVisPos</span>(newnode) <span class="ot">&lt;-</span> vispos</span>
+<span id="cb103-16"><a href="#cb103-16" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Fix the states</span></span>
+<span id="cb103-17"><a href="#cb103-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">NodeLevels</span>(newnode) <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(states)</span>
+<span id="cb103-18"><a href="#cb103-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">NodeStates</span>(newnode) <span class="ot">&lt;-</span> <span class="fu">names</span>(states)[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb103-19"><a href="#cb103-19" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Fix the list of nodes.</span></span>
+<span id="cb103-20"><a href="#cb103-20" aria-hidden="true" tabindex="-1"></a>  heart.nodes[[nodename]] <span class="ot">&lt;-</span> newnode</span>
+<span id="cb103-21"><a href="#cb103-21" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Fix up any set of broken parent relationships.</span></span>
-<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (nodename <span class="cf">in</span> <span class="fu">names</span>(heart.info)) {</span>
-<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(nodename,<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>  node <span class="ot">&lt;-</span> heart.nodes[[nodename]]</span>
-<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a>  parents <span class="ot">&lt;-</span> heart.nodes[heart.info[[nodename]]<span class="sc">$</span>parents]</span>
-<span id="cb94-6"><a href="#cb94-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">NodeParents</span>(node) <span class="ot">&lt;-</span> parents</span>
-<span id="cb94-7"><a href="#cb94-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">NodeProbs</span>(node) <span class="ot">&lt;-</span> heart.info[[nodename]]<span class="sc">$</span>cpt</span>
-<span id="cb94-8"><a href="#cb94-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Fix up any set of broken parent relationships.</span></span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (nodename <span class="cf">in</span> <span class="fu">names</span>(heart.info)) {</span>
+<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(nodename,<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb104-4"><a href="#cb104-4" aria-hidden="true" tabindex="-1"></a>  node <span class="ot">&lt;-</span> heart.nodes[[nodename]]</span>
+<span id="cb104-5"><a href="#cb104-5" aria-hidden="true" tabindex="-1"></a>  parents <span class="ot">&lt;-</span> heart.nodes[heart.info[[nodename]]<span class="sc">$</span>parents]</span>
+<span id="cb104-6"><a href="#cb104-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">NodeParents</span>(node) <span class="ot">&lt;-</span> parents</span>
+<span id="cb104-7"><a href="#cb104-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">NodeProbs</span>(node) <span class="ot">&lt;-</span> heart.info[[nodename]]<span class="sc">$</span>cpt</span>
+<span id="cb104-8"><a href="#cb104-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CompileNetwork</span>(heart)</span>
-<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="fu">WriteNetworks</span>(heart,<span class="st">"Heart/Heart.dne"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CompileNetwork</span>(heart)</span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="fu">WriteNetworks</span>(heart,<span class="st">"Heart/Heart.dne"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">NodeStates</span>(heart<span class="sc">$</span>nodes<span class="sc">$</span>CP)[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="st">"Asymptomatic"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">NodeStates</span>(heart<span class="sc">$</span>nodes<span class="sc">$</span>CP)[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="st">"Asymptomatic"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1375,8 +1468,17 @@ Good, I. J. (1950). <em>Probability and the <span>Weighing</span> of <span>Evide
 <div id="ref-goodCard1971" class="csl-entry" role="listitem">
 Good, I. J., &amp; Card, W. (1971). The diagnostic process with special reference to errors. <em>Methods of Information in Medicine</em>, <em>10</em>, 176–188.
 </div>
+<div id="ref-janosi1989" class="csl-entry" role="listitem">
+Janosi, A., Steinbrunn, W., Pfisterer, M., &amp; Detrano, R. (1989). <em>Heart <span>Disease</span></em>. <span>UCI Machine Learning Repository</span>. <a href="https://doi.org/10.24432/C52P4X">https://doi.org/10.24432/C52P4X</a>
+</div>
 <div id="ref-testSelection" class="csl-entry" role="listitem">
 Madigan, D., &amp; Almond, R. G. (1995). Test selection strategies for belief networks. In D. Fisher &amp; H. J. Lenz (Eds.), <em>Learning from <span>Data</span>: <span>AI</span> and <span>Statistics V</span></em> (pp. 89–98). <span>Springer-Verlag</span>.
+</div>
+<div id="ref-madigan1997" class="csl-entry" role="listitem">
+Madigan, D., Mosurski, K., &amp; Almond, R. G. (1997). Graphical explanation in belief networks. <em>Journal of Computational and Graphical Statistics</em>, <em>6</em>(2), 160–181. <a href="https://doi.org/10.1080/10618600.1997.10474735">https://doi.org/10.1080/10618600.1997.10474735</a>
+</div>
+<div id="ref-murphy1992" class="csl-entry" role="listitem">
+Murphy, P. M., &amp; Aha, D. W. (1992). <em><span>UCI Repository</span> of <span>Machine Learning Databases</span></em>.
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
