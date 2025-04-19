@@ -1,7 +1,10 @@
 list(health = list(parents = logical(0), pos = c(x = 942, y = 462
-), title = "Health-State"), thal = list(parents = "health", pos = c(x = 678, 
-y = 282), title = "Exer-Thal-Defects"), restecg = list(parents = "health", 
-    pos = c(x = 1122, y = 288), title = "Rest-Ecg"), fbs = list(
+), title = "Health-State"),
+thal = list(parents = "health", pos = c(x = 678, 
+y = 282), title = "Exer-Thal-Defects"), 
+restecg = list(parents = "health", 
+    pos = c(x = 1122, y = 288), title = "Rest-Ecg"), 
+fbs = list(
     parents = "health", pos = c(x = 1380, y = 306), title = "Fast-Bsug"), 
     ca = list(parents = "health", pos = c(x = 1458, y = 426), 
         title = "Colored-Floro"), thalach = list(parents = "health", 

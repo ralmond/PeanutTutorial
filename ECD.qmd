@@ -152,19 +152,19 @@ text(.85,.5,"E")
 axis(3,at=c(.5,1.5),labels=c("H","not H"),tick=FALSE)
 ```
 
-$$\Pr(E|H) = \frac{\Pr(E \cap H)}{\Pr(H)} $$
+$$\Pr(E|H) = \frac{\Pr(E \cap H)}{\Pr(H)}$$
 
-$$ \Pr(E) = \Pr(E|H) \Pr(H) + \Pr(E|\overline{H})\Pr(\overline{H}) $$
+$$\Pr(E) = \Pr(E|H) \Pr(H) + \Pr(E|\overline{H})\Pr(\overline{H})$$
 
-$$ \Pr(B) = \sum_i \Pr(B|A_i)\Pr(A_i) $$
+$$\Pr(B) = \sum_i \Pr(B|A_i)\Pr(A_i)$$
 
 Where \$ A_i \cap A_j =\emptyset\$ and $\bigcup_i A_i = \Omega$
 
 # Bayes Theorem
 
-$$ \Pr(H|E) = \frac{\Pr(E|H)\Pr(H)}{\Pr(E)} $$
+$$\Pr(H|E) = \frac{\Pr(E|H)\Pr(H)}{\Pr(E)}$$
 
-$$ = \frac{\Pr(E|H)\Pr(H)}{\Pr(E|H)\Pr(H)+\Pr(E|\overline{H})\Pr(\overline{H})}$$
+$$= \frac{\Pr(E|H)\Pr(H)}{\Pr(E|H)\Pr(H)+\Pr(E|\overline{H})\Pr(\overline{H})}$$
 
 |            |                                  |
 |------------|----------------------------------|
@@ -193,7 +193,9 @@ text(.85,.5,"B")
 axis(3,at=c(.5,1.5),labels=c("A","not A"),tick=FALSE)
 ```
 
-$$ \Pr(B) = \Pr(B|A) = \Pr(B|\overline{A}) $$ $$ \Pr(A) = \Pr(A|B) = \Pr(A|\overline{B}) $$ $$ \Pr(A \cap B) = \Pr(A|B)\Pr(B) = \Pr(A)\Pr(B) $$
+$$\Pr(B) = \Pr(B|A) = \Pr(B|\overline{A})$$ 
+$$\Pr(A) = \Pr(A|B) = \Pr(A|\overline{B})$$ 
+$$\Pr(A \cap B) = \Pr(A|B)\Pr(B) = \Pr(A)\Pr(B)$$
 
 -   Knowing $A$ provides no information about $B$ and vise versa.
 
@@ -213,8 +215,8 @@ What is the probability a randomly chosen driver will have an accident in Year 1
 
 $\Pr(Y_i)$. -- Prob of accident in a given year.
 
-$$ \Pr(A_i) = \Pr(A_i|N)\Pr(N) +
-\Pr(A_i|\overline{N})\Pr(\overline{N}) $$
+$$\Pr(A_i) = \Pr(A_i|N)\Pr(N) +
+\Pr(A_i|\overline{N})\Pr(\overline{N})$$
 
 ```{r PYear1}
 DrivingSkill <- c(N=5/6,A=1/6)
@@ -229,12 +231,12 @@ sum(Year1[,"Yes"])
 
 Given a driver had an accident in Year 1, what is probability of accident in Year 2?
 
-$$ \begin{array}{rcl}
+$$\begin{array}{rcl}
  \Pr(A_1 \cap A_2) &=& \Pr(A_1 \cap A_2|N)\Pr(N) + \Pr(A_1 \cap
  A_2|\overline{N}) \Pr(\overline{N}) \\
   &=& \Pr(A_1|N)\Pr(A_2|N)\Pr(N) + \Pr(A_1|\overline{N})
 \Pr(A_2|\overline{N}) \Pr(\overline{N}) 
-   \end{array} $$
+   \end{array}$$
 
 ```{r PYear12}
 Acc2Like <- AccLike
@@ -324,7 +326,7 @@ $$p(v_1,\ldots,v_J) = p(v_J|v_{J-1},\ldots,v_1)
 p(v_{J-1}|v_{J-2},\ldots,v_1) \cdots p(v_2|v_1) p(v_1)$$
 
 $$ = \prod{j=1}^{J} p(v_j|v_{j-1},\ldots, v_1) = \prod_{j=1}^{J}
-p(v_j|Pa(V_j)) $$
+p(v_j|Pa(V_j))$$
 
 $$Pa(v_j)$$ is the set of nodes that come earlier in the sequence.
 
@@ -338,7 +340,7 @@ If ${\cal G}$ is a Bayesian network whose nodes are ${\cal V}$, then we can repl
 
 For example, in IRT, item responses are conditionally independent given $\theta$:
 
-$$ p(X_1,\ldots,X_J,\theta) = p(\theta) \prod_{j=1}^{J} p(X_j|\theta)$$
+$$p(X_1,\ldots,X_J,\theta) = p(\theta) \prod_{j=1}^{J} p(X_j|\theta)$$
 
 ## Bayes net
 

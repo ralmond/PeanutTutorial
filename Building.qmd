@@ -229,7 +229,7 @@ Rather expressing the regression in terms of the residual standard deviation, it
 
 In particular, the residual standard deviation is set to
 
-$$ \sqrt{ \left ( \frac{1}{K}\sum_{k \in \text{parents}} a_k^2 \right
+$$\sqrt{ \left ( \frac{1}{K}\sum_{k \in \text{parents}} a_k^2 \right
 ) \left ( \frac{1}{R^2} - 1 \right ) } .$$
 
 Here, $K$ is the number of parents and $k$ is an index that ranges over the parent variables. The $a_k$ are the discriminations (regression weights) input through the system and $R^2$ is the selected $R^2$ value. The $1/K$ scale factor is set so that if all of the parent variables have an SD of 1, and all of the coefficients are 1, the child variable has a marginal SD of 1 as well.

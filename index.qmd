@@ -6,7 +6,7 @@ This website contains the downloads and handouts for the tutorial *Bayesian Netw
 
 You can access this tutorial in two ways:
 
--   Online viewing through <https://pluto.coe.fsu.edu/PeanutTutorial>.
+-   Online viewing through <https://ralmond.net/PeanutTutorial>.
 
 -   Download the source code from <https://github.com/ralmond/PeanutTutorial.git>.
 
@@ -31,10 +31,19 @@ d.  [Calibrating Model Parameters to Data](Updating.qmd)
 
 4.  [Dynamic Bayesian Networks](Dynamic.qmd)
 
-An older version of the resources with powerpoint slides is available at <https://pluto.coe.fsu.edu/BNinEA/NCMETutorial>
+An older version of the resources with powerpoint slides is available at <https://myweb.fsu.edu/ralmond/BNinEA/NCMETutorial>
 
 
 ## Powerpoint Slides
+
+
+[Session 1:  ECD and Bayes nets](https://myweb.fsu.edu/ralmond/BNinEA/NCMETutorial/2021%20BN%20Session%20I.pptx)
+
+[Session 2:  Applications](https://myweb.fsu.edu/ralmond/BNinEA/NCMETutorial/2021%20BN%20Session%20II.pptx)
+
+[Session 3: MCMC](https://myweb.fsu.edu/ralmond/BNinEA/NCMETutorial/2021%20BN%20Session%20IV_MCMC.pptx)
+
+
 
 These are from the ISCA slides which are a general stat (as opposed to psychometric) audience.
 
