@@ -14,9 +14,13 @@ The latter allows you to reproduce the calculations on your own computer using R
 
 The complete tutorial has the following parts:
 
-1.  [Introduction to Evidence-Centered Assessment Design and Bayesian Networks](ECD.qmd)
+1.  [Introduction to Evidence-Centered Assessment Design and Bayesian Networks (powerpoint)](2025BNSessionI.pptx)
 
-2.  [Example Bayesian Networks](BayesNets.qmd)
+[Older version in markdown](ECD.qmd)
+
+2.  [Example Bayesian Networks](2025BNSessionII.pptx)
+
+[Older version in markdown](BayesNets.qmd)
 
 3.  Using Peanut to Manipulate Bayes nets
 
