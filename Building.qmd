@@ -104,7 +104,7 @@ This should change in a future version. The idea is to instead use a a vector no
 nodeman <- read_sheet(sheetID,"Nodes")
 ```
 
-```{r nodeManifest}
+```{r}
 #| label:  tbl-nodes
 #| tbl-cap: "Nodes Tab"
 knitr::kable(nodeman)
@@ -445,11 +445,11 @@ Nodehouse <- PNetica::NNWarehouse(manifest=nodeman,
                                   session=sess)
 ```
 
-Next build the competency model. First create a blank network from the Network arehouse, then, use the `Omega2Pnet` function.
+Next build the competency model. First create a blank network from the Network Warehouse, then, use the `Omega2Pnet` function.
 
 ```{r ProcessOmega}
 CM <- WarehouseSupply(Nethouse,"miniACEDPM")
-Omega2Pnet(omega,CM,Nodehouse,override=TRUE)
+#Omega2Pnet(omega,CM,Nodehouse,override=TRUE)
 ```
 
 Once the competency model is built, build the evidence models.
