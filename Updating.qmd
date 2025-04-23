@@ -1,3 +1,23 @@
 ---
 title:  "Calibrating Model Parameters to Data."
 ---
+
+## Built-in Netica Learning
+
+### Build a Case File
+
+### Run internal EM algorithm
+
+Learned CPTs
+
+Effective sample sizes.
+
+## Learning CPTs
+
+### Create Effective data
+
+Multiply Learned CPTs and Effective Sample sizes
+
+### Maximize the tables
+
+## Repeat until convergence

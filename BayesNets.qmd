@@ -82,7 +82,7 @@ To clear a value, click on it again, or right click and select "undefined".
 1.  Assume $\theta =1$, what is expected score (sum $X_j$ )
 2.  Calculate $P(\theta |X_1 \text{right})$, $E[\theta |X_1 =\text{right}]$.
 3.  Calculate $P(\theta |X_5 = \text{right})$, $E[\theta |X_5 = \text{right}]$.
-4.  Score three students who have the following observable patterns (Tasks 1\--5):
+4.  Score three students who have the following observable patterns (Tasks 1--5):
 
 -   *1,1,1,0,0*
 -   *1,0,0,1,1*

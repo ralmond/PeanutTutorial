@@ -20,7 +20,7 @@ library(arm)
 -   When learning CPTs from data, if skill variables are correlated certain combinations will be rare in data:
 
     -   Skill 1 is high and Skill 2 is low
-    -   Skill 2 is low and Skill 1 is high
+    -   Skill 1 is low and Skill 2 is high
     -   This makes for low effective sample size (high standard errors) when estimating CPTs from data.
 
 # Conditional Probability Tables
@@ -177,9 +177,8 @@ barchart.CPF(CRItem[],baseCol="chocolate")
 1 Map the states of the parent variables onto the standard normal (theta) scale.
 
 ```{r effectiveThetas}
-effectiveThetas(2)
+c(High=1,Medium=0,Low=-1)
 effectiveThetas(3)
-effectiveThetas(4)
 ```
 
 ## Setting Effective Thetas
@@ -196,32 +195,25 @@ PnodeStateValues(Skills[[1]]) <- effectiveThetas(PnodeNumStates(Skills[[1]]))
 
 2 Combine the parent variables using a *combination rule* to create a single effective theta for each row.
 
-```         
-+ The combination rule generally has slope (discrimination)
-parameters ($\alpha$'s or $a$'s)
+-   The combination rule generally has slope (discrimination) parameters ($\alpha$'s or $a$'s)
 
-+ The combination rule generally has difficulty (intercept)
-parameters ($\beta$'s or $b$'s)
+-   The combination rule generally has difficulty (intercept) parameters ($\beta$'s or $b$'s)
 
-+ Some rules (e.g., `Compensatory`) have multiple-a's, some (e.g.,
-`OffsetConjuctive`) have multiple-b's
+-   Some rules (e.g., `Compensatory`) have multiple-a's, some (e.g., `OffsetConjuctive`) have multiple-b's
 
-+ Some link functions allow (or even require) different b's for
-each state of the child variable (step difficulties).
+-   Some link functions allow (or even require) different b's for each state of the child variable (step difficulties).
 
-+ The partial credit link function allows different a's as well.
-```
+-   The partial credit link function allows different a's as well.
 
 ## DiBello Procedure 3:
 
 3 Convert the effective thetas to conditional probablities using a *link function* (IRT-like models)
 
-```         
+      
 + `gradedResponse` -- Lou's original suggestion
 + `partialCredit` -- More flexible alternative
 + `normalLink` -- Regression-like model for proficiency variables.
     - Requires a _link scale parameters_
-```
 
 The function `calcDPCFrame` in the CPTtools package does the work. (DPC = Discrete Partial Credit)
 
@@ -233,7 +225,7 @@ The function `calcDPCFrame` in the CPTtools package does the work. (DPC = Discre
 
 -   Want the marginal distribution implied by the effective thetas to be uniform (unit of the combination operator)
 
-\*What the effective theta transformation to be effectively invertible (this is reason to add the 1.7 to the IRT equation).
+Want the effective theta transformation to be effectively invertible (this is reason to add the 1.7 to the IRT equation).
 
 ## Equally spaced points in Normal Measure
 
@@ -357,7 +349,7 @@ Try changing the slopes and intercepts, and changing the rule for `OffSetDisjunc
 -   To keep the curves from crossing, discrimination parameters must be the same for all $s$
 
 ```{r GR link, eval=FALSE}
-PnodeLink(node) <- "gradedResponse"
+PnodeLink(CRItem) <- "gradedResponse"
 ```
 
 ## Normal (Regression) model
@@ -367,8 +359,8 @@ PnodeLink(node) <- "gradedResponse"
 -   Calculate probabilities that value falls into certain regions
 
 ```{r normal link, eval=FALSE}
-PnodeLink(node) <- "normalLink"
-PnodeLinkScale(node) <- 1
+PnodeLink(CRItem) <- "normalLink"
+PnodeLinkScale(CRItem) <- 1
 ```
 
 ## Generalized partial credit model
@@ -378,8 +370,8 @@ PnodeLinkScale(node) <- 1
 -   Does not even need the combination rules to be the same
 
 ```{r GR, eval=FALSE}
-PnodeLink(node) <- "partialCredit"
-node <- Pnode(node) ## Partial credit is the default.
+PnodeLink(CRItem) <- "partialCredit"
+node <- Pnode(CRItem) ## Partial credit is the default.
 ```
 
 ## Graded Response (DiBello--Samejima models)
@@ -396,7 +388,8 @@ b <- c(-1,+1)
 thetas <- seq(-4,4,.025)
 P1 <- invlogit(a*thetas-b[1])
 P2 <- invlogit(a*thetas-b[2])
-layout(matrix(1:2),2,1)
+#layout(matrix(1:2),2,1)
+opar <- par(mar=c(4,3,2,1)+.1,mfcol=c(2,1))
 plot(thetas,P1,ylab="Probability",col="firebrick",type="l")
 lines(thetas,P2,col="steelblue")
 p0 = 1 - P1
@@ -405,6 +398,7 @@ p2 = P2
 plot(thetas,p0,ylab="Probability",col="firebrick",type="l")
 lines(thetas,p1,col="steelblue")
 lines(thetas,p2,col="seagreen")
+par(opar)
 ```
 
 ## Continuous -\> Discrete
@@ -480,12 +474,10 @@ BuildTable(CRItem)
 ```
 
 ```{r Compensatory gadget, eval=FALSE}
-CRItem <- CompensatoryGadget(CRItem)
+CRItem <- CompensatoryGadget(CRItem,viewer=shiny::dialogViewer("Compensatory"))
 CRItem[]
 
 ```
-
-<https://pluto.coe.fsu.edu/rdemos/Peanut/CompensatoryGadget.Rmd>
 
 ## Don't Cross the curves!
 
@@ -603,11 +595,9 @@ calcDPCFrame(ParentStates(Skill1),PnodeStates(Skill1),
 ## Regression Gadget, no parents
 
 ```{r Regression Gadget, eval=FALSE}
-Skill1 <- RegressionGadget(Skill1)
+Skill1 <- RegressionGadget(Skill1, viewer=shiny::dialogViewer("Regression no parents"))
 Skill1[]
 ```
-
-<https://pluto.coe.fsu.edu/rdemos/Peanut/EASD_EASD.Rmd>
 
 ## Normal Link: One Parent case
 
@@ -635,11 +625,9 @@ calcDPCFrame(ParentStates(Skill2),PnodeStates(Skill2),
 ## Regression Gadget, multiple parents
 
 ```{r Regression Gadget 2,eval=FALSE}
-Skill2 <- RegressionGadget(Skill2)
+Skill2 <- RegressionGadget(Skill2, viewer=shiny::dialogViewer("Regression 1 parent"))
 Skill2[]
 ```
-
-<https://pluto.coe.fsu.edu/rdemos/Peanut/RegressionGadget.Rmd>
 
 ## Partial Credit Models
 
@@ -697,14 +685,12 @@ calcDPCFrame(ParentStates(CRItem),PnodeStates(CRItem),
              PnodeRules(CRItem),PnodeLink(CRItem))
 ```
 
-## Compensator Gadget
+## Compensatory Gadget
 
 ```{r compensatory gadget, eval=FALSE}
-CRItem <- CompensatoryGadget(CRItem)
+CRItem <- CompensatoryGadget(CRItem, viewer=shiny::dialogViewer("DPC Compensatory"))
 CRItem[]
 ```
-
-<https://pluto.coe.fsu.edu/rdemos/Peanut/CompensatoryGadget.Rmd>
 
 ## Simple Case 2: Multiple-B rules
 
@@ -736,12 +722,10 @@ calcDPCFrame(ParentStates(CRItem),PnodeStates(CRItem),
 ## Offset Gadget
 
 ```{r offsetGadget, eval=FALSE}
-CRItem <- OffsetGadget(CRItem)
+CRItem <- OffsetGadget(CRItem,viewer=shiny::dialogViewer("Offset Gadget"))
 CRItem[]
 
 ```
-
-<https://pluto.coe.fsu.edu/rdemos/Peanut/OffsetGadget.Rmd>
 
 ## Discrete Partial Credit model unleashed
 
@@ -850,12 +834,10 @@ BuildTable(CRItem)
 ## The DPCGadget
 
 ```{r DPCgadget, eval=FALSE}
-CRItem <- DPCGadget(CRItem)
+CRItem <- DPCGadget(CRItem, viewer=shiny::dialogViewer("DPC Gadget"))
 CRItem[]
 PnodeQ(CRItem)
 ```
-
-<https://pluto.coe.fsu.edu/rdemos/Peanut/DPCGadget.Rmd>
 
 ## Peanut Functions Summary
 

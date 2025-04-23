@@ -138,15 +138,19 @@ Note that most of the state level value must be vectors of the same length as `N
 
 ### State-level descriptors
 
--   `StateName` --- An identifier for the state. Must follow variable rules.
+-   `StateName` --- An identifier for the state. Must follow variable name rules.
 
--   `StateTitle` --- A longer descriptor which doesn't need to follow varaible rules.
+-   `StateTitle` --- A longer descriptor which doesn't need to follow variable name rules.
 
 -   `StateDescription` --- Documentation for the state.
 
--   `StateValue` --- This is used in both the CPT construction algorithms and in calculating expected values and varainces for nodes. The best practice here is to map these values to quantiles of the normal distribution (@bninea). Note that for three levels these are approximately 1, 0 and -1.
+-   `StateValue` --- This is used in both the CPT construction algorithms and in calculating expected values and variances for nodes. The best practice here is to map these values to quantiles of the normal distribution (@bninea). Note that for three levels these are approximately 1, 0 and -1.
 
--   `LowerBound`, `UpperBound`. These are lists of upper and lower bounds for an underlying continuous variable. Note that `-Inf` and `Inf` are acceptable values. Note also that the upper bound for one state must match the lower bound for the next. ::: {.callout-warning title="Depricated" collapse="true"} This will be replaced in a future version with a new field `Cuts` which will use the cutpoints. :::
+-   `LowerBound`, `UpperBound`. These are lists of upper and lower bounds for an underlying continuous variable. Note that `-Inf` and `Inf` are acceptable values. Note also that the upper bound for one state must match the lower bound for the next.
+
+::: {.callout-warning title="Deprecated" collapse="true"}
+This will be replaced in a future version with a new field `Cuts` which will use the cutpoints.
+:::
 
 -   `Cuts` --- Only used for continuous nodes. These are the upper and lower cuts for the underlying continuous variable. There should be one more value in the vector than there are states in the node. The continuous variable is chopped into intervals with the given cut points (including the minimum and maximum). Note that `-Inf` and `Inf` are acceptable values.
 
@@ -191,7 +195,7 @@ digraph EASD {
 	ExtG [label="Extend Geometric"]
 	TabEG [label="Table \n Extend Geometric"]
 	ModTEG [label="Model Table \n Extend Geometric"]
-	SGP -> CR; SGP -> ExamG; SGP -> ExtG; SGP -> TabEG; SGP ModTEG
+	SGP -> CR; SGP -> ExamG; SGP -> ExtG; SGP -> TabEG; SGP -> ModTEG
 }
 ```
 
@@ -213,11 +217,8 @@ The regression model with no parents is just a normal distribution. The paramete
 ```{r normal}
 #| eval: false
 SGP <- PnetFindNode(CM1,"SolveGeometricProblems")
-gadget1 <- MakeRegressionGadget(SGP)
-shiny::shinyApp(gadget1$ui,gadget1$server, options(height=2000))
+RegressionGadget(SGP,viewer=shiny::dialogViewer("Ancestral Nodes"))
 ```
-
-An online version of this gadget can be seen at <https://pluto.coe.fsu.edu/rdemos/Peanut/miniACED_SGP.Rmd>.
 
 The distribution is discretized, but adjusting mean parameter controls which bars the distribution is concentrated in, and how concentrated it is.
 
@@ -239,11 +240,8 @@ Finally, the intercept column represents a shift in the mean of the distribution
 ```{r normal1}
 #| eval: false
 CR <- PnetFindNode(CM1,"CommonRatio")
-gadget2 <- MakeRegressionGadget(CR)
-shiny::shinyApp(gadget2$ui,gadget2$server, options(height=2000))
+RegressionGadget(CR,viewer=shiny::dialogViewer("Regression"))
 ```
-
-The resulting gadget is in: <https://pluto.coe.fsu.edu/rdemos/Peanut/miniACED_CR.Rmd>.
 
 ### Columns in the Omega Matrix
 
@@ -334,13 +332,10 @@ Qmat2Pnet(Q1,Nethouse,Nodehouse)
 
 ```{r BuildGadget}
 #| eval: false
-EM <- WarehouseSupply(Nethouse,"TableExtendGadget")
+EM <- WarehouseSupply(Nethouse,"TableExtendEasyEM")
 isC <- PnetFindNode(EM,"isCorrect")
-gadget3 <- MakeDPCGadget(isC)
-shiny::shinyApp(gadget3$ui,gadget3$server)
+DPCGadget(isC,viewer=shiny::dialogViewer("Table Extend Easy"))
 ```
-
-The gadget can be seen at <https://pluto.coe.fsu.edu/rdemos/Peanut/miniACED_TE.Rmd>.
 
 ### Columns in the Extended Q-matrix
 
@@ -388,7 +383,7 @@ The `OffsetConjunctive` and `OffsetDisjunctive` models use `min()` and `max()` r
 
 -   `A` -- Discrimination (slope). The `A` column without a variable name attached is used to specify the overall discrimination of the item.
 
--   `B`.\_NodeName\_ -- There is a demand parameter for each relevant (box checked in the $Q$-matrix) competency variable.
+-   `B`.*NodeName* -- There is a demand parameter for each relevant (box checked in the $Q$-matrix) competency variable.
 
 In each case there can be a single value, or a list of values corresponding to the state transitions.
 
@@ -449,7 +444,7 @@ Next build the competency model. First create a blank network from the Network W
 
 ```{r ProcessOmega}
 CM <- WarehouseSupply(Nethouse,"miniACEDPM")
-#Omega2Pnet(omega,CM,Nodehouse,override=TRUE)
+CM <- Omega2Pnet(omega,CM,Nodehouse,override=TRUE)
 ```
 
 Once the competency model is built, build the evidence models.

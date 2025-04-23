@@ -208,7 +208,7 @@ B. a set of nodes which have a particular label.
 
 In RNetica, these are very useful as they define collections of nodes that might be interesting in some way (e.g., Proficiency variables, Observable variable, background variables)
 
-Node set operations yeild a list of nodes; iterating over that set is often very useful.
+Node set operations yield a list of nodes; iterating over that set is often very useful.
 
 ## Node Set Examples
 
@@ -442,7 +442,7 @@ Fred.History
 
 ## Cleanup:  Delete EM and Absorb observables
 DeleteNetwork(EMnet) ## Delete EM
-#AbsorbNodes(obs)
+try(AbsorbNodes(obs))
 ```
 
 ## Fred does another task
@@ -475,7 +475,7 @@ Cleanup: Delete EM and Absorb observables
 
 ```{r cleanup on task 2}
 DeleteNetwork(EMnet) ## Delete EM
-#try(AbsorbNodes(obs))
+try(AbsorbNodes(obs))
 ## Currently, there is a Netica bug with Absorb Nodes, we will leave
 ##this the node in place as that is mostly harmless.
 ```

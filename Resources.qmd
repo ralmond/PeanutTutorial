@@ -4,7 +4,7 @@ title: "Resources"
 
 ## These Web Pages
 
-These web pages are available in both a static version (<https://pluto.coe.fsu.edu/PeanutTutorial>) and a source version (<https://github.com/ralmond/PeanutTutorial>.git).
+These web pages are available in both a static version ([https://ralmond.net/PeanutTutorial](https://pluto.coe.fsu.edu/PeanutTutorial){.uri}) and a source version (<https://github.com/ralmond/PeanutTutorial>.git).
 
 The easiest way to access the Peanut tutorial is to use [R Studio](https://posit.co/products/open-source/rstudio/). Go to new project, and select "From Version control", then "Git" then put 'https://github.com/ralmond/PeanutTutorial.git' in the 'Repository URL' box.
 
@@ -56,7 +56,7 @@ Note, these all install the unlicensed version of Netica. You will still need to
 
 Brent Borelange (Norsys CEO) has expressed willingness to support Netica run under Wine/Crossover. (I have not had problems.)
 
-## Peanut and RNetia
+## Peanut and RNetica
 
 The R package `RNetica` provides an R binding of the Netica API (hence, it requires the API and not GUI license). `RNetica` is available at <https://ralmond.r-universe.dev/> (source code is at <https://github.com/ralmond/>).
 
