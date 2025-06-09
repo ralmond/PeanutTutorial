@@ -1,0 +1,1277 @@
+// ~->[DNET-1]->~
+
+// File created by AlmondR at FloridaStateU using Netica 6.07 on 04/26/2025 at 11:17:52 PM UTC.
+
+bnet MiniACEDMotif {
+autoupdate = TRUE;
+whenchanged = 1745709472;
+
+visual V1 {
+	defdispform = BELIEFBARS;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 10;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	ShowLinkStrengths = 1;
+	windowposn = (2, 38, 1057, 897);
+	resolution = 72;
+	drawingbounds = (1895, 933);
+	showpagebreaks = FALSE;
+	usegrid = TRUE;
+	gridspace = (6, 6);
+	NodeSet Node {BuiltIn = 1; Color = 0x00e1e1e1;};
+	NodeSet Nature {BuiltIn = 1; Color = 0x00f8eed2;};
+	NodeSet Deterministic {BuiltIn = 1; Color = 0x00d3caa6;};
+	NodeSet Finding {BuiltIn = 1; Color = 0x00c8c8c8;};
+	NodeSet Constant {BuiltIn = 1; Color = 0x00ffffff;};
+	NodeSet ConstantValue {BuiltIn = 1; Color = 0x00ffffb4;};
+	NodeSet Utility {BuiltIn = 1; Color = 0x00ffbdbd;};
+	NodeSet Decision {BuiltIn = 1; Color = 0x00dee8ff;};
+	NodeSet Documentation {BuiltIn = 1; Color = 0x00f0fafa;};
+	NodeSet Title {BuiltIn = 1; Color = 0x00ffffff;};
+	NodeSet Proficiencies {Disabled = 1; Color = 0x00c8c8c8;};
+	NodeSet pnodes {Disabled = 1; Color = 0x00c8c8c8;};
+	NodeSet onodes {Disabled = 1; Color = 0x00c8c8c8;};
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		};
+	};
+user U1 {
+	priorWeight = "10";
+	};
+
+node SolveGeometricProblems {
+	discrete = TRUE;
+	states = (High, Medium, Low);
+	levels = (0.967421566101701, 0, -0.967421566101701);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = ();
+	probs = 
+		// High         Medium       Low          
+		  (0.1532,      0.2784,      0.5684);
+	EqnDirty = TRUE;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"normalLink\"";
+		linkScale = "1";
+		lnAlphas = "1";
+		betas = "0";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (564, 54);
+		height = 1;
+		};
+	};
+
+node CommonRatio {
+	discrete = TRUE;
+	states = (High, Medium, Low);
+	levels = (0.967421566101701, 0, -0.967421566101701);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (SolveGeometricProblems);
+	probs = 
+		// High         Medium       Low           // SolveGeometricProblems 
+		  (1,           0,           0,            // High                   
+		   0.963,       0.036,       9.999424e-4,  // Medium                 
+		   0.567,       0.379,       0.05399996);  // Low                    ;
+	numcases = 1;
+	EqnDirty = TRUE;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"normalLink\"";
+		linkScale = "1";
+		lnAlphas = "structure(0, .Names = \"SolveGeometricProblems\")";
+		betas = "0";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (108, 174);
+		height = 6;
+		};
+	};
+
+node ExamplesGeometric {
+	discrete = TRUE;
+	states = (High, Medium, Low);
+	levels = (0.967421566101701, 0, -0.967421566101701);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (SolveGeometricProblems);
+	probs = 
+		// High         Medium       Low           // SolveGeometricProblems 
+		  (0.518,       0.351,       0.131,        // High                   
+		   0.122,       0.344,       0.534,        // Medium                 
+		   0.009,       0.089,       0.902);       // Low                    ;
+	numcases = 1;
+	EqnDirty = TRUE;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"normalLink\"";
+		linkScale = "1";
+		lnAlphas = "structure(0, .Names = \"SolveGeometricProblems\")";
+		betas = "0";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (342, 174);
+		height = 5;
+		};
+	};
+
+node ExtendGeometric {
+	discrete = TRUE;
+	states = (High, Medium, Low);
+	levels = (0.967421566101701, 0, -0.967421566101701);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (SolveGeometricProblems);
+	probs = 
+		// High         Medium       Low           // SolveGeometricProblems 
+		  (1,           0,           0,            // High                   
+		   0.963,       0.036,       0.001,        // Medium                 
+		   0.567,       0.379,       0.054);       // Low                    ;
+	EqnDirty = TRUE;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"normalLink\"";
+		linkScale = "1";
+		lnAlphas = "structure(0, .Names = \"SolveGeometricProblems\")";
+		betas = "0";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (588, 174);
+		height = 4;
+		};
+	};
+
+node ModelGeometric {
+	discrete = TRUE;
+	states = (High, Medium, Low);
+	levels = (0.967421566101701, 0, -0.967421566101701);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (SolveGeometricProblems);
+	probs = 
+		// High         Medium       Low           // SolveGeometricProblems 
+		  (0.281,       0.41,        0.309,        // High                   
+		   0.037,       0.201,       0.762,        // Medium                 
+		   0.001,       0.026,       0.973);       // Low                    ;
+	numcases = 1;
+	EqnDirty = TRUE;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"normalLink\"";
+		linkScale = "1";
+		lnAlphas = "structure(0, .Names = \"SolveGeometricProblems\")";
+		betas = "0";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (1134, 162);
+		height = 2;
+		};
+	};
+
+node TableGeometric {
+	discrete = TRUE;
+	states = (High, Medium, Low);
+	levels = (0.967421566101701, 0, -0.967421566101701);
+	kind = NATURE;
+	chance = CHANCE;
+	parents = (SolveGeometricProblems);
+	probs = 
+		// High         Medium       Low           // SolveGeometricProblems 
+		  (0.713,       0.216,       0.071,        // High                   
+		   0.326,       0.348,       0.326,        // Medium                 
+		   0.071,       0.216,       0.713);       // Low                    ;
+	numcases = 1;
+	EqnDirty = TRUE;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"normalLink\"";
+		linkScale = "1";
+		lnAlphas = "structure(0, .Names = \"SolveGeometricProblems\")";
+		betas = "0";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (858, 168);
+		height = 3;
+		};
+	};
+
+node tCommonRatio1a {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (CommonRatio);
+	parents = (CommonRatio);
+	probs = 
+		// Yes          No            // CommonRatio 
+		  (0.9659281,   0.03407189,   // High        
+		   0.8455347,   0.1544653,    // Medium      
+		   0.5138423,   0.4861577);   // Low         ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"CommonRatio\")";
+		betas = "-1";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (108, 294);
+		height = 7;
+		};
+	};
+
+node tCommonRatio1b {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (CommonRatio);
+	parents = (CommonRatio);
+	probs = 
+		// Yes          No            // CommonRatio 
+		  (0.9659281,   0.03407189,   // High        
+		   0.8455347,   0.1544653,    // Medium      
+		   0.5138423,   0.4861577);   // Low         ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"CommonRatio\")";
+		betas = "-1";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (108, 414);
+		height = 8;
+		};
+	};
+
+node tCommonRatio2a {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (CommonRatio);
+	parents = (CommonRatio);
+	probs = 
+		// Yes          No            // CommonRatio 
+		  (0.8381621,   0.1618378,    // High        
+		   0.5,         0.5,          // Medium      
+		   0.1618378,   0.8381621);   // Low         ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"CommonRatio\")";
+		betas = "0";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (108, 534);
+		height = 9;
+		};
+	};
+
+node tCommonRatio2b {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (CommonRatio);
+	parents = (CommonRatio);
+	probs = 
+		// Yes          No            // CommonRatio 
+		  (0.8381621,   0.1618378,    // High        
+		   0.5,         0.5,          // Medium      
+		   0.1618378,   0.8381621);   // Low         ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"CommonRatio\")";
+		betas = "0";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (108, 654);
+		height = 10;
+		};
+	};
+
+node tCommonRatio3a {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (CommonRatio);
+	parents = (CommonRatio);
+	probs = 
+		// Yes          No            // CommonRatio 
+		  (0.4861577,   0.5138423,    // High        
+		   0.1544653,   0.8455347,    // Medium      
+		   0.03407189,  0.9659281);   // Low         ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"CommonRatio\")";
+		betas = "1";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (108, 774);
+		height = 11;
+		};
+	};
+
+node tCommonRatio3b {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (CommonRatio);
+	parents = (CommonRatio);
+	probs = 
+		// Yes          No            // CommonRatio 
+		  (0.4861577,   0.5138423,    // High        
+		   0.1544653,   0.8455347,    // Medium      
+		   0.03407189,  0.9659281);   // Low         ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"CommonRatio\")";
+		betas = "1";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (108, 894);
+		height = 12;
+		};
+	};
+
+node tExamplesGeometric1a {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (ExamplesGeometric);
+	parents = (ExamplesGeometric);
+	probs = 
+		// Yes          No            // ExamplesGeometric 
+		  (0.9659281,   0.03407189,   // High              
+		   0.8455347,   0.1544653,    // Medium            
+		   0.5138423,   0.4861577);   // Low               ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"ExamplesGeometric\")";
+		betas = "-1";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (342, 294);
+		height = 13;
+		};
+	};
+
+node tExamplesGeometric1b {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (ExamplesGeometric);
+	parents = (ExamplesGeometric);
+	probs = 
+		// Yes          No            // ExamplesGeometric 
+		  (0.9659281,   0.03407189,   // High              
+		   0.8455347,   0.1544653,    // Medium            
+		   0.5138423,   0.4861577);   // Low               ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"ExamplesGeometric\")";
+		betas = "-1";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (342, 414);
+		height = 14;
+		};
+	};
+
+node tExamplesGeometric2a {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (ExamplesGeometric);
+	parents = (ExamplesGeometric);
+	probs = 
+		// Yes          No            // ExamplesGeometric 
+		  (0.8381621,   0.1618378,    // High              
+		   0.5,         0.5,          // Medium            
+		   0.1618378,   0.8381621);   // Low               ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"ExamplesGeometric\")";
+		betas = "0";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (342, 534);
+		height = 15;
+		};
+	};
+
+node tExamplesGeometric2b {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (ExamplesGeometric);
+	parents = (ExamplesGeometric);
+	probs = 
+		// Yes          No            // ExamplesGeometric 
+		  (0.8381621,   0.1618378,    // High              
+		   0.5,         0.5,          // Medium            
+		   0.1618378,   0.8381621);   // Low               ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"ExamplesGeometric\")";
+		betas = "0";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (342, 654);
+		height = 16;
+		};
+	};
+
+node tExamplesGeometric3a {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (ExamplesGeometric);
+	parents = (ExamplesGeometric);
+	probs = 
+		// Yes          No            // ExamplesGeometric 
+		  (0.4861577,   0.5138423,    // High              
+		   0.1544653,   0.8455347,    // Medium            
+		   0.03407189,  0.9659281);   // Low               ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"ExamplesGeometric\")";
+		betas = "1";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (342, 774);
+		height = 17;
+		};
+	};
+
+node tExamplesGeometric3b {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (ExamplesGeometric);
+	parents = (ExamplesGeometric);
+	probs = 
+		// Yes          No            // ExamplesGeometric 
+		  (0.4861577,   0.5138423,    // High              
+		   0.1544653,   0.8455347,    // Medium            
+		   0.03407189,  0.9659281);   // Low               ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"ExamplesGeometric\")";
+		betas = "1";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (342, 894);
+		height = 18;
+		};
+	};
+
+node tExtendGeometric1a {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (ExtendGeometric);
+	parents = (ExtendGeometric);
+	probs = 
+		// Yes          No            // ExtendGeometric 
+		  (0.9659281,   0.03407189,   // High            
+		   0.8455347,   0.1544653,    // Medium          
+		   0.5138423,   0.4861577);   // Low             ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"ExtendGeometric\")";
+		betas = "-1";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (588, 294);
+		height = 19;
+		};
+	};
+
+node tExtendGeometric1b {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (ExtendGeometric);
+	parents = (ExtendGeometric);
+	probs = 
+		// Yes          No            // ExtendGeometric 
+		  (0.9659281,   0.03407189,   // High            
+		   0.8455347,   0.1544653,    // Medium          
+		   0.5138423,   0.4861577);   // Low             ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"ExtendGeometric\")";
+		betas = "-1";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (588, 414);
+		height = 20;
+		};
+	};
+
+node tExtendGeometric2a {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (ExtendGeometric);
+	parents = (ExtendGeometric);
+	probs = 
+		// Yes          No            // ExtendGeometric 
+		  (0.8381621,   0.1618378,    // High            
+		   0.5,         0.5,          // Medium          
+		   0.1618378,   0.8381621);   // Low             ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"ExtendGeometric\")";
+		betas = "0";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (588, 534);
+		height = 21;
+		};
+	};
+
+node tExtendGeometric2b {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (ExtendGeometric);
+	parents = (ExtendGeometric);
+	probs = 
+		// Yes          No            // ExtendGeometric 
+		  (0.8381621,   0.1618378,    // High            
+		   0.5,         0.5,          // Medium          
+		   0.1618378,   0.8381621);   // Low             ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"ExtendGeometric\")";
+		betas = "0";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (588, 654);
+		height = 22;
+		};
+	};
+
+node tExtendGeometric3a {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (ExtendGeometric);
+	parents = (ExtendGeometric);
+	probs = 
+		// Yes          No            // ExtendGeometric 
+		  (0.4861577,   0.5138423,    // High            
+		   0.1544653,   0.8455347,    // Medium          
+		   0.03407189,  0.9659281);   // Low             ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"ExtendGeometric\")";
+		betas = "1";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (588, 774);
+		height = 23;
+		};
+	};
+
+node tExtendGeometric3b {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (ExtendGeometric);
+	parents = (ExtendGeometric);
+	probs = 
+		// Yes          No            // ExtendGeometric 
+		  (0.4861577,   0.5138423,    // High            
+		   0.1544653,   0.8455347,    // Medium          
+		   0.03407189,  0.9659281);   // Low             ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(0, .Names = \"ExtendGeometric\")";
+		betas = "1";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (588, 894);
+		height = 24;
+		};
+	};
+
+node tTableExtendGeometric1a {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (TableGeometric, ExtendGeometric);
+	parents = (TableGeometric, ExtendGeometric);
+	probs = 
+		// Yes          No            // TableGeometric ExtendGeometric 
+		  (0.9901199,   0.009880143,  // High           High            
+		   0.9690631,   0.03093692,   // High           Medium          
+		   0.9073299,   0.09267014,   // High           Low             
+		   0.9459827,   0.05401732,   // Medium         High            
+		   0.8455347,   0.1544653,    // Medium         Medium          
+		   0.631133,    0.368867,     // Medium         Low             
+		   0.7537178,   0.2462822,    // Low            High            
+		   0.488907,    0.511093,     // Low            Medium          
+		   0.2301793,   0.7698207);   // Low            Low             ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(c(0.405465108108164, 0), .Names = c(\"TableGeometric\",  \"ExtendGeometric\"))";
+		betas = "-1";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (1134, 282);
+		height = 25;
+		};
+	};
+
+node tTableExtendGeometric1b {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (TableGeometric, ExtendGeometric);
+	parents = (TableGeometric, ExtendGeometric);
+	probs = 
+		// Yes          No            // TableGeometric ExtendGeometric 
+		  (0.9901199,   0.009880143,  // High           High            
+		   0.9690631,   0.03093692,   // High           Medium          
+		   0.9073299,   0.09267014,   // High           Low             
+		   0.9459827,   0.05401732,   // Medium         High            
+		   0.8455347,   0.1544653,    // Medium         Medium          
+		   0.631133,    0.368867,     // Medium         Low             
+		   0.7537178,   0.2462822,    // Low            High            
+		   0.488907,    0.511093,     // Low            Medium          
+		   0.2301793,   0.7698207);   // Low            Low             ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(c(0.405465108108164, 0), .Names = c(\"TableGeometric\",  \"ExtendGeometric\"))";
+		betas = "-1";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (1134, 402);
+		height = 26;
+		};
+	};
+
+node tTableExtendGeometric2a {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (TableGeometric, ExtendGeometric);
+	parents = (TableGeometric, ExtendGeometric);
+	probs = 
+		// Yes          No            // TableGeometric ExtendGeometric 
+		  (0.9482061,   0.05179393,   // High           High            
+		   0.8512425,   0.1487575,    // High           Medium          
+		   0.6414033,   0.3585968,    // High           Low             
+		   0.7618628,   0.2381372,    // Medium         High            
+		   0.5,         0.5,          // Medium         Medium          
+		   0.2381372,   0.7618628,    // Medium         Low             
+		   0.3585968,   0.6414033,    // Low            High            
+		   0.1487575,   0.8512425,    // Low            Medium          
+		   0.05179393,  0.9482061);   // Low            Low             ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(c(0.405465108108164, 0), .Names = c(\"TableGeometric\",  \"ExtendGeometric\"))";
+		betas = "0";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (1134, 522);
+		height = 27;
+		};
+	};
+
+node tTableExtendGeometric2b {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (TableGeometric, ExtendGeometric);
+	parents = (TableGeometric, ExtendGeometric);
+	probs = 
+		// Yes          No            // TableGeometric ExtendGeometric 
+		  (0.9482061,   0.05179393,   // High           High            
+		   0.8512425,   0.1487575,    // High           Medium          
+		   0.6414033,   0.3585968,    // High           Low             
+		   0.7618628,   0.2381372,    // Medium         High            
+		   0.5,         0.5,          // Medium         Medium          
+		   0.2381372,   0.7618628,    // Medium         Low             
+		   0.3585968,   0.6414033,    // Low            High            
+		   0.1487575,   0.8512425,    // Low            Medium          
+		   0.05179393,  0.9482061);   // Low            Low             ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(c(0.405465108108164, 0), .Names = c(\"TableGeometric\",  \"ExtendGeometric\"))";
+		betas = "0";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (1134, 642);
+		height = 28;
+		};
+	};
+
+node tTableExtendGeometric3a {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (TableGeometric, ExtendGeometric);
+	parents = (TableGeometric, ExtendGeometric);
+	probs = 
+		// Yes          No            // TableGeometric ExtendGeometric 
+		  (0.7698207,   0.2301793,    // High           High            
+		   0.511093,    0.488907,     // High           Medium          
+		   0.2462822,   0.7537178,    // High           Low             
+		   0.368867,    0.631133,     // Medium         High            
+		   0.1544653,   0.8455347,    // Medium         Medium          
+		   0.05401732,  0.9459827,    // Medium         Low             
+		   0.09267014,  0.9073299,    // Low            High            
+		   0.03093692,  0.9690631,    // Low            Medium          
+		   0.009880143, 0.9901199);   // Low            Low             ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(c(0.405465108108164, 0), .Names = c(\"TableGeometric\",  \"ExtendGeometric\"))";
+		betas = "1";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (1134, 762);
+		height = 29;
+		};
+	};
+
+node tTableExtendGeometric3b {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (TableGeometric, ExtendGeometric);
+	parents = (TableGeometric, ExtendGeometric);
+	probs = 
+		// Yes          No            // TableGeometric ExtendGeometric 
+		  (0.7698207,   0.2301793,    // High           High            
+		   0.511093,    0.488907,     // High           Medium          
+		   0.2462822,   0.7537178,    // High           Low             
+		   0.368867,    0.631133,     // Medium         High            
+		   0.1544653,   0.8455347,    // Medium         Medium          
+		   0.05401732,  0.9459827,    // Medium         Low             
+		   0.09267014,  0.9073299,    // Low            High            
+		   0.03093692,  0.9690631,    // Low            Medium          
+		   0.009880143, 0.9901199);   // Low            Low             ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(c(0.405465108108164, 0), .Names = c(\"TableGeometric\",  \"ExtendGeometric\"))";
+		betas = "1";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (1134, 882);
+		height = 30;
+		};
+	};
+
+node tModelExtendTableGeometric1a {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (ModelGeometric, TableGeometric, ExtendGeometric);
+	parents = (ModelGeometric, TableGeometric, ExtendGeometric);
+	probs = 
+		// Yes          No            // ModelGeometric TableGeometric ExtendGeometric 
+		  (0.9934604,   0.006539591,  // High           High           High            
+		   0.983272,    0.01672804,   // High           High           Medium          
+		   0.9578832,   0.04211677,   // High           High           Low             
+		   0.983272,    0.01672804,   // High           Medium         High            
+		   0.9578832,   0.04211677,   // High           Medium         Medium          
+		   0.8979599,   0.1020401,    // High           Medium         Low             
+		   0.9578832,   0.04211677,   // High           Low            High            
+		   0.8979599,   0.1020401,    // High           Low            Medium          
+		   0.7729844,   0.2270156,    // High           Low            Low             
+		   0.9733781,   0.02662187,   // Medium         High           High            
+		   0.9339814,   0.06601861,   // Medium         High           Medium          
+		   0.8455347,   0.1544653,    // Medium         High           Low             
+		   0.9339814,   0.06601861,   // Medium         Medium         High            
+		   0.8455347,   0.1544653,    // Medium         Medium         Medium          
+		   0.6792833,   0.3207167,    // Medium         Medium         Low             
+		   0.8455347,   0.1544653,    // Medium         Low            High            
+		   0.6792833,   0.3207167,    // Medium         Low            Medium          
+		   0.4504037,   0.5495963,    // Medium         Low            Low             
+		   0.8979599,   0.1020401,    // Low            High           High            
+		   0.7729844,   0.2270156,    // Low            High           Medium          
+		   0.5684966,   0.4315033,    // Low            High           Low             
+		   0.7729844,   0.2270156,    // Low            Medium         High            
+		   0.5684966,   0.4315033,    // Low            Medium         Medium          
+		   0.3376465,   0.6623535,    // Low            Medium         Low             
+		   0.5684966,   0.4315033,    // Low            Low            High            
+		   0.3376465,   0.6623535,    // Low            Low            Medium          
+		   0.1647476,   0.8352524);   // Low            Low            Low             ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(c(0.405465108108164, 0, 0), .Names = c(\"ModelGeometric\",  \"TableGeometric\", \
+			\"ExtendGeometric\"))";
+		betas = "-1";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (858, 288);
+		height = 31;
+		};
+	};
+
+node tModelExtendTableGeometric1b {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (ModelGeometric, TableGeometric, ExtendGeometric);
+	parents = (ModelGeometric, TableGeometric, ExtendGeometric);
+	probs = 
+		// Yes          No            // ModelGeometric TableGeometric ExtendGeometric 
+		  (0.9934604,   0.006539591,  // High           High           High            
+		   0.983272,    0.01672804,   // High           High           Medium          
+		   0.9578832,   0.04211677,   // High           High           Low             
+		   0.983272,    0.01672804,   // High           Medium         High            
+		   0.9578832,   0.04211677,   // High           Medium         Medium          
+		   0.8979599,   0.1020401,    // High           Medium         Low             
+		   0.9578832,   0.04211677,   // High           Low            High            
+		   0.8979599,   0.1020401,    // High           Low            Medium          
+		   0.7729844,   0.2270156,    // High           Low            Low             
+		   0.9733781,   0.02662187,   // Medium         High           High            
+		   0.9339814,   0.06601861,   // Medium         High           Medium          
+		   0.8455347,   0.1544653,    // Medium         High           Low             
+		   0.9339814,   0.06601861,   // Medium         Medium         High            
+		   0.8455347,   0.1544653,    // Medium         Medium         Medium          
+		   0.6792833,   0.3207167,    // Medium         Medium         Low             
+		   0.8455347,   0.1544653,    // Medium         Low            High            
+		   0.6792833,   0.3207167,    // Medium         Low            Medium          
+		   0.4504037,   0.5495963,    // Medium         Low            Low             
+		   0.8979599,   0.1020401,    // Low            High           High            
+		   0.7729844,   0.2270156,    // Low            High           Medium          
+		   0.5684966,   0.4315033,    // Low            High           Low             
+		   0.7729844,   0.2270156,    // Low            Medium         High            
+		   0.5684966,   0.4315033,    // Low            Medium         Medium          
+		   0.3376465,   0.6623535,    // Low            Medium         Low             
+		   0.5684966,   0.4315033,    // Low            Low            High            
+		   0.3376465,   0.6623535,    // Low            Low            Medium          
+		   0.1647476,   0.8352524);   // Low            Low            Low             ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(c(0.405465108108164, 0, 0), .Names = c(\"ModelGeometric\",  \"TableGeometric\", \
+			\"ExtendGeometric\"))";
+		betas = "-1";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (858, 408);
+		height = 32;
+		};
+	};
+
+node tModelExtendTableGeometric2a {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (ModelGeometric, TableGeometric, ExtendGeometric);
+	parents = (ModelGeometric, TableGeometric, ExtendGeometric);
+	probs = 
+		// Yes          No            // ModelGeometric TableGeometric ExtendGeometric 
+		  (0.9652202,   0.0347798,    // High           High           High            
+		   0.9148074,   0.08519255,   // High           High           Medium          
+		   0.8060085,   0.1939915,    // High           High           Low             
+		   0.9148074,   0.08519255,   // High           Medium         High            
+		   0.8060085,   0.1939915,    // High           Medium         Medium          
+		   0.6165097,   0.3834903,    // High           Medium         Low             
+		   0.8060085,   0.1939915,    // High           Low            High            
+		   0.6165097,   0.3834903,    // High           Low            Medium          
+		   0.3834903,   0.6165097,    // High           Low            Low             
+		   0.8697828,   0.1302172,    // Medium         High           High            
+		   0.7210186,   0.2789814,    // Medium         High           Medium          
+		   0.5,         0.5,          // Medium         High           Low             
+		   0.7210186,   0.2789814,    // Medium         Medium         High            
+		   0.5,         0.5,          // Medium         Medium         Medium          
+		   0.2789814,   0.7210186,    // Medium         Medium         Low             
+		   0.5,         0.5,          // Medium         Low            High            
+		   0.2789814,   0.7210186,    // Medium         Low            Medium          
+		   0.1302172,   0.8697828,    // Medium         Low            Low             
+		   0.6165097,   0.3834903,    // Low            High           High            
+		   0.3834903,   0.6165097,    // Low            High           Medium          
+		   0.1939915,   0.8060085,    // Low            High           Low             
+		   0.3834903,   0.6165097,    // Low            Medium         High            
+		   0.1939915,   0.8060085,    // Low            Medium         Medium          
+		   0.08519255,  0.9148074,    // Low            Medium         Low             
+		   0.1939915,   0.8060085,    // Low            Low            High            
+		   0.08519255,  0.9148074,    // Low            Low            Medium          
+		   0.0347798,   0.9652202);   // Low            Low            Low             ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(c(0.405465108108164, 0, 0), .Names = c(\"ModelGeometric\",  \"TableGeometric\", \
+			\"ExtendGeometric\"))";
+		betas = "0";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (858, 528);
+		height = 33;
+		};
+	};
+
+node tModelExtendTableGeometric2b {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (ModelGeometric, TableGeometric, ExtendGeometric);
+	parents = (ModelGeometric, TableGeometric, ExtendGeometric);
+	probs = 
+		// Yes          No            // ModelGeometric TableGeometric ExtendGeometric 
+		  (0.9652202,   0.0347798,    // High           High           High            
+		   0.9148074,   0.08519255,   // High           High           Medium          
+		   0.8060085,   0.1939915,    // High           High           Low             
+		   0.9148074,   0.08519255,   // High           Medium         High            
+		   0.8060085,   0.1939915,    // High           Medium         Medium          
+		   0.6165097,   0.3834903,    // High           Medium         Low             
+		   0.8060085,   0.1939915,    // High           Low            High            
+		   0.6165097,   0.3834903,    // High           Low            Medium          
+		   0.3834903,   0.6165097,    // High           Low            Low             
+		   0.8697828,   0.1302172,    // Medium         High           High            
+		   0.7210186,   0.2789814,    // Medium         High           Medium          
+		   0.5,         0.5,          // Medium         High           Low             
+		   0.7210186,   0.2789814,    // Medium         Medium         High            
+		   0.5,         0.5,          // Medium         Medium         Medium          
+		   0.2789814,   0.7210186,    // Medium         Medium         Low             
+		   0.5,         0.5,          // Medium         Low            High            
+		   0.2789814,   0.7210186,    // Medium         Low            Medium          
+		   0.1302172,   0.8697828,    // Medium         Low            Low             
+		   0.6165097,   0.3834903,    // Low            High           High            
+		   0.3834903,   0.6165097,    // Low            High           Medium          
+		   0.1939915,   0.8060085,    // Low            High           Low             
+		   0.3834903,   0.6165097,    // Low            Medium         High            
+		   0.1939915,   0.8060085,    // Low            Medium         Medium          
+		   0.08519255,  0.9148074,    // Low            Medium         Low             
+		   0.1939915,   0.8060085,    // Low            Low            High            
+		   0.08519255,  0.9148074,    // Low            Low            Medium          
+		   0.0347798,   0.9652202);   // Low            Low            Low             ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(c(0.405465108108164, 0, 0), .Names = c(\"ModelGeometric\",  \"TableGeometric\", \
+			\"ExtendGeometric\"))";
+		betas = "0";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (858, 648);
+		height = 34;
+		};
+	};
+
+node tModelExtendTableGeometric3a {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (ModelGeometric, TableGeometric, ExtendGeometric);
+	parents = (ModelGeometric, TableGeometric, ExtendGeometric);
+	probs = 
+		// Yes          No            // ModelGeometric TableGeometric ExtendGeometric 
+		  (0.8352524,   0.1647476,    // High           High           High            
+		   0.6623535,   0.3376465,    // High           High           Medium          
+		   0.4315033,   0.5684966,    // High           High           Low             
+		   0.6623535,   0.3376465,    // High           Medium         High            
+		   0.4315033,   0.5684966,    // High           Medium         Medium          
+		   0.2270156,   0.7729844,    // High           Medium         Low             
+		   0.4315033,   0.5684966,    // High           Low            High            
+		   0.2270156,   0.7729844,    // High           Low            Medium          
+		   0.1020401,   0.8979599,    // High           Low            Low             
+		   0.5495963,   0.4504037,    // Medium         High           High            
+		   0.3207167,   0.6792833,    // Medium         High           Medium          
+		   0.1544653,   0.8455347,    // Medium         High           Low             
+		   0.3207167,   0.6792833,    // Medium         Medium         High            
+		   0.1544653,   0.8455347,    // Medium         Medium         Medium          
+		   0.06601861,  0.9339814,    // Medium         Medium         Low             
+		   0.1544653,   0.8455347,    // Medium         Low            High            
+		   0.06601861,  0.9339814,    // Medium         Low            Medium          
+		   0.02662187,  0.9733781,    // Medium         Low            Low             
+		   0.2270156,   0.7729844,    // Low            High           High            
+		   0.1020401,   0.8979599,    // Low            High           Medium          
+		   0.04211677,  0.9578832,    // Low            High           Low             
+		   0.1020401,   0.8979599,    // Low            Medium         High            
+		   0.04211677,  0.9578832,    // Low            Medium         Medium          
+		   0.01672804,  0.983272,     // Low            Medium         Low             
+		   0.04211677,  0.9578832,    // Low            Low            High            
+		   0.01672804,  0.983272,     // Low            Low            Medium          
+		   0.006539591, 0.9934604);   // Low            Low            Low             ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(c(0.405465108108164, 0, 0), .Names = c(\"ModelGeometric\",  \"TableGeometric\", \
+			\"ExtendGeometric\"))";
+		betas = "1";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (858, 768);
+		height = 35;
+		};
+	};
+
+node tModelExtendTableGeometric3b {
+	discrete = TRUE;
+	states = (Yes, No);
+	levels = (1, 0);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (ModelGeometric, TableGeometric, ExtendGeometric);
+	parents = (ModelGeometric, TableGeometric, ExtendGeometric);
+	probs = 
+		// Yes          No            // ModelGeometric TableGeometric ExtendGeometric 
+		  (0.8352524,   0.1647476,    // High           High           High            
+		   0.6623535,   0.3376465,    // High           High           Medium          
+		   0.4315033,   0.5684966,    // High           High           Low             
+		   0.6623535,   0.3376465,    // High           Medium         High            
+		   0.4315033,   0.5684966,    // High           Medium         Medium          
+		   0.2270156,   0.7729844,    // High           Medium         Low             
+		   0.4315033,   0.5684966,    // High           Low            High            
+		   0.2270156,   0.7729844,    // High           Low            Medium          
+		   0.1020401,   0.8979599,    // High           Low            Low             
+		   0.5495963,   0.4504037,    // Medium         High           High            
+		   0.3207167,   0.6792833,    // Medium         High           Medium          
+		   0.1544653,   0.8455347,    // Medium         High           Low             
+		   0.3207167,   0.6792833,    // Medium         Medium         High            
+		   0.1544653,   0.8455347,    // Medium         Medium         Medium          
+		   0.06601861,  0.9339814,    // Medium         Medium         Low             
+		   0.1544653,   0.8455347,    // Medium         Low            High            
+		   0.06601861,  0.9339814,    // Medium         Low            Medium          
+		   0.02662187,  0.9733781,    // Medium         Low            Low             
+		   0.2270156,   0.7729844,    // Low            High           High            
+		   0.1020401,   0.8979599,    // Low            High           Medium          
+		   0.04211677,  0.9578832,    // Low            High           Low             
+		   0.1020401,   0.8979599,    // Low            Medium         High            
+		   0.04211677,  0.9578832,    // Low            Medium         Medium          
+		   0.01672804,  0.983272,     // Low            Medium         Low             
+		   0.04211677,  0.9578832,    // Low            Low            High            
+		   0.01672804,  0.983272,     // Low            Low            Medium          
+		   0.006539591, 0.9934604);   // Low            Low            Low             ;
+	numcases = 10;
+	whenchanged = 1745709472;
+	user U1 {
+		Q = "TRUE";
+		rules = "\"Compensatory\"";
+		link = "\"partialCredit\"";
+		lnAlphas = "structure(c(0.405465108108164, 0, 0), .Names = c(\"ModelGeometric\",  \"TableGeometric\", \
+			\"ExtendGeometric\"))";
+		betas = "1";
+		priorWeight = "10";
+		};
+	visual V1 {
+		center = (858, 888);
+		height = 36;
+		};
+	};
+NodeSet Proficiencies {Nodes = (SolveGeometricProblems, CommonRatio, ExamplesGeometric, ExtendGeometric, ModelGeometric, TableGeometric);};
+NodeSet pnodes {Nodes = (SolveGeometricProblems, CommonRatio, ExamplesGeometric, ExtendGeometric, ModelGeometric, TableGeometric, tCommonRatio1a, tCommonRatio1b, tCommonRatio2a, tCommonRatio2b, tCommonRatio3a, tCommonRatio3b, tExamplesGeometric1a, tExamplesGeometric1b, tExamplesGeometric2a, tExamplesGeometric2b, tExamplesGeometric3a, tExamplesGeometric3b, tExtendGeometric1a, tExtendGeometric1b, tExtendGeometric2a, tExtendGeometric2b, tExtendGeometric3a, tExtendGeometric3b, tTableExtendGeometric1a, tTableExtendGeometric1b, tTableExtendGeometric2a, tTableExtendGeometric2b, tTableExtendGeometric3a, tTableExtendGeometric3b, tModelExtendTableGeometric1a, tModelExtendTableGeometric1b, tModelExtendTableGeometric2a, tModelExtendTableGeometric2b, tModelExtendTableGeometric3a, tModelExtendTableGeometric3b);};
+NodeSet onodes {Nodes = (tCommonRatio1a, tCommonRatio1b, tCommonRatio2a, tCommonRatio2b, tCommonRatio3a, tCommonRatio3b, tExamplesGeometric1a, tExamplesGeometric1b, tExamplesGeometric2a, tExamplesGeometric2b, tExamplesGeometric3a, tExamplesGeometric3b, tExtendGeometric1a, tExtendGeometric1b, tExtendGeometric2a, tExtendGeometric2b, tExtendGeometric3a, tExtendGeometric3b, tTableExtendGeometric1a, tTableExtendGeometric1b, tTableExtendGeometric2a, tTableExtendGeometric2b, tTableExtendGeometric3a, tTableExtendGeometric3b, tModelExtendTableGeometric1a, tModelExtendTableGeometric1b, tModelExtendTableGeometric2a, tModelExtendTableGeometric2b, tModelExtendTableGeometric3a, tModelExtendTableGeometric3b);};
+};

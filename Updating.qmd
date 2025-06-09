@@ -2,11 +2,206 @@
 title:  "Calibrating Model Parameters to Data."
 ---
 
+* Expert numbers good enough for low stakes learning
+  - Can be used to give preliminary scores to encourage subjects to
+    try the assessment
+	
+* Assume the existance of a pretest sample.
+  - Representative of the population of interest
+
+## Speigelhalter and Lauritzen Algorithm
+
+[@sl1990]
+
+### Hyper-Dirichlet distribution
+
+* _Global parameter independence_ parameters of different CPTs are
+  independent
+  - No item families
+  
+* _Local parameter independence_ rows of CPT are independent
+  - If the relationship between parent and child is monotonic this
+    breaks.
+	
+Called _hyper-Dirichlet_ distribution.
+
+Often a single CPT which is not otherwised parameterized is called
+"hyper-Dirichlet".
+
+### Fully observed network
+
+Let $s \in {1, \ldots, S}$ be an index over configurations 
+of the parents.
+
+Let $k \in {1, \ldot, K}$ be an index over child states.
+
+Let $\mathbf{A}$ be a $S \times K$ matrix of non-negative values
+Let $\mathbf{n}$ be a vector of the row sums.
+
+The prior CPT is then $\mathbf{P}: p_{s,k}=a_{s,k}/n_s$ is the CPT.
+
+Let $\mathbf{X}$ be a $S\times K$ matrix of counts, where $x_{s,k}$ is
+the number of times that the child variable takes on value $k$ when
+the parents are in state $s$.
+
+The posterior distribution, $\mathbf{A}' = \mathbf{A} + \mathbf{X}$.
+
+The vector $\mathbf{n}$ is the _effective sample size_ because it
+balances with the sample size (the row sums of $\mathbf{X}$).
+
+Having a prior effective sample size of at least 1 is useful as it
+avoids issues with non-structural zero counts in $\mathbf{X}$.
+  
+### The EM algorithm for missing/latent values
+
+The contingency table $\mathbf{X}$ is a sufficient statistic for the
+CPT.
+
+"Scoring" the student will produce th expected value for that student.
+
+This is the $E$-step is scoring.
+
+The $M$-step is the counting algorithm above.
+
 ## Built-in Netica Learning
+
+Netica has the [@sl1990] algorithm built-in
+
+The full network will have to many nodes to work with the unlicensed
+version of Netica
+
+```{r}
+library(PNetica)
+source("~/.netica") ## pull in license key
+sess <- NeticaSession()
+startSession(sess)
+```
+                      
+### Building the full motif
+
+#### Start with the proficieny model.
+
+```{r read networks}
+## Read in network -- Do this every time R is restarted
+motif <- ReadNetworks(file.path("miniACED","miniACEDPnet.dne"),session = sess)
+NetworkName(motif) <- "MiniACEDMotif"
+names(NetworkNodesInSet(motif,"pnodes"))
+```
+
+Note that all of the nodes are marked as `pnodes`.  
+
+### Add each evidence models.
+
+ - Rename the observable node to match the task-model.
+
+```{r EM mapping}
+## Read in task->evidence model mapping
+EMtable <- read.csv(file.path("miniACED","MiniACEDEMTable.csv"),
+                    row.names=1,
+                    as.is=2) #Keep EM names as strings
+EMtable
+```
+
+```{r}
+for (iem in 1:nrow(EMtable)) {
+ em <- ReadNetworks(file.path("miniACED",paste0(EMtable[iem,1],".dne")),sess) 
+ obs <- AdjoinNetwork(motif,em)
+ isCorrect <- obs$isCorrect
+ NodeSets(isCorrect) <- c("pnodes","onodes")
+ NodeName(isCorrect) <- rownames(EMtable)[iem]
+ NodeVisPos(isCorrect) <- EMtable[iem,2:3]
+ DeleteNetwork(em)
+}
+```
+
+### PriorWeights
+
+The prior weights control how many observations the expert opinion is
+worth.
+
+Higher weights bias result towards prior.
+
+Prior weights can be set for each row of the CPT, but a single number
+is used for all rows.
+
+```{r}
+invisible(
+lapply(NetworkAllNodes(motif), \(nd) PnodePriorWeight(nd) <- 10)
+)
+## This is the initial motif, save it for later.
+WriteNetworks(motif,file.path("miniACED","miniACEDMotif.dne"))
+```              
 
 ### Build a Case File
 
+Netica's algorithms are built around a case file.
+
+This is a tab separated value file with variable names at the top,
+and rows representing cases.
+
+```{r}
+CaseFileDelimiter(session=sess)
+CaseFileMissingCode(session=sess)
+```
+```{r miniACED data}
+miniACED.data <- read.csv(file.path("miniACED","miniACED-Geometric.csv"),row.names=1)
+head(miniACED.data)
+```
+
+```{r metadata}
+## Mark columns of table corresponding to tasks
+first.task <- 9
+last.task <- 20 #ncol(miniACED.data)
+## Code key for numeric values
+t.vals <- c("No","Yes")
+```
+
+```{r}
+cases <- lapply(miniACED.data[,first.task:last.task],
+                \(col) t.vals[col]) |>
+  as.data.frame()
+head(cases)
+```                
+
+Write out in current case file format.
+
+```{r}
+write.CaseFile(cases,file.path("miniACED","mini.cas"),session=sess)
+```
+
 ### Run internal EM algorithm
+
+Look at a few nodes in the before state:
+
+High-level skill
+```{r}
+sgp <- motif$nodes$SolveGeometricProblems
+sgpprior <- sgp[]
+sgpprior
+```
+
+Low-level skill
+```{r}
+cr <- motif$nodes$CommonRatio
+crprior <- cr[]
+crprior
+```
+
+Simple Structure Item
+```{r}
+cr1a <- motif$nodes$tCommonRatio1a
+cr1aprior <- cr1a[]
+cr1aprior
+```
+
+Two parent item
+```{r}
+te1a <- motif$nodes$tTableExtendGeometric1a
+te1aprior <- te1a[]
+te1aprior
+```
+
+
 
 Learned CPTs
 
