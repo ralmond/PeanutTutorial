@@ -1,10 +1,10 @@
 // ~->[DNET-1]->~
 
-// File created by AlmondR at FloridaStateU using Netica 6.07 on 07/10/2025 at 02:25:39 PM UTC.
+// File created by AlmondR at FloridaStateU using Netica 6.07 on 07/14/2025 at 09:03:39 PM UTC.
 
 bnet MiniACEDMotif {
 autoupdate = TRUE;
-whenchanged = 1752157539;
+whenchanged = 1752527019;
 
 visual V1 {
 	defdispform = BELIEFBARS;
@@ -49,9 +49,9 @@ node SolveGeometricProblems {
 	parents = ();
 	probs = 
 		// High         Medium       Low          
-		  (0.1532,      0.2784,      0.5684);
-	EqnDirty = TRUE;
-	whenchanged = 1752157538;
+		  (0.3333333,   0.3333333,   0.3333333);
+	numcases = 10;
+	whenchanged = 1752527019;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -59,7 +59,6 @@ node SolveGeometricProblems {
 		linkScale = "1";
 		lnAlphas = "1";
 		betas = "0";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (564, 54);
@@ -76,12 +75,12 @@ node CommonRatio {
 	parents = (SolveGeometricProblems);
 	probs = 
 		// High         Medium       Low           // SolveGeometricProblems 
-		  (1,           0,           0,            // High                   
-		   0.963,       0.036,       9.999424e-4,  // Medium                 
-		   0.567,       0.379,       0.05399996);  // Low                    ;
-	numcases = 1;
+		  (0.7042606,   0.2147052,   0.08103418,   // High                   
+		   0.3333333,   0.3333333,   0.3333333,    // Medium                 
+		   0.08103418,  0.2147052,   0.7042606);   // Low                    ;
+	numcases = 10;
 	EqnDirty = TRUE;
-	whenchanged = 1752157538;
+	whenchanged = 1752527019;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -89,7 +88,6 @@ node CommonRatio {
 		linkScale = "1";
 		lnAlphas = "structure(0, .Names = \"SolveGeometricProblems\")";
 		betas = "0";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (108, 174);
@@ -106,12 +104,12 @@ node ExamplesGeometric {
 	parents = (SolveGeometricProblems);
 	probs = 
 		// High         Medium       Low           // SolveGeometricProblems 
-		  (0.518,       0.351,       0.131,        // High                   
-		   0.122,       0.344,       0.534,        // Medium                 
-		   0.009,       0.089,       0.902);       // Low                    ;
-	numcases = 1;
+		  (0.7042606,   0.2147052,   0.08103418,   // High                   
+		   0.3333333,   0.3333333,   0.3333333,    // Medium                 
+		   0.08103418,  0.2147052,   0.7042606);   // Low                    ;
+	numcases = 10;
 	EqnDirty = TRUE;
-	whenchanged = 1752157538;
+	whenchanged = 1752527019;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -119,7 +117,6 @@ node ExamplesGeometric {
 		linkScale = "1";
 		lnAlphas = "structure(0, .Names = \"SolveGeometricProblems\")";
 		betas = "0";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (342, 174);
@@ -136,11 +133,12 @@ node ExtendGeometric {
 	parents = (SolveGeometricProblems);
 	probs = 
 		// High         Medium       Low           // SolveGeometricProblems 
-		  (1,           0,           0,            // High                   
-		   0.963,       0.036,       0.001,        // Medium                 
-		   0.567,       0.379,       0.054);       // Low                    ;
+		  (0.7042606,   0.2147052,   0.08103418,   // High                   
+		   0.3333333,   0.3333333,   0.3333333,    // Medium                 
+		   0.08103418,  0.2147052,   0.7042606);   // Low                    ;
+	numcases = 10;
 	EqnDirty = TRUE;
-	whenchanged = 1752157538;
+	whenchanged = 1752527019;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -148,7 +146,6 @@ node ExtendGeometric {
 		linkScale = "1";
 		lnAlphas = "structure(0, .Names = \"SolveGeometricProblems\")";
 		betas = "0";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (588, 174);
@@ -165,12 +162,12 @@ node ModelGeometric {
 	parents = (SolveGeometricProblems);
 	probs = 
 		// High         Medium       Low           // SolveGeometricProblems 
-		  (0.281,       0.41,        0.309,        // High                   
-		   0.037,       0.201,       0.762,        // Medium                 
-		   0.001,       0.026,       0.973);       // Low                    ;
-	numcases = 1;
+		  (0.7042606,   0.2147052,   0.08103418,   // High                   
+		   0.3333333,   0.3333333,   0.3333333,    // Medium                 
+		   0.08103418,  0.2147052,   0.7042606);   // Low                    ;
+	numcases = 10;
 	EqnDirty = TRUE;
-	whenchanged = 1752157538;
+	whenchanged = 1752527019;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -178,7 +175,6 @@ node ModelGeometric {
 		linkScale = "1";
 		lnAlphas = "structure(0, .Names = \"SolveGeometricProblems\")";
 		betas = "0";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (1134, 162);
@@ -195,12 +191,12 @@ node TableGeometric {
 	parents = (SolveGeometricProblems);
 	probs = 
 		// High         Medium       Low           // SolveGeometricProblems 
-		  (0.713,       0.216,       0.071,        // High                   
-		   0.326,       0.348,       0.326,        // Medium                 
-		   0.071,       0.216,       0.713);       // Low                    ;
-	numcases = 1;
+		  (0.7042606,   0.2147052,   0.08103418,   // High                   
+		   0.3333333,   0.3333333,   0.3333333,    // Medium                 
+		   0.08103418,  0.2147052,   0.7042606);   // Low                    ;
+	numcases = 10;
 	EqnDirty = TRUE;
-	whenchanged = 1752157538;
+	whenchanged = 1752527019;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -208,7 +204,6 @@ node TableGeometric {
 		linkScale = "1";
 		lnAlphas = "structure(0, .Names = \"SolveGeometricProblems\")";
 		betas = "0";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (858, 168);
@@ -230,14 +225,13 @@ node tCommonRatio1a {
 		   0.8455347,   0.1544653,    // Medium      
 		   0.5138423,   0.4861577);   // Low         ;
 	numcases = 10;
-	whenchanged = 1752157538;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(0, .Names = \"CommonRatio\")";
 		betas = "-1";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (108, 294);
@@ -259,14 +253,13 @@ node tCommonRatio1b {
 		   0.8455347,   0.1544653,    // Medium      
 		   0.5138423,   0.4861577);   // Low         ;
 	numcases = 10;
-	whenchanged = 1752157538;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(0, .Names = \"CommonRatio\")";
 		betas = "-1";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (108, 414);
@@ -288,14 +281,13 @@ node tCommonRatio2a {
 		   0.5,         0.5,          // Medium      
 		   0.1618378,   0.8381621);   // Low         ;
 	numcases = 10;
-	whenchanged = 1752157538;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(0, .Names = \"CommonRatio\")";
 		betas = "0";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (108, 534);
@@ -317,14 +309,13 @@ node tCommonRatio2b {
 		   0.5,         0.5,          // Medium      
 		   0.1618378,   0.8381621);   // Low         ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(0, .Names = \"CommonRatio\")";
 		betas = "0";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (108, 654);
@@ -346,14 +337,13 @@ node tCommonRatio3a {
 		   0.1544653,   0.8455347,    // Medium      
 		   0.03407189,  0.9659281);   // Low         ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(0, .Names = \"CommonRatio\")";
 		betas = "1";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (108, 774);
@@ -375,14 +365,13 @@ node tCommonRatio3b {
 		   0.1544653,   0.8455347,    // Medium      
 		   0.03407189,  0.9659281);   // Low         ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(0, .Names = \"CommonRatio\")";
 		betas = "1";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (108, 894);
@@ -404,14 +393,13 @@ node tExamplesGeometric1a {
 		   0.8455347,   0.1544653,    // Medium            
 		   0.5138423,   0.4861577);   // Low               ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(0, .Names = \"ExamplesGeometric\")";
 		betas = "-1";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (342, 294);
@@ -433,14 +421,13 @@ node tExamplesGeometric1b {
 		   0.8455347,   0.1544653,    // Medium            
 		   0.5138423,   0.4861577);   // Low               ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(0, .Names = \"ExamplesGeometric\")";
 		betas = "-1";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (342, 414);
@@ -462,14 +449,13 @@ node tExamplesGeometric2a {
 		   0.5,         0.5,          // Medium            
 		   0.1618378,   0.8381621);   // Low               ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(0, .Names = \"ExamplesGeometric\")";
 		betas = "0";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (342, 534);
@@ -491,14 +477,13 @@ node tExamplesGeometric2b {
 		   0.5,         0.5,          // Medium            
 		   0.1618378,   0.8381621);   // Low               ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(0, .Names = \"ExamplesGeometric\")";
 		betas = "0";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (342, 654);
@@ -520,14 +505,13 @@ node tExamplesGeometric3a {
 		   0.1544653,   0.8455347,    // Medium            
 		   0.03407189,  0.9659281);   // Low               ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(0, .Names = \"ExamplesGeometric\")";
 		betas = "1";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (342, 774);
@@ -549,14 +533,13 @@ node tExamplesGeometric3b {
 		   0.1544653,   0.8455347,    // Medium            
 		   0.03407189,  0.9659281);   // Low               ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(0, .Names = \"ExamplesGeometric\")";
 		betas = "1";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (342, 894);
@@ -578,14 +561,13 @@ node tExtendGeometric1a {
 		   0.8455347,   0.1544653,    // Medium          
 		   0.5138423,   0.4861577);   // Low             ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(0, .Names = \"ExtendGeometric\")";
 		betas = "-1";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (588, 294);
@@ -607,14 +589,13 @@ node tExtendGeometric1b {
 		   0.8455347,   0.1544653,    // Medium          
 		   0.5138423,   0.4861577);   // Low             ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(0, .Names = \"ExtendGeometric\")";
 		betas = "-1";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (588, 414);
@@ -636,14 +617,13 @@ node tExtendGeometric2a {
 		   0.5,         0.5,          // Medium          
 		   0.1618378,   0.8381621);   // Low             ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(0, .Names = \"ExtendGeometric\")";
 		betas = "0";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (588, 534);
@@ -665,14 +645,13 @@ node tExtendGeometric2b {
 		   0.5,         0.5,          // Medium          
 		   0.1618378,   0.8381621);   // Low             ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(0, .Names = \"ExtendGeometric\")";
 		betas = "0";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (588, 654);
@@ -694,14 +673,13 @@ node tExtendGeometric3a {
 		   0.1544653,   0.8455347,    // Medium          
 		   0.03407189,  0.9659281);   // Low             ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(0, .Names = \"ExtendGeometric\")";
 		betas = "1";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (588, 774);
@@ -723,14 +701,13 @@ node tExtendGeometric3b {
 		   0.1544653,   0.8455347,    // Medium          
 		   0.03407189,  0.9659281);   // Low             ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(0, .Names = \"ExtendGeometric\")";
 		betas = "1";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (588, 894);
@@ -758,14 +735,13 @@ node tTableExtendGeometric1a {
 		   0.488907,    0.511093,     // Low            Medium          
 		   0.2301793,   0.7698207);   // Low            Low             ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(c(0.405465108108164, 0), .Names = c(\"TableGeometric\",  \"ExtendGeometric\"))";
 		betas = "-1";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (1134, 282);
@@ -793,14 +769,13 @@ node tTableExtendGeometric1b {
 		   0.488907,    0.511093,     // Low            Medium          
 		   0.2301793,   0.7698207);   // Low            Low             ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(c(0.405465108108164, 0), .Names = c(\"TableGeometric\",  \"ExtendGeometric\"))";
 		betas = "-1";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (1134, 402);
@@ -828,14 +803,13 @@ node tTableExtendGeometric2a {
 		   0.1487575,   0.8512425,    // Low            Medium          
 		   0.05179393,  0.9482061);   // Low            Low             ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(c(0.405465108108164, 0), .Names = c(\"TableGeometric\",  \"ExtendGeometric\"))";
 		betas = "0";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (1134, 522);
@@ -863,14 +837,13 @@ node tTableExtendGeometric2b {
 		   0.1487575,   0.8512425,    // Low            Medium          
 		   0.05179393,  0.9482061);   // Low            Low             ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(c(0.405465108108164, 0), .Names = c(\"TableGeometric\",  \"ExtendGeometric\"))";
 		betas = "0";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (1134, 642);
@@ -898,14 +871,13 @@ node tTableExtendGeometric3a {
 		   0.03093692,  0.9690631,    // Low            Medium          
 		   0.009880143, 0.9901199);   // Low            Low             ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(c(0.405465108108164, 0), .Names = c(\"TableGeometric\",  \"ExtendGeometric\"))";
 		betas = "1";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (1134, 762);
@@ -933,14 +905,13 @@ node tTableExtendGeometric3b {
 		   0.03093692,  0.9690631,    // Low            Medium          
 		   0.009880143, 0.9901199);   // Low            Low             ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
 		link = "\"partialCredit\"";
 		lnAlphas = "structure(c(0.405465108108164, 0), .Names = c(\"TableGeometric\",  \"ExtendGeometric\"))";
 		betas = "1";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (1134, 882);
@@ -986,7 +957,7 @@ node tModelExtendTableGeometric1a {
 		   0.3376465,   0.6623535,    // Low            Low            Medium          
 		   0.1647476,   0.8352524);   // Low            Low            Low             ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -994,7 +965,6 @@ node tModelExtendTableGeometric1a {
 		lnAlphas = "structure(c(0.405465108108164, 0, 0), .Names = c(\"ModelGeometric\",  \"TableGeometric\", \
 			\"ExtendGeometric\"))";
 		betas = "-1";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (858, 288);
@@ -1040,7 +1010,7 @@ node tModelExtendTableGeometric1b {
 		   0.3376465,   0.6623535,    // Low            Low            Medium          
 		   0.1647476,   0.8352524);   // Low            Low            Low             ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -1048,7 +1018,6 @@ node tModelExtendTableGeometric1b {
 		lnAlphas = "structure(c(0.405465108108164, 0, 0), .Names = c(\"ModelGeometric\",  \"TableGeometric\", \
 			\"ExtendGeometric\"))";
 		betas = "-1";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (858, 408);
@@ -1094,7 +1063,7 @@ node tModelExtendTableGeometric2a {
 		   0.08519255,  0.9148074,    // Low            Low            Medium          
 		   0.0347798,   0.9652202);   // Low            Low            Low             ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -1102,7 +1071,6 @@ node tModelExtendTableGeometric2a {
 		lnAlphas = "structure(c(0.405465108108164, 0, 0), .Names = c(\"ModelGeometric\",  \"TableGeometric\", \
 			\"ExtendGeometric\"))";
 		betas = "0";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (858, 528);
@@ -1148,7 +1116,7 @@ node tModelExtendTableGeometric2b {
 		   0.08519255,  0.9148074,    // Low            Low            Medium          
 		   0.0347798,   0.9652202);   // Low            Low            Low             ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -1156,7 +1124,6 @@ node tModelExtendTableGeometric2b {
 		lnAlphas = "structure(c(0.405465108108164, 0, 0), .Names = c(\"ModelGeometric\",  \"TableGeometric\", \
 			\"ExtendGeometric\"))";
 		betas = "0";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (858, 648);
@@ -1202,7 +1169,7 @@ node tModelExtendTableGeometric3a {
 		   0.01672804,  0.983272,     // Low            Low            Medium          
 		   0.006539591, 0.9934604);   // Low            Low            Low             ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -1210,7 +1177,6 @@ node tModelExtendTableGeometric3a {
 		lnAlphas = "structure(c(0.405465108108164, 0, 0), .Names = c(\"ModelGeometric\",  \"TableGeometric\", \
 			\"ExtendGeometric\"))";
 		betas = "1";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (858, 768);
@@ -1256,7 +1222,7 @@ node tModelExtendTableGeometric3b {
 		   0.01672804,  0.983272,     // Low            Low            Medium          
 		   0.006539591, 0.9934604);   // Low            Low            Low             ;
 	numcases = 10;
-	whenchanged = 1752157539;
+	whenchanged = 1752527018;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -1264,7 +1230,6 @@ node tModelExtendTableGeometric3b {
 		lnAlphas = "structure(c(0.405465108108164, 0, 0), .Names = c(\"ModelGeometric\",  \"TableGeometric\", \
 			\"ExtendGeometric\"))";
 		betas = "1";
-		priorWeight = "10";
 		};
 	visual V1 {
 		center = (858, 888);

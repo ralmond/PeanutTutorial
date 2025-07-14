@@ -2,12 +2,10 @@
 title:  "Calibrating Model Parameters to Data."
 ---
 
-* Expert numbers good enough for low stakes learning
-  - Can be used to give preliminary scores to encourage subjects to
-    try the assessment
-	
-* Assume the existance of a pretest sample.
-  - Representative of the population of interest
+-   Expert numbers good enough for low stakes learning
+    -   Can be used to give preliminary scores to encourage subjects to try the assessment
+-   Assume the existence of a pretest sample.
+    -   Representative of the population of interest
 
 ## Speigelhalter and Lauritzen Algorithm
 
@@ -15,47 +13,36 @@ title:  "Calibrating Model Parameters to Data."
 
 ### Hyper-Dirichlet distribution
 
-* _Global parameter independence_ parameters of different CPTs are
-  independent
-  - No item families
-  
-* _Local parameter independence_ rows of CPT are independent
-  - If the relationship between parent and child is monotonic this
-    breaks.
-	
-Called _hyper-Dirichlet_ distribution.
+-   *Global parameter independence* parameters of different CPTs are independent
+    -   No item families
+-   *Local parameter independence* rows of CPT are independent
+    -   If the relationship between parent and child is monotonic this breaks.
 
-Often a single CPT which is not otherwised parameterized is called
-"hyper-Dirichlet".
+Called *hyper-Dirichlet* distribution.
+
+Often a single CPT which is not otherwised parameterized is called "hyper-Dirichlet".
 
 ### Fully observed network
 
-Let $s \in {1, \ldots, S}$ be an index over configurations 
-of the parents.
+Let $s \in {1, \ldots, S}$ be an index over configurations of the parents.
 
-Let $k \in {1, \ldot, K}$ be an index over child states.
+Let $k \in {1, \ldots, K}$ be an index over child states.
 
-Let $\mathbf{A}$ be a $S \times K$ matrix of non-negative values
-Let $\mathbf{n}$ be a vector of the row sums.
+Let $\mathbf{A}$ be a $S \times K$ matrix of non-negative values Let $\mathbf{n}$ be a vector of the row sums.
 
 The prior CPT is then $\mathbf{P}: p_{s,k}=a_{s,k}/n_s$ is the CPT.
 
-Let $\mathbf{X}$ be a $S\times K$ matrix of counts, where $x_{s,k}$ is
-the number of times that the child variable takes on value $k$ when
-the parents are in state $s$.
+Let $\mathbf{X}$ be a $S\times K$ matrix of counts, where $x_{s,k}$ is the number of times that the child variable takes on value $k$ when the parents are in state $s$.
 
 The posterior distribution, $\mathbf{A}' = \mathbf{A} + \mathbf{X}$.
 
-The vector $\mathbf{n}$ is the _effective sample size_ because it
-balances with the sample size (the row sums of $\mathbf{X}$).
+The vector $\mathbf{n}$ is the *effective sample size* because it balances with the sample size (the row sums of $\mathbf{X}$).
 
-Having a prior effective sample size of at least 1 is useful as it
-avoids issues with non-structural zero counts in $\mathbf{X}$.
-  
+Having a prior effective sample size of at least 1 is useful as it avoids issues with non-structural zero counts in $\mathbf{X}$.
+
 ### The EM algorithm for missing/latent values
 
-The contingency table $\mathbf{X}$ is a sufficient statistic for the
-CPT.
+The contingency table $\mathbf{X}$ is a sufficient statistic for the CPT.
 
 "Scoring" the student will produce th expected value for that student.
 
@@ -67,8 +54,7 @@ The $M$-step is the counting algorithm above.
 
 Netica has the [@sl1990] algorithm built-in
 
-The full network will have to many nodes to work with the unlicensed
-version of Netica
+The full network will have to many nodes to work with the unlicensed version of Netica
 
 ```{r}
 library(PNetica)
@@ -76,7 +62,7 @@ source("~/.netica") ## pull in license key
 sess <- NeticaSession()
 startSession(sess)
 ```
-                      
+
 ### Building the full motif
 
 #### Start with the proficieny model.
@@ -88,11 +74,11 @@ NetworkName(motif) <- "MiniACEDMotif"
 names(NetworkNodesInSet(motif,"pnodes"))
 ```
 
-Note that all of the nodes are marked as `pnodes`.  
+Note that all of the nodes are marked as `pnodes`.
 
 ### Add each evidence models.
 
- - Rename the observable node to match the task-model.
+-   Rename the observable node to match the task-model.
 
 ```{r EM mapping}
 ## Read in task->evidence model mapping
@@ -116,33 +102,36 @@ for (iem in 1:nrow(EMtable)) {
 
 ### PriorWeights
 
-The prior weights control how many observations the expert opinion is
-worth.
+The prior weights control how many observations the expert opinion is worth.
 
 Higher weights bias result towards prior.
 
-Prior weights can be set for each row of the CPT, but a single number
-is used for all rows.
+Prior weights can be set for each row of the CPT, but a single number is used for all rows.
+
+It also can be set once for net and that value is used as a default for all nodes.
+
+The `BuildAllTables()` function does two things.  (1) It builds the tables from the parameters, and (2) Its sets the prior weights as node experience.
+
 
 ```{r}
-invisible(
-lapply(NetworkAllNodes(motif), \(nd) PnodePriorWeight(nd) <- 10)
-)
+PnetPriorWeight(motif) <- 10
+BuildAllTables(motif)
+
 ## This is the initial motif, save it for later.
 WriteNetworks(motif,file.path("miniACED","miniACEDMotif.dne"))
-```              
+```
 
 ### Build a Case File
 
 Netica's algorithms are built around a case file.
 
-This is a tab separated value file with variable names at the top,
-and rows representing cases.
+This is a tab separated value file with variable names at the top, and rows representing cases.
 
 ```{r}
 CaseFileDelimiter(session=sess)
 CaseFileMissingCode(session=sess)
 ```
+
 ```{r miniACED data}
 miniACED.data <- read.csv(file.path("miniACED","miniACED-Geometric.csv"),row.names=1)
 head(miniACED.data)
@@ -161,7 +150,7 @@ cases <- lapply(miniACED.data[,first.task:last.task],
                 \(col) t.vals[col]) |>
   as.data.frame()
 head(cases)
-```                
+```
 
 Write out in current case file format.
 
@@ -169,50 +158,180 @@ Write out in current case file format.
 write.CaseFile(cases,file.path("miniACED","mini.cas"),session=sess)
 ```
 
-### Run internal EM algorithm
+### Networks before running EM
 
 Look at a few nodes in the before state:
 
 High-level skill
+
 ```{r}
 sgp <- motif$nodes$SolveGeometricProblems
 sgpprior <- sgp[]
 sgpprior
+NodeExperience(sgp)
 ```
 
 Low-level skill
+
 ```{r}
 cr <- motif$nodes$CommonRatio
 crprior <- cr[]
 crprior
+NodeExperience(cr)
 ```
 
 Simple Structure Item
+
 ```{r}
 cr1a <- motif$nodes$tCommonRatio1a
 cr1aprior <- cr1a[]
 cr1aprior
+NodeExperience(cr1a)
 ```
 
 Two parent item
+
 ```{r}
 te1a <- motif$nodes$tTableExtendGeometric1a
 te1aprior <- te1a[]
 te1aprior
+NodeExperience(te1a)
+```
+
+### Running the algorithm
+
+Nodes whose CPT we want to learn are marked as "pnodes".
+Get a list of these
+
+
+```{r}
+names(NetworkNodesInSet(motif, "pnodes"))
+```
+
+Run the internal EM algorithm.  We will let it run for 25 steps, which may or may not be enough for convergence.
+
+```{r}
+calcExpTables(motif,
+              file.path("miniACED","mini.cas"),
+              25)
+```
+
+
+### Looking what is left.
+
+The CPTs have changed, as have the "weights"
+
+```{r}
+cat("Prior:\n")
+sgpprior
+cat("Posterior:\n")
+sgp[]
+NodeExperience(sgp)
+```
+
+```{r}
+cat("Prior:\n")
+crprior
+cat("Posterior:\n")
+cr[]
+NodeExperience(cr)
+```
+
+```{r}
+cat("Prior:\n")
+cr1aprior
+cat("Posterior:\n")
+cr1a[]
+NodeExperience(cr1a)
+```
+
+```{r}
+cat("Prior:\n")
+te1aprior
+cat("Posterior:\n")
+te1a[]
+NodeExperience(te1a)
+```
+### Expected CPTs
+
+Multiply the measured CPT by the node experience.
+
+```{r}
+sgp[]*NodeExperience(sgp)
+```
+
+```{r}
+sweep(cr[],1,NodeExperience(cr))
+```
+
+Note that this table is the expected count table, so it is the expected value of a sufficient statistic.  Exactly what is needed for the E-step of the EM algorithm.
+
+
+
+### Adjust the parameters to fit expected tables
+
+Given the CPT and the expected table, it is straightforward to calculate the log likelihood of observing that data table.  Running an optimizer using the parameters of the node will find the set of parameters that maximizes the log likelihood.  This is done with the function `CPTtools::mapDPC()`.  The function `maxCPTParam()` is a wrapper which calculstes the expected table and then does the calculation.
+
+
+
+
+```{r}
+PnodeAlphas(sgp)
+PnodeBetas(sgp)
+maxCPTParam(sgp,25)
+PnodeAlphas(sgp)
+PnodeBetas(sgp)
+```
+
+```{r}
+PnodeAlphas(cr)
+PnodeBetas(cr)
+maxCPTParam(cr,25)
+PnodeAlphas(cr)
+PnodeBetas(cr)
+```
+
+This is the M-step of the EM algorithm.
+
+### Assessing Convergence.
+
+The function `calcPnetLLike()` calculates the log-likelihood of all of the cases.  It can be used to check for convergence.
+
+```{r}
+calcPnetLLike(motif,file.path("miniACED","mini.cas"))
+```
+
+  
+
+## Learning CPTs
+
+The function `GEMfit` does this all.
+
+It alternates between:
+
+1) _E-step_ run Netica's EM algorithm to calculate expected tables.
+
+2) _M-step_ run maximizer to adjust parameters to be close to expected table.
+
+3) Check for convergence.
+
+Note:  only need one step of the internal EM in the E-step, and a few rounds of optimization in the M-step.
+
+
+Go back to the baseline motif.
+```{r}
+DeleteNetwork(motif)
+motif <- ReadNetworks(file.path("miniACED","miniACEDMotif.dne"),session=sess)
+PnetCompile(motif)
+```
+
+```{r}
+out <- GEMfit(motif,file.path("miniACED","mini.cas"))
+cat(ifelse(out$converged,"Converged","Did not converge"),
+    "in ",out$iter,"iterations.\n")
+print(out$llikes[1:out$iter])
+
 ```
 
 
 
-Learned CPTs
-
-Effective sample sizes.
-
-## Learning CPTs
-
-### Create Effective data
-
-Multiply Learned CPTs and Effective Sample sizes
-
-### Maximize the tables
-
-## Repeat until convergence
