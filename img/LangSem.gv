@@ -1,0 +1,13 @@
+graph LangSem {
+
+  Reading
+  Writing
+  Speaking
+  Listening
+  
+  Reading -- Writing [label="textual"]
+  Speaking -- Listening [label="aural"]
+  Reading -- Listening [label="receptive"]
+  Writing -- Speaking [label="productive"]
+
+}

@@ -1,0 +1,13 @@
+digraph LangProf {
+
+  Reading
+  Writing
+  Speaking
+  Listening
+  
+  Reading -> Writing 
+  Listening -> Speaking 
+  Reading -> Listening 
+  Writing -> Speaking 
+
+}
