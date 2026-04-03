@@ -1,0 +1,8 @@
+digraph causal {
+  
+  rankdir="LR"
+
+  Cause -> Effect [label=">>>>>"]
+  Construct -> Observation [label=">>>>>"]
+  
+}

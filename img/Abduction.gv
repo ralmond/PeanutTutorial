@@ -1,0 +1,8 @@
+digraph induction {
+  
+  rankdir="LR"
+
+  Cause -> Effect [label="<<<<<"]
+  Construct -> Observation [label="<<<<<<"]
+  
+}

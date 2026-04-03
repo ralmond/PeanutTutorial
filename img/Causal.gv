@@ -1,0 +1,6 @@
+digraph causal {
+
+  Cause -> Effect
+  Construct -> Observation
+  
+}

@@ -1,0 +1,12 @@
+digraph induction {
+  
+  rankdir="LR"
+
+  Construct -> Observation1
+  Construct -> Observation2
+  Construct -> Observation3
+  Construct -> Observation4
+  Construct -> Observation5
+  
+  
+}
