@@ -1,0 +1,48 @@
+// ~->[DNET-1]->~
+
+// File created by ZapataD at ETSTech using Netica 2.17 on Jul 11, 2005 at 18:05:29.
+
+bnet LangAss_3 {
+autoupdate = TRUE;
+whenchanged = 1121119511;
+
+visual V3 {
+	defdispform = BELIEFBARS;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 10;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	windowposn = (1, 3, 933, 591);
+	resolution = 72;
+	drawingbounds = (1080, 720);
+	showpagebreaks = FALSE;
+	usegrid = TRUE;
+	gridspace = (6, 6);
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		landscape = FALSE;
+		magnify = 1;
+		};
+	};
+
+
+node TaskA {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Poor, Okay, Good, Very_Good);
+	statetitles = ("Poor", "Okay", "Good", "Very Good");
+	parents = (Reading);
+	probs = 
+		// Poor         Okay         Good         Very Good      // Reading      
+		 ((0.5,         0.375,       0.115,       0.01),         // Novice       
+		  (0.2,         0.3,         0.3,         0.2),          // Intermediate 
+		  (0.01,        0.125,       0.375,       0.49));        // Advanced     ;
+	title = "TaskA";
+	whenchanged = 1121108131;
+	belief = (0.2275, 0.275, 0.2725, 0.225);
+	visual V3 {
+		center = (684, 84);
+		height = 7;
+		};
+	};

@@ -1,0 +1,142 @@
+// ~->[DNET-1]->~
+
+// File created by an unlicensed user using Netica 4.09 on Mar 12, 2015 at 15:39:13.
+
+bnet ListeningSpeakingEM {
+autoupdate = TRUE;
+whenchanged = 1426189090;
+
+visual V2 {
+	defdispform = BELIEFBARS;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 9;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	windowposn = (75, 75, 997, 536);
+	resolution = 72;
+	magnification = 1.18921;
+	drawingbounds = (1403, 745);
+	showpagebreaks = FALSE;
+	usegrid = TRUE;
+	gridspace = (6, 6);
+	NodeSet Node {BuiltIn = 1; Color = 0xc0c0c0;};
+	NodeSet Nature {BuiltIn = 1; Color = 0xf8eed2;};
+	NodeSet Deterministic {BuiltIn = 1; Color = 0xd3caa6;};
+	NodeSet Finding {BuiltIn = 1; Color = 0xc8c8c8;};
+	NodeSet Constant {BuiltIn = 1; Color = 0xffffff;};
+	NodeSet ConstantValue {BuiltIn = 1; Color = 0xffffb4;};
+	NodeSet Utility {BuiltIn = 1; Color = 0xffbdbd;};
+	NodeSet Decision {BuiltIn = 1; Color = 0xdee8ff;};
+	NodeSet Documentation {BuiltIn = 1; Color = 0xf0fafa;};
+	NodeSet Title {BuiltIn = 1; Color = 0xffffff;};
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		landscape = FALSE;
+		magnify = 1;
+		};
+	};
+
+param Param6 {
+	discrete = TRUE;
+	numstates = 1;
+	title = "Speaking";
+	};
+
+param Param7 {
+	discrete = TRUE;
+	numstates = 1;
+	title = "Speaking";
+	};
+
+param Param8 {
+	discrete = TRUE;
+	numstates = 1;
+	title = "Speaking";
+	};
+
+param Param10 {
+	discrete = TRUE;
+	numstates = 1;
+	title = "Reading";
+	};
+
+param Param11 {
+	discrete = TRUE;
+	numstates = 1;
+	title = "Reading";
+	};
+
+param Param12 {
+	discrete = TRUE;
+	numstates = 1;
+	title = "Listening";
+	};
+
+node Pronounciation {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	inputs = (Speaking);
+	parents = (Param6);
+	whenchanged = 1421178688;
+	visual V2 {
+		center = (354, 54);
+		dispform = LABELBOX;
+		height = 1;
+		link 1 {
+			labelposn = (356, 19, 406, 33);
+			path = ((354, 19), (354, 46));
+			};
+		};
+	};
+
+node CorrectForm {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	inputs = (Reading, Speaking);
+	parents = (Param10, Param7);
+	title = "Correct Form";
+	whenchanged = 1421178691;
+	visual V2 {
+		center = (204, 126);
+		dispform = LABELBOX;
+		height = 3;
+		link 1 {
+			labelposn = (186, 76, 231, 90);
+			path = ((176, 76), (200, 118));
+			};
+		link 2 {
+			labelposn = (227, 89, 277, 103);
+			path = ((225, 89), (208, 118));
+			};
+		};
+	};
+
+node OnTopic {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	inputs = (Listening, Speaking, Reading);
+	parents = (Param12, Param8, Param11);
+	title = "On Topic";
+	whenchanged = 1421178693;
+	visual V2 {
+		center = (360, 192);
+		dispform = LABELBOX;
+		height = 2;
+		link 1 {
+			labelposn = (362, 132, 410, 146);
+			path = ((360, 132), (360, 184));
+			};
+		link 2 {
+			labelposn = (399, 155, 449, 169);
+			path = ((399, 153), (368, 184));
+			};
+		link 3 {
+			labelposn = (323, 139, 368, 153);
+			path = ((323, 155), (352, 184));
+			};
+		};
+	};
+};

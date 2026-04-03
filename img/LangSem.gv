@@ -1,10 +1,14 @@
 graph LangSem {
 
-  Reading
-  Writing
-  Speaking
-  Listening
-  
+  subgraph {
+    rank="source"
+    Reading; Listening
+  }
+  subgraph {
+    rank="same"
+    Speaking, Writing
+  }
+ 
   Reading -- Writing [label="textual"]
   Speaking -- Listening [label="aural"]
   Reading -- Listening [label="receptive"]

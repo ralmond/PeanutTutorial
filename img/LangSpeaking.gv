@@ -1,0 +1,28 @@
+digraph LangProf {
+
+  subgraph {
+    rank="source"  
+    Reading; Listening
+  }
+  subgraph {
+    rank="same"
+    Writing, Speaking
+  }
+
+  subgraph {
+    rank="sink"
+    TaskC_OnTopic
+    TaskC_CorrectForm
+  }
+  
+  Reading -> Writing 
+  Listening -> Speaking 
+  Reading -> Listening 
+  Writing -> Speaking 
+
+ 
+  Reading -> TaskC_CorrectForm; 
+  Listening -> TaskC_OnTopic; 
+  Speaking -> TaskC_CorrectForm
+  Speaking -> TaskC_OnTopic
+}

@@ -1,0 +1,105 @@
+// ~->[DNET-1]->~
+
+// File created by an unlicensed user using Netica 4.09 on Mar 12, 2015 at 15:36:33.
+
+bnet LanguageSM {
+autoupdate = TRUE;
+whenchanged = 1421177572;
+
+visual V1 {
+	defdispform = BELIEFBARS;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 9;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	windowposn = (18, 22, 1131, 534);
+	scrollposn = (0, 12);
+	resolution = 72;
+	magnification = 2;
+	drawingbounds = (1403, 745);
+	showpagebreaks = FALSE;
+	usegrid = TRUE;
+	gridspace = (6, 6);
+	NodeSet Node {BuiltIn = 1; Color = 0xc0c0c0;};
+	NodeSet Nature {BuiltIn = 1; Color = 0xf8eed2;};
+	NodeSet Deterministic {BuiltIn = 1; Color = 0xd3caa6;};
+	NodeSet Finding {BuiltIn = 1; Color = 0xc8c8c8;};
+	NodeSet Constant {BuiltIn = 1; Color = 0xffffff;};
+	NodeSet ConstantValue {BuiltIn = 1; Color = 0xffffb4;};
+	NodeSet Utility {BuiltIn = 1; Color = 0xffbdbd;};
+	NodeSet Decision {BuiltIn = 1; Color = 0xdee8ff;};
+	NodeSet Documentation {BuiltIn = 1; Color = 0xf0fafa;};
+	NodeSet Title {BuiltIn = 1; Color = 0xffffff;};
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		landscape = FALSE;
+		magnify = 1;
+		};
+	};
+
+node Communication {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = ();
+	title = "Communicative Competence";
+	whenchanged = 1421177277;
+	visual V1 {
+		center = (114, 114);
+		dispform = LABELBOX;
+		height = 1;
+		};
+	};
+
+node Reading {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = (Communication);
+	whenchanged = 1421177308;
+	visual V1 {
+		center = (288, 60);
+		dispform = LABELBOX;
+		height = 5;
+		};
+	};
+
+node Listening {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = (Communication, Reading);
+	whenchanged = 1421177474;
+	visual V1 {
+		center = (288, 162);
+		dispform = LABELBOX;
+		height = 2;
+		};
+	};
+
+node Writing {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = (Communication, Reading, Listening);
+	whenchanged = 1421177572;
+	visual V1 {
+		center = (480, 54);
+		dispform = LABELBOX;
+		height = 4;
+		};
+	};
+
+node Speaking {
+	kind = NATURE;
+	discrete = TRUE;
+	numstates = 1;
+	parents = (Communication, Listening, Writing);
+	whenchanged = 1421177489;
+	visual V1 {
+		center = (480, 162);
+		dispform = LABELBOX;
+		height = 3;
+		};
+	};
+};
