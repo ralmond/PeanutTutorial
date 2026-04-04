@@ -1,0 +1,18 @@
+color:
+  palette:
+    garnet: "#782F40"
+    gold: "#CEB888"
+    white: "#FFFFFF"
+    stadium_night: "#101820"
+    plaza_brick: "#572932"
+    gulf_sands: "#DFD1A7"
+    legacy_blue: "#425563"
+    westcott_water: "#5CB8B2"
+    vault_garnet: "#A6192E"
+    vault_gold: "#FFC72C"
+  background: white
+  foreground: garnet
+  primary: westcott_water
+logo:
+  small: img/FSU_wordmark.png
+  large: img/FSU_workmark_2CLR_GAR_rgb.png
