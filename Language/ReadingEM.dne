@@ -1,48 +1,70 @@
 // ~->[DNET-1]->~
 
-// File created by ZapataD at ETSTech using Netica 2.17 on Jul 11, 2005 at 18:05:29.
+// File created by AlmondR at FloridaStateU using Netica 6.09 on Apr 03, 2026 at 21:35:13 UTC.
 
-bnet LangAss_3 {
+bnet ReadingEM {
 autoupdate = TRUE;
-whenchanged = 1121119511;
+whenchanged = 1775252113;
 
-visual V3 {
+visual V1 {
 	defdispform = BELIEFBARS;
 	nodelabeling = TITLE;
 	NodeMaxNumEntries = 50;
-	nodefont = font {shape= "Arial"; size= 10;};
+	nodefont = font {shape= "Arial"; size= 9;};
 	linkfont = font {shape= "Arial"; size= 9;};
-	windowposn = (1, 3, 933, 591);
+	ShowLinkStrengths = 1;
+	windowposn = (44, 44, 1141, 455);
 	resolution = 72;
 	drawingbounds = (1080, 720);
 	showpagebreaks = FALSE;
 	usegrid = TRUE;
 	gridspace = (6, 6);
+	NodeSet Node {BuiltIn = 1; Color = 0x00e1e1e1;};
+	NodeSet Nature {BuiltIn = 1; Color = 0x00f8eed2;};
+	NodeSet Deterministic {BuiltIn = 1; Color = 0x00d3caa6;};
+	NodeSet Finding {BuiltIn = 1; Color = 0x00c8c8c8;};
+	NodeSet Constant {BuiltIn = 1; Color = 0x00ffffff;};
+	NodeSet ConstantValue {BuiltIn = 1; Color = 0x00ffffb4;};
+	NodeSet Utility {BuiltIn = 1; Color = 0x00ffbdbd;};
+	NodeSet Decision {BuiltIn = 1; Color = 0x00dee8ff;};
+	NodeSet Documentation {BuiltIn = 1; Color = 0x00f0fafa;};
+	NodeSet Title {BuiltIn = 1; Color = 0x00ffffff;};
 	PrinterSetting A {
 		margins = (1270, 1270, 1270, 1270);
-		landscape = FALSE;
-		magnify = 1;
 		};
 	};
 
+param X_Reading_1 {
+	discrete = TRUE;
+	states = (Novice, Intermediate, Advanced);
+	kind = DISCONNECTED;
+	chance = CHANCE;
+	title = "Reading";
+	whenchanged = 1775252068;
+	};
 
 node TaskA {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (Poor, Okay, Good, Very_Good);
 	statetitles = ("Poor", "Okay", "Good", "Very Good");
-	parents = (Reading);
+	kind = NATURE;
+	chance = CHANCE;
+	inputs = (Reading);
+	parents = (X_Reading_1);
 	probs = 
-		// Poor         Okay         Good         Very Good      // Reading      
-		 ((0.5,         0.375,       0.115,       0.01),         // Novice       
-		  (0.2,         0.3,         0.3,         0.2),          // Intermediate 
-		  (0.01,        0.125,       0.375,       0.49));        // Advanced     ;
+		// Poor         Okay         Good         Very Good     // Reading      
+		  (0.5,         0.375,       0.115,       0.01,         // Novice       
+		   0.2,         0.3,         0.3,         0.2,          // Intermediate 
+		   0.01,        0.125,       0.375,       0.49);        // Advanced     ;
 	title = "TaskA";
 	whenchanged = 1121108131;
-	belief = (0.2275, 0.275, 0.2725, 0.225);
-	visual V3 {
-		center = (684, 84);
+	visual V1 {
+		center = (96, 144);
 		height = 7;
+		link 1 {
+			labelposn = (98, 81, 145, 95);
+			path = ((96, 81), (96, 106));
+			};
 		};
 	};
+};
