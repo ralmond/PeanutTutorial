@@ -29,3 +29,5 @@ ModelTableExtendMedEM.dne
 TableExtendEasyEM.dne
 TableExtendHardEM.dne
 TableExtendMedEM.dne
+
+**/*.quarto_ipynb

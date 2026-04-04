@@ -1,0 +1,137 @@
+---
+title: "Bob Mislevy and Bayesian Networks"
+author: "Russell Almond"
+format: revealjs
+---
+
+## What I learned from Bob Mislevy
+
+* Psychometric models are models for how people solve problems
+
+  - Behaviorist Perspective
+  
+  - Social Constructivist (Adds new variables)
+  
+* Bayesian networks provides a visualization of a model
+
+## Bayes nets basics
+
+![Example Bayes Net](img/LangTasks.png)
+
+
+* Nodes represent variables
+
+  - Latent Constructs/Proficiencies
+  
+  - Observable Outcomes from Tasks
+  
+* Edges represent dependencies
+
+* _Separation in graph implies conditional independence_
+
+
+## Causal Models
+
+* Arrows go from hypothesized cause to effect.
+
+![Edges Oriented in Causal Direction](img/CausalDirection.png)
+
+* Model reflects a causal theory
+
+  - limited by variables in model (faithfulness)
+  
+## Information flows both ways
+
+* Deduction -- Cause to effect
+
+![Deductive Reasoning](img/Deduction.png)
+
+* Abduction -- Effect to cause
+
+![Abductive Reasoning](img/Abduction.png)
+
+## Induction
+
+![Inductive Reasoning](img/Induction.png)
+
+* Accumulates evidence from multiple sources
+
+* Spans range of construct
+
+
+## Common Causes 
+
+```{=html}
+<iframe src="https://019d5a06-183a-cd3f-993f-930eae98c167.share.connect.posit.cloud/"></iframe>
+```
+
+## Item Response Theory as a Common Cause
+
+![Item Response Theory](img/IRT.png)
+
+* Local item independence is conditional independence.
+
+* Latent variable emerges from dependence among items.
+
+  - Trait view of assessment
+  
+## Competing Explanations
+
+* Observing a common descendant can induce dependency.
+
+```{=html}
+<iframe src="https://019d5a07-c645-f5e8-1c65-38276db022e0.share.connect.posit.cloud/"></iframe>
+```
+
+## Building a Language Model
+
+Mislevy et al. (2002)
+
+Start with a semantic model of the domain.
+
+![Semantic Language Model](img/LangSem.png)
+
+## Orient the edges
+
+This is the (Student) Proficiency Model
+
+![Language Proficiencies](img/LangProf.png)
+
+## A (Pure) Reading Task
+
+![Reading Task](img/LangReading.png)
+
+* Direct evidence for Reading
+
+* Indirect evidence for Writing, Listening & Speaking
+
+## A (Pure) Listening Task
+
+![Listening Task](img/LangListening.png)
+
+## A Reading/Writing Integrated Task
+
+Task includes instructions, background material which must be read and a written response.
+
+![Reading/Writing Task](img/LangWriting.png)
+
+## A Reading/Listening/Speaking Task
+
+Instructions must be read
+
+Must listen to stimulus material
+
+Must respond with either statement or question
+
+![Reading/Listening/Speaking Task](img/LangSpeaking.png)
+
+
+## The Full Language Model
+
+![The Full Language Test](img/LangTasks.png)
+
+A picture is worth 100 equations
+
+Can communicate between cognitive scientists and psychometricians
+
+Lifts the conversation to "which model is best"
