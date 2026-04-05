@@ -14,5 +14,5 @@ color:
   foreground: garnet
   primary: westcott_water
 logo:
-  small: img/FSU_wordmark.png
-  large: img/FSU_workmark_2CLR_GAR_rgb.png
+  small: FSU_wordmark.png
+  large: FSU_workmark_2CLR_GAR_rgb.png

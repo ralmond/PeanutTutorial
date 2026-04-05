@@ -1,7 +1,10 @@
 ---
 title: "Bob Mislevy and Bayesian Networks"
 author: "Russell Almond"
-format: revealjs
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
 brand: img/fsubrand.yml
 ---
 
@@ -62,9 +65,12 @@ brand: img/fsubrand.yml
 
 ## Common Causes 
 
+[Accident Proneness](https://019d5a06-183a-cd3f-993f-930eae98c167.share.connect.posit.cloud/)
+
 ```{=html}
 <iframe src="https://019d5a06-183a-cd3f-993f-930eae98c167.share.connect.posit.cloud/" style="width: 100%; height: 800px"></iframe>
 ```
+
 ## Item Response Theory as a Common Cause
 
 ![Item Response Theory](img/IRT.png)
@@ -79,9 +85,12 @@ brand: img/fsubrand.yml
 
 * Observing a common descendant can induce dependency.
 
+[Competing Explanations](https://019d5a07-c645-f5e8-1c65-38276db022e0.share.connect.posit.cloud/)
+
 ```{=html}
 <iframe src="https://019d5a07-c645-f5e8-1c65-38276db022e0.share.connect.posit.cloud/" style="width: 100%; height: 800px"></iframe>
 ```
+
 
 ## Building a Language Model
 

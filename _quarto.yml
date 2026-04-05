@@ -7,6 +7,8 @@ website:
     left:
       - href: ECD.qmd
         text: "ECD Intro"
+      - href: BobAndBayesNet.qmd
+        text: "Bob Mislevy and Bayes Nets"
       - href: BayesNets.qmd
         text: "Bayesian Networks"
       - href: Heart.qmd
@@ -24,9 +26,10 @@ website:
       - href: Dynamic.qmd
         text: "Dynamic Models"
       - href: Resources.qmd
-        text:  Resources
+        text: Resources
       - href: References.qmd
         text: References
+      - href: Dedication.qmd
       - href: about.qmd
 
 margin-header: |
