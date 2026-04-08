@@ -12,7 +12,7 @@ brand: img/fsubrand.yml
 
 * Psychometric models are models for how people solve problems
 
-  - Behaviorist Perspective
+  - Information Processing Perspective
   
   - Social Constructivist (Adds new variables)
   
@@ -43,6 +43,8 @@ brand: img/fsubrand.yml
 * Model reflects a causal theory
 
   - limited by variables in model (faithfulness)
+  
+| Constructs reside in the heads of the examiners, not the examinees. --Mislevy (2018, p 73)
   
 ## Information flows both ways
 
@@ -90,6 +92,12 @@ brand: img/fsubrand.yml
 ```{=html}
 <iframe src="https://019d5a07-c645-f5e8-1c65-38276db022e0.share.connect.posit.cloud/" style="width: 100%; height: 800px"></iframe>
 ```
+
+## Common Context
+
+![Item with Common Context](img/IRTC.dot.png)
+
+* This is a very early attempt at a social constructivist model
 
 
 ## Building a Language Model
