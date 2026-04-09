@@ -1,0 +1,36 @@
+The following networks are available:
+
+* [Accident Prone](AccidentProne.dne), [Accident Proneness.dne](AccidentProneness.dne) -- Common Cause example.
+
+* [3 Combination Rules](Comb3Same_1.dne) -- Compensatory, Conjunctive and Disjunctive rules.
+
+* [Competing Explanations](CompetingExplanations.dne) -- Conditional independence and common descendents
+
+* [Cost of Testing](CostOfTesting.dne) -- An example influence diagram
+
+* [Dancers](Dancers.dne) -- An example with multiple raters
+
+*[d-separation exercise](dseparation.dne) -- An exercise from the book about d-separation.
+
+* [Rare Disease](HIV-test.dne) -- What happens when the disease is rarer than the false positives.
+
+* [5 Item IRT](IRT5.dne), [5 Item IRT with Context Effect](IRT5C.dne) -- A simple IRT example
+
+* [Sample Driving Network](SampleDrivingNetwork.dne) -- A possible (partial) driving test model
+
+* [ThetaAB](ThetaAB.dne) -- Illustration of good overall evidence versus good differential evidence (based on Jensen's cold diagnosis).
+
+* [Very Simple IRT](VerySimpleIRT.dne) -- An IRT model with a single latent variable.
+
+
+## More networks
+
+
+See also
+
+* [Intro Nets](../IntroNets)
+
+* [Mini-ACED](../miniACED)
+
+* [Language Test](../Language)
+

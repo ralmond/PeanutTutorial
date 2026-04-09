@@ -53,7 +53,7 @@ Source code is on github <https://github.com/ralmond/>.
         -   Limited number of nodes
         -   Limited usage (education, evaluation of Netica)
     -   Paid version (see<http://www.norsys.com/>for price information)
-        -   Need to purchase API not GUI version ofNetica
+        -   Need to purchase API not GUI version of Netica
         -   May want both (use GUI to visualize networks built in RNetica)
 -   CPTtools, Peanut -- Artistic (Free and open source), does not depend on Netica
 -   PNetica -- Artistic, but depends on RNetica.
@@ -77,6 +77,10 @@ Three ways of installing the license key:
 3.  Set an environmental variable `NeticaLicenseKey` before launching R.
 
 -   This can be set in `.Renviron` in your home directory.
+
+``` sh
+NETICA_LICENSE_KEY = "+User/Organization/120,310-6-A/XXXXX"
+```
 
 ## Starting RNetica
 
@@ -420,6 +424,7 @@ t.isCorrect <- "No"
 
 ## Answer for 2nd Task
 
+::: {.callout-note collapse="true"}
 ```{r solution}
 ### Fred does another task
 t.name <- "tCommonRatio2a"
@@ -444,6 +449,7 @@ Fred.History
 DeleteNetwork(EMnet) ## Delete EM
 try(AbsorbNodes(obs))
 ```
+:::
 
 ## Fred does another task
 
@@ -471,7 +477,7 @@ rownames(Fred.History)[nrow(Fred.History)] <- paste(t.name,t.isCorrect,sep="=")
 Fred.History
 ```
 
-Cleanup: Delete EM and Absorb observables
+### Cleanup: Delete EM and Absorb observables
 
 ```{r cleanup on task 2}
 DeleteNetwork(EMnet) ## Delete EM

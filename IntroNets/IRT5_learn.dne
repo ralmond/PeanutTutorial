@@ -1,0 +1,199 @@
+// ~->[DNET-1]->~
+
+// File created by ZapataD at ETSTech using Netica 2.17 on Mar 02, 2004 at 11:41:36.
+
+bnet IRT5_learn {
+autoupdate = TRUE;
+whenchanged = 1078245497;
+
+visual V1 {
+	defdispform = BELIEFBARS;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 10;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	windowposn = (0, 1, 586, 512);
+	resolution = 72;
+	drawingbounds = (1080, 720);
+	showpagebreaks = FALSE;
+	usegrid = TRUE;
+	gridspace = (6, 6);
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		landscape = FALSE;
+		magnify = 1;
+		};
+	};
+
+node Theta {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (pos2, pos1, Zero, neg1, neg2);
+	parents = ();
+	probs = 
+		// pos2         pos1         Zero         neg1         neg2         
+		  (0.1396825,   0.1801587,   0.4297619,   0.1206349,   0.1297619);
+	numcases = 100.8;
+	title = "Theta";
+	whenchanged = 1078245497;
+	belief = (0.139683, 0.180159, 0.429762, 0.120635, 0.129762);
+	visual V1 {
+		center = (132, 198);
+		height = 6;
+		};
+	};
+
+node Item_1 {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Right, Wrong);
+	parents = (Theta);
+	probs = 
+		// Right        Wrong          // Theta 
+		 ((0.2231081,   0.7768919),    // pos2  
+		  (0.7711702,   0.2288298),    // pos1  
+		  (0.9053443,   0.09465571),   // Zero  
+		  (0.99525,     0.00475),      // neg1  
+		  (0.9983014,   0.001698553)); // neg2  ;
+	numcases = 
+		                 // Theta 
+		  (14.8,         // pos2  
+		   18.8,         // pos1  
+		   43.8,         // Zero  
+		   12.8,         // neg1  
+		   13.8);        // neg2  ;
+	title = "Item_1";
+	whenchanged = 1078245497;
+	belief = (0.808783, 0.191217);
+	visual V1 {
+		center = (432, 36);
+		height = 5;
+		};
+	};
+
+node Item_2 {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Right, Wrong);
+	inputs = (Theta);
+	parents = (Theta);
+	probs = 
+		// Right        Wrong          // Theta 
+		 ((0.3498757,   0.6501243),    // pos2  
+		  (0.4973532,   0.5026468),    // pos1  
+		  (0.6745059,   0.3254941),    // Zero  
+		  (0.756375,    0.243625),     // neg1  
+		  (0.9240522,   0.07594783));  // neg2  ;
+	numcases = 
+		                 // Theta 
+		  (14.8,         // pos2  
+		   18.8,         // pos1  
+		   43.8,         // Zero  
+		   12.8,         // neg1  
+		   13.8);        // neg2  ;
+	title = "Item_2";
+	whenchanged = 1078245497;
+	belief = (0.639503, 0.360497);
+	visual V1 {
+		center = (432, 120);
+		height = 4;
+		link 1 {
+			path = ((208, 179), (352, 141));
+			};
+		};
+	};
+
+node Item_3 {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Right, Wrong);
+	inputs = (Theta);
+	parents = (Theta);
+	probs = 
+		// Right        Wrong          // Theta 
+		 ((0.006443243, 0.9935567),    // pos2  
+		  (0.3305915,   0.6694085),    // pos1  
+		  (0.3744292,   0.6255708),    // Zero  
+		  (0.7488188,   0.2511812),    // neg1  
+		  (0.9164522,   0.08354783));  // neg2  ;
+	numcases = 
+		                 // Theta 
+		  (14.8,         // pos2  
+		   18.8,         // pos1  
+		   43.8,         // Zero  
+		   12.8,         // neg1  
+		   13.8);        // neg2  ;
+	title = "Item_3";
+	whenchanged = 1078245497;
+	belief = (0.430629, 0.569371);
+	visual V1 {
+		center = (432, 198);
+		height = 1;
+		};
+	};
+
+node Item_4 {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Right, Wrong);
+	inputs = (Theta);
+	parents = (Theta);
+	probs = 
+		// Right        Wrong          // Theta 
+		 ((0.1383838,   0.8616162),    // pos2  
+		  (0.1126809,   0.8873191),    // pos1  
+		  (0.302663,    0.697337),     // Zero  
+		  (0.6601375,   0.3398625),    // neg1  
+		  (0.7696986,   0.2303015));   // neg2  ;
+	numcases = 
+		                 // Theta 
+		  (14.8,         // pos2  
+		   18.8,         // pos1  
+		   43.8,         // Zero  
+		   12.8,         // neg1  
+		   13.8);        // neg2  ;
+	title = "Item_4";
+	whenchanged = 1078245497;
+	belief = (0.349216, 0.650784);
+	visual V1 {
+		center = (432, 282);
+		height = 2;
+		};
+	};
+
+node Item_5 {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Right, Wrong);
+	inputs = (Theta);
+	parents = (Theta);
+	probs = 
+		// Right        Wrong          // Theta 
+		 ((0.001583784, 0.9984162),    // pos2  
+		  (0.05642127,  0.9435787),    // pos1  
+		  (0.1859799,   0.8140201),    // Zero  
+		  (0.3360938,   0.6639063),    // neg1  
+		  (0.5433334,   0.4566667));   // neg2  ;
+	numcases = 
+		                 // Theta 
+		  (14.8,         // pos2  
+		   18.8,         // pos1  
+		   43.8,         // Zero  
+		   12.8,         // neg1  
+		   13.8);        // neg2  ;
+	title = "Item_5";
+	whenchanged = 1078245497;
+	belief = (0.201362, 0.798638);
+	visual V1 {
+		center = (432, 366);
+		height = 3;
+		};
+	};
+ElimOrder = (Item_1, Item_2, Item_3, Item_4, Theta, Item_5);
+};

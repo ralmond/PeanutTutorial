@@ -1,0 +1,29 @@
+## Networks:
+
+The following networks are available:
+
+* [Proficiency Model](LanguageSM.dne)
+
+ 
+* Evidence Models:
+ 
+  - Task A [Reading](ReadingEM.dne)
+  
+  - Task B [Writing/Reading](ReadingWritingEM.dne)
+  
+  - Task C [Speaking/Listening/Reading](SpeakingListeningReading.dne)
+  
+  - Task D [Listening](ListeningEM.dne)
+  
+ 
+* Motif -- Proficiency model plus all evidence models. [Motif One each task](LangAss_3.dne), [Motif multiple copies of tasks](LangAss_4.dne)
+
+
+## See also
+
+* [Intro Nets](../IntroNets)
+
+* [Mini-ACED](../miniACED)
+
+* [Language Test](../Language)
+

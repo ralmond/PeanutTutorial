@@ -1,0 +1,11 @@
+The following networks are available:
+
+<Comb3Same_1.dne>  --- Comparison of Compensatory, Conjunctive and
+		 Disjunctive models.
+
+<IRT5.dne>  --- Five Item IRT model
+
+<IRT5C.dne> --- Five Item IRT model with "Context Effect"
+
+<IRT5_learn.dne> --- Five Item IRT for parameter learning
+

@@ -1,0 +1,218 @@
+// ~->[DNET-1]->~
+
+// File created by AlmondR at FloridaStateU using Netica 4.16 on Apr 12, 2012 at 15:44:36.
+
+bnet IRT5C {
+AutoCompile = TRUE;
+autoupdate = TRUE;
+whenchanged = 1334265014;
+
+visual V1 {
+	defdispform = BELIEFBARS;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 10;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	windowposn = (579, 9, 1113, 511);
+	resolution = 72;
+	drawingbounds = (1099, 720);
+	showpagebreaks = FALSE;
+	usegrid = TRUE;
+	gridspace = (6, 6);
+	NodeSet Node {BuiltIn = 1; Color = 0xc0c0c0;};
+	NodeSet Nature {BuiltIn = 1; Color = 0xf8eed2;};
+	NodeSet Deterministic {BuiltIn = 1; Color = 0xd3caa6;};
+	NodeSet Finding {BuiltIn = 1; Color = 0xc8c8c8;};
+	NodeSet Constant {BuiltIn = 1; Color = 0xffffff;};
+	NodeSet ConstantValue {BuiltIn = 1; Color = 0xffffb4;};
+	NodeSet Utility {BuiltIn = 1; Color = 0xffbdbd;};
+	NodeSet Decision {BuiltIn = 1; Color = 0xdee8ff;};
+	NodeSet Documentation {BuiltIn = 1; Color = 0xf0fafa;};
+	NodeSet Title {BuiltIn = 1; Color = 0xffffff;};
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		landscape = FALSE;
+		magnify = 1;
+		};
+	};
+
+node Theta {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (pos2, pos1, Zero, neg1, neg2);
+	levels = (2, 1, 0, -1, -2);
+	parents = ();
+	probs = 
+		// pos2         pos1         Zero         neg1         neg2         
+		  (0.1,         0.2,         0.4,         0.2,         0.1);
+	EqnDirty = TRUE;
+	title = "Theta";
+	whenchanged = 1334264498;
+	belief = (0.1, 0.2, 0.4, 0.2, 0.1);
+	visual V1 {
+		center = (132, 198);
+		height = 6;
+		};
+	};
+
+node Item_1 {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Right, Wrong);
+	parents = (Theta);
+	probs = 
+		// Right        Wrong         // Theta 
+		  (0.9707,      0.0293,       // pos2  
+		   0.9241,      0.07589996,   // pos1  
+		   0.8176,      0.1824,       // Zero  
+		   0.6225,      0.3775,       // neg1  
+		   0.3775,      0.6225);      // neg2  ;
+	EqnDirty = TRUE;
+	title = "Item_1";
+	whenchanged = 1334265014;
+	belief = (0.77118, 0.22882);
+	visual V1 {
+		center = (432, 36);
+		height = 5;
+		};
+	};
+
+node Item_2 {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Right, Wrong);
+	inputs = (Theta);
+	parents = (Theta);
+	probs = 
+		// Right        Wrong         // Theta 
+		  (0.9399,      0.0601,       // pos2  
+		   0.852,       0.148,        // pos1  
+		   0.6792,      0.3208,       // Zero  
+		   0.4378,      0.5622,       // neg1  
+		   0.2227,      0.7773);      // neg2  ;
+	EqnDirty = TRUE;
+	title = "Item_2";
+	whenchanged = 1334265014;
+	belief = (0.6459, 0.3541);
+	visual V1 {
+		center = (432, 120);
+		height = 4;
+		link 1 {
+			path = ((208, 179), (352, 141));
+			};
+		};
+	};
+
+node Context {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Yes, No);
+	parents = ();
+	probs = 
+		// Yes          No           
+		  (0.5,         0.5);
+	title = "Context";
+	whenchanged = 1143584211;
+	belief = (0.5, 0.5);
+	visual V1 {
+		center = (192, 342);
+		height = 7;
+		};
+	};
+
+node Item_3 {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Right, Wrong);
+	inputs = (Theta, A);
+	parents = (Theta, Context);
+	probs = 
+		// Right        Wrong         // Theta A   
+		  (0.91,        0.09,         // pos2  Yes 
+		   0.71,        0.29,         // pos2  No  
+		   0.83,        0.17,         // pos1  Yes 
+		   0.63,        0.37,         // pos1  No  
+		   0.6,         0.4,          // Zero  Yes 
+		   0.4,         0.6,          // Zero  No  
+		   0.37,        0.63,         // neg1  Yes 
+		   0.17,        0.83,         // neg1  No  
+		   0.22,        0.78,         // neg2  Yes 
+		   0.02,        0.98);        // neg2  No  ;
+	EqnDirty = TRUE;
+	title = "Item_3";
+	whenchanged = 1334265014;
+	belief = (0.493, 0.507);
+	visual V1 {
+		center = (432, 198);
+		height = 1;
+		link 2 {
+			path = ((222, 315), (384, 226));
+			};
+		};
+	};
+
+node Item_4 {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Right, Wrong);
+	inputs = (Theta, A);
+	parents = (Theta, Context);
+	probs = 
+		// Right        Wrong         // Theta A   
+		  (0.88,        0.12,         // pos2  Yes 
+		   0.68,        0.32,         // pos2  No  
+		   0.66,        0.34,         // pos1  Yes 
+		   0.46,        0.54,         // pos1  No  
+		   0.42,        0.58,         // Zero  Yes 
+		   0.22,        0.78,         // Zero  No  
+		   0.25,        0.75,         // neg1  Yes 
+		   0.05,        0.95,         // neg1  No  
+		   0.16,        0.84,         // neg2  Yes 
+		   0,           1);           // neg2  No  ;
+	EqnDirty = TRUE;
+	title = "Item_4";
+	whenchanged = 1334265014;
+	belief = (0.356, 0.644);
+	visual V1 {
+		center = (432, 282);
+		height = 2;
+		link 2 {
+			path = ((264, 315), (352, 297));
+			};
+		};
+	};
+
+node Item_5 {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Right, Wrong);
+	inputs = (Theta);
+	parents = (Theta);
+	probs = 
+		// Right        Wrong         // Theta 
+		  (0.6225,      0.3775,       // pos2  
+		   0.3775,      0.6225,       // pos1  
+		   0.1824,      0.8176,       // Zero  
+		   0.0759,      0.9241,       // neg1  
+		   0.0293,      0.9707);      // neg2  ;
+	EqnDirty = TRUE;
+	title = "Item_5";
+	whenchanged = 1334265014;
+	belief = (0.22882, 0.77118);
+	visual V1 {
+		center = (432, 366);
+		height = 3;
+		link 1 {
+			path = ((208, 239), (384, 339));
+			};
+		};
+	};
+ElimOrder = (Item_1, Item_2, Item_5, Item_3, Theta, Context, Item_4);
+};

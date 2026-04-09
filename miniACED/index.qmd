@@ -1,0 +1,43 @@
+## Networks:
+
+The following networks are available:
+
+* [Proficiency Model](MiniACEDPM.dne), [As a Pnet](miniACEDPnet.dne)
+
+* Evidence Models:
+
+  - Common Ratio Tasks [Easy](CommonRatioEasyEM.dne),
+ [Moderate](CommonRationMedEM.dne), [Hard](CommonRatioHard.dne)
+ 
+  - Example (of sequences) Tasks [Easy](ExamplesEasyEM.dne), [Moderate](ExamplesMedEM.dne), [Hard](ExamplesHardEM.dne)
+
+  - Extend (sequences) Tasks [Easy](ExtendEasyEM.dne),
+[Moderate](ExtendMedEM.dne), [Hard](ExtendHardEM.dne)
+
+  - Table Extend Tasks [Easy](TableExtendEasyEM.dne),
+ [Moderate](TableExtendHardEM.dne), [Hard](TableExtendHardEM.dne)
+ 
+  - Model Table Extend Tasks [Easy](ModelTableExtendEasyEM.dne),
+ [Moderate](ModelTableExtendHardEM.dne), [Hard](ModelTableExtendHardEM.dne)
+ 
+* [Motif](miniACEDFullMotif.dne) -- Proficiency model plus all evidence models.
+
+
+## Spreadsheets
+
+* [Evidence Model Table](MiniACEDEMTable.csv)
+
+* [Q-matrix](miniACED.Qmat.csv)
+
+* MiniACED data [CSV](miniACED-Geometric.csv) [XLSX](miniACED-Geometric.xlsx) [Netica Case File](mini.cas) 
+
+
+
+## See also
+
+* [Intro Nets](../IntroNets)
+
+* [Mini-ACED](../miniACED)
+
+* [Language Test](../Language)
+

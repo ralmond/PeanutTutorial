@@ -1,10 +1,10 @@
 // ~->[DNET-1]->~
 
-// File created by AlmondR at FloridaStateU using Netica 6.07 on 04/05/2026 at 05:44:01 PM UTC.
+// File created by AlmondR at FloridaStateU using Netica 6.07 on 04/09/2026 at 03:24:32 PM UTC.
 
 bnet MiniACEDMotif {
 autoupdate = TRUE;
-whenchanged = 1775411041;
+whenchanged = 1775748272;
 
 visual V1 {
 	defdispform = BELIEFBARS;
@@ -51,7 +51,7 @@ node SolveGeometricProblems {
 		// High         Medium       Low          
 		  (0.3333333,   0.3333333,   0.3333333);
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -80,7 +80,7 @@ node CommonRatio {
 		   0.08103418,  0.2147052,   0.7042606);   // Low                    ;
 	numcases = 10;
 	EqnDirty = TRUE;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -109,7 +109,7 @@ node ExamplesGeometric {
 		   0.08103418,  0.2147052,   0.7042606);   // Low                    ;
 	numcases = 10;
 	EqnDirty = TRUE;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -138,7 +138,7 @@ node ExtendGeometric {
 		   0.08103418,  0.2147052,   0.7042606);   // Low                    ;
 	numcases = 10;
 	EqnDirty = TRUE;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -167,7 +167,7 @@ node ModelGeometric {
 		   0.08103418,  0.2147052,   0.7042606);   // Low                    ;
 	numcases = 10;
 	EqnDirty = TRUE;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -196,7 +196,7 @@ node TableGeometric {
 		   0.08103418,  0.2147052,   0.7042606);   // Low                    ;
 	numcases = 10;
 	EqnDirty = TRUE;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -360,6 +360,7 @@ node tCommonRatio3b {
 		   0.1544653,   0.8455347,    // Medium      
 		   0.03407189,  0.9659281);   // Low         ;
 	numcases = 10;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -387,7 +388,7 @@ node tExamplesGeometric1a {
 		   0.8455347,   0.1544653,    // Medium            
 		   0.5138423,   0.4861577);   // Low               ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -415,7 +416,7 @@ node tExamplesGeometric1b {
 		   0.8455347,   0.1544653,    // Medium            
 		   0.5138423,   0.4861577);   // Low               ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -443,7 +444,7 @@ node tExamplesGeometric2a {
 		   0.5,         0.5,          // Medium            
 		   0.1618378,   0.8381621);   // Low               ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -471,7 +472,7 @@ node tExamplesGeometric2b {
 		   0.5,         0.5,          // Medium            
 		   0.1618378,   0.8381621);   // Low               ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -499,7 +500,7 @@ node tExamplesGeometric3a {
 		   0.1544653,   0.8455347,    // Medium            
 		   0.03407189,  0.9659281);   // Low               ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -527,7 +528,7 @@ node tExamplesGeometric3b {
 		   0.1544653,   0.8455347,    // Medium            
 		   0.03407189,  0.9659281);   // Low               ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -555,7 +556,7 @@ node tExtendGeometric1a {
 		   0.8455347,   0.1544653,    // Medium          
 		   0.5138423,   0.4861577);   // Low             ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -583,7 +584,7 @@ node tExtendGeometric1b {
 		   0.8455347,   0.1544653,    // Medium          
 		   0.5138423,   0.4861577);   // Low             ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -611,7 +612,7 @@ node tExtendGeometric2a {
 		   0.5,         0.5,          // Medium          
 		   0.1618378,   0.8381621);   // Low             ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -639,7 +640,7 @@ node tExtendGeometric2b {
 		   0.5,         0.5,          // Medium          
 		   0.1618378,   0.8381621);   // Low             ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -667,7 +668,7 @@ node tExtendGeometric3a {
 		   0.1544653,   0.8455347,    // Medium          
 		   0.03407189,  0.9659281);   // Low             ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -695,7 +696,7 @@ node tExtendGeometric3b {
 		   0.1544653,   0.8455347,    // Medium          
 		   0.03407189,  0.9659281);   // Low             ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -729,7 +730,7 @@ node tTableExtendGeometric1a {
 		   0.488907,    0.511093,     // Low            Medium          
 		   0.2301793,   0.7698207);   // Low            Low             ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -763,7 +764,7 @@ node tTableExtendGeometric1b {
 		   0.488907,    0.511093,     // Low            Medium          
 		   0.2301793,   0.7698207);   // Low            Low             ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -797,7 +798,7 @@ node tTableExtendGeometric2a {
 		   0.1487575,   0.8512425,    // Low            Medium          
 		   0.05179393,  0.9482061);   // Low            Low             ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -831,7 +832,7 @@ node tTableExtendGeometric2b {
 		   0.1487575,   0.8512425,    // Low            Medium          
 		   0.05179393,  0.9482061);   // Low            Low             ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -865,7 +866,7 @@ node tTableExtendGeometric3a {
 		   0.03093692,  0.9690631,    // Low            Medium          
 		   0.009880143, 0.9901199);   // Low            Low             ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -899,7 +900,7 @@ node tTableExtendGeometric3b {
 		   0.03093692,  0.9690631,    // Low            Medium          
 		   0.009880143, 0.9901199);   // Low            Low             ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -951,7 +952,7 @@ node tModelExtendTableGeometric1a {
 		   0.3376465,   0.6623535,    // Low            Low            Medium          
 		   0.1647476,   0.8352524);   // Low            Low            Low             ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -1004,7 +1005,7 @@ node tModelExtendTableGeometric1b {
 		   0.3376465,   0.6623535,    // Low            Low            Medium          
 		   0.1647476,   0.8352524);   // Low            Low            Low             ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -1057,7 +1058,7 @@ node tModelExtendTableGeometric2a {
 		   0.08519255,  0.9148074,    // Low            Low            Medium          
 		   0.0347798,   0.9652202);   // Low            Low            Low             ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -1110,7 +1111,7 @@ node tModelExtendTableGeometric2b {
 		   0.08519255,  0.9148074,    // Low            Low            Medium          
 		   0.0347798,   0.9652202);   // Low            Low            Low             ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -1163,7 +1164,7 @@ node tModelExtendTableGeometric3a {
 		   0.01672804,  0.983272,     // Low            Low            Medium          
 		   0.006539591, 0.9934604);   // Low            Low            Low             ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";
@@ -1216,7 +1217,7 @@ node tModelExtendTableGeometric3b {
 		   0.01672804,  0.983272,     // Low            Low            Medium          
 		   0.006539591, 0.9934604);   // Low            Low            Low             ;
 	numcases = 10;
-	whenchanged = 1775411041;
+	whenchanged = 1775748272;
 	user U1 {
 		Q = "TRUE";
 		rules = "\"Compensatory\"";

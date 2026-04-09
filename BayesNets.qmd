@@ -332,25 +332,25 @@ A: See the Q-matrix (Fischer, Tatsuoka).
 
 ## On the way to PMF and EMFs...
 
-![](img/2021%20BN%20Session%20II7.png)
+![](img/SessionII7.png)
 
 Proficiency variables
 
-![](img/2021%20BN%20Session%20II8.png)
+![](img/SessionII8.png)
 
 Observables and proficiency variable parents for the tasks
 
 ## Marry parents, drop directions, and triangulate (in PMF, with respect to all tasks)
 
-![](img/2021%20BN%20Session%20II9.png)
+![](img/SessionII9.png)
 
-![](img/2021%20BN%20Session%20II10.png)
+![](img/SessionII10.png)
 
-\$# Footprints of tasks in proficiency model (figure out from rows in Q-matrix)
+* Footprints of tasks in proficiency model (figure out from rows in Q-matrix)
 
-![](img/2021%20BN%20Session%20II11.png)
+![](img/SessionII11.png)
 
-![](img/2021%20BN%20Session%20II12.png)
+![](img/SessionII12.png)
 
 ## Result:
 
@@ -367,13 +367,18 @@ Observables and proficiency variable parents for the tasks
 
 Good (1985)
 
-*H* is binary hypothesis, e.g., *Proficiency* \> *Medium*
+$H$ is binary hypothesis, e.g., *Proficiency* \> *Medium*
 
-*E* is evidence for hypothesis
+$E$ is evidence for hypothesis
 
 Weight of Evidence (WOE) is
 
-![](img/2021%20BN%20Session%20II13.png)
+$$W(H:E) = 
+\log \frac{\Pr(E|H)}{\Pr(E|\overline{H})} =
+\log \frac{\Pr(H|E)}{\Pr(\overline{H}|E)} - \log \frac{\Pr(H)}{\Pr(\overline{H})}$$
+
+
+
 
 ## Properties of WOE
 
@@ -389,29 +394,29 @@ Bayes theorem using log odds
 
 Can define Conditional Weight of Evidence
 
+$$W(H:E_2|E_1) = 
+\log \frac{\Pr(E_2|H,E_1)}{\Pr(E_2|\overline{H},E_1)}$$
+
 Nice Additive properties
 
 Order sensitive
 
 WOE Balance Sheet (Madigan, Mosurski & Almond, 1997)
 
-![](img/2021%20BN%20Session%20II14.png)
 
-![](img/2021%20BN%20Session%20II15.png)
+$$W(H:E_1, E_2) = W(H:E_1) + W(H:E_2|E_1)$$
 
 ## Evidence Balance Sheet
 
-63 tasks total
+* Task Difficulty
 
-1 Easy
+  1. Easy
 
-2 Medium
+  2. Medium
 
-3 Hard
+  3. Hard
 
-a Item type
-
-b Isomorph
+  a,b. Item variant
 
 **P(Solve Geom Sequences)**
 
@@ -430,17 +435,15 @@ b Isomorph
 | VisualExplicitVerbalRule3a  |  1  | 0.91 | 0.09 | 0.00 |
 | VerbalRuleModelGeometric3a  |  1  | 0.95 | 0.05 | 0.00 |
 
-**WOE for H vs. M, L**
+
 
 ## Expected Weight of Evidence
 
-When choosing next "test" (task/item) look at expected value of WOE where expectation is taken wrt *P(E\|H)* .
+When choosing next "test" (task/item) look at expected value of WOE where expectation is taken wrt $\Pr(E|H)$ .
 
 where represent the possible results.
 
-![](img/2021%20BN%20Session%20II16.png)
-
-![](img/2021%20BN%20Session%20II17.png)
+$$EW(H:E) = \sum_{k=1}^K W(H:e_k)\Pr(e_k|H)$$
 
 ## Calculating EWOE
 
@@ -454,13 +457,10 @@ Calculate for each candidate item
 
 Instantiate Hypothesis = False
 
-Calculate for each candidate item
+Calculate for each candidate item $\Pr(E_i|H)$ and $\Pr(E_i|\overline{H})$
 
-![](img/2021%20BN%20Session%20II18.png)
 
-![](img/2021%20BN%20Session%20II19.png)
-
-\$# Related Measures
+### Related Measures
 
 Value of Information
 
@@ -470,7 +470,9 @@ Value of Information
 
 *u* is utility
 
-![](img/2021%20BN%20Session%20II20.png)
+$\textrm{VoI}(T) = E_T \left [
+\max_d E_{\boldsymbol{S}} u(d,\boldSymbol{S}) -
+\max_d E_{\boldsymbol{S}|T} u(d,\boldSymbol{S})
 
 ## Related Measures (2)
 
@@ -480,9 +482,8 @@ Extends to non-binary hypothesis nodes
 
 Kullback-Liebler distance between joint distribution and independence
 
-![](img/2021%20BN%20Session%20II21.png)
-
-![](img/2021%20BN%20Session%20II22.png)
+$$\sum_{x,y} \Pr(x,y) \log \frac{\Pr(x,y)}{\Pr(x)\Pr(y)}$$
+$$\sum_x \Pr(x) \sum_y \Pr(y|x) \log \frac{\Pr(y|x)}{\Pr(y)}$$
 
 ## Task Selection Exercise 1
 
@@ -500,7 +501,7 @@ Use Network ACEDMotif2.dne
 
 Select the *SolveGeometricProblems* node
 
-Run the program Network\>Sensitivity to Findings
+Run the program `Network > Sensitivity to Findings`
 
 This will list the Mutual information for all nodes
 
@@ -578,3 +579,4 @@ Special thanks to Val Shute for letting us used ACED data and models in this tut
 ACED development and data collection was sponsored by National Science Foundation Grant No. 0313202.
 
 Complete data available at: http://ecd.ralmond.net/ecdwiki/ACED/ACED
+

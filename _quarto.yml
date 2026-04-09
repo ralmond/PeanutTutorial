@@ -5,30 +5,40 @@ website:
   title: "Peanut Tutorial"
   navbar:
     left:
-      - href: ECD.qmd
-        text: "ECD Intro"
-      - href: BobAndBayesNet.qmd
-        text: "Bob Mislevy and Bayes Nets"
-      - href: BayesNets.qmd
-        text: "Bayesian Networks"
+      - text: Background
+        menu:
+          - href: ECD.qmd
+            text: "ECD Intro"
+          - href: BobAndBayesNet.qmd
+            text: "Bob Mislevy and Bayes Nets"
+          - href: BayesNets.qmd
+            text: "Bayesian Networks"
       - href: Heart.qmd
         text: "Heart Example"
-      - href: Scoring.qmd
-        text: "Scoring"
-      - href: DiBelloModels.qmd
-        text: "Making CPTs"
-      - href: Building.qmd
-        text: "Building Nets"
-      - href: Updating.qmd
-        text: "Calibration"
-      - href: Visualization.qmd
-        text: "Model checking and visualzation"
-      - href: Dynamic.qmd
-        text: "Dynamic Models"
-      - href: Resources.qmd
-        text: Resources
-      - href: References.qmd
-        text: References
+      - text: "Peanut Walkthrough"
+        menu: 
+          - href: Scoring.qmd
+            text: "Scoring"
+          - href: DiBelloModels.qmd
+            text: "Making CPTs"
+          - href: Building.qmd
+            text: "Building Nets"
+          - href: Updating.qmd
+            text: "Calibration"
+          - href: Visualization.qmd
+            text: "Model checking and visualzation"
+      - text: Resources
+        menu: 
+          - href: Resources.qmd
+            text: Resources
+          - href: IntroNets/index.qmd
+            text: "Introductory Example Nets"
+          - href: miniACED/index.qmd
+            text: "ACED execerpt"
+          - href: Language/index.qmd
+            text: "Language Testing Example"
+          - href: References.qmd
+            text: References
       - href: Dedication.qmd
       - href: about.qmd
 

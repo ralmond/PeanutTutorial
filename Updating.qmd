@@ -65,7 +65,7 @@ startSession(sess)
 
 ### Building the full motif
 
-#### Start with the proficieny model.
+#### Start with the proficiency model.
 
 ```{r read networks}
 ## Read in network -- Do this every time R is restarted
@@ -100,7 +100,7 @@ for (iem in 1:nrow(EMtable)) {
 }
 ```
 
-### PriorWeights
+### Prior Weights
 
 The prior weights control how many observations the expert opinion is worth.
 
@@ -110,8 +110,7 @@ Prior weights can be set for each row of the CPT, but a single number is used fo
 
 It also can be set once for net and that value is used as a default for all nodes.
 
-The `BuildAllTables()` function does two things.  (1) It builds the tables from the parameters, and (2) Its sets the prior weights as node experience.
-
+The `BuildAllTables()` function does two things. (1) It builds the tables from the parameters, and (2) Its sets the prior weights as node experience.
 
 ```{r}
 PnetPriorWeight(motif) <- 10
@@ -200,22 +199,19 @@ NodeExperience(te1a)
 
 ### Running the algorithm
 
-Nodes whose CPT we want to learn are marked as "pnodes".
-Get a list of these
-
+Nodes whose CPT we want to learn are marked as "pnodes". Get a list of these
 
 ```{r}
 names(NetworkNodesInSet(motif, "pnodes"))
 ```
 
-Run the internal EM algorithm.  We will let it run for 25 steps, which may or may not be enough for convergence.
+Run the internal EM algorithm. We will let it run for 25 steps, which may or may not be enough for convergence.
 
 ```{r}
 calcExpTables(motif,
               file.path("miniACED","mini.cas"),
               25)
 ```
-
 
 ### Looking what is left.
 
@@ -252,6 +248,7 @@ cat("Posterior:\n")
 te1a[]
 NodeExperience(te1a)
 ```
+
 ### Expected CPTs
 
 Multiply the measured CPT by the node experience.
@@ -264,16 +261,11 @@ sgp[]*NodeExperience(sgp)
 sweep(cr[],1,NodeExperience(cr))
 ```
 
-Note that this table is the expected count table, so it is the expected value of a sufficient statistic.  Exactly what is needed for the E-step of the EM algorithm.
-
-
+Note that this table is the expected count table, so it is the expected value of a sufficient statistic. Exactly what is needed for the E-step of the EM algorithm.
 
 ### Adjust the parameters to fit expected tables
 
-Given the CPT and the expected table, it is straightforward to calculate the log likelihood of observing that data table.  Running an optimizer using the parameters of the node will find the set of parameters that maximizes the log likelihood.  This is done with the function `CPTtools::mapDPC()`.  The function `maxCPTParam()` is a wrapper which calculstes the expected table and then does the calculation.
-
-
-
+Given the CPT and the expected table, it is straightforward to calculate the log likelihood of observing that data table. Running an optimizer using the parameters of the node will find the set of parameters that maximizes the log likelihood. This is done with the function `CPTtools::mapDPC()`. The function `maxCPTParam()` is a wrapper which calculstes the expected table and then does the calculation.
 
 ```{r}
 PnodeAlphas(sgp)
@@ -295,13 +287,11 @@ This is the M-step of the EM algorithm.
 
 ### Assessing Convergence.
 
-The function `calcPnetLLike()` calculates the log-likelihood of all of the cases.  It can be used to check for convergence.
+The function `calcPnetLLike()` calculates the log-likelihood of all of the cases. It can be used to check for convergence.
 
 ```{r}
 calcPnetLLike(motif,file.path("miniACED","mini.cas"))
 ```
-
-  
 
 ## Learning CPTs
 
@@ -309,16 +299,16 @@ The function `GEMfit` does this all.
 
 It alternates between:
 
-1) _E-step_ run Netica's EM algorithm to calculate expected tables.
+1)  *E-step* run Netica's EM algorithm to calculate expected tables.
 
-2) _M-step_ run maximizer to adjust parameters to be close to expected table.
+2)  *M-step* run maximizer to adjust parameters to be close to expected table.
 
-3) Check for convergence.
+3)  Check for convergence.
 
-Note:  only need one step of the internal EM in the E-step, and a few rounds of optimization in the M-step.
-
+Note: only need one step of the internal EM in the E-step, and a few rounds of optimization in the M-step.
 
 Go back to the baseline motif.
+
 ```{r}
 DeleteNetwork(motif)
 motif <- ReadNetworks(file.path("miniACED","miniACEDMotif.dne"),session=sess)
@@ -332,6 +322,3 @@ cat(ifelse(out$converged,"Converged","Did not converge"),
 print(out$llikes[1:out$iter])
 
 ```
-
-
-
